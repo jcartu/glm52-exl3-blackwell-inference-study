@@ -6,10 +6,11 @@ This directory preserves the evidence behind the GLM-5.2 EXL3 Blackwell study.
 
 ## Integrity contract
 
-- `raw/` contains **31 byte-for-byte JSON copies** produced on 23 July 2026.
-- `manifest.json` records each raw file's campaign phase, timestamp, byte count, and SHA-256.
-- `SHA256SUMS` covers the raw artifacts, manifest, public-safe configurations, and tool-call proof.
-- `tool-call-smoke.json` is a fresh, narrowed end-to-end observation of the final service's OpenAI-compatible tool-call contract.
+- `raw/` contains **31 byte-for-byte JSON copies** from the original 23 July campaign.
+- `breakthrough/` contains **16 byte-for-byte JSON copies** from the follow-on deep dive.
+- `manifest.json` records provenance for the original archive; `breakthrough-manifest.json` records the follow-on artifacts.
+- `SHA256SUMS` covers both artifact sets, manifests, public-safe runtime/configuration files, documentation, and tool-call proof.
+- `tool-call-smoke.json` is the original narrowed tool-call observation; the fresh production tool-call result is also recorded in `breakthrough/exl3-breakthrough-direct-evidence-20260723.json`.
 - Raw evidence was not rewritten to improve presentation or remove failed candidates.
 
 Verify from the repository root:
@@ -28,6 +29,21 @@ sha256sum --check results/SHA256SUMS
 | Did the final sampled Estonia profile pass? | [`exl3-v20-final-estonia10-sampled-20260723.json`](raw/exl3-v20-final-estonia10-sampled-20260723.json) |
 | Did deterministic LAVD pass with enough output budget? | [`exl3-v20-winning-lavd10-24k-20260723.json`](raw/exl3-v20-winning-lavd10-24k-20260723.json) |
 | Did OpenAI-compatible tool calling work? | [`tool-call-smoke.json`](tool-call-smoke.json) |
+
+## Breakthrough extension
+
+| Question | Artifact |
+| --- | --- |
+| What is the final 999,424-token production decode matrix? | [`exl3-breakthrough-production-b3072-decode-20260723.json`](breakthrough/exl3-breakthrough-production-b3072-decode-20260723.json) |
+| What is the final exact-token prefill result? | [`exl3-breakthrough-production-b3072-prefill-20260723.json`](breakthrough/exl3-breakthrough-production-b3072-prefill-20260723.json) |
+| Did production LAVD and Estonia pass? | [`LAVD`](breakthrough/exl3-breakthrough-b3072-quality-lavd10-20260723.json) · [`Estonia`](breakthrough/exl3-breakthrough-b3072-quality-estonia10-20260723.json) |
+| What direct native/beyond-native capacity and retrieval requests ran? | [`exl3-breakthrough-direct-evidence-20260723.json`](breakthrough/exl3-breakthrough-direct-evidence-20260723.json) |
+| How fast was DCP1? | [`exl3-breakthrough-dcp1-decode-20260723.json`](breakthrough/exl3-breakthrough-dcp1-decode-20260723.json) |
+| How fast was the experimental DCP2 workspace profile? | [`prefill`](breakthrough/exl3-breakthrough-dcp2-workspace-prefill-20260723.json) · [`decode`](breakthrough/exl3-breakthrough-dcp2-workspace-decode-matrix-20260723.json) |
+| Why was DCP2 rejected? | [`LAVD 8/10`](breakthrough/exl3-breakthrough-dcp2-workspace-lavd10-20260723.json) · [`Estonia 10/10`](breakthrough/exl3-breakthrough-dcp2-workspace-estonia10-20260723.json) |
+| What happened at the DCP4 native edge? | [`LAVD 10/10`](breakthrough/exl3-breakthrough-final-no-workspace-lavd10-20260723.json) · [`Estonia 8/10`](breakthrough/exl3-breakthrough-final-safe-estonia10-20260723.json) |
+
+The interpretation, claim boundaries, and source changes are documented in [`../BREAKTHROUGH_CAMPAIGN.md`](../BREAKTHROUGH_CAMPAIGN.md).
 
 ## Baseline and planned-prefill stage
 

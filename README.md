@@ -20,9 +20,32 @@ The campaign moved from the validated v2 baseline to the Gilded Gnosis v20 runti
 
 See [CREDITS.md](CREDITS.md) for the ownership boundary, source links, and contribution details.
 
-## Headline result
+## Breakthrough extension
 
-The selected v20 configuration delivered large gains over the v2 baseline while retaining a 786,432-token logical KV budget and passing the final quality gates.
+The follow-on deep dive found and removed a sparse-indexer transient-allocation barrier. The current quality-gated production profile now exposes **999,424 tokens**, up from **786,432 (+27.1%)**, while passing LAVD 10/10, Estonia 10/10, and a fresh OpenAI-compatible tool-call smoke test.
+
+| Result | Validated v20 baseline | Current production |
+| --- | ---: | ---: |
+| Maximum model length | 786,432 | **999,424** |
+| Direct capacity proof | 716,800-token decode | **998,800 prompt + 32 completion, HTTP 200** |
+| Cold prefill, 8K | 3,524 tok/s | **3,581 tok/s** |
+| Cold prefill, 64K | 2,068 tok/s | **2,098 tok/s** |
+| Cold prefill, 128K | 1,937 tok/s | **1,964 tok/s** |
+| LAVD | 10/10 | **10/10** |
+| Estonia | 10/10 | **10/10** |
+
+The larger KV geometry costs approximately 4–9% short-context decode throughput, depending on concurrency. A native-edge experimental profile executed 1,048,000 prompt tokens plus 32 generated tokens, but missed the Estonia gate at 8/10. Forced execution reached 1,211,800 prompt tokens beyond the model's native limit, but structured retrieval failed; this study makes **no usable-context claim above 1,048,576 tokens**.
+
+The campaign also identified workload-specific speed profiles:
+
+- **DCP1:** up to +20.2% decode throughput at C4, with a 262,144-token ceiling.
+- **DCP2 workspace experiment:** up to +54.1% 128K prefill and 373.6 tok/s at C8, with a 524,288-token ceiling, but rejected after LAVD scored 8/10.
+
+See [BREAKTHROUGH_CAMPAIGN.md](BREAKTHROUGH_CAMPAIGN.md) for root cause, full matrices, quality boundaries, rejected routes, upstream research, and next-step candidates. The new byte-for-byte evidence is indexed under [`results/breakthrough/`](results/breakthrough/).
+
+## Original validated v20 baseline
+
+The measurements below preserve the first selected v20 configuration and serve as the comparison baseline for the breakthrough extension.
 
 ### Exact-token cold prefill
 
@@ -62,7 +85,7 @@ Values are aggregate tokens/second. The C8/128K cell could not fit within the co
 ## Capacity, quality, and behavior gates
 
 - **716,800-token exact context:** completed a cached-context C1 run at **78.88 aggregate tok/s**, with 1,182 measured output tokens and no request error. The request used a 1,024-token output cap; continuous usage counted the rolling measured window. See the [raw result](results/raw/exl3-v20-mtp3-specdecode-kvrope-700k-exact-decode-20260723.json).
-- **900K/1M target:** not safe under this memory geometry. The 900K campaign attempt exceeded the 786,432-token configured model/KV budget and encountered an OOM requiring an additional 216 MiB allocation. This repository makes no 1M-context claim.
+- **900K/1M target in the original geometry:** not safe at that stage. The attempt exceeded the then-configured 786,432-token model/KV budget and encountered an OOM requiring an additional 216 MiB allocation. The follow-on campaign later isolated that transient-allocation barrier; see [BREAKTHROUGH_CAMPAIGN.md](BREAKTHROUGH_CAMPAIGN.md).
 - **Estonia long-context diagnostic, default sampling:** **10/10 passed**, zero errors, zero cap hits, 3,576.8 average completion tokens, 59.0 aggregate generation tok/s. See the [final sampled run](results/raw/exl3-v20-final-estonia10-sampled-20260723.json).
 - **LAVD, 24,576-token cap:** **10/10 acceptable**: 5 exact, 5 near, 0 fail, zero cap hits, 68.6 aggregate generation tok/s. See the [raw result](results/raw/exl3-v20-winning-lavd10-24k-20260723.json).
 - **OpenAI-compatible tool calling:** a fresh smoke request returned HTTP 200, `finish_reason=tool_calls`, and `get_weather({"city":"Paris"})`. See [the narrowed request/response proof](results/tool-call-smoke.json).
@@ -74,20 +97,21 @@ Forcing `temperature=0` on the Estonia profile caused repetitive generations and
 
 That result is reported as a methodology/sampling interaction, not hidden as a failed runtime candidate. The raw deterministic and sampled artifacts are all preserved. LAVD remained a deterministic `temperature=0` gate and passed 10/10 with the 24K output cap.
 
-## Winning serving configuration
+## Current production serving configuration
 
 - Four-way tensor parallelism and four-way decode-context parallelism (`TP4/DCP4`), DCP A2A.
-- Native EXL3 Trellis routed-MoE path with a second planned prefill path and `VLLM_EXL3_PREFILL_BLOCK_M=64`.
+- Native EXL3 Trellis routed-MoE path with `VLLM_EXL3_PREFILL_BLOCK_M=64` and prefill chunk 3.
+- Adaptive sparse-indexer fold with a 256 MiB two-level candidate-buffer cap.
 - MTP speculative decoding depth 3 with Triton draft MoE.
 - `VLLM_B12X_MLA_SPEC_EXTEND_AS_DECODE=1`.
 - `KV_FP8_ROPE=1`.
 - 3,072 maximum batched tokens and 8 maximum sequences.
-- 786,432 maximum model length, 3,072 GPU blocks, and 0.93 GPU memory utilization.
+- **999,424 maximum model length, 3,904 GPU blocks, and 0.95 GPU memory utilization.**
 - Full and piecewise CUDA graphs sized from the selected MTP depth.
-- Asynchronous scheduling disabled as required by the validated upstream release.
+- Experimental DCP workspace projection disabled after quality regressions.
 - QBMM absorbed BMM disabled: the EXL3 checkpoint does not expose the contiguous ModelOpt MXFP8 `kv_b_proj` layout required by that path.
 
-The exact publication copy is [`configs/docker-compose.exl3-v20.yml`](configs/docker-compose.exl3-v20.yml), layered over [`configs/docker-compose.exl3-experiment.yml`](configs/docker-compose.exl3-experiment.yml).
+The exact publication copy is [`configs/docker-compose.exl3-v20.yml`](configs/docker-compose.exl3-v20.yml), which mounts [`configs/runtime-paged-indexer.py`](configs/runtime-paged-indexer.py) and extends [`configs/docker-compose.exl3-experiment.yml`](configs/docker-compose.exl3-experiment.yml).
 
 Pinned final image:
 
@@ -115,7 +139,7 @@ The winning decode matrix reported 382,588 MiB average and 382,600 MiB maximum V
 
 ## What was tested and rejected
 
-The archive includes every July 23 JSON produced during the campaign, including regressions and failed capacity attempts.
+The archive preserves all 31 original July 23 JSON artifacts and a curated 16-artifact breakthrough extension, including regressions and failed capacity/quality candidates.
 
 - MTP2 had a narrow C8 result comparable to MTP3 but lost materially at C1 and C4.
 - MTP4 and MTP5 lost throughput as concurrency increased.
@@ -149,7 +173,6 @@ export MODEL_DIR="$HOME/models/GLM-5.2-EXL3-TR3-3.0bpw"
 export CUDA_VISIBLE_DEVICES="3,1,2,0"
 
 docker compose \
-  -f configs/docker-compose.exl3-experiment.yml \
   -f configs/docker-compose.exl3-v20.yml \
   up glm52-exl3-v20
 ```
@@ -169,23 +192,26 @@ Representative final commands are documented in [METHODOLOGY.md](METHODOLOGY.md)
 ## Repository map
 
 ```text
-configs/                 publication-safe copies of the measured Compose/Docker setup
-results/raw/             all 31 unmodified July 23 benchmark JSON artifacts
-results/manifest.json    provenance, byte size, timestamp, and SHA-256 per raw artifact
-results/SHA256SUMS       checksums for reproducibility artifacts
+configs/                           publication-safe measured Compose/runtime setup
+results/raw/                       31 unmodified original campaign JSON artifacts
+results/breakthrough/              16 unmodified follow-on campaign artifacts
+results/manifest.json              original artifact provenance and SHA-256
+results/breakthrough-manifest.json follow-on artifact provenance and SHA-256
+results/SHA256SUMS                 checksums for all reproducibility artifacts
 results/tool-call-smoke.json
-METHODOLOGY.md           complete experiment sequence, controls, results, and caveats
-CREDITS.md               ownership and attribution ledger
+METHODOLOGY.md                     original experiment sequence and controls
+BREAKTHROUGH_CAMPAIGN.md           follow-on root cause, profiles, gates, and limits
+CREDITS.md                         ownership and attribution ledger
 ```
 
 See [results/README.md](results/README.md) for the artifact index and verification instructions.
 
 ## Integrity and scope
 
-- The 31 files in `results/raw/` are byte-for-byte copies of the campaign outputs.
-- Generated manifests and public-safe config copies are checksummed.
+- The 31 files in `results/raw/` and 16 files in `results/breakthrough/` are byte-for-byte copies of campaign outputs.
+- Generated manifests, runtime/configuration copies, and documentation are checksummed.
 - Hostname, driver, PCI topology, hardware samples, and benchmark event logs remain in the raw evidence because they affect reproducibility.
-- No model weights, container layers, third-party source trees, credentials, or API keys are included.
+- No model weights, container layers, credentials, or API keys are included; the only modified upstream source copies are the two runtime files explicitly listed and attributed in [CREDITS.md](CREDITS.md).
 - Results apply to the pinned checkpoint, image digest, four-GPU topology, and stated benchmark methodology. They should not be generalized to other quantizations, GPU counts, runtimes, or sampling policies without measurement.
 
 ## License

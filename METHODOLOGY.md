@@ -4,6 +4,8 @@ This document records the complete 23 July 2026 GLM-5.2 EXL3/Trellis tuning proc
 
 > Ownership notice: the campaign measured and configured upstream work; it did not create or take ownership of GLM-5.2, the EXL3 checkpoint, vLLM, Sparkinfer, ExLlamaV3/Trellis, Gilded Gnosis, or the referenced container images. See [CREDITS.md](CREDITS.md) for component-level attribution.
 
+> Follow-on study: the adaptive-fold, DCP-profile, native-edge, and beyond-native experiments performed after this original selection are documented separately in [BREAKTHROUGH_CAMPAIGN.md](BREAKTHROUGH_CAMPAIGN.md), with evidence under [`results/breakthrough/`](results/breakthrough/).
+
 ## 1. Question
 
 For `brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw` on four RTX PRO 6000 Blackwell 96 GB GPUs, determine the highest-performing configuration that:

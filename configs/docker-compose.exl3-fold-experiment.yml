@@ -1,0 +1,12 @@
+services:
+  glm52-exl3-v20:
+    volumes:
+      - ./runtime-paged-indexer.py:/opt/venv/lib/python3.12/site-packages/sparkinfer/attention/nsa_indexer/paged.py:ro
+      - ./runtime-b12x-mla.py:/opt/venv/lib/python3.12/site-packages/vllm/v1/attention/backends/mla/b12x_mla_sparse.py:ro
+    environment:
+      SPARKINFER_INDEXER_TWO_LEVEL_FOLD: "${EXL3_INDEXER_TWO_LEVEL_FOLD:-auto}"
+      SPARKINFER_INDEXER_TWO_LEVEL_FOLD_MAX_MIB: "${EXL3_INDEXER_TWO_LEVEL_FOLD_MAX_MIB:-256}"
+      VLLM_ALLOW_LONG_MAX_MODEL_LEN: "${EXL3_ALLOW_LONG_MAX_MODEL_LEN:-0}"
+      VLLM_DCP_PROJECT_BEFORE_MERGE: "${EXL3_DCP_PROJECT_BEFORE_MERGE:-0}"
+      VLLM_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS: "${EXL3_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS:-1024}"
+      VLLM_B12X_MLA_DCP_GATHER_IN_WORKSPACE: "${EXL3_DCP_GATHER_IN_WORKSPACE:-0}"

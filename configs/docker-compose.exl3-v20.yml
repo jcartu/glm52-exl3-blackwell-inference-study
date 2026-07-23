@@ -1,15 +1,19 @@
-# Winning benchmark overlay. Upstream ownership: see ../CREDITS.md.
 services:
   glm52-exl3-v20:
     extends:
       file: docker-compose.exl3-experiment.yml
       service: glm52-exl3-experiment
-    image: verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a@sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01
+    image: "${EXL3_IMAGE:-verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a@sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01}"
     container_name: glm52-exl3-v20-5001
+    volumes:
+      - ./runtime-paged-indexer.py:/opt/venv/lib/python3.12/site-packages/sparkinfer/attention/nsa_indexer/paged.py:ro
     environment:
       VLLM_EXL3_TRELLIS_MIN_M: "4"
       VLLM_EXL3_PREFILL_TRELLIS: "1"
       VLLM_EXL3_PREFILL_BLOCK_M: "${EXL3_PREFILL_BLOCK_M:-64}"
+      VLLM_EXL3_PREFILL_CHUNK: "${EXL3_PREFILL_CHUNK:-3}"
+      SPARKINFER_INDEXER_TWO_LEVEL_FOLD: "${EXL3_INDEXER_TWO_LEVEL_FOLD:-auto}"
+      SPARKINFER_INDEXER_TWO_LEVEL_FOLD_MAX_MIB: "${EXL3_INDEXER_TWO_LEVEL_FOLD_MAX_MIB:-256}"
       VLLM_B12X_MLA_SPEC_EXTEND_AS_DECODE: "${EXL3_SPEC_EXTEND_AS_DECODE:-1}"
       KV_FP8_ROPE: "${EXL3_KV_FP8_ROPE:-1}"
       VLLM_B12X_ABSORB_BMM: "${EXL3_B12X_ABSORB_BMM:-0}"
@@ -32,7 +36,7 @@ services:
           --served-model-name GLM-5.2 \
           --host 0.0.0.0 --port 5001 --trust-remote-code \
           --tensor-parallel-size 4 \
-          --decode-context-parallel-size 4 \
+          --decode-context-parallel-size "${EXL3_DCP_SIZE:-4}" \
           --dcp-comm-backend a2a \
           --dcp-kv-cache-interleave-size 1 \
           --seed 0 \
@@ -42,12 +46,12 @@ services:
           --moe-backend b12x \
           --load-format safetensors \
           --compilation-config "{\"cudagraph_mode\":\"FULL_AND_PIECEWISE\",\"cudagraph_capture_sizes\":$${graph_sizes},\"custom_ops\":[\"all\"],\"pass_config\":{\"fuse_allreduce_rms\":true}}" \
-          --gpu-memory-utilization "${EXL3_GPU_MEMORY_UTILIZATION:-0.93}" \
-          --max-model-len "${EXL3_MAX_MODEL_LEN:-786432}" \
+          --gpu-memory-utilization "${EXL3_GPU_MEMORY_UTILIZATION:-0.95}" \
+          --max-model-len "${EXL3_MAX_MODEL_LEN:-999424}" \
           --max-num-seqs "${EXL3_MAX_NUM_SEQS:-8}" \
           --max-num-batched-tokens "${EXL3_MAX_BATCHED_TOKENS:-3072}" \
           --max-cudagraph-capture-size "$${max_capture}" \
-          --num-gpu-blocks-override "${EXL3_GPU_BLOCKS:-3072}" \
+          --num-gpu-blocks-override "${EXL3_GPU_BLOCKS:-3904}" \
           --enable-chunked-prefill \
           --enable-prefix-caching \
           --enable-auto-tool-choice \

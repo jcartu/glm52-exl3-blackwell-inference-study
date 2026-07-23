@@ -1,0 +1,95 @@
+{
+  "campaign": "GLM-5.2 EXL3 Blackwell performance and context breakthrough",
+  "date": "2026-07-23",
+  "endpoint": "http://127.0.0.1:5001",
+  "model": "GLM-5.2",
+  "image": "verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a@sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01",
+  "direct_requests": [
+    {
+      "profile": "DCP4, batch 2944, 4096 blocks, workspace projection",
+      "prompt_tokens": 1048000,
+      "completion_tokens": 32,
+      "http_status": 200,
+      "elapsed_seconds": 564.3578577041626,
+      "result": "capacity pass"
+    },
+    {
+      "profile": "DCP4, batch 2944, 4096 blocks, workspace projection",
+      "prompt_tokens": 1047900,
+      "max_tokens": 128,
+      "http_status": 200,
+      "elapsed_seconds": 561.8454306125641,
+      "expected": "CERULEAN-ORBIT-7391",
+      "actual": "CERULEAN-ORBIT-7391",
+      "result": "native-edge structured retrieval pass"
+    },
+    {
+      "profile": "DCP4, batch 2816, 4096 blocks, workspace projection",
+      "prompt_tokens": 1048000,
+      "completion_tokens": 32,
+      "http_status": 200,
+      "elapsed_seconds": 567.4160993099213,
+      "result": "capacity pass"
+    },
+    {
+      "profile": "DCP2, batch 3072, 4096 blocks, patched workspace projection",
+      "prompt_tokens": 520000,
+      "completion_tokens": 114,
+      "http_status": 200,
+      "elapsed_seconds": 10.07616400718689,
+      "prefix_cache_note": "reused a prefix computed by the immediately preceding 524100-token request whose client timed out after the server completed prefill",
+      "expected": "CERULEAN-ORBIT-7391",
+      "actual": "CERULEAN-ORBIT-7391",
+      "result": "near-edge structured retrieval pass"
+    },
+    {
+      "profile": "DCP4, batch 2816, 4096 blocks, adaptive fold plus workspace projection",
+      "prompt_tokens": 1048000,
+      "completion_tokens": 32,
+      "http_status": 200,
+      "elapsed_seconds": 578.7739284038544,
+      "result": "adaptive-fold capacity pass"
+    },
+    {
+      "profile": "DCP4, batch 2816, 4096 blocks, adaptive fold, workspace projection disabled",
+      "prompt_tokens": 1048000,
+      "completion_tokens": 32,
+      "http_status": 200,
+      "elapsed_seconds": 612.0869154930115,
+      "result": "quality-safe native capacity pass"
+    },
+    {
+      "profile": "DCP4, batch 3072, 3904 blocks, adaptive fold, workspace projection disabled",
+      "prompt_tokens": 998800,
+      "completion_tokens": 32,
+      "http_status": 200,
+      "elapsed_seconds": 579.2164626121521,
+      "result": "production capacity pass"
+    }
+  ],
+  "beyond_native_context": [
+    {
+      "profile": "DCP4, batch 2048, 4736 blocks, forced max length 1212416",
+      "prompt_tokens": 1211800,
+      "completion_tokens": 32,
+      "elapsed_seconds": 702.26,
+      "result": "physical execution pass only"
+    },
+    {
+      "profile": "DCP4 forced beyond native RoPE limit",
+      "prompt_tokens": 1100011,
+      "expected": "CERULEAN-ORBIT-7391",
+      "actual": "79979979974V",
+      "result": "quality fail; do not deploy beyond model native 1048576-token limit"
+    }
+  ],
+  "tool_call_smoke": {
+    "http_status": 200,
+    "finish_reason": "tool_calls",
+    "tool_name": "get_weather",
+    "arguments": {
+      "city": "Tallinn"
+    },
+    "result": "pass"
+  }
+}
