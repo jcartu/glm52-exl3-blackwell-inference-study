@@ -1,0 +1,5 @@
+# Historical v2 prefill A/B overlay. Upstream ownership: see ../CREDITS.md.
+FROM davidyoung/glm52-exl3-sparkinfer:v1-prefill-trellis-plan-20260722@sha256:95b7e715e7aca733c44ee6477b2b2abcbed7bfa2bb06acf17b386463be5c0adb AS prefill_patch
+
+FROM verdictai/glm52-exl3-sparkinfer@sha256:bfd6d6670db37b04e9cbef7375722e3f71d66745abf1714c05cc5b71fd126715
+COPY --from=prefill_patch /usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py /usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/quantization/exl3.py

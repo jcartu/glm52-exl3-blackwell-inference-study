@@ -1,0 +1,253 @@
+{
+  "artifact_count": 31,
+  "artifacts": [
+    {
+      "bytes": 56304,
+      "path": "raw/exl3-v2-baseline-decode-20260723.json",
+      "phase": "v2 baseline",
+      "sha256": "30ab79477ee2e6e44323993fdb5bd24e3b15d2e60fc8498844c4cc9cc822080a",
+      "timestamp": "2026-07-23T00:33:04.800769"
+    },
+    {
+      "bytes": 12680,
+      "path": "raw/exl3-v2-baseline-prefill-20260723.json",
+      "phase": "v2 baseline",
+      "sha256": "6a2793e73a1a6c9ba3f829653a6f1ad54fdd1c9439f27df9b8e28563ac350dbc",
+      "timestamp": "2026-07-23T00:29:43.207104"
+    },
+    {
+      "bytes": 12683,
+      "path": "raw/exl3-v2-trellis-m2-block32-prefill-20260723.json",
+      "phase": "dual-plan Trellis prefill",
+      "sha256": "b74938a619565c444d38a47d4aa8ecf656540f738fed92a4b9a0d0c260db2842",
+      "timestamp": "2026-07-23T01:30:40.228421"
+    },
+    {
+      "bytes": 12686,
+      "path": "raw/exl3-v2-trellis-m2-block48-prefill-20260723.json",
+      "phase": "dual-plan Trellis prefill",
+      "sha256": "39c73f863ccc1e143ce67bc8ff41c62873978c51da8a83d772df742cae515b28",
+      "timestamp": "2026-07-23T01:22:51.568636"
+    },
+    {
+      "bytes": 56386,
+      "path": "raw/exl3-v2-trellis-m2-decode-20260723.json",
+      "phase": "dual-plan Trellis prefill",
+      "sha256": "dbfc3044df135fb4f147e908ca4ebe8e2e996f2b90126cbf3a1ff79ede525d97",
+      "timestamp": "2026-07-23T01:13:13.953196"
+    },
+    {
+      "bytes": 12686,
+      "path": "raw/exl3-v2-trellis-m2-prefill-20260723.json",
+      "phase": "dual-plan Trellis prefill",
+      "sha256": "d563a4e751d29d65aa5bf6e77f5b4dd6d37b38407600e41db023a2241bac0bed",
+      "timestamp": "2026-07-23T01:09:53.872061"
+    },
+    {
+      "bytes": 22940,
+      "path": "raw/exl3-v20-final-estonia10-sampled-20260723.json",
+      "phase": "winning configuration validation",
+      "sha256": "2dbb901ba3e7438d8f0402e551c145cd100fd9d5abc5676964d6d93d1a6dc7b2",
+      "timestamp": "2026-07-23T06:29:56.166439"
+    },
+    {
+      "bytes": 30965,
+      "path": "raw/exl3-v20-kvrope0-estonia10-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "35366169e2e974f2dbc05e4cdb63691309624ca478c9b872ca6964aff25f69a3",
+      "timestamp": "2026-07-23T05:43:39.550785"
+    },
+    {
+      "bytes": 30301,
+      "path": "raw/exl3-v20-mtp1-estonia10-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "c429a454d895542c745952cd86493f2283b9ebcda9b5861996d289533da392e9",
+      "timestamp": "2026-07-23T06:20:04.084169"
+    },
+    {
+      "bytes": 26845,
+      "path": "raw/exl3-v20-mtp2-specdecode-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "b291a213cd94121b31f8c0274126f08d831b35c7dbff21ae0a52b0e95dd907b5",
+      "timestamp": "2026-07-23T02:18:40.044468"
+    },
+    {
+      "bytes": 56438,
+      "path": "raw/exl3-v20-mtp3-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "8de967294853bfad8e28537a15947018a224de7766fbbf733d070f26c411c268",
+      "timestamp": "2026-07-23T01:52:39.968647"
+    },
+    {
+      "bytes": 12686,
+      "path": "raw/exl3-v20-mtp3-prefill-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "98084d1ffca1be615fc1a60fc0b0c6912d6d4d4c0c17e1dc3cf4cf120289aa3c",
+      "timestamp": "2026-07-23T01:49:18.197653"
+    },
+    {
+      "bytes": 26868,
+      "path": "raw/exl3-v20-mtp3-specdecode-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "a763bf8de5079d30df0ac9ea45d546a34f8246663848fab61a3f08731a9b32d5",
+      "timestamp": "2026-07-23T02:01:42.036804"
+    },
+    {
+      "bytes": 14596,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-700k-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "ed6086813576a24ff88fb43fdc7642b9518a7a16a95b4675006b2fd8d2d0c83b",
+      "timestamp": "2026-07-23T03:08:24.134303"
+    },
+    {
+      "bytes": 14705,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-700k-decode-retry-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "9ede52b355adcfc218ae093f119a090020becf98b5147bac264156c30edb5bd4",
+      "timestamp": "2026-07-23T03:17:35.267287"
+    },
+    {
+      "bytes": 14655,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-700k-exact-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "87be5314c66c1ce969edfe62f2f2e83ccb70959e59d9cf2afaafa8a01f0325c3",
+      "timestamp": "2026-07-23T03:33:10.961315"
+    },
+    {
+      "bytes": 12121,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-900k-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "558f1b63795818ad660456b5a7449a99850aeab710bf13aa015c67f412a29cba",
+      "timestamp": "2026-07-23T02:54:40.905240"
+    },
+    {
+      "bytes": 26802,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-batch2k-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "8d168d36d67381e4bb3788a821b9c6efd8d8904fc5b30d41d9d42e5bf784f559",
+      "timestamp": "2026-07-23T03:56:43.270834"
+    },
+    {
+      "bytes": 26746,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-batch4k-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "8b5e7aa467ca1a67d60b53f0a9169b8688c0772b6b6090a32b67a50f7d2a951e",
+      "timestamp": "2026-07-23T03:43:00.554257"
+    },
+    {
+      "bytes": 26772,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-batch4k-decode-retry-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "e2d3cfc37734d78426f59f83a45ccfd26ec2c710f8ef24d29baba4be2f46390a",
+      "timestamp": "2026-07-23T03:45:37.247106"
+    },
+    {
+      "bytes": 34201,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "ddfcdfaf7b3c46949caefb88598b4bfa73edaf29aecca79bb01e9fab69c42d17",
+      "timestamp": "2026-07-23T02:36:47.715189"
+    },
+    {
+      "bytes": 26876,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-draftb12x-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "6b7337899e4bc28a1b73ec2d3d3475d9f5bf88be988ae88c30fbf4842422b86e",
+      "timestamp": "2026-07-23T04:09:19.643850"
+    },
+    {
+      "bytes": 26867,
+      "path": "raw/exl3-v20-mtp3-specdecode-kvrope-drafttriton-control-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "6d09ef4a46a271ff06b4710451ad40a3c701bf4d7a199b6efd0e913f5f69d610",
+      "timestamp": "2026-07-23T04:16:10.948159"
+    },
+    {
+      "bytes": 26865,
+      "path": "raw/exl3-v20-mtp4-specdecode-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "9204ef1f975d2903ad797a43f8c4fe1f9d091bd3f79e7651ad4524c9ce25b9bf",
+      "timestamp": "2026-07-23T02:09:57.222453"
+    },
+    {
+      "bytes": 26846,
+      "path": "raw/exl3-v20-mtp5-specdecode-decode-20260723.json",
+      "phase": "v20 tuning sweep",
+      "sha256": "622d7e39584e3a67969deb254ddfa24d1b0a64018ec36db0590579ed5e610730",
+      "timestamp": "2026-07-23T02:26:30.945184"
+    },
+    {
+      "bytes": 69125,
+      "path": "raw/exl3-v20-winning-decode-matrix-20260723.json",
+      "phase": "winning configuration validation",
+      "sha256": "3886e728ea52c17e788c603d699529f27c2eda7f1daeed1206456bf9e43cebb0",
+      "timestamp": "2026-07-23T04:24:29.232301"
+    },
+    {
+      "bytes": 29062,
+      "path": "raw/exl3-v20-winning-estonia10-20260723.json",
+      "phase": "winning configuration validation",
+      "sha256": "d824158dff2e9119fd5862cf87faa4c5e1e875c5081318c202b9a54c7fe53068",
+      "timestamp": "2026-07-23T05:28:00.528994"
+    },
+    {
+      "bytes": 21434,
+      "path": "raw/exl3-v20-winning-lavd10-16k-20260723.json",
+      "phase": "winning configuration validation",
+      "sha256": "57356104b5f2d355aa49ccdb82b10fbfc715eac6141c06b4d4ea07c5110ca50e",
+      "timestamp": "2026-07-23T05:04:12.908405"
+    },
+    {
+      "bytes": 20085,
+      "path": "raw/exl3-v20-winning-lavd10-24k-20260723.json",
+      "phase": "winning configuration validation",
+      "sha256": "09f58c8488d9a444fa8c112f7ac7e343822c08dfa0e195a9d97c67d3bdd257f9",
+      "timestamp": "2026-07-23T05:11:53.281612"
+    },
+    {
+      "bytes": 14045,
+      "path": "raw/exl3-v20-winning-prefill-20260723.json",
+      "phase": "winning configuration validation",
+      "sha256": "039ddcd209dc1165b0355c5b6d0581ba89c5bd5906c8394718d633ca7c6cd6cd",
+      "timestamp": "2026-07-23T04:17:54.654131"
+    },
+    {
+      "bytes": 12672,
+      "path": "raw/exl3-v20-winning-prefill-exact-20260723.json",
+      "phase": "winning configuration validation",
+      "sha256": "12d3540a8bb634dd3fd695cf9d84fe838174e5bc66c549cac9bb7864ca1fe4bf",
+      "timestamp": "2026-07-23T05:14:07.636858"
+    }
+  ],
+  "benchmark_harness": {
+    "commit": "86cf05c2f42f4d21b909b6e684424ca1aab89fd5",
+    "reported_version": "0.4.29",
+    "repository": "https://github.com/local-inference-lab/llm-inference-bench"
+  },
+  "campaign_date": "2026-07-23",
+  "checkpoint": {
+    "base_model": "https://huggingface.co/zai-org/GLM-5.2",
+    "repository": "https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw",
+    "weights_included": false
+  },
+  "config_provenance": {
+    "campaign_sources": {
+      "Dockerfile.exl3-v2-prefill": "9f78ee7e1f07fcc12c6e11637b0faacfb1cabab59d377401eb858421d204806f",
+      "docker-compose.exl3-experiment.yml": "903c73f29f8e4fbbe02a696f1d09cb18942ab820a236e2a07a762ad265efd96f",
+      "docker-compose.exl3-v20.yml": "85d724e6e6901d7a30f10dcaf1fb6b6e6ff19cdd0064b16eef641ad8986809ee"
+    },
+    "publication_notes": [
+      "The base Compose model mount was changed from the campaign host absolute path to required MODEL_DIR.",
+      "CUDA_VISIBLE_DEVICES was made overrideable while retaining the campaign default 3,1,2,0.",
+      "Ownership comments were prepended to all three publication copies."
+    ]
+  },
+  "raw_bytes": 814943,
+  "runtime": {
+    "digest": "sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01",
+    "image": "verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a",
+    "sparkinfer_commit": "1a88b389a8d14f26dbe4c157965938cfd8f1bf51",
+    "vllm_commit": "6722c1d"
+  },
+  "schema_version": 1
+}

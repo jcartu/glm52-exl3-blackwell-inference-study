@@ -1,0 +1,52 @@
+{
+  "endpoint": "http://127.0.0.1:5001/v1/chat/completions",
+  "note": "Fresh end-to-end smoke observation against the final v20 service; response narrowed to the tool-call contract.",
+  "observation": {
+    "finish_reason": "tool_calls",
+    "http_status": 200,
+    "tool_calls": [
+      {
+        "function": {
+          "arguments": "{\"city\": \"Paris\"}",
+          "name": "get_weather"
+        },
+        "id": "chatcmpl-tool-872f9be85e8b22de",
+        "type": "function"
+      }
+    ]
+  },
+  "observed_at": "2026-07-23T12:42:07.712699+00:00",
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "What is the weather in Paris? Use the available tool.",
+        "role": "user"
+      }
+    ],
+    "model": "GLM-5.2",
+    "temperature": 0,
+    "tool_choice": "auto",
+    "tools": [
+      {
+        "function": {
+          "description": "Get current weather for a city",
+          "name": "get_weather",
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ],
+            "type": "object"
+          }
+        },
+        "type": "function"
+      }
+    ]
+  }
+}
