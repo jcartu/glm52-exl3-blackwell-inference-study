@@ -9,7 +9,7 @@ Measurements were generated with [Local Inference Lab's `llm-inference-bench`](h
 - `raw/` contains original benchmark and direct-smoke outputs, including the RC2+EXL3 profile controls.
 - `followup/` contains the 16 July 23 follow-up artifacts formerly published under promotional names; files were renamed for presentation, while harness payloads remain unchanged except the direct-observation record's neutral study label.
 - `issue34/` contains 13 benchmark outputs plus one direct-observation record from the native RC2 comparison.
-- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, and `rc2-exl3-manifest.json` record artifact provenance, sizes, and SHA-256 values.
+- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, `rc2-exl3-manifest.json`, and `optimization-manifest.json` record artifact provenance, sizes, and SHA-256 values.
 - `SHA256SUMS` covers the publication's documentation, configurations, patches, helper scripts, manifests, and evidence.
 - Failed candidates are retained when they establish a decision boundary.
 - The invalid attempted `context900k` artifact is excluded because the harness actually clamped that invocation to 128K; it is not a 900K measurement.
@@ -34,6 +34,19 @@ sha256sum --check results/SHA256SUMS
 | Did the selected service complete its final API smoke? | [`production smoke`](raw/rc2-exl3-production-smoke-20260724.json) |
 
 The interpretation and mixed-result boundaries are in [`../FOLLOWUP_STUDY.md`](../FOLLOWUP_STUDY.md).
+
+## Accuracy-preserving optimization
+
+| Question | Artifact |
+| --- | --- |
+| What were the binding gates and final decision? | [`gates`](optimization/optimization-gates-20260724.json) · [`summary`](optimization/optimization-summary-20260724.json) |
+| What was the fresh 3,072-token baseline? | [`prefill`](optimization/opt-baseline-prefill-20260724.json) · [`decode`](optimization/opt-baseline-decode-20260724.json) |
+| What does deployed batch 5,120 measure? | [`prefill`](optimization/opt-production-b5120-prefill-20260724.json) · [`decode`](optimization/opt-production-b5120-decode-20260724.json) |
+| Did deployed geometry pass quality and behavior gates? | [`LAVD`](optimization/opt-dcp4-b5120-lavd10-20260724.json) · [`Estonia`](optimization/opt-dcp4-b5120-estonia10-20260724.json) · [`tool`](optimization/opt-dcp4-b5120-tool-gate-20260724.json) · [`600K`](optimization/opt-dcp4-b5120-context600k-smoke-20260724.json) |
+| Why was faster DCP2 rejected? | [`prefill`](optimization/opt-dcp2-b4096-k4800-prefill-20260724.json) · [`decode`](optimization/opt-dcp2-b4096-k4800-decode-20260724.json) · [`LAVD 4/5/1`](optimization/opt-dcp2-b4096-k4800-lavd10-20260724.json) |
+| What MTP and scheduler boundaries were measured? | [`MTP2`](optimization/opt-b5120-mtp2-decode-20260724.json) · [`MTP4`](optimization/opt-b5120-mtp4-decode-20260724.json) · [`batch 5,632`](optimization/opt-b5632-prefill-20260724.json) |
+
+The optimization archive contains successful candidates and the measured decision boundary. Batch 6,144 and 8,192 failed before a harness JSON could be written; their observed CUDA OOM allocation details are preserved in the optimization summary.
 
 ## July 23 follow-up archive
 

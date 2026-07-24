@@ -1,0 +1,65 @@
+{
+  "objective": "Maximize prefill and sustained aggregate decode throughput on four RTX PRO 6000 Blackwell GPUs without accuracy or behavioral regression.",
+  "candidate_selection": {
+    "primary_score": "geometric mean of candidate/baseline ratios over prefill 8K, 64K, 128K and sustained decode 0K C1/C2/C4/C8 plus 128K C1/C2/C4",
+    "minimum_cell_ratio": 0.97,
+    "tie_breakers": [
+      "higher 128K prefill throughput",
+      "higher 0K C8 sustained decode throughput",
+      "higher 128K C4 sustained decode throughput"
+    ],
+    "notes": "Only candidates passing every accuracy, tool-use, context-capacity, and stability gate are eligible. Results within 3% are treated as measurement-equivalent unless repeat measurements establish a stable difference. Pareto-specialized profiles may be retained only when they pass the same gates and materially outperform the balanced production profile."
+  },
+  "accuracy_gates": {
+    "lavd_test": {
+      "runs": 10,
+      "temperature": 0.0,
+      "concurrency": 5,
+      "max_tokens": 24576,
+      "minimum_exact": 6,
+      "minimum_exact_plus_near": 8,
+      "maximum_fail": 2,
+      "maximum_errors": 0,
+      "baseline": "6 exact, 2 near, 2 fail"
+    },
+    "estonia": {
+      "runs": 10,
+      "concurrency": 5,
+      "max_tokens": 40000,
+      "required_correct": 10,
+      "maximum_errors": 0,
+      "baseline": "10/10"
+    },
+    "required_tool_call": {
+      "required_finish_reason": "tool_calls",
+      "required_call_count": 1,
+      "required_function": "get_weather",
+      "required_arguments": {"city": "Paris"},
+      "continuation_required": true
+    }
+  },
+  "capacity_and_stability_gates": {
+    "minimum_verified_prompt_tokens": 600019,
+    "required_response": "CONTEXT_OK",
+    "required_max_model_len": 999424,
+    "request_errors": 0,
+    "server_errors": 0
+  },
+  "performance_protocol": {
+    "prefill": {
+      "contexts": [8192, 65536, 131072],
+      "token_targeting": "exact",
+      "metric": "client prompt_tokens / TTFT",
+      "max_tokens": 1,
+      "temperature": 0.0
+    },
+    "decode": {
+      "contexts": [0, 32768, 131072],
+      "concurrency": [1, 2, 4, 8],
+      "duration_seconds": 15,
+      "max_tokens": 8192,
+      "temperature": 0.0,
+      "ignore_eos": true
+    }
+  }
+}

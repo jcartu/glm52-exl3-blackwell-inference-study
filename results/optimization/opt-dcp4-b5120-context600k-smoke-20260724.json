@@ -1,0 +1,15 @@
+{
+  "status": 200,
+  "target_prompt_tokens": 600019,
+  "tokenized_prompt_tokens": 600019,
+  "input_chars": 4266256,
+  "finish_reason": "stop",
+  "content": null,
+  "reasoning": "CONTEXT_OK",
+  "usage": {
+    "prompt_tokens": 600019,
+    "total_tokens": 600022,
+    "completion_tokens": 3,
+    "prompt_tokens_details": null
+  }
+}

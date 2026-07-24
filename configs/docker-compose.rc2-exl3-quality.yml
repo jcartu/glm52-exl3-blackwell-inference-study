@@ -47,7 +47,7 @@ services:
           --gpu-memory-utilization "${EXL3_GPU_MEMORY_UTILIZATION:-0.95}" \
           --max-model-len "${EXL3_MAX_MODEL_LEN:-999424}" \
           --max-num-seqs "${EXL3_MAX_NUM_SEQS:-8}" \
-          --max-num-batched-tokens "${EXL3_MAX_BATCHED_TOKENS:-3072}" \
+          --max-num-batched-tokens "${EXL3_MAX_BATCHED_TOKENS:-5120}" \
           --max-cudagraph-capture-size "$${max_capture}" \
           --num-gpu-blocks-override "${EXL3_GPU_BLOCKS:-3904}" \
           --enable-chunked-prefill \

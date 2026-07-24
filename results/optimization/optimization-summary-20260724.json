@@ -1,0 +1,176 @@
+{
+  "date": "2026-07-24",
+  "hardware": "4x NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 600 W limit per GPU",
+  "selected_profile": {
+    "tp": 4,
+    "dcp": 4,
+    "mtp_tokens": 3,
+    "max_num_batched_tokens": 5120,
+    "max_num_seqs": 8,
+    "max_model_len": 999424,
+    "num_gpu_blocks_override": 3904,
+    "gpu_memory_utilization": 0.95
+  },
+  "baseline": {
+    "max_num_batched_tokens": 3072,
+    "prefill_tok_s": {
+      "8192": 3549.0,
+      "65536": 1891.0,
+      "131072": 1859.0
+    },
+    "decode_tok_s": {
+      "0_c1": 101.76218200933269,
+      "32768_c1": 104.51429058928261,
+      "131072_c1": 102.8774659270383,
+      "0_c2": 165.17525261944667,
+      "0_c4": 248.22466301597066,
+      "0_c8": 367.6823575828189,
+      "32768_c2": 165.13875395632311,
+      "32768_c4": 239.25695369624736,
+      "32768_c8": 357.7719475711987,
+      "131072_c2": 160.54005006093632,
+      "131072_c4": 235.39887439697978
+    }
+  },
+  "deployed": {
+    "prefill_tok_s": {
+      "8192": 3650.0,
+      "65536": 2109.0,
+      "131072": 1974.0
+    },
+    "decode_tok_s": {
+      "0_c1": 103.63802122907964,
+      "32768_c1": 101.08902162852756,
+      "131072_c1": 101.64361904433267,
+      "0_c2": 168.57462804467468,
+      "0_c4": 246.9237049758633,
+      "0_c8": 380.6702187983917,
+      "32768_c2": 166.74140668506416,
+      "32768_c4": 241.14435226101045,
+      "32768_c8": 364.5787456058775,
+      "131072_c2": 164.02881278191796,
+      "131072_c4": 241.92406217989827
+    },
+    "ratio_vs_baseline": {
+      "prefill": {
+        "8192": 1.028458720766413,
+        "65536": 1.1152829190904283,
+        "131072": 1.0618612157073695
+      },
+      "decode": {
+        "0_c1": 1.0184335593312546,
+        "0_c2": 1.020580416081215,
+        "0_c4": 0.9947589493151063,
+        "0_c8": 1.0353235909956526,
+        "32768_c1": 0.967226788399535,
+        "32768_c2": 1.009704885681558,
+        "32768_c4": 1.0078885839496197,
+        "32768_c8": 1.0190255219306263,
+        "131072_c1": 0.988006636131758,
+        "131072_c2": 1.0217314166755112,
+        "131072_c4": 1.027719706815226
+      }
+    }
+  },
+  "accuracy_and_behavior": {
+    "lavd": {
+      "exact": 6,
+      "near": 3,
+      "fail": 1,
+      "errors": 0
+    },
+    "estonia": {
+      "correct": 10,
+      "attempted": 10,
+      "errors": 0
+    },
+    "required_tool": {
+      "finish_reason": "tool_calls",
+      "tool_call_count": 1,
+      "continuation_finish_reason": "stop"
+    },
+    "long_context": {
+      "status": 200,
+      "target_prompt_tokens": 600019,
+      "tokenized_prompt_tokens": 600019,
+      "input_chars": 4266256,
+      "finish_reason": "stop",
+      "content": null,
+      "reasoning": "CONTEXT_OK",
+      "usage": {
+        "prompt_tokens": 600019,
+        "total_tokens": 600022,
+        "completion_tokens": 3,
+        "prompt_tokens_details": null
+      }
+    }
+  },
+  "rejected_or_bounded_candidates": [
+    {
+      "profile": "DCP4 / batch 5632",
+      "reason": "No repeatable prefill advantage over batch 5120; retained more memory pressure.",
+      "prefill_tok_s": {
+        "8192": 3654.0,
+        "65536": 2037.0,
+        "131072": 1951.0
+      }
+    },
+    {
+      "profile": "DCP4 / batch 6144",
+      "reason": "Fatal CUDA OOM during the 8K prefill profile; a worker attempted a 432 MiB allocation with about 264 MiB free."
+    },
+    {
+      "profile": "DCP4 / batch 8192",
+      "reason": "Fatal CUDA OOM on the first 8K prefill request; a worker attempted a 64 MiB allocation with about 28 MiB free."
+    },
+    {
+      "profile": "DCP4 / MTP2 / batch 5120",
+      "reason": "Lower C1/C4 throughput than MTP3.",
+      "zero_context_decode_tok_s": {
+        "c1": 95.98739991686762,
+        "c2": 163.80118259442978,
+        "c4": 238.87597958472224,
+        "c8": 365.93572677057693
+      }
+    },
+    {
+      "profile": "DCP4 / MTP4 / batch 5120",
+      "reason": "Large C8 throughput regression.",
+      "zero_context_decode_tok_s": {
+        "c1": 101.3088060148138,
+        "c2": 159.74981719944006,
+        "c4": 239.2037013679903,
+        "c8": 290.4613595311495
+      }
+    },
+    {
+      "profile": "DCP2 / batch 4096 / 4800 blocks / 614400 max length",
+      "reason": "Performance-dominant but failed the predeclared LAVD exactness gate: 4 exact versus required 6; recorded 5 near and 1 fail. Not deployed.",
+      "prefill_tok_s": {
+        "8192": 3718.0,
+        "65536": 2976.0,
+        "131072": 2877.0
+      },
+      "decode_tok_s": {
+        "0_c1": 110.81071012029416,
+        "32768_c1": 112.23288314069231,
+        "131072_c1": 111.72046572868626,
+        "0_c2": 187.4402822916762,
+        "0_c4": 281.209889068624,
+        "0_c8": 422.7640668187032,
+        "32768_c2": 182.89906875336948,
+        "32768_c4": 273.87301943489183,
+        "32768_c8": 406.290434813428,
+        "131072_c2": 182.99363284602876,
+        "131072_c4": 265.27626111895677
+      },
+      "lavd": {
+        "exact": 4,
+        "near": 5,
+        "fail": 1,
+        "errors": 0
+      }
+    }
+  ],
+  "selection_note": "Batch 5120 was the fastest tested DCP4 scheduler geometry that passed every predeclared accuracy, tool, capacity, and stability gate. Results within 3% are treated as measurement-equivalent; the repeated 128K/C1 cell measured 102.5 tok/s."
+}

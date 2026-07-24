@@ -110,18 +110,40 @@ The conversion used 131,072 finite routed-activation rows and covered all 256 ex
 
 The capture, validation, and assembly glue is under [`tools/mtp78/`](tools/mtp78/). The underlying encoder, LDLQ/Trellis method, MCG codebook, and ExLlamaV3 kernels are upstream work credited in [CREDITS.md](CREDITS.md). The published helpers do not include model weights or the calibration corpus.
 
+## Stage 4: accuracy-preserving throughput optimization
+
+A final sweep kept the RC2+EXL3 MTP78 checkpoint and changed only serving geometry. The binding gate required at least 6 exact and 8 exact-or-near LAVD answers, no more than 2 failures, Estonia 10/10, one valid required tool call with a successful continuation, a 600,019-token `CONTEXT_OK` response, and no runtime errors.
+
+The selected change increased `max_num_batched_tokens` from 3,072 to 5,120 while retaining `TP4/DCP4/MTP3`, 3,904 GPU blocks, eight sequences, 0.95 GPU-memory utilization, and the 999,424-token configured model length.
+
+| Metric | Fresh 3,072 baseline | Deployed 5,120 | Change |
+| --- | ---: | ---: | ---: |
+| 8K prefill | 3,549 | 3,650 | +2.8% |
+| 64K prefill | 1,891 | 2,109 | +11.5% |
+| 128K prefill | 1,859 | 1,974 | +6.2% |
+| zero-context C1 decode | 101.8 | 103.6 | +1.8% |
+| zero-context C8 decode | 367.7 | 380.7 | +3.5% |
+| 128K C4 decode | 235.4 | 241.9 | +2.8% |
+
+Batch 5,632 did not improve 64K or 128K prefill over 5,120. Batch 6,144 and 8,192 produced fatal CUDA OOM errors during the 8K prefill profile. MTP2 reduced low-concurrency throughput; MTP4 reduced zero-context C8 to 290.5 tok/s.
+
+A DCP2 profile with batch 4,096, 4,800 blocks, and a 614,400-token configured limit dominated the speed matrix: 2,976 tok/s at 64K prefill, 2,877 tok/s at 128K prefill, 422.8 tok/s at zero-context C8, and 265.3 tok/s at 128K C4. It scored 4 exact / 5 near / 1 fail on LAVD and therefore missed the predeclared six-exact minimum. It remains an archived rejected candidate rather than the production default.
+
+The deployed DCP4/batch-5,120 profile scored 6 exact / 3 near / 1 fail on LAVD, Estonia 10/10, emitted exactly one valid required tool call, completed the tool continuation, and returned `CONTEXT_OK` from an exact 600,019-token prompt. The complete sweep and gate artifacts are indexed by [`results/optimization-manifest.json`](results/optimization-manifest.json).
+
 ## Selection rationale
 
-The EXL3 MTP78 profile was selected for this host because it:
+The optimized EXL3 MTP78 DCP4/batch-5,120 profile was selected for this host because it:
 
 - retained the 999,424 configured service geometry;
 - completed the observed 600,019-token direct smoke;
+- met or exceeded the predeclared LAVD exact, near, and failure thresholds;
 - passed Estonia 10/10;
-- passed the corrected single-call required-tool gate;
-- exposed a measured C4/128K decode cell unavailable to both BF16 profiles;
-- reduced checkpoint payload by 15.66 GB total.
+- passed the corrected single-call required-tool gate and continuation;
+- improved matched prefill by 2.8% at 8K, 11.5% at 64K, and 6.2% at 128K;
+- improved matched zero-context C8 decode by 3.5% and 128K C4 decode by 2.8%.
 
-It was **not** selected because it was fastest or best in every metric. The BF16 control remained faster at 64K and 128K prefill, faster at zero-context C2/C8, and had fewer hard LAVD failures in this ten-run sample.
+It was **not** selected because it won every isolated speed cell. The DCP2 candidate was materially faster but missed the predeclared LAVD exactness threshold, and the largest tested DCP4 scheduler budgets were not memory-safe.
 
 ## Rejected or bounded claims
 

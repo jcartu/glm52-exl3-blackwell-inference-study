@@ -1,0 +1,111 @@
+{
+  "study": "RC2+EXL3 MTP78 scheduler/DCP/MTP optimization",
+  "date": "2026-07-24",
+  "artifacts": [
+    {
+      "path": "optimization/opt-b5120-decode-20260724.json",
+      "bytes": 68941,
+      "sha256": "858359f96b60d676ec0de98ae56624327474d12cdfa71f49b614027dba6a0981"
+    },
+    {
+      "path": "optimization/opt-b5120-mtp2-decode-20260724.json",
+      "bytes": 31502,
+      "sha256": "69815c9aeb6219fab6d02c6be56f632ca78ba4cc177217ee3685fbfd37f003fd"
+    },
+    {
+      "path": "optimization/opt-b5120-mtp4-decode-20260724.json",
+      "bytes": 31480,
+      "sha256": "a0b1256792bc17b8c4e702023bce23038d3c9fb31ac5bd4ad669165e8f69773c"
+    },
+    {
+      "path": "optimization/opt-b5120-prefill-20260724.json",
+      "bytes": 12676,
+      "sha256": "32719e25baad67114fa2397f8abb372c94649bc56ebd445f963f30a3dcf010e1"
+    },
+    {
+      "path": "optimization/opt-b5632-prefill-20260724.json",
+      "bytes": 12667,
+      "sha256": "7bd65702cf73f37d4b6386a098198616fe9a09cb3723e71841d111046cb9b436"
+    },
+    {
+      "path": "optimization/opt-baseline-decode-20260724.json",
+      "bytes": 68962,
+      "sha256": "236a7704fcd202d9d5035b270ff12fb78a05a73f1537804a24e4e7115eb6f4b4"
+    },
+    {
+      "path": "optimization/opt-baseline-prefill-20260724.json",
+      "bytes": 12668,
+      "sha256": "e7b43ada6526c28c738a7a39aa2e57c462e150618eeb216723e077b29e1a10b9"
+    },
+    {
+      "path": "optimization/opt-dcp2-b4096-k4800-decode-20260724.json",
+      "bytes": 68997,
+      "sha256": "685f3e28856d0f6f6c2fb416a3fb264f61b78d16b3372dc653d61cfbc6f53872"
+    },
+    {
+      "path": "optimization/opt-dcp2-b4096-k4800-lavd10-20260724.json",
+      "bytes": 21232,
+      "sha256": "2e821fe0c23df620994c2ad791572074058a729f2b40c1ea8ed821095f2b713f"
+    },
+    {
+      "path": "optimization/opt-dcp2-b4096-k4800-prefill-20260724.json",
+      "bytes": 12659,
+      "sha256": "928560b75b57e8f105342ae77590251e2ae3ef4659969dd57286670a2c8b898a"
+    },
+    {
+      "path": "optimization/opt-dcp4-b5120-128k-c1-repeat-20260724.json",
+      "bytes": 13966,
+      "sha256": "c3a50580ff1b1ed51f5da009d845d275112f90fae4813483ac5d4565ac71a9e8"
+    },
+    {
+      "path": "optimization/opt-dcp4-b5120-context600k-smoke-20260724.json",
+      "bytes": 329,
+      "sha256": "0df26b1681172b8cc73c9b90e3bba18d9d66af02fac0ff323b99208760879bad"
+    },
+    {
+      "path": "optimization/opt-dcp4-b5120-estonia10-20260724.json",
+      "bytes": 22010,
+      "sha256": "d8ad6cb1a9ddc919542f6a48ab974a0d67f53592397d53613333e73990be1894"
+    },
+    {
+      "path": "optimization/opt-dcp4-b5120-lavd10-20260724.json",
+      "bytes": 117633,
+      "sha256": "675c911761dcc4b17d45125e3aa686fd1b861955f05566439cc71f7503bf55dd"
+    },
+    {
+      "path": "optimization/opt-dcp4-b5120-tool-gate-20260724.json",
+      "bytes": 946,
+      "sha256": "e72427d59f710718cc6aed36787f3b1a2abafeb38287258e72e18d423b083d5f"
+    },
+    {
+      "path": "optimization/opt-production-b5120-decode-20260724.json",
+      "bytes": 68999,
+      "sha256": "33b49439f991bb54021dc58cdaaf9750a7cb684cf28009064656d38fe77e9b63"
+    },
+    {
+      "path": "optimization/opt-production-b5120-prefill-20260724.json",
+      "bytes": 12667,
+      "sha256": "38369dc6c000ec27394c99c7cb26685b4ebab7efcfbc5a3bc7abf590c96cd7e3"
+    },
+    {
+      "path": "optimization/opt-production-b5120-tool-smoke-20260724.json",
+      "bytes": 637,
+      "sha256": "a77f9bdce28ce9c3875f3242a571a465b7a52b8dae0cc9133ea39d8dd880d760"
+    },
+    {
+      "path": "optimization/optimization-gates-20260724.json",
+      "bytes": 2271,
+      "sha256": "ddf5c0f047d04f5b08c5de4a088c94536f5418c9ef7140cf91d12e139e935afe"
+    },
+    {
+      "path": "optimization/optimization-scorecard-20260724.json",
+      "bytes": 1852,
+      "sha256": "c0c04c9b43b2d93035c82b1b90841d72a3991a5310db39ef2e74f7ff959b5115"
+    },
+    {
+      "path": "optimization/optimization-summary-20260724.json",
+      "bytes": 5261,
+      "sha256": "5e5622c1679895b8d9e43af0253eec21639ceccda94c971aa455da959c355e13"
+    }
+  ]
+}

@@ -18,19 +18,19 @@ The selected profile combines:
 - targeted DCP workspace and required-tool grammar corrections;
 - an offline EXL3 conversion of the previously BF16 MTP layer 78 using Brandon Music's published reproduction encoder as the base pipeline.
 
-The runtime served with `TP4/DCP4/MTP3`, 3,072 maximum batched tokens, eight maximum sequences, and a configured 999,424-token model length. A direct smoke request containing **600,019 prompt tokens** completed and returned `CONTEXT_OK`. No 900K validation is claimed: the attempted 900K harness run was clamped to 128K by its parser and is excluded from publication.
+The accuracy-preserving production profile now serves with `TP4/DCP4/MTP3`, 5,120 maximum batched tokens, eight maximum sequences, and a configured 999,424-token model length. A direct smoke request containing **600,019 prompt tokens** completed and returned `CONTEXT_OK`. No 900K validation is claimed: the attempted 900K harness run was clamped to 128K by its parser and is excluded from publication.
 
 ### Cold prefill
 
 Exact-token client measurements, one generated token:
 
-| Prompt tokens | RC2+EXL3 merged baseline | BF16 MTP78 quality build | EXL3 MTP78 selected profile |
-| ---: | ---: | ---: | ---: |
-| 8K | 3,224 tok/s | 3,548 tok/s | **3,557 tok/s** |
-| 64K | 1,782 tok/s | **2,075 tok/s** | 1,912 tok/s |
-| 128K | 1,778 tok/s | **1,945 tok/s** | 1,857 tok/s |
+| Prompt tokens | RC2+EXL3 merged baseline | BF16 MTP78 quality build | Initial EXL3 MTP78 profile | Optimized production |
+| ---: | ---: | ---: | ---: | ---: |
+| 8K | 3,224 tok/s | 3,548 tok/s | 3,557 tok/s | **3,650 tok/s** |
+| 64K | 1,782 tok/s | 2,075 tok/s | 1,912 tok/s | **2,109 tok/s** |
+| 128K | 1,778 tok/s | 1,945 tok/s | 1,857 tok/s | **1,974 tok/s** |
 
-The quantized MTP78 profile is not the fastest prefill profile at 64K or 128K. It was selected as the best measured balance of prefill, decode, memory reduction, quality, long-context operation, and tool behavior in this study.
+Increasing the scheduler budget from 3,072 to 5,120 batched tokens improved the fresh matched baseline by 2.8% at 8K, 11.5% at 64K, and 6.2% at 128K. Batch 5,632 did not improve the larger contexts; 6,144 and 8,192 failed with CUDA OOM.
 
 ### Sustained decode
 
@@ -38,14 +38,16 @@ Aggregate output tokens/second from steady-state windows:
 
 | Input context | Profile | C1 | C2 | C4 | C8 |
 | ---: | --- | ---: | ---: | ---: | ---: |
-| 0 | RC2+EXL3 merged baseline | 101.7 | 163.7 | 237.5 | **372.0** |
-| 0 | BF16 MTP78 quality build | 100.8 | **166.9** | 244.8 | **372.7** |
-| 0 | EXL3 MTP78 selected profile | 99.5 | 160.2 | **249.5** | 369.6 |
+| 0 | RC2+EXL3 merged baseline | 101.7 | 163.7 | 237.5 | 372.0 |
+| 0 | BF16 MTP78 quality build | 100.8 | 166.9 | 244.8 | 372.7 |
+| 0 | Initial EXL3 MTP78 profile | 99.5 | 160.2 | 249.5 | 369.6 |
+| 0 | Optimized production | 103.6 | **168.6** | 246.9 | **380.7** |
 | 128K | RC2+EXL3 merged baseline | 102.4 | 159.7 | capacity-limited | capacity-limited |
 | 128K | BF16 MTP78 quality build | 100.8 | 160.2 | capacity-limited | capacity-limited |
-| 128K | EXL3 MTP78 selected profile | **105.2** | **164.3** | **235.9** | capacity-limited |
+| 128K | Initial EXL3 MTP78 profile | **105.2** | 164.3 | 235.9 | capacity-limited |
+| 128K | Optimized production | 101.6 | **164.0** | **241.9** | capacity-limited |
 
-The selected profile improves the measured 128K capacity surface, but it does not dominate every zero-context cell.
+Against the fresh 3,072-token control, optimized production improved zero-context C8 by 3.5% and 128K C4 by 2.8%. The repeated 128K C1 cell measured 102.5 tok/s; small single-stream differences were treated as run-to-run variation rather than a kernel gain.
 
 ### Quality and behavior gates
 
@@ -55,9 +57,10 @@ LAVD reports exact / near / fail counts over ten deterministic runs:
 | --- | ---: | ---: | --- |
 | RC2+EXL3 merged baseline | 3 / 5 / 2 | not rerun | not rerun |
 | BF16 MTP78 quality build | 4 / 5 / 1 | 10/10 | passed |
-| EXL3 MTP78 selected profile | 6 / 2 / 2 | 10/10 | passed |
+| Initial EXL3 MTP78 profile | 6 / 2 / 2 | 10/10 | passed |
+| Optimized production | **6 / 3 / 1** | **10/10** | passed |
 
-The selected profile produced two more exact LAVD answers than the BF16 control but also one additional hard failure in this ten-run sample. That mixed result is reported directly rather than summarized as an unqualified quality improvement.
+The faster DCP2 candidate reached 2,976 tok/s at 64K prefill, 2,877 tok/s at 128K prefill, and 422.8 tok/s at zero-context C8, but scored 4 exact / 5 near / 1 fail on LAVD. It missed the predeclared minimum of six exact answers and was not deployed. The DCP4/batch-5,120 profile passed every accuracy, tool, context-capacity, and stability gate.
 
 The uncorrected required-tool path emitted 24 calls—23 duplicate Paris calls followed by `{}`. The corrected grammar emitted exactly one valid call and continued normally. This repository describes that as a targeted structured-output correction, not a general tool-calling result.
 
