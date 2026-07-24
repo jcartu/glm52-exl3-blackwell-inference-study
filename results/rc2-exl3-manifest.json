@@ -1,0 +1,115 @@
+{
+  "artifact_count": 17,
+  "artifacts": [
+    {
+      "bytes": 63292,
+      "path": "raw/rc2-exl3-merged-baseline-decode-20260724.json",
+      "sha256": "4570a57426c6d588a3761908c34ba4f4a93e04e590c0dccd279564ca5c90a14c",
+      "timestamp": "2026-07-24T13:46:08.074663"
+    },
+    {
+      "bytes": 303850,
+      "path": "raw/rc2-exl3-merged-baseline-lavd10-20260724.json",
+      "sha256": "2f421a9fc69ab7c470950fd0126c84813de239c7730f3440da39cf82235bb03f",
+      "timestamp": "2026-07-24T13:55:38.107300"
+    },
+    {
+      "bytes": 12671,
+      "path": "raw/rc2-exl3-merged-baseline-prefill-20260724.json",
+      "sha256": "ba43026e4aa3fc0aa4f45b933bf3fe6e39b5630ef4fe1d369102178e61ad510c",
+      "timestamp": "2026-07-24T13:40:31.033662"
+    },
+    {
+      "bytes": 1265,
+      "path": "raw/rc2-exl3-production-smoke-20260724.json",
+      "sha256": "3d2260d6f6d464464974686e502f3166a40cf7f4087ecbf2ea47d88cb39ef60d",
+      "timestamp": "2026-07-24T18:44:48.486988+00:00"
+    },
+    {
+      "bytes": 63281,
+      "path": "raw/rc2-exl3-quality-bf16-decode-20260724.json",
+      "sha256": "6e03efa81d9ed998926b52726766f98f5f02026bc46a0d5aaabd46fda3215e5d",
+      "timestamp": "2026-07-24T21:18:45.038736"
+    },
+    {
+      "bytes": 22662,
+      "path": "raw/rc2-exl3-quality-bf16-estonia10-20260724.json",
+      "sha256": "8188083949bbbcd081a885f26afdfe767bb1181c77e4cc2e01bb891b6e82f93d",
+      "timestamp": "2026-07-24T21:30:56.993629"
+    },
+    {
+      "bytes": 21206,
+      "path": "raw/rc2-exl3-quality-bf16-lavd10-20260724.json",
+      "sha256": "4a753920756fb49b70c19a2a1f2f808f4323456648936eea2441b4a5966d9b2f",
+      "timestamp": "2026-07-24T21:27:19.113991"
+    },
+    {
+      "bytes": 12672,
+      "path": "raw/rc2-exl3-quality-bf16-prefill-20260724.json",
+      "sha256": "6225649b36af694dcd5b94304bb17fef42eb84d4f86ffa76d9ca4c3b466d8b60",
+      "timestamp": "2026-07-24T21:13:18.887890"
+    },
+    {
+      "bytes": 1011,
+      "path": "raw/rc2-exl3-quality-bf16-tool-gate-20260724.json",
+      "sha256": "7b46a74d7da023223b00e5d85fc13e1b1286c6e1c5e621eb0c2cb613fa685b8b",
+      "timestamp": "2026-07-24T18:31:23.920174+00:00"
+    },
+    {
+      "bytes": 264,
+      "path": "raw/rc2-exl3-quality-mtp78-context600k-smoke-20260724.json",
+      "sha256": "1e32f7dd40c6bd564dbaf922d6fa6b1edb18336adb232fa1e9bcc9e1ec6b7958",
+      "timestamp": "2026-07-24T18:02:44.649968+00:00"
+    },
+    {
+      "bytes": 68941,
+      "path": "raw/rc2-exl3-quality-mtp78-decode-20260724.json",
+      "sha256": "f87e65dd68bab34fda8b95a412bc3272dcbf26b935108cd5433fb0194990a71c",
+      "timestamp": "2026-07-24T20:41:43.385547"
+    },
+    {
+      "bytes": 22977,
+      "path": "raw/rc2-exl3-quality-mtp78-estonia10-20260724.json",
+      "sha256": "435d3d19daca2ce3b417439d88f895aa458b9f6ea4b74d1e202d3093594bf213",
+      "timestamp": "2026-07-24T20:56:40.035562"
+    },
+    {
+      "bytes": 22617,
+      "path": "raw/rc2-exl3-quality-mtp78-lavd10-20260724.json",
+      "sha256": "2f7e3b32b200481c61cbf0e021a1676b92eceecf0c53f6fbad5fbc4417c7f220",
+      "timestamp": "2026-07-24T20:53:07.714690"
+    },
+    {
+      "bytes": 12673,
+      "path": "raw/rc2-exl3-quality-mtp78-prefill-20260724.json",
+      "sha256": "6d019842fbed74200e724f3315f56ea125f3f22b1788255359b2a9a2f16c7783",
+      "timestamp": "2026-07-24T20:35:53.898657"
+    },
+    {
+      "bytes": 952,
+      "path": "raw/rc2-exl3-quality-mtp78-tool-gate-20260724.json",
+      "sha256": "b79682a3cbc8e7185c7f15f38924fcf6120ae748a9062c9a4454c54355fbde07",
+      "timestamp": "2026-07-24T17:44:34.411659+00:00"
+    },
+    {
+      "bytes": 766,
+      "path": "mtp78-capture-plan.json",
+      "sha256": "be48712b83875ec36df5448eab3cd07f8cca32269b82efee3a896d565bb43037",
+      "timestamp": "2026-07-24T15:05:20.924198+00:00"
+    },
+    {
+      "bytes": 1169,
+      "path": "mtp78-conversion.json",
+      "sha256": "c90431469f31a7d0bc01122817f0adf1f5368cc5c6e9e643b63762cde3af61eb",
+      "timestamp": "2026-07-24"
+    }
+  ],
+  "date": "2026-07-24",
+  "excluded": [
+    {
+      "path": "raw/rc2-exl3-quality-mtp78-context900k-20260724.json",
+      "reason": "Attempted 900K invocation was clamped to 128K and is not a 900K measurement."
+    }
+  ],
+  "study": "GLM-5.2 RC2+EXL3 and MTP layer 78 evaluation"
+}

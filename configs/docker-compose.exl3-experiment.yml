@@ -1,7 +1,7 @@
 # Benchmark archive configuration. Upstream ownership: see ../CREDITS.md.
 services:
   glm52-exl3-experiment:
-    image: ${EXL3_IMAGE:-local/glm52-exl3:v2-validated}
+    image: "${EXL3_IMAGE:?set EXL3_IMAGE to the runtime image}"
     container_name: glm52-exl3-exp-5001
     runtime: nvidia
     network_mode: host

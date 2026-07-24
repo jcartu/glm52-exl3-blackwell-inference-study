@@ -1,0 +1,43 @@
+{
+  "models_status": 200,
+  "models": [
+    "GLM-5.2"
+  ],
+  "completion_status": 200,
+  "completion": {
+    "index": 0,
+    "message": {
+      "role": "assistant",
+      "content": "PRODUCTION_OK",
+      "refusal": null,
+      "annotations": null,
+      "audio": null,
+      "function_call": null,
+      "reasoning": "1.  **Analyze the Request:**\n    *   Input: \"Reply exactly PRODUCTION_OK\"\n    *   Constraint: Reply *exactly* \"PRODUCTION_OK\".\n\n2.  **Formulate the Output:**\n    *   Output: PRODUCTION_OK\n\n3.  **Verify Constraints:**\n    *   Is it exactly \"PRODUCTION_OK\"? Yes.\n    *   Are there any extra words, punctuation, or formatting? No."
+    },
+    "logprobs": null,
+    "finish_reason": "stop",
+    "stop_reason": 154827,
+    "token_ids": null,
+    "routed_experts": null
+  },
+  "usage": {
+    "prompt_tokens": 17,
+    "total_tokens": 115,
+    "completion_tokens": 98,
+    "prompt_tokens_details": null
+  },
+  "required_tool_status": 200,
+  "required_tool_finish_reason": "tool_calls",
+  "required_tool_call_count": 1,
+  "required_tool_calls": [
+    {
+      "id": "chatcmpl-tool-97f459fd1194220d",
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "arguments": "{\"city\": \"Paris\"}"
+      }
+    }
+  ]
+}

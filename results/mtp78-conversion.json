@@ -1,0 +1,25 @@
+{
+  "assembled_checkpoint_total_size": 316304795648,
+  "base_checkpoint": "brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw",
+  "bits": 3,
+  "capture": {
+    "fingerprint": "6a9d706800f54217534ee1d267a2c6ef80bcb8318377d8ade0ea7a7e086b1d2f",
+    "sha256_ids": "45d2a5c178f2eca3c682881fc970a8e4bc61b5adebbe5649b436b3e8d0c2630c",
+    "sha256_x": "45c9e9d159e7d941562bdcd8caef69ce325ede2dacc324ba9c41634e9c518719",
+    "tokens": 131072
+  },
+  "date": "2026-07-24",
+  "encoded_layer_sha256": "0f8ac167a77ac8aec631ae328c443e097576f87dff79a990576a178cc4cb2456",
+  "encoded_tensor_count": 12288,
+  "hessian": "ldlq-calibrated",
+  "layer": 78,
+  "note": "Summary only; model weights, capture payload, calibration corpus, and encoded layer payload are not redistributed.",
+  "recipe_fingerprint": "7a278236e6be2d419e96dbbf5d6997e749fe283beb47a63267e8f685a4595c52",
+  "schema": "glm52-mtp78-conversion-summary-v1",
+  "source_checkpoint_total_size": 331967363072,
+  "source_expert_payload_sha256": "7895082dbbd196966011091f6460499607fc77b27c041db5eed07457dcc28a02",
+  "source_expert_tensor_count": 768,
+  "stored_payload_reduction_bytes": 15662567424,
+  "tp": 4,
+  "weights_included": false
+}

@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "input_prompt_tokens": 600007,
+  "finish_reason": "stop",
+  "content": null,
+  "usage": {
+    "prompt_tokens": 600019,
+    "total_tokens": 600022,
+    "completion_tokens": 3,
+    "prompt_tokens_details": null
+  },
+  "reasoning": "CONTEXT_OK"
+}

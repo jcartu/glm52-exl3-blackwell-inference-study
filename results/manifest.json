@@ -46,7 +46,7 @@
     {
       "bytes": 22940,
       "path": "raw/exl3-v20-final-estonia10-sampled-20260723.json",
-      "phase": "winning configuration validation",
+      "phase": "selected configuration validation",
       "sha256": "2dbb901ba3e7438d8f0402e551c145cd100fd9d5abc5676964d6d93d1a6dc7b2",
       "timestamp": "2026-07-23T06:29:56.166439"
     },
@@ -179,42 +179,42 @@
     {
       "bytes": 69125,
       "path": "raw/exl3-v20-winning-decode-matrix-20260723.json",
-      "phase": "winning configuration validation",
+      "phase": "selected configuration validation",
       "sha256": "3886e728ea52c17e788c603d699529f27c2eda7f1daeed1206456bf9e43cebb0",
       "timestamp": "2026-07-23T04:24:29.232301"
     },
     {
       "bytes": 29062,
       "path": "raw/exl3-v20-winning-estonia10-20260723.json",
-      "phase": "winning configuration validation",
+      "phase": "selected configuration validation",
       "sha256": "d824158dff2e9119fd5862cf87faa4c5e1e875c5081318c202b9a54c7fe53068",
       "timestamp": "2026-07-23T05:28:00.528994"
     },
     {
       "bytes": 21434,
       "path": "raw/exl3-v20-winning-lavd10-16k-20260723.json",
-      "phase": "winning configuration validation",
+      "phase": "selected configuration validation",
       "sha256": "57356104b5f2d355aa49ccdb82b10fbfc715eac6141c06b4d4ea07c5110ca50e",
       "timestamp": "2026-07-23T05:04:12.908405"
     },
     {
       "bytes": 20085,
       "path": "raw/exl3-v20-winning-lavd10-24k-20260723.json",
-      "phase": "winning configuration validation",
+      "phase": "selected configuration validation",
       "sha256": "09f58c8488d9a444fa8c112f7ac7e343822c08dfa0e195a9d97c67d3bdd257f9",
       "timestamp": "2026-07-23T05:11:53.281612"
     },
     {
       "bytes": 14045,
       "path": "raw/exl3-v20-winning-prefill-20260723.json",
-      "phase": "winning configuration validation",
+      "phase": "selected configuration validation",
       "sha256": "039ddcd209dc1165b0355c5b6d0581ba89c5bd5906c8394718d633ca7c6cd6cd",
       "timestamp": "2026-07-23T04:17:54.654131"
     },
     {
       "bytes": 12672,
       "path": "raw/exl3-v20-winning-prefill-exact-20260723.json",
-      "phase": "winning configuration validation",
+      "phase": "selected configuration validation",
       "sha256": "12d3540a8bb634dd3fd695cf9d84fe838174e5bc66c549cac9bb7864ca1fe4bf",
       "timestamp": "2026-07-23T05:14:07.636858"
     }

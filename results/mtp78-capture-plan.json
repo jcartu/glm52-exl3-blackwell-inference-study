@@ -1,0 +1,23 @@
+{
+  "calibration_baseline": true,
+  "capture_fingerprint": "6a9d706800f54217534ee1d267a2c6ef80bcb8318377d8ade0ea7a7e086b1d2f",
+  "capture_tp": 4,
+  "corpus_sha256": "cf247acc7c5da9f0600c7d6ab3b7c2fcfc54ec30b794e3b6047559285fa44df4",
+  "output_tp": 4,
+  "owner_corpus_only": true,
+  "routing": {
+    "forced_expert_activation": false,
+    "n_group": 1,
+    "natural": true,
+    "scoring_func": "sigmoid",
+    "top_k": 8,
+    "topk_group": 1
+  },
+  "schema": "glm52-mtp78-capture-plan-v1",
+  "selection_policy": "mtp-live-draft-owner-corpus-v1",
+  "source": {
+    "config_sha256": "e36a632a8eaa6a98a318483dfcdb615ff2be9794a1f772800f144aa000da5c62",
+    "index_sha256": "d0cc97dd5c2be656d76f33561648482bb45e844c8272faa13f4e92c7d31a4db7"
+  },
+  "total_tokens": 131072
+}

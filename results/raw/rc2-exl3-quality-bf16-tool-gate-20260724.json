@@ -1,0 +1,36 @@
+{
+  "required": {
+    "status": 200,
+    "finish_reason": "tool_calls",
+    "tool_call_count": 1,
+    "tool_calls": [
+      {
+        "id": "chatcmpl-tool-a3747520a51f7138",
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "arguments": "{\"city\": \"Paris\"}"
+        }
+      }
+    ],
+    "content": "",
+    "usage": {
+      "prompt_tokens": 171,
+      "total_tokens": 201,
+      "completion_tokens": 30,
+      "prompt_tokens_details": null
+    }
+  },
+  "continuation": {
+    "status": 200,
+    "finish_reason": "stop",
+    "tool_call_count": 0,
+    "content": "The current weather in **Paris** is:\n\n- \ud83c\udf21\ufe0f **Temperature:** 21\u00b0C\n- \u2600\ufe0f **Condition:** Sunny\n\nIt's a beautiful sunny day in Paris! Perfect weather for a stroll along the Seine or a visit to the Eiffel Tower. \ud83d\ude0a",
+    "usage": {
+      "prompt_tokens": 220,
+      "total_tokens": 297,
+      "completion_tokens": 77,
+      "prompt_tokens_details": null
+    }
+  }
+}

@@ -4,7 +4,7 @@ This document records the complete 23 July 2026 GLM-5.2 EXL3/Trellis tuning proc
 
 > Ownership notice: the campaign measured and configured upstream work; it did not create or take ownership of GLM-5.2, the EXL3 checkpoint, vLLM, Sparkinfer, ExLlamaV3/Trellis, Gilded Gnosis, or the referenced container images. See [CREDITS.md](CREDITS.md) for component-level attribution.
 
-> Follow-on study: the adaptive-fold, DCP-profile, native-edge, and beyond-native experiments performed after this original selection are documented separately in [BREAKTHROUGH_CAMPAIGN.md](BREAKTHROUGH_CAMPAIGN.md), with evidence under [`results/breakthrough/`](results/breakthrough/).
+> Follow-on study: adaptive-fold, DCP-profile, issue #34 RC2, RC2+EXL3, and MTP layer 78 experiments are documented separately in [FOLLOWUP_STUDY.md](FOLLOWUP_STUDY.md), with historical evidence under [`results/followup/`](results/followup/) and current RC2+EXL3 evidence under [`results/raw/`](results/raw/).
 
 ## 1. Question
 
@@ -203,20 +203,20 @@ Artifacts:
 
 #### QBMM absorbed BMM
 
-The runtime's absorbed-BMM optimization requires a contiguous ModelOpt MXFP8 `kv_b_proj` representation. This checkpoint stores the applicable routed weights in rank-sliced EXL3 form and falls back to materialized absorbed weights. `VLLM_B12X_ABSORB_BMM=0` is therefore explicit in the winning overlay.
+The runtime's absorbed-BMM optimization requires a contiguous ModelOpt MXFP8 `kv_b_proj` representation. This checkpoint stores the applicable routed weights in rank-sliced EXL3 form and falls back to materialized absorbed weights. `VLLM_B12X_ABSORB_BMM=0` was therefore explicit in the selected overlay.
 
 This is a compatibility conclusion, not a claim that the upstream optimization is generally ineffective.
 
 #### Quantizing MTP layer 78
 
-The checkpoint model card states that MTP layer 78 remains BF16. Quantizing it was rejected in this campaign because the current encoder excludes that layer and the serving runtime does not implement a matching Trellis MTP draft path. A safe experiment would require:
+At this original stage, the checkpoint model card stated that MTP layer 78 remained BF16 and the available encoder excluded it. Quantizing the layer was deferred because a safe experiment required:
 
 1. an offline checkpoint rebuild;
 2. metadata/schema changes;
 3. runtime loader and draft-path support;
 4. acceptance-rate, quality, graph-capture, and long-context validation.
 
-The theoretical memory recovery was estimated at roughly 3.51 GB/GPU, but no unvalidated checkpoint mutation was shipped to chase that estimate.
+The later RC2+EXL3 stage completed that separately controlled experiment using the published encoder as its base pipeline. Its measured memory reduction, mixed quality result, helper code, and claim boundaries are documented in [FOLLOWUP_STUDY.md](FOLLOWUP_STUDY.md); this original-stage decision remains here for chronology.
 
 ### Phase J: final performance matrix
 

@@ -1,45 +1,56 @@
 # Credits, Ownership, and Source Ledger
 
-This study depends on substantial upstream model, checkpoint, runtime, kernel, tooling, and review work. The purpose of this file is to make the ownership boundary explicit and durable.
+This study depends on substantial upstream model, checkpoint, runtime, kernel, quantization, tooling, review, and diagnostic work. This ledger makes those boundaries explicit. A benchmark operator integrating and measuring upstream components does not become the author of those components.
 
-Nothing in this repository transfers ownership of, relicenses, or claims authorship over the referenced third-party components. The repository contains the benchmark campaign's original configuration, methodology, measurements, publication materials, and two modified runtime-source copies needed to reproduce the follow-on experiments; it does not redistribute model weights, container layers, or third-party source trees beyond those narrowly scoped files.
+Nothing in this repository transfers ownership of, relicenses, or claims authorship over referenced third-party work. Model weights, checkpoint payloads, container layers, and calibration data are not redistributed.
 
 ## Component-level attribution
 
 | Component | Owner or contributor | Contribution used by this study | Primary source |
 | --- | --- | --- | --- |
-| GLM-5.2 base model | Z.ai / GLM team | Base model architecture, weights, tokenizer, model code, and technical work | [Hugging Face](https://huggingface.co/zai-org/GLM-5.2) · [technical report](https://arxiv.org/abs/2602.15763) |
-| GLM-5.2 EXL3 TP4 checkpoint | Brandon Music (`brandonmusic`, GitHub `@brandonmmusic-max`) | Calibration/conversion, TP4 rank slicing, EXL3/Trellis routed experts at 3.0 bpw target, BF16 retention for sensitive components, model card, and runtime packaging/validation | [`brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw`](https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw) |
-| vLLM EXL3 integration | Brandon Music (`@brandonmmusic-max`) and contributors recorded in commit history | Native rank-sliced EXL3 loading/execution, dense and routed-MoE support, Trellis dispatch, DCP speculative lifetime fixes, structured-output/tool-call fixes, validation, and release pinning | [local-inference-lab/vLLM PR #139](https://github.com/local-inference-lab/vllm/pull/139) |
-| Sparkinfer EXL3 Trellis path | Brandon Music (`@brandonmmusic-max`) and Sparkinfer contributors | Planned EXL3 Trellis API and fused Blackwell routed-MoE path | [local-inference-lab/Sparkinfer PR #49](https://github.com/local-inference-lab/sparkinfer/pull/49) |
-| Dual-plan Trellis prefill | David Young (`@davidsyoung`) | Second Trellis plan for prefill batches, block-size control, memory-accounted workspace, A/B validation, and CPU contract tests. Incorporated byte-identically into PR #139 with authorship preserved | [local-inference-lab/vLLM PR #163](https://github.com/local-inference-lab/vllm/pull/163) |
-| vLLM | vLLM project and contributors | OpenAI-compatible serving engine, scheduling, tensor/context parallelism, KV cache, speculative decoding, and runtime foundations | [vllm-project/vllm](https://github.com/vllm-project/vllm) |
-| Gilded Gnosis runtime | Local Inference Lab maintainers and individual contributors in its history | Blackwell-focused vLLM runtime, DCP/MTP/MLA correctness and performance work, PCIe collectives, and v20 canonical base | [local-inference-lab/vllm](https://github.com/local-inference-lab/vllm) |
-| Sparkinfer | Luke Alonso and Sparkinfer contributors | Blackwell inference kernels and runtime APIs used by the planned Trellis path and B12X stack | [local-inference-lab/sparkinfer](https://github.com/local-inference-lab/sparkinfer) |
-| Follow-on runtime modifications | Josh Cartu campaign, implemented with OpenAI Codex assistance on the pinned upstream sources | Adaptive paged-indexer fold selection, final-partial-chunk workspace stride correction, and experimental TP4/DCP2 workspace topology used by the breakthrough campaign | [`BREAKTHROUGH_CAMPAIGN.md`](BREAKTHROUGH_CAMPAIGN.md) · [`configs/runtime-paged-indexer.py`](configs/runtime-paged-indexer.py) · [`configs/runtime-b12x-mla.py`](configs/runtime-b12x-mla.py) |
-| ExLlamaV3 / Trellis | turboderp and ExLlamaV3 contributors; underlying Trellis research/authors as cited upstream | EXL3 quantization format, MCG codebook/Trellis machinery, extension behavior, and reference/parity execution used by this checkpoint/runtime | [turboderp-org/exllamav3](https://github.com/turboderp-org/exllamav3) |
-| Validated container images | Verdict AI plus the runtime contributors above | Publication of immutable runtime images used for the campaign | [Docker Hub](https://hub.docker.com/r/verdictai/glm52-exl3-sparkinfer) |
-| Isolated prefill A/B image | David Young (`@davidsyoung`) | Prebuilt image containing the isolated planned-prefill change used during the v2 campaign stage | [vLLM PR #163](https://github.com/local-inference-lab/vllm/pull/163) |
-| Benchmark harness | Local Inference Lab `llm-inference-bench` contributors | Exact-token prefill, sustained-decode, hardware monitoring, capacity, Estonia, and LAVD measurement machinery | [local-inference-lab/llm-inference-bench](https://github.com/local-inference-lab/llm-inference-bench) |
-| CUDA/Blackwell platform | NVIDIA and its software/hardware contributors | RTX PRO 6000 Blackwell hardware, CUDA 13.2, drivers, NCCL, and related platform libraries | [NVIDIA](https://www.nvidia.com/) |
-| Campaign and publication | Josh Cartu (`@jcartu`) | Four-GPU hardware and power envelope, experiment direction, candidate sweeps, runtime operation, measured artifacts, selection criteria, final validation, and public study archive | [GitHub](https://github.com/jcartu) |
-| Development assistance disclosed upstream | OpenAI Codex and Anthropic Claude Code | Implementation, debugging, and documentation assistance disclosed by the author of vLLM PR #139 and Sparkinfer PR #49; the human author selected the design, reviewed changes, and ran validation | [PR #139 disclosure](https://github.com/local-inference-lab/vllm/pull/139) · [PR #49 disclosure](https://github.com/local-inference-lab/sparkinfer/pull/49) |
-| Automated review assistance | CodeRabbit | Automated PR summaries and review/check feedback recorded on upstream pull requests | [CodeRabbit](https://www.coderabbit.ai/) |
+| GLM-5.2 base model | Z.ai / GLM team | Architecture, weights, tokenizer, model code, and technical report | [model](https://huggingface.co/zai-org/GLM-5.2) · [report](https://arxiv.org/abs/2602.15763) |
+| GLM-5.2 EXL3 TP4 checkpoint | Brandon Music (`brandonmusic`, `@brandonmmusic-max`) | Calibration and conversion, TP4 rank slicing, 3.0 bpw EXL3/Trellis routed experts, sensitive-component retention, model card, validation, and reproduction bundle | [checkpoint](https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw) · [encoder bundle](https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw/tree/main/encoder) |
+| vLLM EXL3 integration | Brandon Music and contributors preserved in commit history | Native rank-sliced EXL3 loading/execution, routed-MoE support, Trellis dispatch, DCP speculative lifetime fixes, structured-output fixes, and validation | [vLLM PR #139](https://github.com/local-inference-lab/vllm/pull/139) |
+| Sparkinfer EXL3 Trellis path | Brandon Music and Sparkinfer contributors | Planned EXL3 Trellis API and fused Blackwell routed-MoE path | [Sparkinfer PR #49](https://github.com/local-inference-lab/sparkinfer/pull/49) |
+| Dual-plan Trellis prefill | David Young (`@davidsyoung`) | Second Trellis plan for prefill, block-size control, accounted workspace, tests, and A/B validation; incorporated into PR #139 with authorship preserved | [vLLM PR #163](https://github.com/local-inference-lab/vllm/pull/163) |
+| Issue #34 RC2 publication and runtime work | Martin Vit (`@voipmonitor`) | Issue #34 test release, image/source pins, DCP/MLA fixes, RC2 integration and related vLLM/Sparkinfer changes | [issue #34](https://github.com/local-inference-lab/rtx6kpro/issues/34) · [vLLM #164](https://github.com/local-inference-lab/vllm/pull/164) · [#167](https://github.com/local-inference-lab/vllm/pull/167) · [#172](https://github.com/local-inference-lab/vllm/pull/172) · [#173](https://github.com/local-inference-lab/vllm/pull/173) · [#174](https://github.com/local-inference-lab/vllm/pull/174) · [Sparkinfer #74](https://github.com/local-inference-lab/sparkinfer/pull/74) · [#75](https://github.com/local-inference-lab/sparkinfer/pull/75) · [#76](https://github.com/local-inference-lab/sparkinfer/pull/76) |
+| Additional RC2 vLLM work | [`@yatesdr`](https://github.com/yatesdr) | Contributions incorporated by the issue #34 RC2 source line | [vLLM PR #166](https://github.com/local-inference-lab/vllm/pull/166) · [PR #169](https://github.com/local-inference-lab/vllm/pull/169) |
+| Forced-tool and reasoning grammar foundation | Florian Bernd (`@flobernd`) | Earlier forced-tool/reasoning grammar diagnosis and implementation on which this study's narrower repeated-call correction builds | [vLLM PR #34](https://github.com/local-inference-lab/vllm/pull/34) |
+| vLLM | vLLM project and contributors | OpenAI-compatible server, scheduling, parallelism, KV cache, speculative decoding, and runtime foundation | [vllm-project/vllm](https://github.com/vllm-project/vllm) |
+| Gilded Gnosis runtime | Local Inference Lab maintainers and individual contributors in repository history | Blackwell-focused vLLM runtime, DCP/MTP/MLA work, collectives, and RC2 base | [local-inference-lab/vllm](https://github.com/local-inference-lab/vllm) |
+| Sparkinfer | Luke Alonso and Sparkinfer contributors | Blackwell inference kernels and runtime APIs used by the EXL3/Trellis and B12X paths | [local-inference-lab/sparkinfer](https://github.com/local-inference-lab/sparkinfer) |
+| ExLlamaV3 / Trellis | turboderp and ExLlamaV3 contributors; underlying research authors cited upstream | EXL3 format, quantizer operations, MCG/Trellis machinery, extension behavior, and reference execution | [turboderp-org/exllamav3](https://github.com/turboderp-org/exllamav3) |
+| MTP layer 78 base conversion pipeline | Brandon Music and ExLlamaV3 contributors | Published encoder, calibration schema, LDLQ/Trellis/MCG pipeline, TP slicing, tensor writer/reader helpers, and recipe conventions extended to layer 78 by this study | [checkpoint encoder bundle](https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw/tree/main/encoder) |
+| Benchmark harness | Local Inference Lab `llm-inference-bench` contributors | Exact-token prefill, sustained decode, hardware monitoring, capacity, Estonia, and LAVD measurement machinery | [repository](https://github.com/local-inference-lab/llm-inference-bench) |
+| Historical v20 image publication | Verdict AI and the runtime contributors above | Immutable v20 runtime image used in the July 23 study stage | [Docker Hub](https://hub.docker.com/r/verdictai/glm52-exl3-sparkinfer) |
+| CUDA/Blackwell platform | NVIDIA and its hardware/software contributors | RTX PRO 6000 Blackwell hardware, CUDA, drivers, NCCL, and platform libraries | [NVIDIA](https://www.nvidia.com/) |
+| Study operation and publication | Josh Cartu (`@jcartu`) | Four-GPU hardware and power envelope, study direction, candidate sweeps, runtime operation, measurements, selection criteria, local integration review, and public archive | [GitHub](https://github.com/jcartu) |
+| Local implementation assistance | OpenAI Codex | Assistance implementing, debugging, documenting, and packaging local RC2+EXL3 corrections and MTP78 capture/assembly glue; Josh Cartu directed, reviewed, operated, and validated the work | [`patches/`](patches/) · [`tools/mtp78/`](tools/mtp78/) |
+| Development assistance disclosed upstream | OpenAI Codex and Anthropic Claude Code | Assistance disclosed by upstream authors of vLLM PR #139 and Sparkinfer PR #49; human authors retained design, review, and validation responsibility | [PR #139](https://github.com/local-inference-lab/vllm/pull/139) · [PR #49](https://github.com/local-inference-lab/sparkinfer/pull/49) |
+| Automated review assistance | CodeRabbit | Automated summaries and review/check feedback visible on upstream pull requests | [CodeRabbit](https://www.coderabbit.ai/) |
 
-## Specific immutable artifacts
+## Immutable runtime pins
 
-### Final v20 image
+### Issue #34 RC2 image
+
+```text
+voipmonitor/vllm:gilded-gnosis-v20-vllm7e3bee1-si6234185-fi801d57a-cu132-20260723@sha256:67b17855ea81ebc8c9d7fc7c27d0d542c622347cd2607f0cf179e7cc4af2c1f0
+```
+
+Recorded source identifiers:
+
+- vLLM `7e3bee1ed4bc...`;
+- Sparkinfer `62341856cc54...`;
+- FlashInfer `801d57...`;
+- issue #34 launcher source `146fa...`.
+
+The final RC2+EXL3 image was a local derivative build. It is not represented as an image published by Martin Vit, Verdict AI, Local Inference Lab, Brandon Music, or any other upstream contributor.
+
+### Historical v20 EXL3 image
 
 ```text
 verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a@sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01
 ```
-
-The checkpoint model card identifies this image as pinning:
-
-- Gilded Gnosis v20 vLLM `6722c1d`;
-- Sparkinfer `1a88b389a8d14f26dbe4c157965938cfd8f1bf51`;
-- CUDA 13.2, PyTorch 2.12, and the associated Blackwell runtime stack;
-- the rebased vLLM PR #139 and Sparkinfer PR #49 EXL3 work.
 
 ### Historical planned-prefill A/B image
 
@@ -47,9 +58,9 @@ The checkpoint model card identifies this image as pinning:
 davidyoung/glm52-exl3-sparkinfer:v1-prefill-trellis-plan-20260722@sha256:95b7e715e7aca733c44ee6477b2b2abcbed7bfa2bb06acf17b386463be5c0adb
 ```
 
-David Young described this as the published base image plus exactly the isolated PR #163 `exl3.py` change. The historical [`configs/Dockerfile.exl3-v2-prefill`](configs/Dockerfile.exl3-v2-prefill) records how it was used during the campaign.
+David Young described this image as the published base plus the isolated PR #163 `exl3.py` change.
 
-### Benchmark harness pin
+### Benchmark harness
 
 ```text
 repository: https://github.com/local-inference-lab/llm-inference-bench
@@ -57,40 +68,39 @@ commit: 86cf05c2f42f4d21b909b6e684424ca1aab89fd5
 reported result version: 0.4.29
 ```
 
-## Authorship boundaries
+## Original work represented by this repository
 
-### Work represented as original to this repository
+- Design and operation of the recorded four-GPU configuration studies.
+- Public-safe Compose overlays and publication packaging.
+- Measured comparison tables, selection rationale, and explicit rejection boundaries.
+- Adaptive sparse-indexer fold selection and final-partial-chunk workspace correction applied to pinned upstream source.
+- Rebase/integration packaging of the existing EXL3 PRs onto the exact issue #34 RC2 source line.
+- A narrow structural-tag correction for repeated `tool_choice="required"` calls, built on the existing grammar implementation.
+- Capture filtering, sealing, resume-driving, validation, and checkpoint-assembly glue used to extend the published encoder pipeline to MTP layer 78.
+- Capacity, quality, tool behavior, power, and thermal validation performed on the study host.
+- Documentation, manifests, checksum index, and public archive structure.
 
-- Design and execution of the July 23 configuration sweep.
-- Public-safe copies of the campaign Compose configuration.
-- Comparison tables calculated from the archived raw measurements.
-- Selection/rejection rationale for the measured candidates.
-- Capacity, quality, tool-call, thermal, and power validation performed during the campaign.
-- This methodology, manifest, checksum index, and publication layout.
-- Adaptive sparse-indexer fold selection and the experimental B12X MLA workspace modifications documented in the follow-on report.
-- The follow-on experiment matrix, comparison tables, rejection decisions, manifest, and evidence archive.
-
-### Work explicitly not claimed
+## Work explicitly not claimed
 
 - GLM-5.2 architecture, training, weights, tokenizer, or model code.
-- The EXL3 checkpoint's calibration, quantization, conversion, or rank slicing.
-- The EXL3/Trellis vLLM loader or execution backend.
-- The Sparkinfer Trellis kernels and API.
-- David Young's dual-plan planned-prefill implementation.
-- Gilded Gnosis, vLLM, Sparkinfer, ExLlamaV3, CUDA, or benchmark-harness source code.
-- The surrounding upstream Sparkinfer and vLLM runtime files copied into `configs/`; only the campaign-specific modifications described above are represented as original work.
-- The referenced Docker image contents.
-
-The campaign tuned and validated configuration around those components; it did not rewrite their authorship as benchmark work.
+- The original EXL3 checkpoint's calibration, conversion, rank slicing, or model card.
+- EXL3, LDLQ, Trellis, MCG, or ExLlamaV3 quantization algorithms and kernels.
+- Brandon Music's encoder, vLLM integration, or Sparkinfer Trellis implementation.
+- David Young's dual-plan Trellis prefill implementation.
+- Martin Vit's, `@yatesdr`'s, or Florian Bernd's upstream runtime and grammar work.
+- vLLM, Gilded Gnosis, Sparkinfer, CUDA, FlashInfer, or benchmark-harness source trees.
+- The contents or publication of referenced Docker images.
+- A public distribution of the locally assembled MTP78 checkpoint or local RC2+EXL3 image.
 
 ## Source and license notes
 
-- The checkpoint model card declares MIT and identifies Z.ai's GLM-5.2 as its base model. Consult both model cards and included license files before using the weights.
-- vLLM, Sparkinfer, ExLlamaV3, the benchmark harness, and container contents retain the licenses and notices in their source distributions.
-- This repository's [MIT License](LICENSE) applies only to original study material placed here by the study publisher. It does not relicense linked or referenced third-party artifacts.
-- Raw JSON files are measurements generated by the cited benchmark harness. They are preserved without editing; field names and embedded methodology text originate from that harness.
-- `configs/runtime-paged-indexer.py` and `configs/runtime-b12x-mla.py` are modified copies of files from the pinned Sparkinfer/vLLM runtime and remain subject to their upstream licenses and notices. The repository MIT license applies only to the campaign-specific modifications where legally separable.
+- The checkpoint model card declares MIT and identifies Z.ai GLM-5.2 as its base; consult both model cards and included license files before using weights.
+- vLLM, Sparkinfer, ExLlamaV3, FlashInfer, the benchmark harness, container contents, and patch excerpts retain their upstream licenses and notices.
+- This repository's [MIT License](LICENSE) applies only to original study material and locally authored helpers where legally separable. It does not relicense linked or patched third-party work.
+- Raw JSON measurements are preserved without presentation edits; field names and embedded methodology originate from the cited harness.
+- Historical runtime-source copies in `configs/` and source diffs in `patches/` remain subject to their upstream licenses.
+- The MTP78 helpers require an independently acquired upstream encoder bundle and checkpoint; neither is copied into this repository.
 
 ## Corrections
 
-Attribution errors should be treated as correctness bugs. Open an issue or pull request with the affected component, the correct person/project, and a primary source. The goal is to preserve authorship rather than merely provide a generic acknowledgements list.
+Attribution errors are correctness bugs. Please open an issue or pull request naming the affected component, the correct person/project, and a primary source so the ledger can be corrected precisely.
