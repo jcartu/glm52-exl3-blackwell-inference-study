@@ -201,6 +201,64 @@ The source and overlay are retained for upstream debugging, but the production C
 | QBMM absorbed BMM | Checkpoint lacks the required contiguous ModelOpt MXFP8 `kv_b_proj` layout | Reject for this checkpoint |
 | Beyond-native RoPE override | Physical execution succeeded; retrieval failed | Never deploy |
 
+
+## Issue #34 RC2 follow-on (24 July 2026)
+
+The follow-on tested the exact release candidate published in [local-inference-lab/rtx6kpro issue #34](https://github.com/local-inference-lab/rtx6kpro/issues/34):
+
+```text
+voipmonitor/vllm:gilded-gnosis-v20-vllm7e3bee1-si6234185-fi801d57a-cu132-20260723@sha256:67b17855ea81ebc8c9d7fc7c27d0d542c622347cd2607f0cf179e7cc4af2c1f0
+```
+
+The image pins vLLM `7e3bee1ed4bc87efbdc36060647a3475cfaa1f1e`, Sparkinfer `62341856cc5497d0c8ba33012dab6118925a6cfb`, FlashInfer `801d57a08958c13d375ddbb6be3be4808f48a708`, and CUDA 13.2.1. RC2 does not contain the EXL3 integration from vLLM PR #139 and Sparkinfer PR #49, so it was evaluated on its supported `madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid` checkpoint path. These measurements are a runtime/checkpoint alternative, not a like-for-like EXL3 image upgrade.
+
+### Prefill and scheduler sweep
+
+All values are exact-token client prefill tokens/second. RC2 uses A16 MoE, online `nf3-mxfp8`, `nvfp4_ds_mla` KV, the B12X sparse-attention path, MTP3, and the release helper.
+
+| Profile | Configured maximum | 8K | 64K | 128K |
+| --- | ---: | ---: | ---: | ---: |
+| EXL3 production | 999,424 | **3,581** | 2,098 | 1,964 |
+| RC2 DCP4, batch 3,072 | 262,144 | 3,369 | 2,748 | 2,833 |
+| RC2 DCP4, batch 4,096 | 262,144 | 3,360 | 3,226 | 3,106 |
+| RC2 DCP4, batch 5,120 | 196,608 | 3,529 | 3,262 | **3,184** |
+| RC2 DCP2, batch 3,072 | 180,224 | 3,550 | **3,340** | 3,168 |
+
+Batch 8,192 failed startup because profiled activations left no KV blocks. Batch 4,096 at 0.96 GPU-memory utilization also could not satisfy a 262,144-token configured maximum; 0.965 was required. Batch 5,120 required 0.97 utilization and a 196,608-token maximum, then failed the quality gate below.
+
+### Decode topology sweep
+
+Zero-context aggregate output tokens/second:
+
+| Profile | C1 | C2 | C4 | C8 |
+| --- | ---: | ---: | ---: | ---: |
+| EXL3 production | 98.0 | **153.9** | 224.8 | 324.7 |
+| RC2 DCP1, batch 3,072 | **129.6** | 147.7 | **249.6** | 280.9 |
+| RC2 DCP2, batch 3,072 | 114.5 | 137.2 | 227.0 | **335.7** |
+| RC2 DCP4, batch 3,072 | 108.9 | 125.9 | 204.3 | 299.5 |
+| RC2 DCP4, batch 5,120 | 108.5 | 123.4 | 203.3 | 306.1 |
+
+DCP1 is the low-concurrency decode winner but was limited to a 98,304-token configured context. DCP2 is the balanced RC2 profile: relative to EXL3 production it improved C1 by 16.8%, C4 by 1.0%, and C8 by 3.4%, while C2 regressed 10.9%.
+
+### Quality, context, and tool gates
+
+| Profile | LAVD exact / near / fail | Estonia | Direct context | Tool behavior | Decision |
+| --- | ---: | ---: | --- | --- | --- |
+| EXL3 production | **6 / 4 / 0** | 10/10 | 998,800 prompt + 32 completion | automatic call passed | **Production** |
+| RC2 DCP2, batch 3,072 | 1 / 9 / 0 | 10/10 | 179,017 request prompt + 1 completion, HTTP 200 | automatic call and continuation passed | Optional high-prefill profile |
+| RC2 DCP4, batch 5,120 | 3 / 4 / **3** | not advanced | not advanced | not advanced | Rejected |
+
+The DCP2 service used a 180,224-token model limit, no DCP prefill workspace, query split 1, and CKV gather 1. Its 64K and 128K prefill were 59.2% and 61.3% faster than EXL3 production. It nevertheless was not promoted: EXL3 retains 5.5× the configured context, stronger deterministic LAVD exactness, Estonia 10/10, and validated tool calling. The restored EXL3 service returned HTTP 200 from `/health` with 999,424 KV-cache tokens.
+
+Automatic tool choice emitted exactly one `get_weather({"city":"Paris"})` call and accepted a tool-result continuation. Forced `tool_choice="required"` instead repeated the same call until the 1,024-token cap; that boundary is retained rather than presented as a pass.
+
+Publication files:
+
+- [`configs/docker-compose.rc2-nf3.yml`](configs/docker-compose.rc2-nf3.yml)
+- [`results/issue34/`](results/issue34/)
+- [`results/issue34-manifest.json`](results/issue34-manifest.json)
+- [`RC2 direct observations`](results/issue34/rc2-direct-evidence-20260724.json)
+
 ## Online deep-dive findings
 
 The experiment matrix was informed by current upstream implementation and optimization work:
@@ -215,10 +273,11 @@ The experiment matrix was informed by current upstream implementation and optimi
 
 ## Highest-probability next breakthroughs
 
-1. **Upstream the adaptive fold.** Convert the local source mount into a reviewed Sparkinfer change with allocation-boundary and equivalence tests.
-2. **Diagnose workspace numerical divergence.** The speedup is too large to ignore, but the LAVD regressions prohibit deployment. Compare projected-query and merged-query outputs across full and final partial chunks before attempting another performance run.
-3. **Re-test DCP1 with the safe query-BMM image.** DCP1 is the clearest decode-speed profile once PR #173 is available in an immutable image.
-4. **Quantize MTP layer 78 offline.** The draft layer is wholly BF16: 791 tensors and approximately 18.54 GiB checkpoint-wide, or 4.635 GiB/GPU at TP4. A 3 bpw representation could theoretically recover roughly 3.77 GiB/GPU, but the current encoder explicitly excludes layer 78 and the runtime lacks the matching validated Trellis draft path. This requires a new checkpoint artifact, metadata, runtime support, and a full acceptance/quality study.
+1. **Rebase the EXL3 path onto issue #34 RC2.** RC2's long-prefill kernels and launch fixes are promising, but the release does not contain vLLM PR #139 or Sparkinfer PR #49. A reviewed rebase is the highest-probability route to combine EXL3's 999K quality-gated capacity with the newer runtime.
+2. **Diagnose DCP4 workspace numerical divergence.** RC2 removes the prior crash/stride hazard, yet the fast DCP4 batch-5,120 profile still failed 3/10 LAVD. Compare projected and merged query outputs across full and final partial chunks before any deployment.
+3. **Fix forced tool-choice repetition.** Automatic tool calling passed end to end, but `tool_choice="required"` repeated an identical call. Reproduce this at the parser/sampling boundary before treating forced tool mode as supported.
+4. **Upstream the adaptive fold.** Convert the local source mount into a reviewed Sparkinfer change with allocation-boundary and equivalence tests.
+5. **Quantize MTP layer 78 offline.** The draft layer is wholly BF16: 791 tensors and approximately 18.54 GiB checkpoint-wide, or 4.635 GiB/GPU at TP4. A 3 bpw representation could theoretically recover roughly 3.77 GiB/GPU, but the current encoder explicitly excludes layer 78 and the runtime lacks the matching validated Trellis draft path. This requires a new checkpoint artifact, metadata, runtime support, and a full acceptance/quality study.
 
 ## Reproduce the selected service
 

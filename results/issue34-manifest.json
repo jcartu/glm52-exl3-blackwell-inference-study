@@ -1,0 +1,107 @@
+{
+  "campaign": "Gilded Gnosis v20 issue 34 RC2 evaluation",
+  "generated_utc": "2026-07-24T04:01:07.476Z",
+  "image": "voipmonitor/vllm:gilded-gnosis-v20-vllm7e3bee1-si6234185-fi801d57a-cu132-20260723@sha256:67b17855ea81ebc8c9d7fc7c27d0d542c622347cd2607f0cf179e7cc4af2c1f0",
+  "artifact_count": 14,
+  "total_bytes": 2123319,
+  "artifacts": [
+    {
+      "path": "issue34/rc2-direct-evidence-20260724.json",
+      "phase": "direct-observations",
+      "bytes": 3681,
+      "modified_utc": "2026-07-24T03:55:38.447Z",
+      "sha256": "be918498d58aff15f1285dd5c6ab1a4a821df588fff9fb10c2e434eb3e0f2439"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp1-mtp3-b3072-decode-20260724.json",
+      "phase": "topology-sweep",
+      "bytes": 45381,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "d5f18d863f4879f60a099c6c1ed5fad9dd0e4f8b3a2ae4d42f1e2c7e83c214ba"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp2-mtp3-b3072-decode-20260724.json",
+      "phase": "topology-sweep",
+      "bytes": 51082,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "73423cafe0e1460fd2aea257d9d42b6a10a520f5223fd0409cd2b236373daf27"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp2-mtp3-b3072-estonia10-20260724.json",
+      "phase": "quality-gates",
+      "bytes": 33330,
+      "modified_utc": "2026-07-24T03:53:47.650Z",
+      "sha256": "ce45fb4fdb0df9684275a5052f1a4a20affc70e356ada32b8a0a897d9801e55e"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp2-mtp3-b3072-l180k-estonia10-20260724.json",
+      "phase": "quality-gates",
+      "bytes": 324470,
+      "modified_utc": "2026-07-24T03:53:47.650Z",
+      "sha256": "c76648659e9c7d327312dbd1923777502304fcfa14242a65c1c9aab478cfa88c"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp2-mtp3-b3072-lavd10-20260724.json",
+      "phase": "quality-gates",
+      "bytes": 659073,
+      "modified_utc": "2026-07-24T03:53:47.650Z",
+      "sha256": "c10a8469716d84c191f7aab3601423e620e070b636519d78272c68932d0b3981"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp2-mtp3-b3072-prefill-20260724.json",
+      "phase": "topology-sweep",
+      "bytes": 12669,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "b86442baaae96e04fc1307a1d556d48e86279d2386b09feddc8694d09ebe3245"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp4-mtp3-b3072-decode-20260724.json",
+      "phase": "rc2-baseline",
+      "bytes": 63362,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "7b6492971413e09363a62e4ef3e48ebc245ddef390a3ac9f0791cb74ba8ccd06"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp4-mtp3-b3072-prefill-20260724.json",
+      "phase": "rc2-baseline",
+      "bytes": 12671,
+      "modified_utc": "2026-07-24T03:53:47.648Z",
+      "sha256": "3911c1f6046d291f5974374cfe00aa796ba411a62fe6260e52244664875a24c7"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp4-mtp3-b4096-g965-decode-20260724.json",
+      "phase": "scheduler-and-memory-sweep",
+      "bytes": 46615,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "23fe90d1cae9cfe9e9c7d66a509e8ea78944e173a2a4d19bde428b7975f69ef9"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp4-mtp3-b4096-g965-prefill-20260724.json",
+      "phase": "scheduler-and-memory-sweep",
+      "bytes": 12670,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "7af4a28b4a1e82db923ec3178f8602541e31273d34ddb2d06a8fc14ae93409ca"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp4-mtp3-b5120-g970-decode-20260724.json",
+      "phase": "scheduler-and-memory-sweep",
+      "bytes": 31549,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "c6a008021a8549f4268250a8d2b358cdf34f4c7cdce449a5a4e8c9b055896b8e"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp4-mtp3-b5120-g970-lavd10-20260724.json",
+      "phase": "quality-gates",
+      "bytes": 814095,
+      "modified_utc": "2026-07-24T03:53:47.650Z",
+      "sha256": "609e2d8c67d72bf63bd8ad018e7c25d7d06f9a426e682ecb5fba6c483154dcd8"
+    },
+    {
+      "path": "issue34/rc2-nf3-dcp4-mtp3-b5120-g970-prefill-20260724.json",
+      "phase": "scheduler-and-memory-sweep",
+      "bytes": 12671,
+      "modified_utc": "2026-07-24T03:53:47.649Z",
+      "sha256": "a49c599be1d3767aa9fd30e88372826f38f972bf2850d6b28770e1121cd18093"
+    }
+  ]
+}

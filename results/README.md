@@ -7,10 +7,10 @@ This directory preserves the evidence behind the GLM-5.2 EXL3 Blackwell study.
 ## Integrity contract
 
 - `raw/` contains **31 byte-for-byte JSON copies** from the original 23 July campaign.
-- `breakthrough/` contains **16 byte-for-byte JSON copies** from the follow-on deep dive.
-- `manifest.json` records provenance for the original archive; `breakthrough-manifest.json` records the follow-on artifacts.
-- `SHA256SUMS` covers both artifact sets, manifests, public-safe runtime/configuration files, documentation, and tool-call proof.
-- `tool-call-smoke.json` is the original narrowed tool-call observation; the fresh production tool-call result is also recorded in `breakthrough/exl3-breakthrough-direct-evidence-20260723.json`.
+- `breakthrough/` contains **16 byte-for-byte JSON copies** from the EXL3 follow-on deep dive.
+- `issue34/` contains **13 byte-for-byte benchmark JSON copies** plus one direct-observation record from the 24 July RC2 campaign.
+- `manifest.json`, `breakthrough-manifest.json`, and `issue34-manifest.json` record provenance for the three artifact sets.
+- `SHA256SUMS` covers all artifact sets, manifests, public-safe runtime/configuration files, documentation, and tool-call proof.
 - Raw evidence was not rewritten to improve presentation or remove failed candidates.
 
 Verify from the repository root:
@@ -44,6 +44,21 @@ sha256sum --check results/SHA256SUMS
 | What happened at the DCP4 native edge? | [`LAVD 10/10`](breakthrough/exl3-breakthrough-final-no-workspace-lavd10-20260723.json) · [`Estonia 8/10`](breakthrough/exl3-breakthrough-final-safe-estonia10-20260723.json) |
 
 The interpretation, claim boundaries, and source changes are documented in [`../BREAKTHROUGH_CAMPAIGN.md`](../BREAKTHROUGH_CAMPAIGN.md).
+
+## Issue #34 RC2 follow-on
+
+| Question | Artifact |
+| --- | --- |
+| What immutable image, revisions, service settings, direct context, and tool observations were recorded? | [`rc2-direct-evidence-20260724.json`](issue34/rc2-direct-evidence-20260724.json) |
+| What is the safe DCP2 exact-token prefill result? | [`rc2-nf3-dcp2-mtp3-b3072-prefill-20260724.json`](issue34/rc2-nf3-dcp2-mtp3-b3072-prefill-20260724.json) |
+| What is the safe DCP2 decode matrix? | [`rc2-nf3-dcp2-mtp3-b3072-decode-20260724.json`](issue34/rc2-nf3-dcp2-mtp3-b3072-decode-20260724.json) |
+| Did DCP2 pass quality gates? | [`LAVD 10/10 acceptable`](issue34/rc2-nf3-dcp2-mtp3-b3072-lavd10-20260724.json) · [`Estonia 10/10`](issue34/rc2-nf3-dcp2-mtp3-b3072-l180k-estonia10-20260724.json) |
+| Why is the first Estonia file retained? | [`147K configured-limit rejection`](issue34/rc2-nf3-dcp2-mtp3-b3072-estonia10-20260724.json); it is an HTTP 400 context guard, not a model-quality failure |
+| How did DCP1 decode? | [`rc2-nf3-dcp1-mtp3-b3072-decode-20260724.json`](issue34/rc2-nf3-dcp1-mtp3-b3072-decode-20260724.json) |
+| What happened across DCP4 scheduler budgets? | [`batch 3,072 prefill`](issue34/rc2-nf3-dcp4-mtp3-b3072-prefill-20260724.json) · [`decode`](issue34/rc2-nf3-dcp4-mtp3-b3072-decode-20260724.json) · [`batch 4,096 prefill`](issue34/rc2-nf3-dcp4-mtp3-b4096-g965-prefill-20260724.json) · [`decode`](issue34/rc2-nf3-dcp4-mtp3-b4096-g965-decode-20260724.json) · [`batch 5,120 prefill`](issue34/rc2-nf3-dcp4-mtp3-b5120-g970-prefill-20260724.json) · [`decode`](issue34/rc2-nf3-dcp4-mtp3-b5120-g970-decode-20260724.json) |
+| Why was the fastest DCP4 prefill candidate rejected? | [`LAVD 3/4/3 exact/near/fail`](issue34/rc2-nf3-dcp4-mtp3-b5120-g970-lavd10-20260724.json) |
+
+The interpretation and production decision are documented in the [issue #34 campaign section](../BREAKTHROUGH_CAMPAIGN.md#issue-34-rc2-follow-on-24-july-2026). Checksums and byte counts are in [`issue34-manifest.json`](issue34-manifest.json).
 
 ## Baseline and planned-prefill stage
 

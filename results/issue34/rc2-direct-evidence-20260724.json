@@ -1,0 +1,116 @@
+{
+  "campaign": "Gilded Gnosis v20 issue 34 RC2 evaluation",
+  "date": "2026-07-24",
+  "host": "rasputin",
+  "hardware": "4x NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 600 W each",
+  "image": "voipmonitor/vllm:gilded-gnosis-v20-vllm7e3bee1-si6234185-fi801d57a-cu132-20260723@sha256:67b17855ea81ebc8c9d7fc7c27d0d542c622347cd2607f0cf179e7cc4af2c1f0",
+  "revisions": {
+    "vllm": "7e3bee1ed4bc87efbdc36060647a3475cfaa1f1e",
+    "sparkinfer": "62341856cc5497d0c8ba33012dab6118925a6cfb",
+    "flashinfer": "801d57a08958c13d375ddbb6be3be4808f48a708",
+    "cuda": "13.2.1"
+  },
+  "checkpoint": "madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid",
+  "selected_native_profile": {
+    "topology": "TP4/DCP2/MTP3",
+    "max_num_batched_tokens": 3072,
+    "max_num_seqs": 8,
+    "max_cudagraph_capture_size": 64,
+    "max_model_len": 180224,
+    "gpu_memory_utilization": 0.96,
+    "moe_mode": "a16",
+    "online_quant": "nf3-mxfp8",
+    "dcp_query_split": 1,
+    "dcp_ckv_gather": 1,
+    "dcp_prefill_workspace": 0,
+    "kv_cache_dtype": "nvfp4_ds_mla",
+    "observed_kv_capacity_tokens": 190080
+  },
+  "selected_native_results": {
+    "prefill_tokens_per_second": {
+      "8194": 3550,
+      "65538": 3340,
+      "131073": 3168
+    },
+    "decode_ctx0_aggregate_tokens_per_second": {
+      "c1": 114.5,
+      "c2": 137.2,
+      "c4": 227.0,
+      "c8": 335.7
+    },
+    "decode_ctx32768_aggregate_tokens_per_second": {
+      "c1": 116.6,
+      "c2": 133.2,
+      "c4": 216.1
+    },
+    "decode_ctx131071_aggregate_tokens_per_second": {
+      "c1": 112.7
+    },
+    "lavd_10": {
+      "exact": 1,
+      "near": 9,
+      "fail": 0
+    },
+    "estonia_10": {
+      "pass": 10,
+      "fail": 0,
+      "prefill_prompt_tokens": 133186,
+      "prefill_tokens_per_second": 3156
+    },
+    "near_ceiling_context": {
+      "http_status": 200,
+      "raw_prompt_tokens": 179000,
+      "request_prompt_tokens": 179017,
+      "completion_tokens": 1,
+      "finish_reason": "stop",
+      "elapsed_seconds": 57.74
+    },
+    "tool_call_auto": {
+      "http_status": 200,
+      "finish_reason": "tool_calls",
+      "tool_call_count": 1,
+      "name": "get_weather",
+      "arguments": {
+        "city": "Paris"
+      },
+      "continuation_http_status": 200,
+      "continuation_finish_reason": "stop"
+    }
+  },
+  "rejected_profiles": {
+    "dcp4_batch5120": {
+      "reason": "LAVD quality regression",
+      "prefill_tokens_per_second": {
+        "8194": 3529,
+        "65538": 3262,
+        "131074": 3184
+      },
+      "decode_ctx0_aggregate_tokens_per_second": {
+        "c1": 108.5,
+        "c2": 123.4,
+        "c4": 203.3,
+        "c8": 306.1
+      },
+      "lavd_10": {
+        "exact": 3,
+        "near": 4,
+        "fail": 3
+      }
+    },
+    "batch8192": {
+      "reason": "startup rejected because profiled activation memory left no KV cache"
+    },
+    "batch4096_gmu096": {
+      "reason": "2.21 GiB available KV supported only an estimated 255744 tokens, below configured 262144"
+    },
+    "forced_tool_choice_required": {
+      "reason": "parser emitted repeated identical tool calls until the 1024-token cap; automatic tool choice passed end to end"
+    }
+  },
+  "production_decision": {
+    "selected_service": "existing quality-gated EXL3 TP4/DCP4/MTP3 profile",
+    "reason": "RC2 NF3 improves long-prefill plus C1, C4, and C8 decode speed, but the safe DCP2 profile has a 180224-token ceiling, lower C2 throughput, and weaker LAVD exactness; DCP4 failed LAVD 3/10. The existing EXL3 profile retains 999424-token capacity, LAVD 10/10 with 6 exact and 4 near, Estonia 10/10, and tool calling.",
+    "restored_health_http_status": 200,
+    "restored_kv_capacity_tokens": 999424
+  }
+}

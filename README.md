@@ -1,6 +1,6 @@
 # GLM-5.2 EXL3 Blackwell Inference Study
 
-A reproducible record of the 23 July 2026 tuning campaign for the rank-sliced 3.0 bpw EXL3/Trellis build of GLM-5.2 on four NVIDIA RTX PRO 6000 Blackwell Workstation Edition GPUs.
+A reproducible record of the 23–24 July 2026 tuning campaigns for GLM-5.2 on four NVIDIA RTX PRO 6000 Blackwell Workstation Edition GPUs, centered on the rank-sliced 3.0 bpw EXL3/Trellis build and followed by a quality-gated Gilded Gnosis v20 RC2 evaluation.
 
 The campaign moved from the validated v2 baseline to the Gilded Gnosis v20 runtime, measured each consequential serving choice, retained rejected and failed candidates, and then applied performance, long-context, quality, tool-calling, power, and thermal gates to the winning configuration.
 
@@ -42,6 +42,27 @@ The campaign also identified workload-specific speed profiles:
 - **DCP2 workspace experiment:** up to +54.1% 128K prefill and 373.6 tok/s at C8, with a 524,288-token ceiling, but rejected after LAVD scored 8/10.
 
 See [BREAKTHROUGH_CAMPAIGN.md](BREAKTHROUGH_CAMPAIGN.md) for root cause, full matrices, quality boundaries, rejected routes, upstream research, and next-step candidates. The new byte-for-byte evidence is indexed under [`results/breakthrough/`](results/breakthrough/).
+
+### Issue #34 RC2 follow-on
+
+The 24 July follow-on tested the exact [issue #34 RC2 image](https://github.com/local-inference-lab/rtx6kpro/issues/34) on its supported MXFP8/NVFP4/NF3 hybrid checkpoint path. RC2 does not bundle the EXL3 integration, so this is a measured alternative rather than a drop-in upgrade.
+
+| Result | EXL3 production | Safe RC2 NF3 profile |
+| --- | ---: | ---: |
+| Topology | TP4/DCP4/MTP3 | TP4/DCP2/MTP3 |
+| Maximum model length | **999,424** | 180,224 |
+| 64K cold prefill | 2,098 tok/s | **3,340 tok/s (+59.2%)** |
+| 128K cold prefill | 1,964 tok/s | **3,168 tok/s (+61.3%)** |
+| Zero-context C1 | 98.0 tok/s | **114.5 tok/s (+16.8%)** |
+| Zero-context C2 | **153.9 tok/s** | 137.2 tok/s |
+| Zero-context C4 | 224.8 tok/s | **227.0 tok/s** |
+| Zero-context C8 | 324.7 tok/s | **335.7 tok/s** |
+| LAVD exact / near / fail | **6 / 4 / 0** | 1 / 9 / 0 |
+| Estonia | 10/10 | 10/10 |
+
+The safe RC2 DCP2 profile also completed a 179,017-token request and an automatic tool-call round trip. The faster DCP4/batch-5,120 candidate failed 3/10 LAVD and was rejected; forced `tool_choice="required"` repeated identical calls until its output cap. The quality-first production selection therefore remains EXL3, while RC2 DCP2 is published as an optional high-prefill/low-latency profile.
+
+See the [RC2 campaign section](BREAKTHROUGH_CAMPAIGN.md#issue-34-rc2-follow-on-24-july-2026), [`results/issue34/`](results/issue34/), its [manifest](results/issue34-manifest.json), and the [publication-safe Compose file](configs/docker-compose.rc2-nf3.yml).
 
 ## Original validated v20 baseline
 
@@ -139,7 +160,7 @@ The winning decode matrix reported 382,588 MiB average and 382,600 MiB maximum V
 
 ## What was tested and rejected
 
-The archive preserves all 31 original July 23 JSON artifacts and a curated 16-artifact breakthrough extension, including regressions and failed capacity/quality candidates.
+The archive preserves all 31 original July 23 JSON artifacts, a curated 16-artifact EXL3 breakthrough extension, and 14 issue #34 RC2 artifacts, including regressions and failed capacity/quality candidates.
 
 - MTP2 had a narrow C8 result comparable to MTP3 but lost materially at C1 and C4.
 - MTP4 and MTP5 lost throughput as concurrency increased.
@@ -195,8 +216,10 @@ Representative final commands are documented in [METHODOLOGY.md](METHODOLOGY.md)
 configs/                           publication-safe measured Compose/runtime setup
 results/raw/                       31 unmodified original campaign JSON artifacts
 results/breakthrough/              16 unmodified follow-on campaign artifacts
+results/issue34/                 14 curated issue #34 RC2 artifacts
 results/manifest.json              original artifact provenance and SHA-256
 results/breakthrough-manifest.json follow-on artifact provenance and SHA-256
+results/issue34-manifest.json    issue #34 artifact provenance and SHA-256
 results/SHA256SUMS                 checksums for all reproducibility artifacts
 results/tool-call-smoke.json
 METHODOLOGY.md                     original experiment sequence and controls
@@ -208,7 +231,7 @@ See [results/README.md](results/README.md) for the artifact index and verificati
 
 ## Integrity and scope
 
-- The 31 files in `results/raw/` and 16 files in `results/breakthrough/` are byte-for-byte copies of campaign outputs.
+- The 31 files in `results/raw/`, 16 files in `results/breakthrough/`, and 14 files in `results/issue34/` preserve the campaign evidence; benchmark outputs are byte-for-byte copies, while the direct-observation JSON records API and startup checks not emitted by the harness.
 - Generated manifests, runtime/configuration copies, and documentation are checksummed.
 - Hostname, driver, PCI topology, hardware samples, and benchmark event logs remain in the raw evidence because they affect reproducibility.
 - No model weights, container layers, credentials, or API keys are included; the only modified upstream source copies are the two runtime files explicitly listed and attributed in [CREDITS.md](CREDITS.md).

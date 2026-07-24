@@ -402,8 +402,66 @@ No explicit completion-stats temperature is supplied in the final Estonia comman
 - Temperature/sampling policy is part of a quality benchmark contract. Results from different policies are not interchangeable.
 - GPU power values are sampled hardware-monitor values and may miss sub-sample transients.
 - `p2pmark` was not run; no independent P2P bandwidth claim is made.
-- The study does not establish results for Hopper, other Blackwell SKUs, other GPU counts, other EXL3 bitrates, BF16/NVFP4 model weights, or a newer runtime.
+- The original EXL3 sequence does not establish results for Hopper, other Blackwell SKUs, other GPU counts, other EXL3 bitrates, or BF16/NVFP4 weights. The separately scoped issue #34 RC2/NF3 follow-on below does not make its results interchangeable with EXL3.
 
 ## 9. Evidence and integrity
 
 All 31 July 23 benchmark outputs are retained under [`results/raw`](results/raw/) without editing. [`results/manifest.json`](results/manifest.json) records each timestamp, size, campaign phase, and SHA-256. [`results/SHA256SUMS`](results/SHA256SUMS) covers the reproducibility files. See [results/README.md](results/README.md) for verification.
+
+
+## 10. Issue #34 RC2 follow-on methodology
+
+### Immutable runtime and checkpoint boundary
+
+The 24 July follow-on used the exact image from [local-inference-lab/rtx6kpro issue #34](https://github.com/local-inference-lab/rtx6kpro/issues/34):
+
+```text
+voipmonitor/vllm:gilded-gnosis-v20-vllm7e3bee1-si6234185-fi801d57a-cu132-20260723@sha256:67b17855ea81ebc8c9d7fc7c27d0d542c622347cd2607f0cf179e7cc4af2c1f0
+```
+
+The release reports vLLM `7e3bee1ed4bc87efbdc36060647a3475cfaa1f1e`, Sparkinfer `62341856cc5497d0c8ba33012dab6118925a6cfb`, FlashInfer `801d57a08958c13d375ddbb6be3be4808f48a708`, and CUDA 13.2.1. Because RC2 does not include the EXL3 backend, the measured checkpoint was `madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid`, using online `nf3-mxfp8`, A16 MoE, `nvfp4_ds_mla` KV, and B12X sparse attention.
+
+### Search matrix and hard gates
+
+The sweep varied DCP 1/2/4, batch-token budgets 3,072/4,096/5,120/8,192, GPU-memory utilization 0.96/0.965/0.97, and context ceilings. MTP remained at depth 3 after the preceding campaign established it as the balanced throughput point. Startup failures, capacity-limited cells, and quality failures were retained rather than averaged away.
+
+Candidates advanced in this order:
+
+1. cold exact-token prefill at 8K/64K/128K;
+2. 30-second sustained decode at C1/C2/C4/C8 and 0/32K/128K context where capacity allowed;
+3. deterministic LAVD, then sampled Estonia;
+4. direct near-ceiling context;
+5. OpenAI-compatible automatic tool call plus tool-result continuation.
+
+The selected native RC2 profile was TP4/DCP2/MTP3, batch 3,072, eight sequences, 180,224 maximum model length, 0.96 GPU-memory utilization, query split 1, CKV gather 1, and no DCP prefill workspace. DCP4/batch 5,120 was rejected after LAVD scored 3 exact, 4 near, and 3 fail. A 147K-configured Estonia attempt is retained as an HTTP 400 context-limit guard; the 180,224-token rerun passed 10/10.
+
+### Reproduce the selected RC2 profile
+
+```bash
+export MODEL_DIR="$HOME/models/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid"
+export RC2_GPUS="3,1,2,0"  # campaign host mapping; machine-specific
+
+docker compose \
+  -f configs/docker-compose.rc2-nf3.yml \
+  up glm52-rc2-nf3
+```
+
+Representative harness commands:
+
+```bash
+python llm_decode_bench.py \
+  --host localhost --port 5001 --model GLM-5.2 \
+  --prefill-only --prefill-contexts 8k,64k,128k \
+  --prefill-metric client --token-targeting exact \
+  --display-mode plain \
+  --output rc2-nf3-dcp2-mtp3-b3072-prefill-20260724.json
+
+python llm_decode_bench.py \
+  --host localhost --port 5001 --model GLM-5.2 \
+  --concurrency 1,2,4,8 --contexts 0,32k,128k \
+  --duration 30 --skip-prefill --max-tokens 8192 \
+  --dcp-size 2 --kv-budget 195584 --display-mode plain \
+  --output rc2-nf3-dcp2-mtp3-b3072-decode-20260724.json
+```
+
+Exact arguments, startup diagnostics, hardware samples, and event logs are embedded in the raw JSON. The 14-file archive and checksums are indexed by [`results/issue34-manifest.json`](results/issue34-manifest.json).

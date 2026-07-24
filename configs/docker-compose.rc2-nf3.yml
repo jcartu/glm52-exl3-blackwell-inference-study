@@ -1,0 +1,60 @@
+services:
+  glm52-rc2-nf3:
+    image: voipmonitor/vllm:gilded-gnosis-v20-vllm7e3bee1-si6234185-fi801d57a-cu132-20260723@sha256:67b17855ea81ebc8c9d7fc7c27d0d542c622347cd2607f0cf179e7cc4af2c1f0
+    container_name: glm52-rc2-nf3-5001
+    runtime: nvidia
+    network_mode: host
+    ipc: host
+    shm_size: 32g
+    init: true
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    volumes:
+      - "${MODEL_DIR:?set MODEL_DIR}:/model:ro"
+      - glm52-rc2-nf3-cache:/cache
+    environment:
+      MODEL_FAMILY: glm52-hybrid
+      MODEL: /model
+      SERVED_MODEL_NAME: GLM-5.2
+      GPUS: "${RC2_GPUS:-3,1,2,0}"
+      PORT: "5001"
+      TP: "4"
+      DCP: "${RC2_DCP:-2}"
+      DCP_BACKEND: a2a
+      DCP_A2A_MAX_TOKENS: "${RC2_DCP_A2A_MAX_TOKENS:-16}"
+      DCP_A2A_LARGE_BACKEND: "${RC2_DCP_A2A_LARGE_BACKEND:-ag_rs}"
+      DCP_PREFILL_WORKSPACE: "${RC2_DCP_PREFILL_WORKSPACE:-0}"
+      DCP_QUERY_SPLIT: "${RC2_DCP_QUERY_SPLIT:-1}"
+      DCP_CKV_GATHER: "${RC2_DCP_CKV_GATHER:-1}"
+      MTP: "${RC2_MTP:-3}"
+      MAX_NUM_SEQS: "${RC2_MAX_NUM_SEQS:-8}"
+      GRAPH: "${RC2_GRAPH:-64}"
+      MAX_MODEL_LEN: "${RC2_MAX_MODEL_LEN:-180224}"
+      MAX_BATCHED_TOKENS: "${RC2_MAX_BATCHED_TOKENS:-3072}"
+      GPU_MEMORY_UTILIZATION: "${RC2_GPU_MEMORY_UTILIZATION:-0.96}"
+      MOE_MODE: "${RC2_MOE_MODE:-a16}"
+      ONLINE_QUANT: "${RC2_ONLINE_QUANT:-nf3-mxfp8}"
+      F8_DMA: "${RC2_F8_DMA:-0}"
+      B12X_PCIE_DMA: "${RC2_B12X_PCIE_DMA:-1}"
+      VLLM_B12X_ABSORB_BMM: "${RC2_ABSORB_BMM:-1}"
+      P2P_PREFLIGHT: "${RC2_P2P_PREFLIGHT:-warn}"
+      PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+    command: ["/usr/local/bin/serve-gilded-gnosis.sh"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 4
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:5001/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 1800s
+    restart: "no"
+
+volumes:
+  glm52-rc2-nf3-cache:
