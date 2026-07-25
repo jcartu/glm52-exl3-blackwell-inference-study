@@ -1,0 +1,41 @@
+{
+  "profile": "final_exact_attached_balanced_profile",
+  "method": "Direct OpenAI streaming client. Each prompt was binary-searched through /tokenize to the exact target, used a unique leading nonce to prevent prefix-cache reuse, requested max_tokens=1 at temperature 0 with ignore_eos, and measured wall time from request start to the output/finish SSE event. Usage reported cached_tokens=0 for both requests.",
+  "runtime": "voipmonitor/vllm:gilded-gnosis-v20-vllm3e731bc-si1a88b38-fi801d57a-cu132-20260722@sha256:dbb3ee5542106442cbdaa21e66d9071fd23888276a2c2cbe914c17491f62ffa7",
+  "measurements": {
+    "240041": {
+      "status": 200,
+      "prompt_tokens": 240041,
+      "input_chars": 1800077,
+      "ttft_seconds": 83.321351,
+      "client_prefill_tok_s": 2880.9,
+      "elapsed_seconds": 83.322,
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 240041,
+        "total_tokens": 240042,
+        "completion_tokens": 1,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "400000": {
+      "status": 200,
+      "prompt_tokens": 400000,
+      "input_chars": 2999776,
+      "ttft_seconds": 155.709801,
+      "client_prefill_tok_s": 2568.9,
+      "elapsed_seconds": 155.710,
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 400000,
+        "total_tokens": 400001,
+        "completion_tokens": 1,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  }
+}

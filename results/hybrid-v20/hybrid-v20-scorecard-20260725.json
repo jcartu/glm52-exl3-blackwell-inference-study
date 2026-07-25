@@ -1,0 +1,598 @@
+{
+  "attached_baseline": {
+    "decode_tok_s": {
+      "0_c1": 114.46573419535878,
+      "0_c2": 130.6624038077857,
+      "0_c4": 214.37147644765744,
+      "0_c8": 320.30337735863316,
+      "131072_c1": 110.42599211024795,
+      "131072_c2": 125.9414266550868,
+      "307200_c1": 117.4667342377877,
+      "32768_c1": 114.49337726150888,
+      "32768_c2": 128.18153376179626,
+      "32768_c4": 213.8926306837614,
+      "32768_c8": 310.20623677400306
+    },
+    "legacy_server_default_sampling_observations": {
+      "checkpoint_generation_config": {
+        "temperature": 1.0,
+        "top_p": 0.95
+      },
+      "claim_boundary": "Requests omitted temperature and top_p; these are not temperature-zero gate evidence.",
+      "estonia": {
+        "artifact": "hybrid-attached-baseline-estonia10-20260725.json",
+        "attempted": 10,
+        "correct": 10,
+        "errors": 0,
+        "hit_max_tokens": 0
+      },
+      "lavd": {
+        "artifact": "hybrid-attached-baseline-lavd10-40k-20260725.json",
+        "errors": 0,
+        "exact": 2,
+        "fail": 3,
+        "hit_max_tokens": 0,
+        "near": 5
+      }
+    },
+    "long_exact_prefill_tok_s": {
+      "240041": 2880.9,
+      "400000": 2568.9,
+      "artifact": "hybrid-sota-final-prefill-long-exact-20260725.json",
+      "cached_tokens": 0
+    },
+    "prefill_tok_s": {
+      "131072": 2929.0,
+      "65536": 3247.0,
+      "8192": 3509.0
+    },
+    "quality": {
+      "estonia": {
+        "artifact": "hybrid-sota-final-estonia10-explicit-t0-40k-20260725.json",
+        "attempted": 10,
+        "completed": 10,
+        "correct": 3,
+        "errors": 0,
+        "fail": 7,
+        "gate_pass": false,
+        "hit_max_tokens": 7,
+        "truncated": 0
+      },
+      "gsm8k": {
+        "artifact": "hybrid-attached-baseline-gsm8k100-20260725.json",
+        "attempted": 100,
+        "correct": 98,
+        "errors": 0,
+        "failed_item_ids": [
+          "gsm8k-0962",
+          "gsm8k-1042"
+        ]
+      },
+      "lavd": {
+        "artifact": "hybrid-sota-final-lavd10-explicit-t0-40k-20260725.json",
+        "attempted": 10,
+        "completed": 10,
+        "errors": 0,
+        "exact": 1,
+        "fail": 4,
+        "gate_pass": false,
+        "hit_max_tokens": 4,
+        "near": 5,
+        "truncated": 0
+      },
+      "long_context_and_health": {
+        "cached_512_token_stress": {
+          "content_prefix": "CONTEXT_OKThe measured reference sequence remains internally consistent and pres",
+          "elapsed_seconds": 5.744,
+          "finish_reason": "length",
+          "status": 200,
+          "usage": {
+            "completion_tokens": 512,
+            "prompt_tokens": 450019,
+            "prompt_tokens_details": {
+              "cached_tokens": 449536,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 450531
+          }
+        },
+        "observed_at": "2026-07-25T10:37:26+03:00",
+        "post_stress_health": {
+          "container_error_pattern_matches": 0,
+          "container_error_patterns": [
+            "ERROR",
+            "Traceback",
+            "CUDA OOM",
+            "out of memory",
+            "Xid",
+            "EngineDead"
+          ],
+          "kernel_xid_events_last_15_minutes": 0,
+          "model_list_status": 200,
+          "reported_max_model_len": 479744,
+          "served_model": "GLM-5.2",
+          "service_state": "ready"
+        },
+        "profile": "final_exact_attached_balanced_profile",
+        "target_prompt_tokens": 450019,
+        "tokenize_status": 200,
+        "tokenized_prompt_tokens": 450019,
+        "uncached_request": {
+          "content": "CONTEXT_OK",
+          "elapsed_seconds": 180.625,
+          "finish_reason": "stop",
+          "status": 200,
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 450019,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 450059
+          }
+        }
+      },
+      "overall_predeclared_quality_gate_pass": false,
+      "required_tool": {
+        "continuation": {
+          "content": "The current weather in Paris is **sunny** with a temperature of **21\u00b0C**. It's a beautiful day! \u2600\ufe0f",
+          "finish_reason": "stop",
+          "status": 200,
+          "tool_call_count": 0,
+          "usage": {
+            "completion_tokens": 44,
+            "prompt_tokens": 236,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 280
+          }
+        },
+        "profile": "final_production_full_context_balanced",
+        "required": {
+          "content": null,
+          "finish_reason": "tool_calls",
+          "status": 200,
+          "tool_call_count": 1,
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"city\": \"Paris\"}",
+                "name": "get_weather"
+              },
+              "id": "chatcmpl-tool-a81e766f045406e8",
+              "type": "function"
+            }
+          ],
+          "usage": {
+            "completion_tokens": 31,
+            "prompt_tokens": 186,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 217
+          }
+        }
+      },
+      "sampling_policy": "explicit temperature 0 for LAVD, GSM8K, and Estonia corrective gate runs"
+    }
+  },
+  "checkpoint": {
+    "provenance_artifact": "checkpoint-provenance-20260725.json",
+    "repository": "madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid",
+    "revision": "68babde27a97a4c980c2494e830dd424975cd5a3"
+  },
+  "date": "2026-07-25",
+  "evidence_status": {
+    "checkpoint_provenance_artifact": "checkpoint-provenance-20260725.json",
+    "post_stress_health_artifact": "hybrid-sota-final-context450k-health-20260725.json",
+    "startup_failure_observations": "startup-failure-observations-20260725.json",
+    "superseded_artifacts_and_protocol_deviations": "hybrid-protocol-amendment-20260725.json"
+  },
+  "exploratory_and_operational_boundaries": [
+    {
+      "profile": "RC2 20260723 at matched DCP4 geometry",
+      "reason": "Prefill 3354/2718/2797 tok/s and long-context decode regressions versus attached runtime.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    },
+    {
+      "evidence_artifact": "startup-failure-observations-20260725.json",
+      "evidence_type": "operator_observation_no_harness_artifact",
+      "profile": "batch5120",
+      "reason": "Only 332544 KV tokens at GMU0.978; cannot retain 479744 model length.",
+      "status": "operational_boundary"
+    },
+    {
+      "evidence_artifact": "startup-failure-observations-20260725.json",
+      "evidence_type": "operator_observation_no_harness_artifact",
+      "profile": "batch4096 at GMU0.985",
+      "reason": "Estimated 472064-token capacity; misses required model length.",
+      "status": "operational_boundary"
+    },
+    {
+      "evidence_artifact": "startup-failure-observations-20260725.json",
+      "evidence_type": "operator_observation_no_harness_artifact",
+      "profile": "batch3584 at GMU0.985",
+      "reason": "Booted, then fatal CUDA OOM on prefill.",
+      "status": "operational_boundary"
+    },
+    {
+      "profile": "batch3200",
+      "reason": "Reduced KV headroom and mixed performance; no gate-clearing gain.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    },
+    {
+      "profile": "MTP4",
+      "reason": "C8 graph-overflow collapse to 49.7 tok/s.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    },
+    {
+      "profile": "MTP2",
+      "reason": "Lower zero-context C1 and no compensating C4/C8 gain.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    },
+    {
+      "profile": "explicit VLLM_B12X_MLA_SPEC_EXTEND_AS_DECODE=1",
+      "reason": "Reduced KV budget and slowed the measured zero-context matrix.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    },
+    {
+      "evidence_artifacts": [
+        "startup-failure-observations-20260725.json",
+        "hybrid-old-b3072-spec1-absorb1-prefill-exact-20260725.json",
+        "hybrid-old-b3072-spec1-absorb1-decode20-20260725.json"
+      ],
+      "evidence_type": "operator_observation_plus_harness_artifacts",
+      "profile": "explicit VLLM_B12X_ABSORB_BMM=1",
+      "reason": "Profiler over-allocated KV and triggered fatal OOM around 135K.",
+      "status": "operational_boundary"
+    },
+    {
+      "profile": "explicit VLLM_B12X_MLA_KV_FP8_ROPE=1",
+      "reason": "128K prefill fell to 1947 tok/s and decode regressed.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    },
+    {
+      "profile": "64KB DCP A2A threshold",
+      "reason": "Mixed result; zero/32K cells failed to establish a safe gain.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    },
+    {
+      "profile": "64KB PCIe all-reduce threshold",
+      "reason": "32K C1 regression exceeded the no-regression band.",
+      "status": "exploratory_not_advanced_unconfirmed_unless_artifact_states_otherwise"
+    }
+  ],
+  "exploratory_boundary_claim_limit": "Except for the explicitly confirmed rank-order regression, performance rows in exploratory_and_operational_boundaries are exploratory screening observations unless their linked artifact states otherwise; the predeclared repeat rule was not systematically completed.",
+  "final_balanced_repeat": {
+    "configuration_delta_vs_attached_baseline": "none",
+    "decode_tok_s": {
+      "0_c1": 109.47349947037956,
+      "0_c2": 128.15479815154916,
+      "0_c4": 205.1986506489454,
+      "0_c8": 299.70879270623885,
+      "131072_c1": 102.58455265770431,
+      "131072_c2": 123.64210596339717,
+      "307200_c1": 100.98757614402584,
+      "32768_c1": 104.56173298699183,
+      "32768_c2": 127.55872654451277,
+      "32768_c4": 202.91228427566952,
+      "32768_c8": 288.99279492749463
+    },
+    "interpretation": "A fresh repeat of the identical selected configuration. MTP acceptance and thermal/run-order variation made individual sustained-decode cells move beyond 3%; these values are published as variance evidence, not attributed optimization gains.",
+    "prefill_tok_s": {
+      "131072": 3109.0,
+      "65536": 3244.0,
+      "8192": 3512.0
+    },
+    "production_behavior": {
+      "long_context": {
+        "cached_512_token_stress": {
+          "content_prefix": "CONTEXT_OKThe measured reference sequence remains internally consistent and pres",
+          "elapsed_seconds": 5.744,
+          "finish_reason": "length",
+          "status": 200,
+          "usage": {
+            "completion_tokens": 512,
+            "prompt_tokens": 450019,
+            "prompt_tokens_details": {
+              "cached_tokens": 449536,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 450531
+          }
+        },
+        "observed_at": "2026-07-25T10:37:26+03:00",
+        "post_stress_health": {
+          "container_error_pattern_matches": 0,
+          "container_error_patterns": [
+            "ERROR",
+            "Traceback",
+            "CUDA OOM",
+            "out of memory",
+            "Xid",
+            "EngineDead"
+          ],
+          "kernel_xid_events_last_15_minutes": 0,
+          "model_list_status": 200,
+          "reported_max_model_len": 479744,
+          "served_model": "GLM-5.2",
+          "service_state": "ready"
+        },
+        "profile": "final_exact_attached_balanced_profile",
+        "target_prompt_tokens": 450019,
+        "tokenize_status": 200,
+        "tokenized_prompt_tokens": 450019,
+        "uncached_request": {
+          "content": "CONTEXT_OK",
+          "elapsed_seconds": 180.625,
+          "finish_reason": "stop",
+          "status": 200,
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 450019,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 450059
+          }
+        }
+      },
+      "tool_gate": {
+        "continuation": {
+          "content": "The current weather in Paris is **sunny** with a temperature of **21\u00b0C**. It's a beautiful day! \u2600\ufe0f",
+          "finish_reason": "stop",
+          "status": 200,
+          "tool_call_count": 0,
+          "usage": {
+            "completion_tokens": 44,
+            "prompt_tokens": 236,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 280
+          }
+        },
+        "profile": "final_production_full_context_balanced",
+        "required": {
+          "content": null,
+          "finish_reason": "tool_calls",
+          "status": 200,
+          "tool_call_count": 1,
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"city\": \"Paris\"}",
+                "name": "get_weather"
+              },
+              "id": "chatcmpl-tool-a81e766f045406e8",
+              "type": "function"
+            }
+          ],
+          "usage": {
+            "completion_tokens": 31,
+            "prompt_tokens": 186,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "multimodal_tokens": null
+            },
+            "total_tokens": 217
+          }
+        }
+      }
+    },
+    "quality_gate": {
+      "artifacts": [
+        "hybrid-sota-final-lavd10-explicit-t0-40k-20260725.json",
+        "hybrid-sota-final-estonia10-explicit-t0-40k-20260725.json"
+      ],
+      "reason": "Explicit temperature-zero LAVD hit max_tokens in 4/10 runs and Estonia passed 3/10 with 7 max-token hits.",
+      "status": "failed"
+    },
+    "ratio_vs_attached_baseline": {
+      "decode": {
+        "0_c1": 0.9563866447887456,
+        "0_c2": 0.98080851428445,
+        "0_c4": 0.9572106049241502,
+        "0_c8": 0.9357028801187594,
+        "131072_c1": 0.9289891872131442,
+        "131072_c2": 0.9817429359603276,
+        "307200_c1": 0.859712128708685,
+        "32768_c1": 0.9132557313613637,
+        "32768_c2": 0.995141209509625,
+        "32768_c4": 0.9486642135683195,
+        "32768_c8": 0.9316150375726868
+      },
+      "prefill": {
+        "131072": 1.0614544213041994,
+        "65536": 0.9990760702186634,
+        "8192": 1.0008549444286121
+      }
+    }
+  },
+  "hardware": "4x NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 600 W limit per GPU",
+  "performance_pareto_profiles": {
+    "dcp1_90k": {
+      "accuracy_gated": false,
+      "claim_boundary": "Performance/capacity Pareto point only; not the default and not separately quality-gated. It leads DCP2 at C1/C2/C4 but not C8.",
+      "decode_protocol": {
+        "artifact": "hybrid-sota-dcp1-90k-decode30-t0-20260725.json",
+        "duration_seconds": 30.0,
+        "ignore_eos": true,
+        "temperature": 0.0
+      },
+      "decode_tok_s": {
+        "0_c1": 132.76182659677409,
+        "0_c2": 149.11716505371533,
+        "0_c4": 260.4556534219076,
+        "0_c8": 346.64785852734383,
+        "32768_c1": 131.9514963063639,
+        "32768_c2": 143.31936813154348
+      },
+      "kv_budget_tokens": 118912,
+      "prefill_tok_s": {
+        "65536": 3768.0,
+        "8192": 4093.0
+      },
+      "ratio_vs_attached_baseline": {
+        "decode": {
+          "0_c1": 1.159839034188077,
+          "0_c2": 1.141240025501735,
+          "0_c4": 1.2149734551345612,
+          "0_c8": 1.0822485275864375,
+          "32768_c1": 1.1524814750199897,
+          "32768_c2": 1.1180968422321917
+        },
+        "prefill": {
+          "65536": 1.1604558053587928,
+          "8192": 1.1664291821031634
+        }
+      },
+      "settings": {
+        "dcp": 1,
+        "gpu_memory_utilization": 0.96,
+        "max_model_len": 90000,
+        "max_num_batched_tokens": 3072,
+        "mtp_tokens": 3,
+        "tp": 4
+      }
+    },
+    "dcp2_180k": {
+      "accuracy_gated": false,
+      "claim_boundary": "Performance/capacity Pareto point only; not the default and not separately quality-gated in this sweep.",
+      "decode_protocol": {
+        "artifact": "hybrid-sota-dcp2-180k-decode30-t0-20260725.json",
+        "duration_seconds": 30.0,
+        "ignore_eos": true,
+        "temperature": 0.0
+      },
+      "decode_tok_s": {
+        "0_c1": 122.72293427751643,
+        "0_c2": 144.40450666094446,
+        "0_c4": 235.3635253582405,
+        "0_c8": 352.05747628145235,
+        "131072_c1": 118.17303908528194,
+        "32768_c1": 121.8895724146674,
+        "32768_c2": 141.68686975001273,
+        "32768_c4": 232.75020838114622
+      },
+      "kv_budget_tokens": 197376,
+      "prefill_tok_s": {
+        "131072": 3252.0,
+        "65536": 3435.0,
+        "8192": 3708.0
+      },
+      "ratio_vs_attached_baseline": {
+        "decode": {
+          "0_c1": 1.0721368725776492,
+          "0_c2": 1.1051725856304806,
+          "0_c4": 1.0979237035562828,
+          "0_c8": 1.0991375713383913,
+          "131072_c1": 1.0701560097128169,
+          "32768_c1": 1.0645993273153713,
+          "32768_c2": 1.1053610109964347,
+          "32768_c4": 1.088163755979352
+        },
+        "prefill": {
+          "131072": 1.110276544895869,
+          "65536": 1.0578995996304281,
+          "8192": 1.0567113137646054
+        }
+      },
+      "settings": {
+        "dcp": 2,
+        "gpu_memory_utilization": 0.96,
+        "max_model_len": 180000,
+        "max_num_batched_tokens": 3072,
+        "mtp_tokens": 3,
+        "tp": 4
+      }
+    }
+  },
+  "protocol": {
+    "benchmark": "Local Inference Lab llm-inference-bench 0.4.29",
+    "claim_policy": "No throughput gain is claimed for the byte-identical balanced fallback. DCP1/DCP2 gains use matched 30-second temperature-zero cells and are paired with capacity costs and performance-only labels.",
+    "decode": "Sustained aggregate OpenAI continuous-usage tokens/s, 30-second cells, 8192 output cap, explicit temperature 0, ignore_eos; capacity-limited cells excluded.",
+    "execution_audit": "hybrid-protocol-amendment-20260725.json",
+    "predeclared_gates": "hybrid-optimization-gates-20260725.json",
+    "prefill": "Exact /tokenize targeting. Harness artifacts cover 8K/64K/128K; direct uncached exact-token measurements cover the selected control at 240041 and 400000.",
+    "primary_geometric_mean_status": "not computed: no mutated full-context candidate completed all declared cells or reached full eligibility",
+    "repeat_rule_claim_limit": "Single-run exploratory boundaries explain why profiles were not advanced; they do not establish that every mutation is repeatably slower.",
+    "repeat_rule_execution": "partially executed: only the rank-order 32K/C4 regression has a fresh matrix plus 60-second confirmation; other exploratory regressions were not systematically repeated",
+    "selection_band": "Ratios below 0.97 require repeat and reject a balanced mutation."
+  },
+  "rejected_full_context_candidate": {
+    "decode_tok_s": {
+      "0_c1": 113.5873420318729,
+      "0_c2": 134.13522357878327,
+      "0_c4": 215.8789284847146,
+      "0_c8": 318.8961126574444,
+      "131072_c1": 95.26848843163161,
+      "131072_c2": 132.20548418072715,
+      "307200_c1": 113.52019740989813,
+      "32768_c1": 113.53240057727136,
+      "32768_c2": 134.09733203657558,
+      "32768_c4": 212.43223721553287,
+      "32768_c8": 315.55218048670423
+    },
+    "prefill_tok_s": {
+      "131072": 3108.0,
+      "65536": 3243.0,
+      "8192": 3461.0
+    },
+    "profile": "GPU rank order 3,1,2,0 on attached runtime/profile",
+    "quality_observation": {
+      "estonia": {
+        "attempted": 10,
+        "correct": 10,
+        "errors": 0,
+        "truncated": 0
+      },
+      "gate_comparable": false,
+      "gsm8k": {
+        "attempted": 100,
+        "correct": 98,
+        "errors": 0,
+        "failed_item_ids": [
+          "gsm8k-0962",
+          "gsm8k-1042"
+        ]
+      },
+      "lavd": {
+        "errors": 0,
+        "exact": 5,
+        "fail": 1,
+        "near": 4,
+        "truncated": 0
+      },
+      "long_context": "passed",
+      "required_tool": "passed",
+      "sampling_policy": "temperature and top_p omitted; server/model-default observation only, not temperature-zero gate evidence"
+    },
+    "rejection_reason": "Fresh production repeat measured 32K/C4 at 203.1 tok/s and a 60-second confirmation at 196.0 tok/s versus 213.9 tok/s baseline; both breach the 0.97 minimum-cell gate. Reverted to 0,1,2,3."
+  },
+  "runtime": {
+    "screened_rc2_image": "voipmonitor/vllm:gilded-gnosis-v20-vllm7e3bee1-si6234185-fi801d57a-cu132-20260723@sha256:67b17855ea81ebc8c9d7fc7c27d0d542c622347cd2607f0cf179e7cc4af2c1f0",
+    "screened_rc2_observation": "One matched screening run showed lower prefill/long-context decode; it was not repeated under the predeclared confirmation rule and was not advanced.",
+    "selected_image": "voipmonitor/vllm:gilded-gnosis-v20-vllm3e731bc-si1a88b38-fi801d57a-cu132-20260722@sha256:dbb3ee5542106442cbdaa21e66d9071fd23888276a2c2cbe914c17491f62ffa7",
+    "sparkinfer_revision": "1a88b389a8d14f26dbe4c157965938cfd8f1bf51",
+    "vllm_revision": "3e731bc043d23ec21277fb76d3e15fe6da91b23b"
+  },
+  "selection": {
+    "balanced_profile": "Exact attached v20 profile retained: TP4/DCP4/MTP3, batch3072, seq8, graph32, max479744, GMU0.978, full CKV gather, NVFP4 MLA KV, FastSafeTensors, 120KB/84KB all-reduce thresholds.",
+    "configuration_delta_vs_attached_baseline": "none",
+    "decision": "No mutated full-context candidate completed and cleared every predeclared cell and eligibility gate. The exact attached profile is retained as the conservative operational fallback, not as a newly optimized or temperature-zero accuracy-certified winner.",
+    "kv_budget_tokens": 487936,
+    "max_model_len": 479744,
+    "predeclared_accuracy_gate_pass": false,
+    "primary_geometric_mean_computed": false,
+    "production_endpoint": "http://localhost:8080",
+    "production_gpu_order": "0,1,2,3",
+    "throughput_gain_claim": false
+  }
+}

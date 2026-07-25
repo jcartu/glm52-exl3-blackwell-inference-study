@@ -1,0 +1,7 @@
+services:
+  glm52-nf3-v20:
+    environment:
+      DCP: "1"
+      MAX_MODEL_LEN: "90000"
+      VLLM_B12X_MLA_CKV_GATHER_MAX_TOKENS: "90000"
+      GPU_MEMORY_UTILIZATION: "0.960"

@@ -1,0 +1,42 @@
+{
+  "repository": "madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid",
+  "repository_url": "https://huggingface.co/madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid",
+  "revision": "68babde27a97a4c980c2494e830dd424975cd5a3",
+  "resolved_at": "2026-07-25",
+  "verification": {
+    "method": "The local config.json, generation_config.json, tokenizer_config.json, and chat_template.jinja hashes were compared byte-for-byte with resolve/<revision>/ paths and all matched.",
+    "matched_remote_files": 4,
+    "mismatches": 0
+  },
+  "local_small_file_manifest": {
+    "config.json": {
+      "bytes": 145588,
+      "sha256": "254974797e9f455716a30ab5505ba68272181b20b58a3693e54f94fb8056f3ef"
+    },
+    "generation_config.json": {
+      "bytes": 194,
+      "sha256": "ac76b43d8683d3b930126870fc8be73d8679308fe752fa1f381096d8354f6a55"
+    },
+    "tokenizer_config.json": {
+      "bytes": 761,
+      "sha256": "98b1271574f41abf89427ae2dda030d94dc9478f0edc5a8bd240db213c6fd5fc"
+    },
+    "chat_template.jinja": {
+      "bytes": 5076,
+      "sha256": "172dc74a35e1752df75ecfb2b2cf9326d2852bb1379868ebeec9571654489679"
+    },
+    "model.safetensors.index.json": {
+      "bytes": 13720135,
+      "sha256": "6eb773222d932418dd0530c63aca498f86ef424da2a4526ccba76b59726da234"
+    },
+    "tokenizer.json": {
+      "bytes": 20217442,
+      "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d"
+    },
+    "mxfp8_tier_nokvb.json": {
+      "bytes": 10703,
+      "sha256": "ebcd6087180033d4512fafa5f154f4fecfbc1ee5e5051448f34859cccc4430f0"
+    }
+  },
+  "weight_manifest_note": "The 184 weight shards are not redistributed. Reproduction must download the immutable Hugging Face revision above; the index hash binds shard names and tensor placement, while the Hugging Face revision binds the LFS objects."
+}

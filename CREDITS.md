@@ -9,6 +9,7 @@ Nothing in this repository transfers ownership of, relicenses, or claims authors
 | Component | Owner or contributor | Contribution used by this study | Primary source |
 | --- | --- | --- | --- |
 | GLM-5.2 base model | Z.ai / GLM team | Architecture, weights, tokenizer, model code, and technical report | [model](https://huggingface.co/zai-org/GLM-5.2) · [report](https://arxiv.org/abs/2602.15763) |
+| GLM-5.2 MXFP8/NVFP4/NF3 hybrid checkpoint | `madeby561` | Hybrid checkpoint construction and validation: all 256 routed experts retained, with damage-selected NVFP4/NF3 expert allocation and BF16 non-expert weights served through online MXFP8 | [checkpoint and model card](https://huggingface.co/madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid) |
 | GLM-5.2 EXL3 TP4 checkpoint | Brandon Music (`brandonmusic`, `@brandonmmusic-max`) | Calibration and conversion, TP4 rank slicing, 3.0 bpw EXL3/Trellis routed experts, sensitive-component retention, model card, validation, and reproduction bundle | [checkpoint](https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw) · [encoder bundle](https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw/tree/main/encoder) |
 | vLLM EXL3 integration | Brandon Music and contributors preserved in commit history | Native rank-sliced EXL3 loading/execution, routed-MoE support, Trellis dispatch, DCP speculative lifetime fixes, structured-output fixes, and validation | [vLLM PR #139](https://github.com/local-inference-lab/vllm/pull/139) |
 | Sparkinfer EXL3 Trellis path | Brandon Music and Sparkinfer contributors | Planned EXL3 Trellis API and fused Blackwell routed-MoE path | [Sparkinfer PR #49](https://github.com/local-inference-lab/sparkinfer/pull/49) |
@@ -46,6 +47,20 @@ Recorded source identifiers:
 
 The final RC2+EXL3 image was a local derivative build. It is not represented as an image published by Martin Vit, Verdict AI, Local Inference Lab, Brandon Music, or any other upstream contributor.
 
+### Selected v20 NF3-hybrid image
+
+```text
+voipmonitor/vllm:gilded-gnosis-v20-vllm3e731bc-si1a88b38-fi801d57a-cu132-20260722@sha256:dbb3ee5542106442cbdaa21e66d9071fd23888276a2c2cbe914c17491f62ffa7
+```
+
+Recorded source identifiers:
+
+- vLLM `3e731bc043d23ec21277fb76d3e15fe6da91b23b`;
+- Sparkinfer `1a88b389a8d14f26dbe4c157965938cfd8f1bf51`;
+- FlashInfer `801d57a`.
+
+The measured launcher copy in `configs/` comes from this image and retains its upstream license and authorship. This study changes only two environment assignments so the measured 120KB/84KB all-reduce thresholds are not overwritten.
+
 ### Historical v20 EXL3 image
 
 ```text
@@ -72,6 +87,7 @@ reported result version: 0.4.29
 
 - Design and operation of the recorded four-GPU configuration studies.
 - Public-safe Compose overlays and publication packaging.
+- Full-context and lower-capacity Pareto sweeps of the independently acquired MXFP8/NVFP4/NF3 hybrid checkpoint against the exact v20 recipe.
 - Measured comparison tables, selection rationale, and explicit rejection boundaries.
 - Adaptive sparse-indexer fold selection and final-partial-chunk workspace correction applied to pinned upstream source.
 - Rebase/integration packaging of the existing EXL3 PRs onto the exact issue #34 RC2 source line.
@@ -84,6 +100,7 @@ reported result version: 0.4.29
 
 - GLM-5.2 architecture, training, weights, tokenizer, or model code.
 - The original EXL3 checkpoint's calibration, conversion, rank slicing, or model card.
+- `madeby561`'s hybrid checkpoint construction, expert-allocation method, validation, or model card.
 - EXL3, LDLQ, Trellis, MCG, or ExLlamaV3 quantization algorithms and kernels.
 - Brandon Music's encoder, vLLM integration, or Sparkinfer Trellis implementation.
 - David Young's dual-plan Trellis prefill implementation.

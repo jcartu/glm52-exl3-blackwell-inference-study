@@ -1,0 +1,96 @@
+{
+  "date": "2026-07-25",
+  "type": "execution_audit_and_protocol_amendment",
+  "predeclared_gate_record": "hybrid-optimization-gates-20260725.json",
+  "immutability_note": "The predeclared gate record is retained unchanged. This amendment records discovered execution deviations, corrective measurements, and the resulting claim limits rather than rewriting the original protocol after seeing results.",
+  "sampling_audit": {
+    "discovery": "The first LAVD and Estonia completion-stat runs omitted an explicit completion-stat temperature. Their metadata records temperature=null and top_p=null, so they are server/model-default observations rather than temperature-zero gate evidence.",
+    "checkpoint_generation_config": {
+      "temperature": 1.0,
+      "top_p": 0.95
+    },
+    "superseded_gate_artifacts": [
+      "hybrid-attached-baseline-lavd10-40k-20260725.json",
+      "hybrid-attached-baseline-estonia10-20260725.json",
+      "hybrid-sota-order3120-lavd10-40k-20260725.json",
+      "hybrid-sota-order3120-estonia10-20260725.json"
+    ],
+    "corrective_command_flag": "--completion-stats-temperature 0",
+    "corrected_selected_control": {
+      "lavd_artifact": "hybrid-sota-final-lavd10-explicit-t0-40k-20260725.json",
+      "lavd_result": {
+        "attempted": 10,
+        "completed": 10,
+        "errors": 0,
+        "exact": 1,
+        "near": 5,
+        "fail": 4,
+        "hit_max_tokens": 4,
+        "gate_pass": false
+      },
+      "estonia_artifact": "hybrid-sota-final-estonia10-explicit-t0-40k-20260725.json",
+      "estonia_result": {
+        "attempted": 10,
+        "completed": 10,
+        "errors": 0,
+        "correct": 3,
+        "fail": 7,
+        "hit_max_tokens": 7,
+        "gate_pass": false
+      }
+    },
+    "decision_effect": "The exact attached control does not pass the predeclared temperature-zero LAVD or Estonia gates. No full-context mutation is certified as accuracy-preserving by this study. Earlier default-sampling quality observations remain raw evidence but are not used to claim a temperature-zero pass."
+  },
+  "pareto_decode_audit": {
+    "discovery": "The initial DCP1/DCP2 Pareto decode artifacts used 20-second cells; first reviewer-response reruns used 30-second cells but omitted the explicit decode temperature.",
+    "superseded_comparison_artifacts": [
+      "hybrid-attached-dcp2-180k-decode20-20260725.json",
+      "hybrid-attached-dcp1-90k-decode20-20260725.json",
+      "hybrid-sota-dcp2-180k-decode30-20260725.json",
+      "hybrid-sota-dcp1-90k-decode30-20260725.json"
+    ],
+    "corrective_protocol": {
+      "duration_seconds": 30,
+      "temperature": 0.0,
+      "ignore_eos": true,
+      "max_tokens": 8192
+    },
+    "authoritative_artifacts": [
+      "hybrid-sota-dcp2-180k-decode30-t0-20260725.json",
+      "hybrid-sota-dcp1-90k-decode30-t0-20260725.json"
+    ]
+  },
+  "primary_score_audit": {
+    "declared_score": "Geometric mean of comparable candidate/baseline ratios over the predeclared exact-prefill and sustained-decode cells.",
+    "execution_status": "not_computed",
+    "reason": "No mutated full-context candidate completed every declared cell and eligibility gate. Candidate 240041/400000 exact-prefill cells were not collected after earlier screening failures or operational boundaries, so a candidate/baseline primary geometric mean would be incomplete.",
+    "corrective_measurement": {
+      "artifact": "hybrid-sota-final-prefill-long-exact-20260725.json",
+      "selected_control_240041_tok_s": 2880.9,
+      "selected_control_400000_tok_s": 2568.9,
+      "cached_tokens": 0
+    },
+    "claim_limit": "The study does not claim that every mutation was ranked by the declared geometric mean. The unchanged selected control has ratio 1.0 by identity, not a measured optimization gain."
+  },
+  "repeat_rule_audit": {
+    "declared_rule": "Repeat any decisive cell inside the 3% equivalence band or any apparent regression below it before selection.",
+    "execution_status": "partially_executed",
+    "confirmed_rejection": {
+      "profile": "GPU rank order 3,1,2,0",
+      "cell": "32K/C4 sustained decode",
+      "evidence": [
+        "hybrid-sota-production-decode30-20260725.json",
+        "hybrid-sota-production-decode32k-c4-confirm-20260725.json"
+      ],
+      "result": "The fresh matrix and 60-second confirmation both fell below 97% of the attached baseline."
+    },
+    "unconfirmed_screening_boundaries": "RC2, MTP, RoPE, threshold, scheduler, and several other exploratory performance regressions were not systematically repeated under the declared rule.",
+    "claim_limit": "Single-run exploratory rows show why a profile was not advanced in this sweep; they do not prove that every mutation is intrinsically or repeatably slower. The operational control is retained because no mutation completed and cleared the full protocol, not because every alternative received a confirmed rejection."
+  },
+  "final_status": {
+    "full_context_mutation_selected": false,
+    "operational_fallback": "The byte-identical attached TP4/DCP4/MTP3 control is retained because it preserves the requested 479744-token service geometry and no tested mutation completed and cleared the full predeclared protocol.",
+    "accuracy_preserving_claim": false,
+    "sota_claim_boundary": "The deliverable is a reproducible optimization and Pareto study, not a claim that the checkpoint passes the predeclared temperature-zero reasoning gates."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "profile": "final_exact_attached_balanced_profile",
+  "observed_at": "2026-07-25T10:37:26+03:00",
+  "target_prompt_tokens": 450019,
+  "tokenize_status": 200,
+  "tokenized_prompt_tokens": 450019,
+  "uncached_request": {
+    "status": 200,
+    "elapsed_seconds": 180.625,
+    "finish_reason": "stop",
+    "content": "CONTEXT_OK",
+    "usage": {
+      "prompt_tokens": 450019,
+      "total_tokens": 450059,
+      "completion_tokens": 40,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "multimodal_tokens": null
+      }
+    }
+  },
+  "cached_512_token_stress": {
+    "status": 200,
+    "elapsed_seconds": 5.744,
+    "finish_reason": "length",
+    "content_prefix": "CONTEXT_OKThe measured reference sequence remains internally consistent and pres",
+    "usage": {
+      "prompt_tokens": 450019,
+      "total_tokens": 450531,
+      "completion_tokens": 512,
+      "prompt_tokens_details": {
+        "cached_tokens": 449536,
+        "multimodal_tokens": null
+      }
+    }
+  },
+  "post_stress_health": {
+    "model_list_status": 200,
+    "served_model": "GLM-5.2",
+    "reported_max_model_len": 479744,
+    "service_state": "ready",
+    "container_error_pattern_matches": 0,
+    "container_error_patterns": [
+      "ERROR",
+      "Traceback",
+      "CUDA OOM",
+      "out of memory",
+      "Xid",
+      "EngineDead"
+    ],
+    "kernel_xid_events_last_15_minutes": 0
+  }
+}

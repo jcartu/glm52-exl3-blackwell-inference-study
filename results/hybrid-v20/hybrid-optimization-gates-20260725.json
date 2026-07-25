@@ -1,0 +1,78 @@
+{
+  "objective": "Maximize exact-token prefill and sustained aggregate decode throughput for the full GLM-5.2 MXFP8/NVFP4/NF3 hybrid on four RTX PRO 6000 Blackwell GPUs without losing stock-v20 accuracy, behavior, context capacity, or stability.",
+  "baseline": {
+    "runtime_image": "voipmonitor/vllm:gilded-gnosis-v20-vllm3e731bc-si1a88b38-fi801d57a-cu132-20260722@sha256:dbb3ee5542106442cbdaa21e66d9071fd23888276a2c2cbe914c17491f62ffa7",
+    "checkpoint": "/mnt/2king/models/madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid",
+    "profile": "user-supplied v20 hybrid service: TP4/DCP4/MTP3, seq8, graph32, batch3072, max length479744, GMU0.978, forced full-CKV gather, NVFP4 MLA KV, fastsafetensors, and 120KB/84KB PCIe all-reduce thresholds",
+    "measurement_status": "to_measure"
+  },
+  "candidate_selection": {
+    "primary_score": "geometric mean of candidate/baseline ratios over exact prefill 8K/64K/128K/240K/400K and sustained decode 0K C1/C2/C4/C8, 32K C1/C2/C4/C8, 128K C1/C2, and 300K C1 wherever both profiles have capacity",
+    "minimum_cell_ratio": 0.97,
+    "equivalence_band": 0.03,
+    "repeat_rule": "Repeat any decisive cell inside the 3% equivalence band or any apparent regression below it before selection.",
+    "tie_breakers": [
+      "higher 128K and 240K exact-token prefill",
+      "higher 0K C8 sustained decode",
+      "higher 128K C2 sustained decode",
+      "higher verified context and KV headroom"
+    ],
+    "eligibility": "Balanced production candidates must pass all quality, tool, context, and stability gates and retain the user-supplied profile's 479744-token model limit. A lower-capacity topology may only be reported as a specialized non-production Pareto profile."
+  },
+  "accuracy_gates": {
+    "lavd_test": {
+      "runs": 10,
+      "temperature": 0.0,
+      "concurrency": 5,
+      "max_tokens": 40000,
+      "rule": "Candidate exact count and exact-plus-near count must each be at least the freshly measured stock baseline; fail count must be no greater; zero request errors and zero max-token truncations. Repeat both profiles if one outcome separates them by only one run."
+    },
+    "gsm8k": {
+      "items": 100,
+      "temperature": 0.0,
+      "rule": "Candidate accuracy must be at least the matched stock baseline with zero request errors; retain paired flip and exact McNemar evidence."
+    },
+    "estonia": {
+      "runs": 10,
+      "temperature": 0.0,
+      "concurrency": 5,
+      "max_tokens": 40000,
+      "required_correct": 10,
+      "maximum_errors": 0
+    },
+    "required_tool_call": {
+      "required_finish_reason": "tool_calls",
+      "required_call_count": 1,
+      "required_function": "get_weather",
+      "required_arguments": {"city": "Paris"},
+      "continuation_required": true
+    }
+  },
+  "capacity_and_stability_gates": {
+    "required_max_model_len": 479744,
+    "minimum_exact_prompt_tokens": 450019,
+    "minimum_decode_tokens_after_long_prompt": 512,
+    "request_errors": 0,
+    "server_errors": 0,
+    "required_health_after_long_request": true,
+    "notes": "Startup KV capacity is not sufficient evidence; the exact long-prefill/decode request must execute without CUDA OOM, Xid, engine death, or health loss."
+  },
+  "performance_protocol": {
+    "prefill": {
+      "contexts": [8192, 65536, 131072, 240041, 400000],
+      "token_targeting": "exact",
+      "metric": "client prompt_tokens / TTFT",
+      "max_tokens": 1,
+      "temperature": 0.0
+    },
+    "decode": {
+      "contexts": [0, 32768, 131072, 300000],
+      "concurrency": [1, 2, 4, 8],
+      "duration_seconds": 30,
+      "max_tokens": 8192,
+      "temperature": 0.0,
+      "ignore_eos": true,
+      "capacity_limited_cells": "reported but excluded unless both baseline and candidate can run them"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Result Archive
 
-This directory preserves the evidence behind the GLM-5.2 EXL3 Blackwell inference study.
+This directory preserves the evidence behind the GLM-5.2 EXL3 and MXFP8/NVFP4/NF3 hybrid Blackwell inference study.
 
 Measurements were generated with [Local Inference Lab's `llm-inference-bench`](https://github.com/local-inference-lab/llm-inference-bench) against upstream model/runtime work credited in [`../CREDITS.md`](../CREDITS.md). Josh Cartu supplied and operated the four-GPU environment and published the archive. Raw harness field names and embedded methodology text belong to the cited harness.
 
@@ -9,7 +9,7 @@ Measurements were generated with [Local Inference Lab's `llm-inference-bench`](h
 - `raw/` contains original benchmark and direct-smoke outputs, including the RC2+EXL3 profile controls.
 - `followup/` contains the 16 July 23 follow-up artifacts formerly published under promotional names; files were renamed for presentation, while harness payloads remain unchanged except the direct-observation record's neutral study label.
 - `issue34/` contains 13 benchmark outputs plus one direct-observation record from the native RC2 comparison.
-- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, `rc2-exl3-manifest.json`, and `optimization-manifest.json` record artifact provenance, sizes, and SHA-256 values.
+- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, `rc2-exl3-manifest.json`, `optimization-manifest.json`, and `hybrid-v20-manifest.json` record artifact provenance, sizes, and SHA-256 values.
 - `SHA256SUMS` covers the publication's documentation, configurations, patches, helper scripts, manifests, and evidence.
 - Failed candidates are retained when they establish a decision boundary.
 - The invalid attempted `context900k` artifact is excluded because the harness actually clamped that invocation to 128K; it is not a 900K measurement.
@@ -58,6 +58,24 @@ The optimization archive contains successful candidates and the measured decisio
 | What native/beyond-native requests ran? | [`direct evidence`](followup/exl3-followup-direct-evidence-20260723.json) |
 | How did DCP1 decode? | [`DCP1`](followup/exl3-followup-dcp1-decode-20260723.json) |
 | Why was the faster DCP2 workspace route rejected? | [`prefill`](followup/exl3-followup-dcp2-workspace-prefill-20260723.json) · [`decode`](followup/exl3-followup-dcp2-workspace-decode-matrix-20260723.json) · [`LAVD 8/10`](followup/exl3-followup-dcp2-workspace-lavd10-20260723.json) |
+
+## NF3 hybrid v20 optimization
+
+| Question | Artifact |
+| --- | --- |
+| What was predeclared, and what execution deviations were found? | [`gates`](hybrid-v20/hybrid-optimization-gates-20260725.json) · [`protocol amendment`](hybrid-v20/hybrid-protocol-amendment-20260725.json) |
+| What is the corrected machine-readable decision? | [`scorecard`](hybrid-v20/hybrid-v20-scorecard-20260725.json) |
+| What did the exact attached balanced control measure? | [`8K–128K prefill`](hybrid-v20/hybrid-attached-baseline-prefill-exact-20260725.json) · [`240K/400K prefill`](hybrid-v20/hybrid-sota-final-prefill-long-exact-20260725.json) · [`decode`](hybrid-v20/hybrid-attached-baseline-decode-20260725.json) |
+| What did the explicit-temperature-zero reasoning gates measure? | [`LAVD 1/5/4`](hybrid-v20/hybrid-sota-final-lavd10-explicit-t0-40k-20260725.json) · [`GSM8K 98/100`](hybrid-v20/hybrid-attached-baseline-gsm8k100-20260725.json) · [`Estonia 3/10`](hybrid-v20/hybrid-sota-final-estonia10-explicit-t0-40k-20260725.json) |
+| Did tool, context, stress, and post-stress health checks pass? | [`tool`](hybrid-v20/hybrid-sota-stable-tool-gate-20260725.json) · [`450K context, 512-token stress, and health`](hybrid-v20/hybrid-sota-final-context450k-health-20260725.json) |
+| What are the matched DCP2/180K performance results? | [`prefill`](hybrid-v20/hybrid-attached-dcp2-180k-prefill-exact-20260725.json) · [`30-second temperature-zero decode`](hybrid-v20/hybrid-sota-dcp2-180k-decode30-t0-20260725.json) |
+| What are the matched DCP1/90K performance results? | [`prefill`](hybrid-v20/hybrid-attached-dcp1-90k-prefill-exact-20260725.json) · [`30-second temperature-zero decode`](hybrid-v20/hybrid-sota-dcp1-90k-decode30-t0-20260725.json) |
+| Why was reordered full-context production rejected? | [`candidate decode`](hybrid-v20/hybrid-attached-order3120-decode20-20260725.json) · [`production repeat`](hybrid-v20/hybrid-sota-production-decode30-20260725.json) · [`60-second confirmation`](hybrid-v20/hybrid-sota-production-decode32k-c4-confirm-20260725.json) |
+| What did the single newer-RC2 screening run show? | [`prefill`](hybrid-v20/hybrid-rc2-b3072-g978-prefill-exact-20260725.json) · [`decode`](hybrid-v20/hybrid-rc2-b3072-g978-decode15-20260725.json) |
+| How is the checkpoint pinned? | [`revision and small-file hashes`](hybrid-v20/checkpoint-provenance-20260725.json) |
+| Which startup/OOM boundaries lack raw harness output? | [`operator observations`](hybrid-v20/startup-failure-observations-20260725.json) · [`absorb-BMM prefill`](hybrid-v20/hybrid-old-b3072-spec1-absorb1-prefill-exact-20260725.json) · [`absorb-BMM decode`](hybrid-v20/hybrid-old-b3072-spec1-absorb1-decode20-20260725.json) |
+
+The unchanged DCP4 control preserves the requested 479,744-token operational geometry but failed the corrective temperature-zero LAVD and Estonia gates. Earlier omitted-sampling completion-profile artifacts and unmatched decode windows remain in the raw archive and are explicitly marked superseded by the protocol amendment. DCP1 and DCP2 are performance/capacity Pareto points and were not separately quality-gated. The full interpretation is in [`../HYBRID_STUDY.md`](../HYBRID_STUDY.md).
 
 ## Native issue #34 RC2 comparison
 

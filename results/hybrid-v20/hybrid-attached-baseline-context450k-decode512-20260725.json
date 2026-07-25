@@ -1,0 +1,17 @@
+{
+  "target_prompt_tokens": 450019,
+  "tokenized_prompt_tokens": 450019,
+  "status": 200,
+  "elapsed_seconds": 5.7229688919615,
+  "finish_reason": "length",
+  "content_prefix": "CONTEXT_OKThe measured reference sequence remains internally consistent and preserves marker ALPHA. The measured reference sequence remains internally consisten",
+  "usage": {
+    "prompt_tokens": 450019,
+    "total_tokens": 450531,
+    "completion_tokens": 512,
+    "prompt_tokens_details": {
+      "cached_tokens": 449536,
+      "multimodal_tokens": null
+    }
+  }
+}

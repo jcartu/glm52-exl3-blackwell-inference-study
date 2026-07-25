@@ -1,0 +1,36 @@
+{
+  "profile": "final_exact_attached_balanced_profile",
+  "target_prompt_tokens": 450019,
+  "tokenize_status": 200,
+  "tokenized_prompt_tokens": 450019,
+  "uncached_request": {
+    "status": 200,
+    "elapsed_seconds": 180.717,
+    "finish_reason": "stop",
+    "content_prefix": "CONTEXT_OK",
+    "usage": {
+      "prompt_tokens": 450019,
+      "total_tokens": 450059,
+      "completion_tokens": 40,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "multimodal_tokens": null
+      }
+    }
+  },
+  "cached_512_token_stress": {
+    "status": 200,
+    "elapsed_seconds": 5.874,
+    "finish_reason": "length",
+    "content_prefix": "CONTEXT_OKThe measured reference sequence remains internally consistent and preserves marker ALPHA. The measured reference sequence remains internally consistent and preserves marker ALPHA. The measur",
+    "usage": {
+      "prompt_tokens": 450019,
+      "total_tokens": 450531,
+      "completion_tokens": 512,
+      "prompt_tokens_details": {
+        "cached_tokens": 449536,
+        "multimodal_tokens": null
+      }
+    }
+  }
+}

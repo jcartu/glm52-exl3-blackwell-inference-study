@@ -1,0 +1,262 @@
+{
+  "study": "GLM-5.2 MXFP8/NVFP4/NF3 hybrid v20 bounded optimization study",
+  "date": "2026-07-25",
+  "artifact_count": 51,
+  "artifacts": [
+    {
+      "path": "hybrid-v20/checkpoint-provenance-20260725.json",
+      "bytes": 1792,
+      "sha256": "5dc97376fe6337acc6ad42c704c052481a32bee606a7d95a53de2c9cd7d4f484"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-a2a64-decode20-20260725.json",
+      "bytes": 44591,
+      "sha256": "65097440ddb909a72a7be0a599516404c8d62e78a842089b981d881c5d4c6d47"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-ar64-decode20-20260725.json",
+      "bytes": 44588,
+      "sha256": "caaad72137144bbca9d7ada8200c3ab666545982b01c2f8d31233b05fa4341a8"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-baseline-context450k-decode512-20260725.json",
+      "bytes": 547,
+      "sha256": "a573494f5368c3c14ef6c34fcd0d6cfc21fc89b8cf409dad82e275c46b7a3dfd"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-baseline-decode-20260725.json",
+      "bytes": 67912,
+      "sha256": "a0c0d6d266eb83280c860b91ead62df99cb89e2cdfd062de88ed5f6aaddc5a8a"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-baseline-estonia10-20260725.json",
+      "bytes": 24128,
+      "sha256": "624708bba598f7d722be9a65be016ad9ab5594c73389d094b85d24ee03a53dce"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-baseline-gsm8k100-20260725.json",
+      "bytes": 101232,
+      "sha256": "64b0127fb4272daf00cd47a6f46f1bda38b45ec11ad49892ee29513112890e5a"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-baseline-lavd10-40k-20260725.json",
+      "bytes": 22968,
+      "sha256": "c668d3f2a823bb9276347c6429e8289d7d762d917f6fc65450ee6cf8cae702f0"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-baseline-prefill-exact-20260725.json",
+      "bytes": 12661,
+      "sha256": "e554891c7fd527d9bf51f43074819f613cf205116be9e0e9b980099deaa54880"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-baseline-tool-gate-20260725.json",
+      "bytes": 1035,
+      "sha256": "28de7fdc2fbfeaaf4755b31a16aa004a87f30c962eb90af86f3c77fb6f842b94"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-dcp1-90k-decode20-20260725.json",
+      "bytes": 41000,
+      "sha256": "78c565f18493320f5a060b95eba575d6c7ab2f461ce23df656e9c558902436d7"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-dcp1-90k-prefill-exact-20260725.json",
+      "bytes": 11281,
+      "sha256": "3304e4277323184f05d96fc42efb66ed2c1d55dd89252ef62e2237e78b3ca5b7"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-dcp2-180k-decode20-20260725.json",
+      "bytes": 51143,
+      "sha256": "f91aae1a89184a6a53fc3a438935b0384a81a158bb95c500360e12f7cb2d406b"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-dcp2-180k-prefill-exact-20260725.json",
+      "bytes": 12660,
+      "sha256": "3c1b3d0736c4981bf2d92506849ccb8ffdd537675b390ccf7409e304c33fda49"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-order3120-decode128k-c1-confirm-20260725.json",
+      "bytes": 14049,
+      "sha256": "884c77a6684295e00713098c685e985e31ac27d4186ff88ce9d8c93c33acf132"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-order3120-decode20-20260725.json",
+      "bytes": 67862,
+      "sha256": "23d9c9012f10bc7e1c42d5b7e8440a336cae3230e6f5c2f57339cc781f670f9f"
+    },
+    {
+      "path": "hybrid-v20/hybrid-attached-order3120-prefill-exact-20260725.json",
+      "bytes": 12671,
+      "sha256": "9a957363f13a50ead54c3c1ffaf9907d0f298040d5014ed1584110f185695e20"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3072-mtp2-decode20-20260725.json",
+      "bytes": 44547,
+      "sha256": "66fff690de3c3150d2358cbd4474091c36e44eac48f54cba5313dda3a49fc18a"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3072-mtp4-decode20-20260725.json",
+      "bytes": 44463,
+      "sha256": "b441bde94972bc08e352c6a9223e736dc2ddb5e3d7f09268a5c05d938aa67f0d"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3072-rope1-decode15-20260725.json",
+      "bytes": 54115,
+      "sha256": "23a4878a5b3bedd362a7afc020087e30df5a2a5a4ac7b4bbbfb7f96124b6789f"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3072-rope1-prefill-exact-20260725.json",
+      "bytes": 12674,
+      "sha256": "260c62c6ab0ee0470cc926fd88a11ec14e708e7059949a25273a6d868fbbf0ca"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3072-spec1-absorb0-decode0k20-20260725.json",
+      "bytes": 31615,
+      "sha256": "04475f11be50d458229a0a782b4b360d68f6f6f27fbff78463fc0c23efbc1332"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3072-spec1-absorb1-decode20-20260725.json",
+      "bytes": 45431,
+      "sha256": "c9d8f339708077e3e15dcec3c7bdf6678c1829f091681d64fe557b03902423c3"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3072-spec1-absorb1-prefill-exact-20260725.json",
+      "bytes": 12665,
+      "sha256": "9c30aabfa9377ca840554c953c4e017f926284e73cc370be7fb4674693d4cbc7"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3200-g978-decode15-20260725.json",
+      "bytes": 67860,
+      "sha256": "7401b5c3aa301a40e1dbef0a7fe41e6db7a3ca60930d2763b6b12a1e8f448e18"
+    },
+    {
+      "path": "hybrid-v20/hybrid-old-b3200-g978-prefill-exact-20260725.json",
+      "bytes": 12672,
+      "sha256": "1473363c99624e6b1182d1966f5f5fc9ad9224e4dd8ed2ae277a790d497949de"
+    },
+    {
+      "path": "hybrid-v20/hybrid-optimization-gates-20260725.json",
+      "bytes": 3762,
+      "sha256": "07dc7a16e45000aa399334d8e20b6f68038030713ad117038b364ed1aa391e05"
+    },
+    {
+      "path": "hybrid-v20/hybrid-protocol-amendment-20260725.json",
+      "bytes": 5436,
+      "sha256": "e1f2fcc7578593f3780919385e470e283e95fa3ae6a8cc6f303937be2393640c"
+    },
+    {
+      "path": "hybrid-v20/hybrid-rc2-b3072-g978-decode15-20260725.json",
+      "bytes": 67835,
+      "sha256": "47b77681fce5b1ed62f85f8f6c26bcd12ec54e35d2f5670fa29a645e7437adb3"
+    },
+    {
+      "path": "hybrid-v20/hybrid-rc2-b3072-g978-prefill-exact-20260725.json",
+      "bytes": 12666,
+      "sha256": "fcce3cf6fbeb0f6c580ccb616fac15ba3d287920ed47f08dc77c5a1f47d9c442"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-dcp1-90k-decode30-20260725.json",
+      "bytes": 31614,
+      "sha256": "c4872c0b79a545d19894c531b30929ccc2ab6c6a0f6de559b578465fdabed5ef"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-dcp1-90k-decode30-t0-20260725.json",
+      "bytes": 41036,
+      "sha256": "8db7e62bbd241eb3660b48895028b1eb35691c21bf4b4467b4cb4b2e09884b0b"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-dcp2-180k-decode30-20260725.json",
+      "bytes": 31642,
+      "sha256": "d7bbccf433e025592c3b68495973c23f7c48069a72ae979bd6518ed6c98af112"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-dcp2-180k-decode30-t0-20260725.json",
+      "bytes": 51154,
+      "sha256": "223bc941a24bae4ca02ac2978b65f22c27af9c0ba77d5c58091b007ce14f7faf"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-final-context450k-decode512-20260725.json",
+      "bytes": 1079,
+      "sha256": "6bc4e2e5d317631c012212a3fe11cbe1e74aa03c1e91321c9b8c9523bdde4d7c"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-final-context450k-health-20260725.json",
+      "bytes": 1391,
+      "sha256": "3b78e56fa72a3a7477c63b12f4721bcab599043f751fbcf278a9abd0c4bef526"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-final-estonia10-explicit-t0-40k-20260725.json",
+      "bytes": 29564,
+      "sha256": "e4ae8092c5510ffff9a4bf181b351714f34ccb3bc8da3752a0b08bb7cd4359ce"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-final-lavd10-explicit-t0-40k-20260725.json",
+      "bytes": 158328,
+      "sha256": "67237396fbd50061c1735b139d5587a3aea6f3771516c8e18cacc7c8d5857eee"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-final-prefill-long-exact-20260725.json",
+      "bytes": 1487,
+      "sha256": "8c00d5cbf75bb627ca529f7b3003485aa800a8d5c163b1a0b6fca862da7e1d8a"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-order3120-context450k-decode512-20260725.json",
+      "bytes": 706,
+      "sha256": "1343525204b650e291ab5ba99599210526eec077ad45b52ed434be35e8a23363"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-order3120-estonia10-20260725.json",
+      "bytes": 256634,
+      "sha256": "6631cfc10f43c1bac90a8e139fedb3cfa00b23e5389d13d4f4432dd76051b692"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-order3120-gsm8k100-20260725.json",
+      "bytes": 422388,
+      "sha256": "2329a41e4d50e07e440dd7f064241e7f88a8892080fcdae06a1728d0d0b26823"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-order3120-lavd10-40k-20260725.json",
+      "bytes": 840446,
+      "sha256": "38a3b38cde2e41b3da790b1ab04131bbaac389d54415a8c066e1ecde8fbe414f"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-order3120-tool-gate-20260725.json",
+      "bytes": 1046,
+      "sha256": "9462a9bc383ee4c5ea10b676585226e7daab796b3c0b9f0e47aad2436d86e102"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-production-decode30-20260725.json",
+      "bytes": 67908,
+      "sha256": "c0e5767838480ab5cd4851b9ef84852f2225a874da58ec492783602c600617d9"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-production-decode32k-c4-confirm-20260725.json",
+      "bytes": 15438,
+      "sha256": "f0786b468b43594fd2a186518084f247fb0c73b65080d54d11011fc1f9070090"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-stable-decode30-20260725.json",
+      "bytes": 67893,
+      "sha256": "b6c196c744fd3aed9647efdeb2153986a8650844133b7271c268c5faea0c9c0d"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-stable-prefill-exact-20260725.json",
+      "bytes": 12668,
+      "sha256": "a13915d08e813673ac0ad6decd1c7349d9cbe88b7b088e2f0f2a392db0867e26"
+    },
+    {
+      "path": "hybrid-v20/hybrid-sota-stable-tool-gate-20260725.json",
+      "bytes": 1052,
+      "sha256": "18af722dec0f631120818a6464a1bcf2cb48d47ae9a9411e3880b05fec69961d"
+    },
+    {
+      "path": "hybrid-v20/hybrid-v20-scorecard-20260725.json",
+      "bytes": 22263,
+      "sha256": "3f09a84f193322f62fd81d0608e8eca91dc6b0443cc585d85f256d887771926a"
+    },
+    {
+      "path": "hybrid-v20/startup-failure-observations-20260725.json",
+      "bytes": 1642,
+      "sha256": "9a9b7bd8c3ae35a95bc07143f6ae102bd76b2752927bde9cefce1b596054ff2e"
+    }
+  ]
+}

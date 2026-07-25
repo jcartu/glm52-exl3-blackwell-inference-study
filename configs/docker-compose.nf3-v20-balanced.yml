@@ -1,0 +1,58 @@
+services:
+  glm52-nf3-v20:
+    image: "${HYBRID_IMAGE:-voipmonitor/vllm:gilded-gnosis-v20-vllm3e731bc-si1a88b38-fi801d57a-cu132-20260722@sha256:dbb3ee5542106442cbdaa21e66d9071fd23888276a2c2cbe914c17491f62ffa7}"
+    container_name: glm52-nf3-v20-8080
+    entrypoint: ["/usr/local/bin/serve-gilded-gnosis.sh"]
+    restart: "no"
+    network_mode: host
+    ipc: host
+    shm_size: 32g
+    init: true
+    gpus: all
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 1048576
+        hard: 1048576
+      stack: 67108864
+    environment:
+      MODEL_FAMILY: glm52-hybrid
+      MODEL: /model
+      SERVED_MODEL_NAME: GLM-5.2
+      GPUS: "${HYBRID_GPUS:-0,1,2,3}"
+      PORT: "${HYBRID_PORT:-8080}"
+      TP: "4"
+      DCP: "${HYBRID_DCP:-4}"
+      DCP_BACKEND: "${HYBRID_DCP_BACKEND:-a2a}"
+      DCP_A2A_MAX_TOKENS: "${HYBRID_DCP_A2A_MAX_TOKENS:-16}"
+      DCP_A2A_LARGE_BACKEND: "${HYBRID_DCP_A2A_LARGE_BACKEND:-ag_rs}"
+      DCP_CKV_GATHER: "${HYBRID_DCP_CKV_GATHER:-1}"
+      VLLM_B12X_MLA_CKV_GATHER_MAX_TOKENS: "${HYBRID_CKV_GATHER_MAX_TOKENS:-480000}"
+      MTP: "${HYBRID_MTP:-3}"
+      KV_CACHE_DTYPE: nvfp4_ds_mla
+      MAX_MODEL_LEN: "${HYBRID_MAX_MODEL_LEN:-479744}"
+      MAX_NUM_SEQS: "${HYBRID_MAX_NUM_SEQS:-8}"
+      MAX_BATCHED_TOKENS: "${HYBRID_MAX_BATCHED_TOKENS:-3072}"
+      GRAPH: "${HYBRID_GRAPH:-32}"
+      GPU_MEMORY_UTILIZATION: "${HYBRID_GPU_MEMORY_UTILIZATION:-0.978}"
+      LOAD_FORMAT: "${HYBRID_LOAD_FORMAT:-fastsafetensors}"
+      INSTANTTENSOR_BACKEND: BUFFERED
+      F8_DMA: "${HYBRID_F8_DMA:-0}"
+      VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE: "${HYBRID_ALLREDUCE_MAX_SIZE:-120KB}"
+      VLLM_PCIE_ONESHOT_FUSED_ADD_RMS_NORM_MAX_SIZE: "${HYBRID_FUSED_ADD_RMS_MAX_SIZE:-84KB}"
+      PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+    volumes:
+      - "${MODEL_DIR:?set MODEL_DIR}:/model:ro"
+      - glm52-nf3-v20-balanced-cache:/cache
+      - ./serve-glm52-v16.v20-hybrid.sh:/usr/local/bin/serve-glm52-v16.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS --max-time 5 http://127.0.0.1:${HYBRID_PORT:-8080}/v1/models >/dev/null"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 1200s
+
+volumes:
+  glm52-nf3-v20-balanced-cache:

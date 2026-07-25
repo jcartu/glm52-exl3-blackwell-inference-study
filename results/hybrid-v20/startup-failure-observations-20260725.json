@@ -1,0 +1,36 @@
+{
+  "date": "2026-07-25",
+  "evidence_type": "operator_observation_no_harness_artifact",
+  "claim_boundary": "These observations record startup or prefill failure boundaries seen during the sweep. They are not raw harness outputs and do not contain synthetic benchmark measurements.",
+  "observations": [
+    {
+      "profile": "batch5120 at GMU 0.978",
+      "observed_result": "Startup reported a 332544-token KV budget, below the required 479744-token model limit.",
+      "decision": "rejected_capacity"
+    },
+    {
+      "profile": "batch4096 at GMU 0.985",
+      "observed_result": "Startup estimated a 472064-token KV budget, below the required 479744-token model limit.",
+      "decision": "rejected_capacity"
+    },
+    {
+      "profile": "batch4096 at GMU 0.986",
+      "observed_result": "The service could not start because the requested memory exceeded available device memory.",
+      "decision": "rejected_startup_failure"
+    },
+    {
+      "profile": "batch3584 at GMU 0.985",
+      "observed_result": "The service booted, then terminated with a fatal CUDA out-of-memory error during prefill.",
+      "decision": "rejected_runtime_failure"
+    },
+    {
+      "profile": "explicit VLLM_B12X_ABSORB_BMM=1",
+      "observed_result": "KV profiling over-allocated capacity and the service terminated with a fatal CUDA out-of-memory error during an approximately 135K-token prefill request.",
+      "decision": "rejected_runtime_failure",
+      "related_harness_artifacts": [
+        "hybrid-old-b3072-spec1-absorb1-prefill-exact-20260725.json",
+        "hybrid-old-b3072-spec1-absorb1-decode20-20260725.json"
+      ]
+    }
+  ]
+}
