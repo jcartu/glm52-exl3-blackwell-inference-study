@@ -28,6 +28,18 @@ All rates are tokens/second. The full decode matrix also covers 32K and 128K inp
 
 DCP2 is the highest-throughput concurrent profile and DCP1 is the prefill/single-stream leader, but neither replaces the balanced service. DCP2 retained one LAVD failure, while DCP1's C5 run collapsed despite a usable C1 control. The restored production service therefore remains DCP4/batch-5,120/max-length-524,288.
 
+### Runtime memory-utilization ceiling
+
+The same three geometries were swept above the original `--gpu-memory-utilization=0.96` baseline. A candidate passed only after engine startup, a near-maximum single-request context with 4,096 generated tokens, and a two-request workload consuming at least 97.8% of the reported aggregate KV budget. The next tested increment had to produce a confirmed CUDA OOM:
+
+| Profile | Highest stress pass | First OOM | KV budget at pass | Gain over 0.96 |
+| --- | ---: | ---: | ---: | ---: |
+| DCP4 / batch 5,120 | **0.96875** | 0.96900 | 801,792 | +13.7% |
+| DCP2 / batch 4,096 | **0.96750** | 0.96775 | 482,944 | +9.4% |
+| DCP1 / batch 4,096 | **0.98250** | 0.98275 | 322,496 | +23.8% |
+
+Startup success was not sufficient: DCP4 started at `0.9848` with 978,432 KV tokens but died on its first long-context prefill. The exact passing and failing workloads, OOM allocations, per-trial hashes, and 28 raw harness artifacts are indexed by [`memory-ceiling-summary-20260726.json`](results/v26-tuning/memory-ceiling-summary-20260726.json). These are measured workload boundaries, not production recommendations; the restored balanced service remains at `0.96`.
+
 ## NF3 hybrid v20 result
 
 The 25 July follow-up evaluates `madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid` at immutable revision `68babde27a97a4c980c2494e830dd424975cd5a3` against the exact attached Gilded Gnosis v20 profile. No full-context mutation completed and cleared the predeclared protocol, so the operational DCP4 service remains byte-identical to the 479,744-token control. No throughput gain is claimed for that unchanged profile.

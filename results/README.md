@@ -34,6 +34,16 @@ Every row used explicit temperature `1.0`; inference used exact prompt-token tar
 
 The remainder of [`v26-tuning/`](v26-tuning/) preserves the tuning sequence, rejected candidates, tool/context gates, sampled quality controls, and final service evidence that led to these three Pareto points.
 
+### GPU memory-utilization ceiling sweep
+
+| Profile | Highest passing boundary | First confirmed OOM | Saturation evidence |
+| --- | --- | --- | --- |
+| DCP4 | [`0.96875`, 512K input + 4,096 output](v26-tuning/memory-ceiling-dcp4-g96875-stress.json) | [`0.96900`](v26-tuning/memory-ceiling-dcp4-g9690-stress.json) | [`C2`, 796,672 / 801,792 scheduled KV tokens](v26-tuning/memory-ceiling-dcp4-g96875-c2-saturation.json) |
+| DCP2 | [`0.96750`, 294,912 input + 4,096 output](v26-tuning/memory-ceiling-dcp2-g9675-stress.json) | [`0.96775`](v26-tuning/memory-ceiling-dcp2-g96775-stress.json) | [`C2`, 479,232 / 482,944 scheduled KV tokens](v26-tuning/memory-ceiling-dcp2-g9675-c2-saturation.json) |
+| DCP1 | [`0.98250`, 174,080 input + 4,096 output](v26-tuning/memory-ceiling-dcp1-g9825-stress.json) | [`0.98275`](v26-tuning/memory-ceiling-dcp1-g98275-stress.json) | [`C2`, 315,392 / 322,496 scheduled KV tokens](v26-tuning/memory-ceiling-dcp1-g9825-c2-saturation.json) |
+
+The machine-readable [`ceiling summary`](v26-tuning/memory-ceiling-summary-20260726.json) records the protocol, closest pass/fail brackets, observed OOM allocations, all 28 harness artifacts with SHA-256 provenance, and the final restoration of DCP4/0.96 production. Engine startup alone materially overstated the usable ceiling.
+
 ### Provenance-hardened MTP78 and vision evidence
 
 | Question | Artifact |
