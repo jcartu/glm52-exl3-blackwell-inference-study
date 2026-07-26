@@ -1,0 +1,1 @@
+{"slots":[{"slot":"slot_a","title":"BETA 42 TWO CIRCLES","background":"blue","shape":"circle","count":2},{"slot":"slot_b","title":"ALPHA 17 ONE TRIANGLE","background":"red","shape":"triangle","count":1}]}

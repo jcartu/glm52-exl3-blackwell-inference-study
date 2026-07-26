@@ -1,0 +1,27 @@
+{
+  "status": "blocked_missing_local_prerequisite",
+  "requested_additional_case": "two images interleaved with text, with explicit image-to-question association checks",
+  "required_checkpoint": "GLM-5.2 vision checkpoint/build with MoonViT and multimodal projector",
+  "checked_paths": [
+    "/home/josh/omp-workspace/inference/glm52_bf16_vision_exl3",
+    "/home/josh/inference/glm52_bf16_vision_exl3",
+    "/home/josh/vllm-glm52/*vision*",
+    "/mnt/2king/models/*Vision*",
+    "/mnt/2king/models/*vision*",
+    "/models",
+    "/mnt/qnap/*Vision*",
+    "/mnt/qnap/*vision*"
+  ],
+  "missing_patch": "inference/glm52_bf16_vision_exl3/scripts/patch_v20_glm5v_mtp.py",
+  "observed_local_model_directories": [
+    "GLM-5.2-EXL3-TR3-3.0bpw",
+    "GLM-5.2-EXL3-TR3-3.0bpw-MTP78-UPSTREAM-3bpw-keep0-a72f70b5",
+    "GLM-5.2-EXL3-TR3-3.0bpw-MTP78-TR3",
+    "brandonmusic/GLM-5.2-NVFP4-TR3-Hybrid",
+    "madeby561/GLM-5.2-MXFP8-NVFP4-NF3-Hybrid variants"
+  ],
+  "observed_runtime_images": "No image name containing vision or glm5v in docker image inventory",
+  "observed_containers": "No vision or glm5v service in docker container inventory",
+  "consequence": "No multimodal endpoint exists to ingest images; image-order, interleaving, contamination, and vision-conditioned acceptance tests cannot be executed without substituting a different model.",
+  "not_substituted": true
+}

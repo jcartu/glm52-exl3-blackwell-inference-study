@@ -1,0 +1,421 @@
+{
+  "schema": "glm52-mtp78-integration-decision-v1",
+  "decision": {
+    "text_only": "accept_canary_profile",
+    "vision": "not_evaluated_missing_local_prerequisite",
+    "production_changed": false
+  },
+  "checkpoint": {
+    "path": "/mnt/2king/models/GLM-5.2-EXL3-TR3-3.0bpw-MTP78-UPSTREAM-3bpw-keep0-a72f70b5",
+    "source": {
+      "config_sha256": "e36a632a8eaa6a98a318483dfcdb615ff2be9794a1f772800f144aa000da5c62",
+      "expert_payload_sha256": "7895082dbbd196966011091f6460499607fc77b27c041db5eed07457dcc28a02",
+      "index_sha256": "d0cc97dd5c2be656d76f33561648482bb45e844c8272faa13f4e92c7d31a4db7",
+      "manifest_sha256": "9dfeb2c22470bac1bd6e949a9ab3199214965c946807d9cbb67ac4b1755c4409",
+      "path": "/mnt/2king/models/GLM-5.2-EXL3-TR3-3.0bpw",
+      "revision": "df3ebe04bbac9d04dddb1d58b99342841e6539d7"
+    },
+    "overlay": {
+      "metadata_sha256": "fa75a82cdc0e956327af43e8096a603b42e80ccf5ab07decdd31f04da52f0cfb",
+      "path": "/mnt/2king/models/.mtp78-upstream-a72f70b5/3bpw-keep0/tr3-layer-078.safetensors",
+      "repository": "malaiwah/GLM-5.2-EXL3-TR3-MTP78",
+      "revision": "a72f70b5920a81931ae60d4d0da2531aa1e379c7",
+      "sha256": "a63c64a8356d326b6078475071cec359a6c07e161aa22759a216305986e4b7ff",
+      "variant": "3bpw-keep0"
+    },
+    "integration": {
+      "added_bytes": 3664785408,
+      "added_exl3_tensors": 12288,
+      "carried_non_expert_tensors": 23,
+      "dropped_bf16_weights": 768,
+      "layer_file": "model-layer-078.safetensors",
+      "removed_bytes": 19327352832
+    }
+  },
+  "runtime": {
+    "schema": "glm52-mtp78-runtime-v1",
+    "base_image": "verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a@sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01",
+    "derivative_image": "local/glm52-exl3-rc2-quality-runtime@sha256:107bfb62c13b858eb003c9c129385883e388ac9dfcba70595b5234c7bb515da0",
+    "vllm_base_commit": "3e731bc043d23ec21277fb76d3e15fe6da91b23b",
+    "vllm_derivative_commit": "7e3bee1ed4bc87efbdc36060647a3475cfaa1f1e",
+    "patch": {
+      "path": "/home/josh/breakthrough-blackwell-docker/patches/rc2-exl3-quality-vllm.patch",
+      "sha256": "cbec507a8bdc53e7aa3ce4e272e66261b56c25f0a8edc43b7cdeb51f2ab51611"
+    },
+    "deepseek_mtp_loader": {
+      "base_sha256": "3a8a0b30e5dc5eb8c1f0ddb2ce317c375dc094de5b5ba8ba78f71d5481deae6d",
+      "patched_sha256": "79b92b5d6d9815423f627a07430bc89f8683124f3218399b807c5df213a50c71",
+      "installed_matches_worktree": true
+    },
+    "normalization_probe": {
+      "projection_rank_suffix_cases": 48,
+      "idempotence_checked": true,
+      "nonlocal_rank_filtered_before_mtp_layer_mapping": true,
+      "result": "pass"
+    },
+    "service_config": {
+      "path": "/home/josh/vllm-glm52/docker-compose.exl3-v20.yml",
+      "fixed_kv_mode": true,
+      "profile_kv_mode": true,
+      "target_only_mode": true,
+      "prefix_cache_modes": [
+        0,
+        1
+      ],
+      "compose_validation": "pass"
+    }
+  },
+  "retained_text_profile": {
+    "mtp_tokens": 3,
+    "kv_mode": "fixed",
+    "local_gpu_blocks": 3904,
+    "block_size": 64,
+    "decode_context_parallel_size": 4,
+    "logical_kv_tokens": 999424,
+    "max_model_len": 999424,
+    "prefix_caching": true,
+    "profiled_local_blocks": 4158,
+    "profile_headroom_blocks": 254,
+    "profile_headroom_pct": 6.108706108706108
+  },
+  "text_gates": {
+    "checkpoint_integrity": {
+      "result": "pass",
+      "added_exl3_tensors": 12288,
+      "dropped_bf16_weights": 768,
+      "carried_non_expert_tensors": 23
+    },
+    "runtime_name_normalization": {
+      "result": "pass",
+      "projection_rank_suffix_cases": 48,
+      "idempotence_checked": true,
+      "nonlocal_rank_filtered_before_mtp_layer_mapping": true
+    },
+    "target_only_logits": {
+      "result": "pass",
+      "first_token_ids_and_top20_logprobs_exact": true,
+      "note": "Long free-form generations are not exact even within repeated T1 requests; first-step target logits provide the deterministic control."
+    },
+    "target_only_performance": {
+      "result": "pass",
+      "measurements": [
+        {
+          "context_tokens_t0": 8192,
+          "context_tokens_t1": 8192,
+          "concurrency": 1,
+          "t0_aggregate_tps": 43.67839401526156,
+          "t1_aggregate_tps": 43.772575716036506,
+          "aggregate_tps_delta_pct": 0.21562537473800436,
+          "t0_ttft_p50_s": 0.40324538049753755,
+          "t1_ttft_p50_s": 0.4042592908954248,
+          "t0_itl_p50_s": 0.022312738174504045,
+          "t1_itl_p50_s": 0.02229572836016151
+        },
+        {
+          "context_tokens_t0": 65536,
+          "context_tokens_t1": 65536,
+          "concurrency": 1,
+          "t0_aggregate_tps": 42.63445168136447,
+          "t1_aggregate_tps": 42.54355173898529,
+          "aggregate_tps_delta_pct": -0.2132077200347915,
+          "t0_ttft_p50_s": 0.4890365769388154,
+          "t1_ttft_p50_s": 0.5080022395122796,
+          "t0_itl_p50_s": 0.022689688696728726,
+          "t1_itl_p50_s": 0.022698627728598916
+        }
+      ],
+      "largest_absolute_delta_pct": 0.21562537473800436
+    },
+    "memory_reclaim": {
+      "result": "pass",
+      "required_gib_per_gpu": 3.5,
+      "observed_gib_per_gpu": [
+        3.876953125,
+        3.87890625,
+        3.88671875,
+        3.896484375
+      ]
+    },
+    "mtp_acceptance": {
+      "result": "pass",
+      "bf16": {
+        "draft_steps": 5735.0,
+        "proposed_tokens": 17205.0,
+        "accepted_tokens": 10015.0,
+        "rejected_tokens": 7190.0,
+        "draft_acceptance_rate": 0.5820982272595175,
+        "mean_accepted_draft_tokens": 1.7462946817785527,
+        "mean_acceptance_length_including_target": 2.7462946817785525,
+        "accepted_per_position": [
+          4496.0,
+          3220.0,
+          2299.0
+        ],
+        "accepted_length_histogram_0_to_3": [
+          1239.0,
+          1276.0,
+          921.0,
+          2299.0
+        ],
+        "accepted_length_histogram_fraction": [
+          0.21604184829991283,
+          0.22249346120313862,
+          0.16059285091543157,
+          0.400871839581517
+        ]
+      },
+      "trellis": {
+        "draft_steps": 5823.0,
+        "proposed_tokens": 17469.0,
+        "accepted_tokens": 10359.0,
+        "rejected_tokens": 7110.0,
+        "draft_acceptance_rate": 0.5929933024214322,
+        "mean_accepted_draft_tokens": 1.7789799072642967,
+        "mean_acceptance_length_including_target": 2.7789799072642967,
+        "accepted_per_position": [
+          4568.0,
+          3349.0,
+          2442.0
+        ],
+        "accepted_length_histogram_0_to_3": [
+          1255.0,
+          1219.0,
+          907.0,
+          2442.0
+        ],
+        "accepted_length_histogram_fraction": [
+          0.21552464365447363,
+          0.20934226343809034,
+          0.15576163489610168,
+          0.41937145801133435
+        ]
+      },
+      "trellis_acceptance_delta_percentage_points": 1.089507516191468
+    },
+    "throughput_matrix": {
+      "result": "pass_with_one_regression",
+      "measurements": [
+        {
+          "context_tokens": 8192,
+          "concurrency": 1,
+          "t2_tps": 85.32184527708131,
+          "t3_tps": 89.7773251436641,
+          "t3_delta_pct": 5.221968479600614,
+          "t2_skipped": false,
+          "t3_skipped": false,
+          "t2_ttft_p50_s": 0.5153838109690696,
+          "t3_ttft_p50_s": 0.4986917244968936
+        },
+        {
+          "context_tokens": 65536,
+          "concurrency": 1,
+          "t2_tps": 86.59423650180163,
+          "t3_tps": 82.93464457817377,
+          "t3_delta_pct": -4.226137987314804,
+          "t2_skipped": false,
+          "t3_skipped": false,
+          "t2_ttft_p50_s": 0.6484611264895648,
+          "t3_ttft_p50_s": 0.6406008965568617
+        },
+        {
+          "context_tokens": 131072,
+          "concurrency": 1,
+          "t2_tps": 81.89926559089913,
+          "t3_tps": 84.2996517090244,
+          "t3_delta_pct": 2.9309006629138823,
+          "t2_skipped": false,
+          "t3_skipped": false,
+          "t2_ttft_p50_s": 0.7888771910220385,
+          "t3_ttft_p50_s": 0.8449113350361586
+        },
+        {
+          "context_tokens": 251904,
+          "concurrency": 1,
+          "t2_tps": 76.59386477486576,
+          "t3_tps": 80.8174501825235,
+          "t3_delta_pct": 5.514260731028808,
+          "t2_skipped": false,
+          "t3_skipped": false,
+          "t2_ttft_p50_s": 1.2132258920464665,
+          "t3_ttft_p50_s": 1.1999575369991362
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 5,
+          "t2_tps": 210.12866676213577,
+          "t3_tps": 217.96650744235112,
+          "t3_delta_pct": 3.7300197069673136,
+          "t2_skipped": false,
+          "t3_skipped": false,
+          "t2_ttft_p50_s": 0.8444881354225799,
+          "t3_ttft_p50_s": 0.7189908770378679
+        },
+        {
+          "context_tokens": 8192,
+          "concurrency": 8,
+          "t2_tps": 230.9469620074169,
+          "t3_tps": 242.1984980182216,
+          "t3_delta_pct": 4.871913409470774,
+          "t2_skipped": false,
+          "t3_skipped": false,
+          "t2_ttft_p50_s": 1.3626310605322942,
+          "t3_ttft_p50_s": 1.1581308165332302
+        }
+      ],
+      "improved_cells": 5,
+      "regressed_cells": 1
+    },
+    "api_and_runtime_errors": {
+      "result": "pass",
+      "t2_request_error_count": 0,
+      "t3_request_error_count": 0,
+      "t2_cuda_or_traceback_in_filtered_logs": 0,
+      "t3_cuda_or_traceback_in_filtered_logs": 0
+    },
+    "prefill_residuals": {
+      "result": "pass",
+      "residuals_tested": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "prefix_cache": {
+      "result": "pass",
+      "off_repeat_elapsed_s": [
+        30.434099569916725,
+        30.349765985971317
+      ],
+      "on_repeat_elapsed_s": [
+        30.367622500983998,
+        0.7468271290417761
+      ],
+      "on_cached_prompt_tokens": 65024,
+      "off_cached_prompt_tokens": 0,
+      "all_api_smokes_passed": true
+    },
+    "capacity_smoke": {
+      "result": "pass",
+      "model": "GLM-5.2",
+      "max_model_len": 999424,
+      "fixed_local_blocks": 3904,
+      "logical_kv_tokens": 999424,
+      "requested_prompt_tokens": 600019,
+      "elapsed_seconds": 324.9236988609191,
+      "usage": {
+        "prompt_tokens": 600019,
+        "total_tokens": 600020,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null
+      },
+      "finish_reason": "stop",
+      "text": "",
+      "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-3c98c699",
+      "post_long_chat": {
+        "elapsed_seconds": 0.30884429602883756,
+        "content": "READY",
+        "reasoning": null,
+        "usage": {
+          "prompt_tokens": 10,
+          "total_tokens": 12,
+          "completion_tokens": 2,
+          "prompt_tokens_details": null
+        }
+      },
+      "post_long_tool": {
+        "elapsed_seconds": 1.0895131311845034,
+        "tool_calls": [
+          {
+            "id": "chatcmpl-tool-8f3ebe15cb9800e4",
+            "type": "function",
+            "function": {
+              "name": "add_numbers",
+              "arguments": "{\"a\": 17, \"b\": 25}"
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 174,
+          "total_tokens": 191,
+          "completion_tokens": 17,
+          "prompt_tokens_details": null
+        }
+      }
+    },
+    "lavd": {
+      "result": "pass",
+      "attempted": 3,
+      "exact": 2,
+      "near": 1,
+      "fail": 0,
+      "aggregate_gen_tok_s": 85.24969957804737
+    },
+    "estonia_temperature_zero": {
+      "result": "pass",
+      "attempted": 3,
+      "correct": 3,
+      "wrong": 0,
+      "aggregate_gen_tok_s": 77.58507617855854
+    }
+  },
+  "vision_gate": {
+    "result": "blocked",
+    "reason": "No multimodal endpoint exists to ingest images; image-order, interleaving, contamination, and vision-conditioned acceptance tests cannot be executed without substituting a different model.",
+    "requested_interleaved_case": "Image A, intervening text, Image B, then separately identify which facts belong to A and B; not run because no multimodal endpoint/checkpoint exists.",
+    "evidence_artifact": "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-vision-prerequisite-check.json"
+  },
+  "rejected_boundaries": [
+    "Do not deploy this text-only decision as a vision result.",
+    "Do not use all 4158 profiled local KV blocks; retain 3904 for 6.11% block headroom.",
+    "Do not claim byte-identical long free-form generations; deterministic first-step target logits were the controlled identity test.",
+    "Do not claim every performance cell improved: the 64K concurrency-1 cell regressed 4.226%.",
+    "Do not claim vision image-order or interleaved-image isolation until the specified GLM-5.2 vision build is locally available."
+  ],
+  "cleanup_and_restoration": {
+    "temporary_hardlink_staging_removed": true,
+    "canary_stopped": true,
+    "production": {
+      "service": "nf3-v20-sota-production",
+      "endpoint": "http://127.0.0.1:8080",
+      "model": "GLM-5.2",
+      "max_model_len": 479744,
+      "chat_content": "READY",
+      "reasoning": null,
+      "elapsed_seconds": 0.6421573162078857,
+      "usage": {
+        "prompt_tokens": 10,
+        "total_tokens": 12,
+        "completion_tokens": 2,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "multimodal_tokens": null
+        }
+      }
+    }
+  },
+  "evidence_artifacts": [
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-target-only-comparison.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t2-t3-comparison.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t3-prefill-residuals-0-15.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t3-functional-prefix-off.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t3-prefix-cache-comparison.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t3-lavd3.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t3-estonia3-temp0.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t3-capacity-profile.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-t3-fixed3904-600019-smoke.json",
+    "/home/josh/glm52-exl3-blackwell-inference-study/results/mtp78-upstream-vision-prerequisite-check.json"
+  ]
+}

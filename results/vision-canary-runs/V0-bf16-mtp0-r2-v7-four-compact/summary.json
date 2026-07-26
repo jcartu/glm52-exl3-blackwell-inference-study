@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 14.406993865966797,
+  "label": "V0-bf16-mtp0-r2-v7-four-compact",
+  "metrics_after": {
+    "bytes": 58703,
+    "elapsed_s": 0.007035922026261687,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 58678,
+    "elapsed_s": 0.012930858880281448,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-four-compact",
+  "pass": false,
+  "passed": 0,
+  "results": [
+    {
+      "case": "four_abcd_order",
+      "elapsed_s": 14.386283288011327,
+      "error": "JSONDecodeError: Expecting ',' delimiter: line 19 column 3 (char 327)",
+      "expected": [
+        {
+          "background": "red",
+          "count": 1,
+          "shape": "triangle",
+          "slot": "image_1",
+          "title": "ALPHA 17"
+        },
+        {
+          "background": "blue",
+          "count": 2,
+          "shape": "circle",
+          "slot": "image_2",
+          "title": "BETA 42"
+        },
+        {
+          "background": "green",
+          "count": 3,
+          "shape": "square",
+          "slot": "image_3",
+          "title": "GAMMA 73"
+        },
+        {
+          "background": "yellow",
+          "count": 4,
+          "shape": "star",
+          "slot": "image_4",
+          "title": "DELTA 98"
+        }
+      ],
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-four-compact/four_abcd_order.response.raw.json"
+    }
+  ],
+  "schema": "glm52-vision-canary-v1",
+  "started_unix": 1785010379.4317875,
+  "total": 1
+}

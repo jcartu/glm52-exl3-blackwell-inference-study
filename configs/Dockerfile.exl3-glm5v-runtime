@@ -1,0 +1,28 @@
+ARG BASE_IMAGE=local/glm52-exl3-rc2-quality-runtime:20260724-v3
+FROM ${BASE_IMAGE}
+
+COPY vllm/model_executor/models/kimi_k25.py /opt/venv/lib/python3.12/site-packages/vllm/model_executor/models/kimi_k25.py
+COPY vllm/model_executor/models/registry.py /opt/venv/lib/python3.12/site-packages/vllm/model_executor/models/registry.py
+COPY vllm/config/speculative.py /opt/venv/lib/python3.12/site-packages/vllm/config/speculative.py
+COPY vllm/v1/spec_decode/llm_base_proposer.py /opt/venv/lib/python3.12/site-packages/vllm/v1/spec_decode/llm_base_proposer.py
+COPY vllm/model_executor/layers/quantization/exl3.py /opt/venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/exl3.py
+COPY vllm/v1/attention/backends/mla/b12x_mla_sparse.py /opt/venv/lib/python3.12/site-packages/vllm/v1/attention/backends/mla/b12x_mla_sparse.py
+COPY vllm/model_executor/layers/attention/mla_attention.py /opt/venv/lib/python3.12/site-packages/vllm/model_executor/layers/attention/mla_attention.py
+
+RUN python -m py_compile \
+    /opt/venv/lib/python3.12/site-packages/vllm/model_executor/models/kimi_k25.py \
+    /opt/venv/lib/python3.12/site-packages/vllm/model_executor/models/registry.py \
+    /opt/venv/lib/python3.12/site-packages/vllm/config/speculative.py \
+    /opt/venv/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/exl3.py \
+    /opt/venv/lib/python3.12/site-packages/vllm/v1/attention/backends/mla/b12x_mla_sparse.py \
+    /opt/venv/lib/python3.12/site-packages/vllm/model_executor/layers/attention/mla_attention.py \
+    /opt/venv/lib/python3.12/site-packages/vllm/v1/spec_decode/llm_base_proposer.py
+
+LABEL local.glm5v.vision-revision="f6eab6117386a0c69152fdf272dc65bfd0254f9f" \
+      local.glm5v.kimi-k25-sha256="8f5e591500c7c3b5bf3f028699f1f76b318838c3332c36c9ccdfa3b22ff72a3d" \
+      local.glm5v.registry-sha256="5204a0ef6b75f7add52ea19301b43d6814c7da9bf2ef25b7f4e3c49735853718" \
+      local.glm5v.speculative-sha256="fde09e7499dca29bc4794b9f3dc8041379e9bb2adbdee5dd8e2986559674b346" \
+      local.glm5v.proposer-sha256="2866812e6082f17fbe0abfce95617b0a3d1f54d8072fc68db8d6e1904743636c" \
+      local.glm5v.exl3-sha256="d72e024f5a9a856964ee244a36f7f15ad95ce7f69ab1c9cae29a25b171a84039" \
+      local.glm5v.b12x-mla-sparse-sha256="601ac7e65b159526738d11c253a3426c3280d1d8b955b22146864397059f529b" \
+      local.glm5v.mla-attention-sha256="3dff3549787d65d1c6fa19c45f31a60e63855836c90ce2af067658af301e2a09"

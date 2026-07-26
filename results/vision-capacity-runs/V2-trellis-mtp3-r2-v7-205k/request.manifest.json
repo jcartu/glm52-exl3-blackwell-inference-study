@@ -1,0 +1,11 @@
+{
+  "filler": "context ",
+  "filler_tokens": 205001,
+  "image": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/A-alpha17-red-triangle.png",
+  "image_bytes": 12211,
+  "image_sha256": "f67581c356212df9072e20112924c1be4c3082d0d065fd97888ac6f802671106",
+  "max_tokens": 64,
+  "model": "GLM-5.2-Vision",
+  "repeat": 205000,
+  "tokenize_status": 200
+}

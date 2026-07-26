@@ -1,0 +1,24 @@
+{
+  "assistant_content": "",
+  "assistant_reasoning": "The user wants me to output JSON format. I need to identify what is the JSON format? I think yes JSON is a text format for data structured data structured. JSON is? yes? yes immediately JSON is JSON is text format format? is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is is immediately JSON format is JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON JSON",
+  "elapsed_s": 9.823997842846438,
+  "filler_token_count": 8000,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V2-trellis-mtp3-r2-v7-natural-8k-tail",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 8000,
+  "parsed_content": null,
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V2-trellis-mtp3-r2-v7-natural-8k-tail/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 8818,
+    "prompt_tokens_details": null,
+    "total_tokens": 9074
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 3.244556188583374,
+  "label": "V0G-trellis-mtp0-r2-v7-b16384-l65536-single",
+  "metrics_after": {
+    "bytes": 58703,
+    "elapsed_s": 0.005013637011870742,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 58696,
+    "elapsed_s": 0.012822657125070691,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-b16384-l65536-single",
+  "pass": true,
+  "passed": 1,
+  "results": [
+    {
+      "assistant": "{\"slots\":[{\"slot\":\"image_1\",\"title\":\"ALPHA 17\",\"background\":\"red\",\"shape\":\"triangle\",\"count\":1}]}",
+      "case": "single_a",
+      "elapsed_s": 3.2257299460470676,
+      "expected": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-b16384-l65536-single/single_a.response.raw.json",
+      "usage": {
+        "completion_tokens": 78,
+        "prompt_tokens": 883,
+        "prompt_tokens_details": null,
+        "total_tokens": 961
+      }
+    }
+  ],
+  "schema": "glm52-vision-canary-v2",
+  "started_unix": 1785019102.0871592,
+  "total": 1
+}

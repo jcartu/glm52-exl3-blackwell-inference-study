@@ -1,0 +1,545 @@
+{
+  "off": {
+    "prefix_caching": false,
+    "before_metrics": [
+      "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.78499516403015e+09",
+      "vllm:prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301614e+09",
+      "vllm:external_prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301745e+09",
+      "vllm:external_prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301855e+09",
+      "vllm:prompt_tokens_cached_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prompt_tokens_cached_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995164419838e+09"
+    ],
+    "rows": [
+      {
+        "repeat": 0,
+        "elapsed_s": 30.434099569916725,
+        "usage": {
+          "prompt_tokens": 65536,
+          "total_tokens": 65544,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null
+        },
+        "finish_reason": "length"
+      },
+      {
+        "repeat": 1,
+        "elapsed_s": 30.349765985971317,
+        "usage": {
+          "prompt_tokens": 65536,
+          "total_tokens": 65544,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null
+        },
+        "finish_reason": "length"
+      }
+    ],
+    "after_metrics": [
+      "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.78499516403015e+09",
+      "vllm:prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301614e+09",
+      "vllm:external_prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301745e+09",
+      "vllm:external_prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301855e+09",
+      "vllm:prompt_tokens_cached_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prompt_tokens_cached_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995164419838e+09"
+    ]
+  },
+  "on": {
+    "prefix_caching": true,
+    "before_metrics": [
+      "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995531823529e+09",
+      "vllm:prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849955318235414e+09",
+      "vllm:external_prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995531823565e+09",
+      "vllm:external_prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849955318235989e+09",
+      "vllm:prompt_tokens_cached_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prompt_tokens_cached_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849955331414673e+09"
+    ],
+    "rows": [
+      {
+        "repeat": 0,
+        "elapsed_s": 30.367622500983998,
+        "usage": {
+          "prompt_tokens": 65536,
+          "total_tokens": 65544,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null
+        },
+        "finish_reason": "length"
+      },
+      {
+        "repeat": 1,
+        "elapsed_s": 0.7468271290417761,
+        "usage": {
+          "prompt_tokens": 65536,
+          "total_tokens": 65544,
+          "completion_tokens": 8,
+          "prompt_tokens_details": null
+        },
+        "finish_reason": "length"
+      }
+    ],
+    "after_metrics": [
+      "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 131072.0",
+      "vllm:prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995531823529e+09",
+      "vllm:prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 65024.0",
+      "vllm:prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849955318235414e+09",
+      "vllm:external_prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995531823565e+09",
+      "vllm:external_prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:external_prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849955318235989e+09",
+      "vllm:prompt_tokens_cached_total{engine=\"0\",model_name=\"GLM-5.2\"} 65024.0",
+      "vllm:prompt_tokens_cached_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849955331414673e+09"
+    ]
+  },
+  "off_smoke": [
+    {
+      "name": "cache_off_chat",
+      "status": "pass",
+      "detail": {
+        "content": "CACHE_OFF_OK",
+        "reasoning": null
+      },
+      "elapsed_s": 0.2513991529121995,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly CACHE_OFF_OK"
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-a2e28ee8e7dc64b0",
+        "object": "chat.completion",
+        "created": 1784995256,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "CACHE_OFF_OK",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 11,
+          "total_tokens": 15,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "cache_off_tool",
+      "status": "pass",
+      "detail": {
+        "parsed_calls": [
+          [
+            "add_numbers",
+            {
+              "a": 17,
+              "b": 25
+            }
+          ]
+        ],
+        "raw_message": {
+          "role": "assistant",
+          "content": "",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-9b367eaa423a9255",
+              "type": "function",
+              "function": {
+                "name": "add_numbers",
+                "arguments": "{\"a\": 17, \"b\": 25}"
+              }
+            }
+          ],
+          "reasoning": null
+        }
+      },
+      "elapsed_s": 1.038517780834809,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Add 17 and 25 using the function."
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "add_numbers",
+              "description": "Add two integers.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer"
+                  },
+                  "b": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "a",
+                  "b"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "lookup_issue",
+              "description": "Look up an issue by numeric identifier.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "issue_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "issue_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "tool_choice": {
+          "type": "function",
+          "function": {
+            "name": "add_numbers"
+          }
+        },
+        "temperature": 0,
+        "max_tokens": 256,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-91733494e2076e58",
+        "object": "chat.completion",
+        "created": 1784995256,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-9b367eaa423a9255",
+                  "type": "function",
+                  "function": {
+                    "name": "add_numbers",
+                    "arguments": "{\"a\": 17, \"b\": 25}"
+                  }
+                }
+              ],
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 228,
+          "total_tokens": 245,
+          "completion_tokens": 17,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    }
+  ],
+  "on_smoke": [
+    {
+      "name": "cache_on_chat",
+      "status": "pass",
+      "detail": {
+        "content": "CACHE_ON_OK",
+        "reasoning": null
+      },
+      "elapsed_s": 0.25079565099440515,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply exactly CACHE_ON_OK"
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-a1677ae925232234",
+        "object": "chat.completion",
+        "created": 1784995592,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "CACHE_ON_OK",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 11,
+          "total_tokens": 15,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "cache_on_tool",
+      "status": "pass",
+      "detail": {
+        "parsed_calls": [
+          [
+            "add_numbers",
+            {
+              "a": 17,
+              "b": 25
+            }
+          ]
+        ],
+        "raw_message": {
+          "role": "assistant",
+          "content": "",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-8782f632e220fa6c",
+              "type": "function",
+              "function": {
+                "name": "add_numbers",
+                "arguments": "{\"a\": 17, \"b\": 25}"
+              }
+            }
+          ],
+          "reasoning": null
+        }
+      },
+      "elapsed_s": 1.153269805945456,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Add 17 and 25 using the function."
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "add_numbers",
+              "description": "Add two integers.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer"
+                  },
+                  "b": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "a",
+                  "b"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "lookup_issue",
+              "description": "Look up an issue by numeric identifier.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "issue_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "issue_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "tool_choice": {
+          "type": "function",
+          "function": {
+            "name": "add_numbers"
+          }
+        },
+        "temperature": 0,
+        "max_tokens": 256,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-b9d39746afb26292",
+        "object": "chat.completion",
+        "created": 1784995592,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-8782f632e220fa6c",
+                  "type": "function",
+                  "function": {
+                    "name": "add_numbers",
+                    "arguments": "{\"a\": 17, \"b\": 25}"
+                  }
+                }
+              ],
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 228,
+          "total_tokens": 245,
+          "completion_tokens": 17,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    }
+  ],
+  "summary": {
+    "off_repeat_elapsed_s": [
+      30.434099569916725,
+      30.349765985971317
+    ],
+    "on_repeat_elapsed_s": [
+      30.367622500983998,
+      0.7468271290417761
+    ],
+    "on_cached_prompt_tokens": 65024,
+    "off_cached_prompt_tokens": 0,
+    "all_api_smokes_passed": true
+  }
+}

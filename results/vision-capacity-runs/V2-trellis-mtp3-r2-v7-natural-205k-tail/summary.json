@@ -1,0 +1,24 @@
+{
+  "assistant_content": "",
+  "assistant_reasoning": "\n\n the1\n\n the\n was1\n the1 the11\n11...\n71111\n1 the\n\n\n\n\n\n111 was\n1\n\n1 the7 \n1 the1\n and\n\n\n\n1\n11 was actual1\n1\n and1\n\n \n\n and11\n and101\n\n11 and\n the\n and1\n\n11\n the...\n and the the1\n\n111\n1 a\n,\n1\n1  was1 was11 the and the10\n\n1\n is\n a111\n11\n was1 and\n11 the1, and1  the were\n\n and1\n\n\n111 most a\n1\n\n\n11 the\n1 the\n the\n\n the1\n11 most\n\n1 the1\n were\n1 last the The1\n and1\n\n 1 were1 the1\n\n1\n1\n  was the and the111 and are\n\n the\n,\n\n the1 the1111\n0\n\n1\n and 1\n1\n1",
+  "elapsed_s": 157.42001806991175,
+  "filler_token_count": 205000,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V2-trellis-mtp3-r2-v7-natural-205k-tail",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 200000,
+  "parsed_content": null,
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V2-trellis-mtp3-r2-v7-natural-205k-tail/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 205818,
+    "prompt_tokens_details": null,
+    "total_tokens": 206074
+  }
+}

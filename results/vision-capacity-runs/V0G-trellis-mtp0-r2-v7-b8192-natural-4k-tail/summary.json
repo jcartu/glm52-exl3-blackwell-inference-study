@@ -1,0 +1,26 @@
+{
+  "assistant_content": "{\"title\":\"ALPHA 17 ONE TRIANGLE\"}",
+  "assistant_reasoning": "The user wants me to output the JSON representation of the title from the image. The image has \"ALPHA 17 ONE TRIANGLE\" text. The title is \"ALPHA 17 ONE TRIANGLE\"",
+  "elapsed_s": 9.581206850009039,
+  "filler_token_count": 4000,
+  "finish_reason": "stop",
+  "http_status": 200,
+  "label": "V0G-trellis-mtp0-r2-v7-b8192-natural-4k-tail",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 4000,
+  "parsed_content": {
+    "title": "ALPHA 17 ONE TRIANGLE"
+  },
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V0G-trellis-mtp0-r2-v7-b8192-natural-4k-tail/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 55,
+    "prompt_tokens": 4818,
+    "prompt_tokens_details": null,
+    "total_tokens": 4873
+  }
+}

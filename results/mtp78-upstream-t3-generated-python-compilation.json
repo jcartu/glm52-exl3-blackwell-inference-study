@@ -1,0 +1,11 @@
+{
+  "source": "\ndef square_even(values):\n    \"\"\"\n    Returns a list of squares of only the even integers from the input list.\n    \n    Args:\n        values (list): A list of elements, potentially of mixed types.\n        \n    Returns:\n        list: A list containing the squares of even integers found in the input.\n    \"\"\"\n    return [x ** 2 for x in values if isinstance(x, int) and not isinstance(x, bool) and x % 2 == 0]\n",
+  "compile_passed": true,
+  "behavior_checks": {
+    "mixed": true,
+    "empty": true,
+    "bool_excluded": true,
+    "negative_even": true
+  },
+  "all_passed": true
+}

@@ -1,0 +1,12 @@
+{
+  "max_tokens": 512,
+  "messages": [
+    {
+      "content": "Write a self-contained technical explanation of exactly 420 words about how a compiler lowers a counted loop into machine code. Cover parsing, intermediate representation, loop optimizations, register allocation, instruction selection, and final code emission. Use paragraphs, no bullets, and do not mention this instruction.",
+      "role": "user"
+    }
+  ],
+  "model": "GLM-5.2-Vision",
+  "temperature": 0,
+  "top_p": 1
+}

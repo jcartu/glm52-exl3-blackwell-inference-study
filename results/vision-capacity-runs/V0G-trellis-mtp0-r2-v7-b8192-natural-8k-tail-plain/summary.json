@@ -1,0 +1,25 @@
+{
+  "assistant_content": "",
+  "assistant_reasoning": "TheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheTheAfter reading immediately immediately immediately immediately with with with the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the the",
+  "elapsed_s": 17.225839622085914,
+  "filler_token_count": 8000,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V0G-trellis-mtp0-r2-v7-b8192-natural-8k-tail-plain",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 8000,
+  "output_mode": "plain",
+  "parsed_content": null,
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V0G-trellis-mtp0-r2-v7-b8192-natural-8k-tail-plain/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v2",
+  "usage": {
+    "completion_tokens": 512,
+    "prompt_tokens": 8812,
+    "prompt_tokens_details": null,
+    "total_tokens": 9324
+  }
+}

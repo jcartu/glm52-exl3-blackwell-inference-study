@@ -1,0 +1,14 @@
+{
+  "filler_file": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-inputs/estonia-natural-prefix-4k.txt",
+  "filler_mode": "file",
+  "filler_sha256": "056e1443765fbe158a55352a7efcc539d5780aeba6ced89e1f5ecf9da0491724",
+  "filler_tokens": 4000,
+  "image": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/A-alpha17-red-triangle.png",
+  "image_bytes": 12211,
+  "image_position": "tail",
+  "image_sha256": "f67581c356212df9072e20112924c1be4c3082d0d065fd97888ac6f802671106",
+  "max_tokens": 512,
+  "model": "GLM-5.2-Vision",
+  "output_mode": "plain",
+  "tokenize_status": 200
+}

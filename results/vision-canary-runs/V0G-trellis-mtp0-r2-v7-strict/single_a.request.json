@@ -1,0 +1,77 @@
+{
+  "content_manifest": [
+    {
+      "bytes": 12211,
+      "card": "A",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/A-alpha17-red-triangle.png",
+      "sha256": "f67581c356212df9072e20112924c1be4c3082d0d065fd97888ac6f802671106",
+      "type": "image"
+    },
+    {
+      "text": "Output one compact JSON object only: {\"slots\":[{\"slot\":\"image_1\",\"title\":\"...\",\"background\":\"...\",\"shape\":\"...\",\"count\":0}]}.\nFor title, copy only the large first line and omit the subtitle. Background must be red, blue, green, or yellow. Shape must be triangle, circle, square, or star. Count the large shapes.\nDescribe this image as image_1.",
+      "type": "text"
+    }
+  ],
+  "expected": {
+    "slots": [
+      {
+        "background": "red",
+        "count": 1,
+        "shape": "triangle",
+        "slot": "image_1",
+        "title": "ALPHA 17"
+      }
+    ]
+  },
+  "max_tokens": 256,
+  "model": "GLM-5.2-Vision",
+  "response_format": {
+    "json_schema": {
+      "name": "canary_single_a",
+      "schema": {
+        "additionalProperties": false,
+        "properties": {
+          "slots": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "background": {
+                  "type": "string"
+                },
+                "count": {
+                  "type": "integer"
+                },
+                "shape": {
+                  "type": "string"
+                },
+                "slot": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "slot",
+                "title",
+                "background",
+                "shape",
+                "count"
+              ],
+              "type": "object"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "slots"
+        ],
+        "type": "object"
+      },
+      "strict": true
+    },
+    "type": "json_schema"
+  }
+}

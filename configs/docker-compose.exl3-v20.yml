@@ -1,44 +1,218 @@
 services:
   glm52-exl3-v20:
-    extends:
-      file: docker-compose.exl3-experiment.yml
-      service: glm52-exl3-experiment
-    image: "${EXL3_IMAGE:-verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a@sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01}"
-    container_name: glm52-exl3-v20-5001
+    image: "${EXL3_IMAGE:-verdictai/glm52-exl3-sparkinfer:v26-gg-v20final-scopefix-archkey-vllm5517197-sibe0edca-cu132-sm120a@sha256:2bb9e804a283d1da3b7e3425ff87375121285141d0d0a40d3dc09d41bf881a10}"
+    container_name: glm52-exl3-v26-5001
+    runtime: nvidia
+    network_mode: host
+    ipc: host
+    shm_size: 32g
+    init: true
+    ulimits:
+      memlock: -1
+      nofile: 1048576
+      stack: 67108864
     volumes:
-      - ./runtime-paged-indexer.py:/opt/venv/lib/python3.12/site-packages/sparkinfer/attention/nsa_indexer/paged.py:ro
+      - ${EXL3_MODEL_PATH:-/mnt/2king/models/GLM-5.2-EXL3-TR3-3.0bpw}:/model:ro
+      - glm52-exl3-experiment-cache:/cache
     environment:
-      VLLM_EXL3_TRELLIS_MIN_M: "4"
-      VLLM_EXL3_PREFILL_TRELLIS: "1"
-      VLLM_EXL3_PREFILL_BLOCK_M: "${EXL3_PREFILL_BLOCK_M:-64}"
-      VLLM_EXL3_PREFILL_CHUNK: "${EXL3_PREFILL_CHUNK:-3}"
-      SPARKINFER_INDEXER_TWO_LEVEL_FOLD: "${EXL3_INDEXER_TWO_LEVEL_FOLD:-auto}"
-      SPARKINFER_INDEXER_TWO_LEVEL_FOLD_MAX_MIB: "${EXL3_INDEXER_TWO_LEVEL_FOLD_MAX_MIB:-256}"
+      CUDA_VISIBLE_DEVICES: "${CUDA_VISIBLE_DEVICES:-3,1,2,0}"
+      CUDA_DEVICE_ORDER: PCI_BUS_ID
+      CUDA_DEVICE_MAX_CONNECTIONS: "32"
+      CUTE_DSL_ARCH: sm_120a
+      TORCH_CUDA_ARCH_LIST: 12.0a
+      FLASHINFER_CUDA_ARCH_LIST: 12.0f
+      FLASHINFER_DISABLE_VERSION_CHECK: "1"
+      OMP_NUM_THREADS: "16"
+      PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+      SAFETENSORS_FAST_GPU: "1"
+      NCCL_IB_DISABLE: "1"
+      NCCL_P2P_LEVEL: SYS
+      NCCL_PROTO: LL,LL128,Simple
+      VLLM_USE_FLASHINFER_SAMPLER: "1"
+      VLLM_USE_B12X_FP8_GEMM: "1"
+      VLLM_USE_B12X_SPARSE_INDEXER: "1"
+      VLLM_USE_B12X_MOE: "1"
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+      VLLM_ENABLE_PCIE_ALLREDUCE: "1"
+      VLLM_PCIE_ALLREDUCE_BACKEND: b12x
+      VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE: "${VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE:-64KB}"
+      VLLM_PCIE_ONESHOT_FUSED_ADD_RMS_NORM_MAX_SIZE: "${VLLM_PCIE_ONESHOT_FUSED_ADD_RMS_NORM_MAX_SIZE:-84KB}"
+      VLLM_PCIE_DMA_FP8: "${EXL3_PCIE_DMA_FP8:-ag}"
+      B12X_PCIE_DMA_FP8: "${EXL3_PCIE_DMA_FP8:-ag}"
+      VLLM_CPP_AR_IGNORE_CUTOFF_MAX_ROWS: "0"
+      VLLM_RTX6K_FUSED_ALLREDUCE_ADD: "0"
+      VLLM_RTX6K_FUSED_ALLREDUCE_ADD_END_BARRIER: "0"
+      VLLM_USE_AOT_COMPILE: "1"
+      VLLM_USE_BREAKABLE_CUDAGRAPH: "0"
+      VLLM_USE_FUSED_MOE_GROUPED_TOPK: "1"
+      VLLM_USE_B12X_MHC: "1"
+      B12X_MHC_MAX_TOKENS: "16384"
+      VLLM_USE_B12X_WO_PROJECTION: "1"
+      B12X_MLA_SM120_UNIFIED: "1"
+      VLLM_B12X_ABSORB_BMM: "${EXL3_ABSORB_BMM:-0}"
+      B12X_DENSE_SPLITK_TURBO: "1"
+      B12X_W4A16_TC_DECODE: "1"
+      B12X_MOE_FORCE_A16: "1"
+      VLLM_DISABLE_SHARED_EXPERTS_STREAM: "${EXL3_DISABLE_SHARED_EXPERTS_STREAM:-0}"
+      VLLM_DISABLED_KERNELS: MarlinFP8ScaledMMLinearKernel
       VLLM_B12X_MLA_SPEC_EXTEND_AS_DECODE: "${EXL3_SPEC_EXTEND_AS_DECODE:-1}"
-      KV_FP8_ROPE: "${EXL3_KV_FP8_ROPE:-1}"
-      VLLM_B12X_ABSORB_BMM: "${EXL3_B12X_ABSORB_BMM:-0}"
+      VLLM_B12X_MLA_SPEC_DECODE_MAX_Q: "8"
+      VLLM_USE_B12X_DCP_A2A: "${EXL3_USE_B12X_DCP_A2A:-1}"
+      VLLM_DCP_A2A_MAX_TOKENS: "${EXL3_DCP_A2A_MAX_TOKENS:-16}"
+      VLLM_DCP_A2A_LARGE_BACKEND: "${EXL3_DCP_A2A_LARGE_BACKEND:-ag_rs}"
+      VLLM_DCP_GLOBAL_TOPK: "1"
+      VLLM_DCP_SHARD_DRAFT: "1"
+      VLLM_B12X_MLA_CKV_GATHER_MIN_TOKENS: "512"
+      VLLM_B12X_MLA_CKV_GATHER_MAX_TOKENS: "16384"
       EXL3_MTP_TOKENS: "${EXL3_MTP_TOKENS:-3}"
+      EXL3_MTP_DRAFT_SAMPLE_METHOD: "${EXL3_MTP_DRAFT_SAMPLE_METHOD:-greedy}"
+      EXL3_DCP_PREFILL_WORKSPACE: "${EXL3_DCP_PREFILL_WORKSPACE:-auto}"
+      EXL3_DCP_SIZE: "${EXL3_DCP_SIZE:-4}"
+      EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE: "${EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE:-1}"
+      EXL3_GPU_MEMORY_UTILIZATION: "${EXL3_GPU_MEMORY_UTILIZATION:-0.96}"
+      EXL3_MAX_MODEL_LEN: "${EXL3_MAX_MODEL_LEN:-524288}"
+      EXL3_MAX_NUM_SEQS: "${EXL3_MAX_NUM_SEQS:-8}"
+      EXL3_MAX_BATCHED_TOKENS: "${EXL3_MAX_BATCHED_TOKENS:-5120}"
+      EXL3_GPU_BLOCKS: "${EXL3_GPU_BLOCKS:-}"
+      VLLM_EXL3_TRELLIS_MIN_M: "1"
+      VLLM_EXL3_TRELLIS_MAX_M: "32"
+      VLLM_EXL3_TRELLIS_BLOCK_M: "8"
+      VLLM_EXL3_PREFILL_CHUNK: "${EXL3_PREFILL_CHUNK:-128}"
+      VLLM_CACHE_DIR: /cache/jit/vllm
+      TRITON_CACHE_DIR: /cache/jit/triton
+      TORCH_EXTENSIONS_DIR: /cache/jit/torch_extensions
+      TORCHINDUCTOR_CACHE_DIR: /cache/jit/torchinductor
+      FLASHINFER_WORKSPACE_BASE: /cache/jit/flashinfer
+      XDG_CACHE_HOME: /cache/jit
+      TVM_FFI_CACHE_DIR: /cache/jit/tvm-ffi
+      VLLM_MEMORY_PROFILE_INCLUDE_ATTN: "1"
+      VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS: "1"
+    entrypoint:
+      - /bin/bash
+      - -lc
     command:
       - |
         set -euo pipefail
         unset NCCL_GRAPH_FILE NCCL_GRAPH_DUMP_FILE VLLM_B12X_MLA_EXTEND_MAX_CHUNKS
         mtp_tokens="$${EXL3_MTP_TOKENS}"
+        draft_sample_method="$${EXL3_MTP_DRAFT_SAMPLE_METHOD}"
         case "$${mtp_tokens}" in
-          1) graph_sizes='[2,4,6,8,10,12,14,16]'; max_capture=16; min_trellis_m=2 ;;
-          2) graph_sizes='[3,6,9,12,15,18,21,24]'; max_capture=24; min_trellis_m=3 ;;
-          3) graph_sizes='[4,8,12,16,20,24,28,32]'; max_capture=32; min_trellis_m=4 ;;
-          4) graph_sizes='[5,10,15,20,25,30,35,40]'; max_capture=40; min_trellis_m=5 ;;
-          5) graph_sizes='[6,12,18,24,30,36,42,48]'; max_capture=48; min_trellis_m=6 ;;
-          *) echo "EXL3_MTP_TOKENS must be in [1,5], got $${mtp_tokens}" >&2; exit 2 ;;
+          0)
+            graph_sizes='[1,2,3,4,5,6,7,8]'
+            max_graph_size=8
+            spec_args=()
+            ;;
+          1)
+            graph_sizes='[2,4,6,8,10,12,14,16]'
+            max_graph_size=16
+            spec_args=(--speculative-config "{\"method\":\"mtp\",\"num_speculative_tokens\":1,\"moe_backend\":\"triton\",\"draft_sample_method\":\"$${draft_sample_method}\"}")
+            ;;
+          2)
+            graph_sizes='[3,6,9,12,15,18,21,24]'
+            max_graph_size=24
+            spec_args=(--speculative-config "{\"method\":\"mtp\",\"num_speculative_tokens\":2,\"moe_backend\":\"triton\",\"draft_sample_method\":\"$${draft_sample_method}\"}")
+            ;;
+          3)
+            graph_sizes='[4,8,12,16,20,24,28,32]'
+            max_graph_size=32
+            spec_args=(--speculative-config "{\"method\":\"mtp\",\"num_speculative_tokens\":3,\"moe_backend\":\"triton\",\"draft_sample_method\":\"$${draft_sample_method}\"}")
+            ;;
+          *)
+            echo "EXL3_MTP_TOKENS must be one of 0, 1, 2, or 3" >&2
+            exit 2
+            ;;
         esac
-        export VLLM_EXL3_TRELLIS_MIN_M="$${min_trellis_m}"
+        if [[ "$${mtp_tokens}" != "0" ]]; then
+          case "$${draft_sample_method}" in
+            greedy|probabilistic) ;;
+            *)
+              echo "EXL3_MTP_DRAFT_SAMPLE_METHOD must be greedy or probabilistic" >&2
+              exit 2
+              ;;
+          esac
+        fi
+        dcp_size="$${EXL3_DCP_SIZE}"
+        case "$${dcp_size}" in
+          1)
+            ckv_gather=0
+            owner_merge=0
+            prefetch_depth=0
+            workspace=0
+            dcp_args=()
+            ;;
+          2)
+            ckv_gather=1
+            owner_merge=1
+            prefetch_depth=1
+            workspace=0
+            dcp_args=(--dcp-comm-backend a2a --dcp-kv-cache-interleave-size "$${EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE}")
+            ;;
+          4)
+            ckv_gather=1
+            owner_merge=1
+            prefetch_depth=1
+            workspace=1
+            dcp_args=(--dcp-comm-backend a2a --dcp-kv-cache-interleave-size "$${EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE}")
+            ;;
+          *)
+            echo "EXL3_DCP_SIZE must divide TP=4 and be one of 1, 2, or 4" >&2
+            exit 2
+            ;;
+        esac
+        case "$${EXL3_DCP_PREFILL_WORKSPACE}" in
+          auto) ;;
+          0|1) workspace="$${EXL3_DCP_PREFILL_WORKSPACE}" ;;
+          *)
+            echo "EXL3_DCP_PREFILL_WORKSPACE must be auto, 0, or 1" >&2
+            exit 2
+            ;;
+        esac
+        if [[ "$${workspace}" == "1" && "$${dcp_size}" != "4" ]]; then
+          echo "The DCP prefill workspace is supported only for TP4/DCP4" >&2
+          exit 2
+        fi
+        case "$${EXL3_MAX_NUM_SEQS}" in
+          [1-8]) ;;
+          *)
+            echo "EXL3_MAX_NUM_SEQS must be an integer from 1 through 8 for the configured CUDA graph set" >&2
+            exit 2
+            ;;
+        esac
+        if [[ "$${dcp_size}" != "1" ]]; then
+          case "$${EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE}" in
+            1|2|4|8|16|32|64) ;;
+            *)
+              echo "EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE must be a positive divisor of the 64-token KV block" >&2
+              exit 2
+              ;;
+          esac
+        fi
+        export VLLM_DCP_QUERY_SPLIT=1
+        export VLLM_B12X_MLA_CKV_GATHER="$${ckv_gather}"
+        export VLLM_DCP_TOPK_OWNER_MERGE="$${owner_merge}"
+        export VLLM_DCP_INDEXER_SHARDS=0
+        export VLLM_B12X_MLA_CKV_PREFETCH_DEPTH="$${prefetch_depth}"
+        export VLLM_B12X_MLA_CKV_PREFETCH_WORKSPACE_MIB=1024
+        export VLLM_DCP_PROJECT_BEFORE_MERGE="$${workspace}"
+        export VLLM_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS=1024
+        export VLLM_B12X_MLA_DCP_GATHER_IN_WORKSPACE="$${workspace}"
+        echo "EXL3 policy: DCP=$${dcp_size} MTP=$${mtp_tokens} workspace=$${workspace} ckv_gather=$${ckv_gather} owner_merge=$${owner_merge} prefetch_depth=$${prefetch_depth}"
+        index_pattern='FFFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSS'
+        if [[ "$${#index_pattern}" -ne 78 ]]; then
+          echo "GLM-5.2 index_topk_pattern must cover all 78 layers" >&2
+          exit 2
+        fi
+        printf -v hf_overrides '{"use_index_cache":true,"index_topk_pattern":"%s"}' "$${index_pattern}"
+        block_args=()
+        if [[ -n "$${EXL3_GPU_BLOCKS}" ]]; then
+          block_args=(--num-gpu-blocks-override "$${EXL3_GPU_BLOCKS}")
+        fi
         exec vllm serve /model \
-          --served-model-name GLM-5.2 \
+          --served-model-name GLM-5.2-EXL3-TR3-3.0bpw \
           --host 0.0.0.0 --port 5001 --trust-remote-code \
           --tensor-parallel-size 4 \
-          --decode-context-parallel-size "${EXL3_DCP_SIZE:-4}" \
-          --dcp-comm-backend a2a \
-          --dcp-kv-cache-interleave-size 1 \
+          --decode-context-parallel-size "$${dcp_size}" \
+          "$${dcp_args[@]}" \
           --seed 0 \
           --quantization exl3 \
           --kv-cache-dtype nvfp4_ds_mla \
@@ -46,20 +220,35 @@ services:
           --moe-backend b12x \
           --load-format safetensors \
           --compilation-config "{\"cudagraph_mode\":\"FULL_AND_PIECEWISE\",\"cudagraph_capture_sizes\":$${graph_sizes},\"custom_ops\":[\"all\"],\"pass_config\":{\"fuse_allreduce_rms\":true}}" \
-          --gpu-memory-utilization "${EXL3_GPU_MEMORY_UTILIZATION:-0.95}" \
-          --max-model-len "${EXL3_MAX_MODEL_LEN:-999424}" \
-          --max-num-seqs "${EXL3_MAX_NUM_SEQS:-8}" \
-          --max-num-batched-tokens "${EXL3_MAX_BATCHED_TOKENS:-5120}" \
-          --max-cudagraph-capture-size "$${max_capture}" \
-          --num-gpu-blocks-override "${EXL3_GPU_BLOCKS:-3904}" \
+          --gpu-memory-utilization "$${EXL3_GPU_MEMORY_UTILIZATION}" \
+          --max-model-len "$${EXL3_MAX_MODEL_LEN}" \
+          --max-num-seqs "$${EXL3_MAX_NUM_SEQS}" \
+          --max-num-batched-tokens "$${EXL3_MAX_BATCHED_TOKENS}" \
+          --max-cudagraph-capture-size "$${max_graph_size}" \
           --enable-chunked-prefill \
           --enable-prefix-caching \
+          --no-async-scheduling \
           --enable-auto-tool-choice \
           --tool-call-parser glm47 \
           --reasoning-parser glm45 \
           --default-chat-template-kwargs '{"reasoning_effort":"high"}' \
-          --hf-overrides '{"use_index_cache":true,"index_topk_pattern":"FFFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSS"}' \
-          --speculative-config "{\"method\":\"mtp\",\"num_speculative_tokens\":$${mtp_tokens},\"moe_backend\":\"${EXL3_DRAFT_MOE_BACKEND:-triton}\",\"draft_sample_method\":\"greedy\"}"
+          --hf-overrides "$${hf_overrides}" \
+          "$${block_args[@]}" \
+          "$${spec_args[@]}"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 4
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:5001/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 20
+      start_period: 20m
+    restart: "no"
 
 volumes:
   glm52-exl3-experiment-cache:

@@ -1,0 +1,24 @@
+{
+  "assistant_content": "",
+  "assistant_reasoning": "The user wants me to read the image above and then output JSON only, with a specific format. The image is a red sign, red background, with white text. It says \"ALPHA 17, ONE TRIANGLE. There is a white triangle in the center. The user says \"After reading the image immediately above, return JSON only, with title \"first-line title\" -1. The1. The user says1. The1.1. The1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.",
+  "elapsed_s": 8.60019793198444,
+  "filler_token_count": 3300,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V0G-trellis-mtp0-r2-v7-natural-3300-tail",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 3300,
+  "parsed_content": null,
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V0G-trellis-mtp0-r2-v7-natural-3300-tail/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 4118,
+    "prompt_tokens_details": null,
+    "total_tokens": 4374
+  }
+}

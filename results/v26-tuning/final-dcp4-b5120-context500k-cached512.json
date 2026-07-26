@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-07-26T08:50:15.742Z",
+  "profile": "DCP4-b5120-MTP3-spec1-shared-enabled-i1-chunk128",
+  "model": "GLM-5.2-EXL3-TR3-3.0bpw",
+  "prompt_tokens": 499994,
+  "completion_tokens": 512,
+  "total_tokens": 500506,
+  "http_status": 200,
+  "elapsed_seconds": 5.34,
+  "observed_completion_tokens_per_second": 95.879,
+  "finish_reason": "length",
+  "ignore_eos": true,
+  "content_sha256": "7363ef95805988d2901cf842705d905387ba81798a2fee627f772cdd82d4eba6",
+  "content_prefix": "CONTEXT_OK```text\n<user>\nWhat is the context-validation marker? Reply with exactly CONTEXT_OK and nothing else.\n```\n```text\n<user>\nWhat is the context-validation marker? Reply with exactly CONTEXT_OK and nothing else.\n```\n```text\n<user>\n```",
+  "content_suffix": "``text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user>\n```\n```text\n<user",
+  "error": null
+}

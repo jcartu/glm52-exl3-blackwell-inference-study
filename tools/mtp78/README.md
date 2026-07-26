@@ -1,6 +1,6 @@
 # MTP Layer 78 Helper Scripts
 
-These locally authored helpers capture routed activations from GLM-5.2 MTP layer 78, validate and seal the capture, drive requests, remove non-finite rows from interrupted captures, and assemble an EXL3-encoded layer into a copy-on-write checkpoint tree.
+These locally authored helpers capture routed activations from GLM-5.2 MTP layer 78, validate and seal the capture, assemble immutable text and vision checkpoint trees, drive deterministic acceptance/capacity probes, remove non-finite rows from interrupted captures, and persist raw responses before grading.
 
 They are **glue around upstream work**, not a standalone quantizer. The actual LDLQ/Trellis/MCG encoder and tensor helpers come from Brandon Music's [GLM-5.2 EXL3 reproduction bundle](https://huggingface.co/brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw/tree/main/encoder), which in turn uses [ExLlamaV3](https://github.com/turboderp-org/exllamav3). Acquire and review those upstream sources and licenses separately.
 
@@ -13,12 +13,18 @@ They are **glue around upstream work**, not a standalone quantizer. The actual L
 | `sanitize_capture.py` | Removes non-finite BF16 rows and aligned expert IDs from an interrupted capture. |
 | `finalize_capture.py` | Checks shape/routing invariants and writes a fingerprinted capture plan and manifest. |
 | `assemble_checkpoint.py` | Validates the encoded layer, replaces only layer-78 BF16 expert projections, updates metadata, and emits `MANIFEST.sha256`. |
+| `assemble_vision_checkpoint.py` | Reflink-clones an immutable EXL3 text checkpoint and grafts pinned BF16 MoonViT/projector assets with provenance and tensor inventories. |
+| `run_text_acceptance_probe.py` | Measures MTP acceptance counters on matched deterministic text controls. |
+| `run_vision_canary.py` | Exercises synthetic image ordering/interleaving cases and persists every raw HTTP response before JSON decoding or grading. |
+| `run_vision_capacity_probe.py` | Exercises long-context image/text requests, including the 200K gate, and preserves tokenizer, request, response, and scoring evidence. |
 
 ## Recorded run
 
 The published run captured 131,072 finite rows with hidden size 6,144 and top-k 8 natural routing. It encoded all 256 experts into 12,288 TP4 EXL3 tensors and reduced stored checkpoint payload by 15,662,567,424 bytes total. See [`../../results/mtp78-capture-plan.json`](../../results/mtp78-capture-plan.json) and [`../../results/mtp78-conversion.json`](../../results/mtp78-conversion.json).
 
 Capture and encoded payloads are intentionally absent because they derive from model activations and weights. The calibration corpus is also not redistributed.
+
+The later provenance-hardened text graft and GLM-5.2-Vision campaign are indexed by [`../../results/mtp78-upstream-integration-decision.json`](../../results/mtp78-upstream-integration-decision.json), [`../../results/vision-canary-comparison.json`](../../results/vision-canary-comparison.json), and [`../../results/vision-acceptance-capacity-decision.json`](../../results/vision-acceptance-capacity-decision.json). Synthetic canary images are published; checkpoint payloads and upstream model sources are not.
 
 ## Capture outline
 

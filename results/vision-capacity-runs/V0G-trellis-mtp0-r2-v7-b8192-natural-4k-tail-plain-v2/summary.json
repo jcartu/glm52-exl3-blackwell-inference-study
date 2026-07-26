@@ -1,0 +1,25 @@
+{
+  "assistant_content": "ALPHA 17 ONE TRIANGLEALPHA 17 ONE TRIANGLE",
+  "assistant_reasoning": "The user wants the first line of text that appears as the first line of text in the image.",
+  "elapsed_s": 2.7196886718738824,
+  "filler_token_count": 4000,
+  "finish_reason": "stop",
+  "http_status": 200,
+  "label": "V0G-trellis-mtp0-r2-v7-b8192-natural-4k-tail-plain-v2",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 4000,
+  "output_mode": "plain",
+  "parsed_content": null,
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V0G-trellis-mtp0-r2-v7-b8192-natural-4k-tail-plain-v2/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v2",
+  "usage": {
+    "completion_tokens": 39,
+    "prompt_tokens": 4814,
+    "prompt_tokens_details": null,
+    "total_tokens": 4853
+  }
+}

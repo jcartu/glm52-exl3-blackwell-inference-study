@@ -1,0 +1,22 @@
+{
+  "assistant_content": "",
+  "assistant_reasoning": "\n\\ title title  title title title  title title title  01  0   . title y     the  the 0 0. theo  0 the0  0000 0o    000 00",
+  "elapsed_s": 19.00261762808077,
+  "filler_token_count": 31075,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V2-trellis-mtp3-r2-v7-varied-32k-tail",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V2-trellis-mtp3-r2-v7-varied-32k-tail/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 64,
+    "prompt_tokens": 31888,
+    "prompt_tokens_details": null,
+    "total_tokens": 31952
+  }
+}

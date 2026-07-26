@@ -1,0 +1,3 @@
+```json
+{"slots":[{"slot":"image_1","title":"ALPHA 17","background":"red","shape":"triangle","count":1}]}
+```

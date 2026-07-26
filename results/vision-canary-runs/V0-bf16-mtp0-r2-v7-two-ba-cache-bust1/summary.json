@@ -1,0 +1,55 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 3.032660722732544,
+  "label": "V0-bf16-mtp0-r2-v7-two-ba-cache-bust1",
+  "metrics_after": {
+    "bytes": 59782,
+    "elapsed_s": 0.007578413933515549,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 59776,
+    "elapsed_s": 0.012998522957786918,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-two-ba-cache-bust1",
+  "pass": false,
+  "passed": 0,
+  "results": [
+    {
+      "assistant": "```json\n{\"order\":[\"ALPHA 17\",\"BETA 42\"]}\n```",
+      "case": "two_ba_order",
+      "elapsed_s": 3.011060247896239,
+      "expected": {
+        "order": [
+          "BETA 42",
+          "ALPHA 17"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "$.order[0]: expected 'beta 42', got 'alpha 17'",
+        "$.order[1]: expected 'alpha 17', got 'beta 42'"
+      ],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-two-ba-cache-bust1/two_ba_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 86,
+        "prompt_tokens": 1622,
+        "prompt_tokens_details": null,
+        "total_tokens": 1708
+      }
+    }
+  ],
+  "schema": "glm52-vision-canary-v2",
+  "started_unix": 1785010702.0864964,
+  "total": 1
+}

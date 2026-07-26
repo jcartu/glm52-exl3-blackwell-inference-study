@@ -1,0 +1,58 @@
+{
+  "content_manifest": [
+    {
+      "text": "Read the following two images in encounter order.",
+      "type": "text"
+    },
+    {
+      "bytes": 15468,
+      "card": "B",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/B-beta42-blue-circles.png",
+      "sha256": "960130426936ac988ad09b5893e2148f9540a121ef4f9ee22a2e85dc1ae67c6b",
+      "type": "image"
+    },
+    {
+      "bytes": 12211,
+      "card": "A",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/A-alpha17-red-triangle.png",
+      "sha256": "f67581c356212df9072e20112924c1be4c3082d0d065fd97888ac6f802671106",
+      "type": "image"
+    },
+    {
+      "text": "Return compact JSON only: {\"order\":[\"first large title\",\"second large title\"]}. Copy only each large first-line title, not its subtitle.",
+      "type": "text"
+    }
+  ],
+  "expected": {
+    "order": [
+      "BETA 42",
+      "ALPHA 17"
+    ]
+  },
+  "max_tokens": 256,
+  "model": "GLM-5.2-Vision",
+  "response_format": {
+    "json_schema": {
+      "name": "canary_two_ba_order",
+      "schema": {
+        "additionalProperties": false,
+        "properties": {
+          "order": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          }
+        },
+        "required": [
+          "order"
+        ],
+        "type": "object"
+      },
+      "strict": true
+    },
+    "type": "json_schema"
+  }
+}

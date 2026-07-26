@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import importlib.util
 import json
@@ -24,6 +25,20 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: file.read(64 << 20), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def reflink_copy(source: str, destination: str) -> str:
+    """Clone a file without sharing its inode so the graft can be read-only."""
+    try:
+        with open(source, "rb") as source_file, open(destination, "xb") as output_file:
+            fcntl.ioctl(output_file.fileno(), 0x40049409, source_file.fileno())
+    except OSError as error:
+        Path(destination).unlink(missing_ok=True)
+        raise RuntimeError(
+            f"reflink clone failed for {source}; refusing a full copy or hardlink"
+        ) from error
+    shutil.copystat(source, destination)
+    return destination
 
 
 def load_encoder(path: Path):
@@ -53,12 +68,26 @@ def main() -> None:
         type=Path,
         default=Path(__file__).with_name("encoder") / "encode_tr3_v31.py",
     )
+    parser.add_argument("--expected-encoded-sha256")
+    parser.add_argument("--source-revision")
+    parser.add_argument("--overlay-repository")
+    parser.add_argument("--overlay-revision")
+    parser.add_argument("--overlay-variant")
     args = parser.parse_args()
 
     source = args.source.resolve()
     output = args.output.resolve()
     if output.exists():
         raise RuntimeError(f"output already exists: {output}")
+    encoded_sha256 = sha256_file(args.encoded_layer)
+    if (
+        args.expected_encoded_sha256 is not None
+        and encoded_sha256 != args.expected_encoded_sha256
+    ):
+        raise RuntimeError(
+            "encoded layer SHA-256 mismatch: "
+            f"actual={encoded_sha256} expected={args.expected_encoded_sha256}"
+        )
 
     base = load_encoder(args.encoder_base.resolve())
     index = json.loads((source / "model.safetensors.index.json").read_text())
@@ -82,7 +111,7 @@ def main() -> None:
     def ignore_top_level(directory: str, names: list[str]) -> set[str]:
         return skip.intersection(names) if Path(directory).resolve() == source else set()
 
-    shutil.copytree(source, output, copy_function=os.link, ignore=ignore_top_level)
+    shutil.copytree(source, output, copy_function=reflink_copy, ignore=ignore_top_level)
 
     source_reader = base.STReader(str(source / layer_file))
     encoded_reader = base.STReader(str(args.encoded_layer))
@@ -106,16 +135,18 @@ def main() -> None:
         missing = sorted(expected_encoded - set(encoded_reader.tensors))[:4]
         extra = sorted(set(encoded_reader.tensors) - expected_encoded)[:4]
         raise RuntimeError(f"EXL3 layer schema mismatch: missing={missing}, extra={extra}")
+    if done.get("schema") not in (None, "glm52-mtp78-exl3-layer-v1"):
+        raise RuntimeError(f"unsupported encoded layer schema: {done['schema']}")
     done_checks = (
-        done.get("schema") == "glm52-mtp78-exl3-layer-v1",
         int(done.get("layer", -1)) == 78,
         int(done.get("bits", -1)) == 3,
         int(done.get("tp", -1)) == 4,
         done.get("keep_nvfp4") == [],
         done.get("tail_tr3") == list(range(256)),
-        int(done.get("tensor_count", -1)) == len(expected_encoded),
-        int(done.get("source_expert_tensor_count", -1)) == len(dropped),
-        done.get("file_sha256") == sha256_file(args.encoded_layer),
+        int(done.get("tensor_count", len(expected_encoded))) == len(expected_encoded),
+        int(done.get("source_expert_tensor_count", len(dropped))) == len(dropped),
+        int(done.get("slices_with_out_scales", 256 * 3 * 4)) == 256 * 3 * 4,
+        done.get("file_sha256") == encoded_sha256,
     )
     if not all(done_checks):
         raise RuntimeError("encoded layer done artifact is stale or invalid")
@@ -127,8 +158,17 @@ def main() -> None:
             source_digest.update(key.encode())
             source_digest.update(b"\0")
             source_digest.update(source_reader.read_bytes(key))
-    if source_digest.hexdigest() != done.get("source_expert_payload_sha256"):
+    source_expert_payload_sha256 = source_digest.hexdigest()
+    published_source_sha256 = done.get("source_expert_payload_sha256")
+    if (
+        published_source_sha256 is not None
+        and source_expert_payload_sha256 != published_source_sha256
+    ):
         raise RuntimeError("source MTP expert payload changed after quantization")
+    done["schema"] = "glm52-mtp78-exl3-layer-v1"
+    done["tensor_count"] = len(expected_encoded)
+    done["source_expert_tensor_count"] = len(dropped)
+    done["source_expert_payload_sha256"] = source_expert_payload_sha256
 
     entries = []
     for name in sorted(source_reader.tensors):
@@ -184,8 +224,12 @@ def main() -> None:
         "hessian": done.get("hessian"),
         "capture": done.get("capture"),
         "recipe_fingerprint": done.get("recipe_fingerprint"),
-        "source_expert_payload_sha256": done.get("source_expert_payload_sha256"),
-        "file_sha256": done.get("file_sha256"),
+        "source_expert_payload_sha256": source_expert_payload_sha256,
+        "file_sha256": encoded_sha256,
+        "overlay_repository": args.overlay_repository,
+        "overlay_revision": args.overlay_revision,
+        "overlay_variant": args.overlay_variant,
+        "source_revision": args.source_revision,
     }
     atomic_json(output / "config.json", config)
 
@@ -195,6 +239,37 @@ def main() -> None:
         tier_bitmap["78"] = done
         atomic_json(output / "tier_bitmap.json", tier_bitmap)
 
+    source_manifest = source / "MANIFEST.sha256"
+    provenance = {
+        "schema": "glm52-mtp78-graft-v1",
+        "source": {
+            "path": str(source),
+            "revision": args.source_revision,
+            "config_sha256": sha256_file(source / "config.json"),
+            "index_sha256": sha256_file(source / "model.safetensors.index.json"),
+            "manifest_sha256": (
+                sha256_file(source_manifest) if source_manifest.exists() else None
+            ),
+            "expert_payload_sha256": source_expert_payload_sha256,
+        },
+        "overlay": {
+            "path": str(args.encoded_layer.resolve()),
+            "repository": args.overlay_repository,
+            "revision": args.overlay_revision,
+            "variant": args.overlay_variant,
+            "sha256": encoded_sha256,
+            "metadata_sha256": sha256_file(args.done),
+        },
+        "integration": {
+            "layer_file": layer_file,
+            "dropped_bf16_weights": len(dropped),
+            "added_exl3_tensors": len(encoded_reader.tensors),
+            "carried_non_expert_tensors": len(source_reader.tensors) - len(dropped),
+            "removed_bytes": removed_bytes,
+            "added_bytes": added_bytes,
+        },
+    }
+    atomic_json(output / "GRAFT_PROVENANCE.json", provenance)
     manifest_lines = []
     for path in sorted(item for item in output.rglob("*") if item.is_file()):
         digest = hashlib.sha256()

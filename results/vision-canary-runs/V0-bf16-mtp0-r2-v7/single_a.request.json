@@ -1,0 +1,26 @@
+{
+  "content_manifest": [
+    {
+      "bytes": 12211,
+      "card": "A",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/A-alpha17-red-triangle.png",
+      "sha256": "f67581c356212df9072e20112924c1be4c3082d0d065fd97888ac6f802671106",
+      "type": "image"
+    },
+    {
+      "text": "Return JSON only, with this exact schema:\n{\"slots\":[{\"slot\":\"...\",\"title\":\"...\",\"background\":\"...\",\"shape\":\"...\",\"count\":0}]}\nUse the slot names requested below. Copy each visible title exactly. For background, use exactly one of red, blue, green, yellow. For shape, use exactly one of triangle, circle, square, star. Count only the large shapes below the subtitle. Preserve image order and do not merge facts from different images.\nThis is slot image_1. Describe image_1.",
+      "type": "text"
+    }
+  ],
+  "expected": [
+    {
+      "background": "red",
+      "count": 1,
+      "shape": "triangle",
+      "slot": "image_1",
+      "title": "ALPHA 17"
+    }
+  ],
+  "max_tokens": 512,
+  "model": "GLM-5.2-Vision"
+}

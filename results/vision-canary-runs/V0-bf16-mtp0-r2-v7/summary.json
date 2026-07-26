@@ -1,0 +1,256 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 47.610278844833374,
+  "label": "V0-bf16-mtp0-r2-v7",
+  "metrics_after": {
+    "bytes": 58490,
+    "elapsed_s": 0.005463439971208572,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 56965,
+    "elapsed_s": 0.01339197182096541,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7",
+  "pass": false,
+  "passed": 1,
+  "results": [
+    {
+      "assistant": "```json\n{\"slots\":[{\"slot\":\"image_1\",\"title\":\"ALPHA 17\",\"background\":\"red\",\"shape\":\"triangle\",\"count\":1}]}\n```",
+      "case": "single_a",
+      "elapsed_s": 21.2354630199261,
+      "expected": [
+        {
+          "background": "red",
+          "count": 1,
+          "shape": "triangle",
+          "slot": "image_1",
+          "title": "ALPHA 17"
+        }
+      ],
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7/single_a.response.raw.json",
+      "usage": {
+        "completion_tokens": 109,
+        "prompt_tokens": 907,
+        "prompt_tokens_details": null,
+        "total_tokens": 1016
+      }
+    },
+    {
+      "assistant": "```json\n{\n  \"slots\": [\n    {\n      \"slot\": \"image_1\",\n      \"title\": \"ALPHA 17 ONE TRIANGLE\",\n      \"background\": \"red\",\n      \"shape\": \"triangle\",\n      \"count\": 1\n    },\n    {\n      \"slot\": \"image_2\",\n      \"title\": \"BETA 42 TWO CIRCLES\",\n      \"background\": \"blue\",\n      \"shape\": \"circle\",\n      \"count\": 2\n    }\n  ]\n}\n```",
+      "case": "two_ab_order",
+      "elapsed_s": 12.005031167995185,
+      "expected": [
+        {
+          "background": "red",
+          "count": 1,
+          "shape": "triangle",
+          "slot": "image_1",
+          "title": "ALPHA 17"
+        },
+        {
+          "background": "blue",
+          "count": 2,
+          "shape": "circle",
+          "slot": "image_2",
+          "title": "BETA 42"
+        }
+      ],
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "slot[0].title: expected 'alpha 17', got 'alpha 17 one triangle'",
+        "slot[1].title: expected 'beta 42', got 'beta 42 two circles'"
+      ],
+      "parsed": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17 ONE TRIANGLE"
+          },
+          {
+            "background": "blue",
+            "count": 2,
+            "shape": "circle",
+            "slot": "image_2",
+            "title": "BETA 42 TWO CIRCLES"
+          }
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7/two_ab_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 404,
+        "prompt_tokens": 1709,
+        "prompt_tokens_details": null,
+        "total_tokens": 2113
+      }
+    },
+    {
+      "case": "four_abcd_order",
+      "elapsed_s": 1.9240664581302553,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "expected": [
+        {
+          "background": "red",
+          "count": 1,
+          "shape": "triangle",
+          "slot": "image_1",
+          "title": "ALPHA 17"
+        },
+        {
+          "background": "blue",
+          "count": 2,
+          "shape": "circle",
+          "slot": "image_2",
+          "title": "BETA 42"
+        },
+        {
+          "background": "green",
+          "count": 3,
+          "shape": "square",
+          "slot": "image_3",
+          "title": "GAMMA 73"
+        },
+        {
+          "background": "yellow",
+          "count": 4,
+          "shape": "star",
+          "slot": "image_4",
+          "title": "DELTA 98"
+        }
+      ],
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7/four_abcd_order.response.raw.json"
+    },
+    {
+      "assistant": "```json\n{\n  \"slots\": [\n    {\n      \"slot\": \"slot_a\",\n      \"title\": \"ALPHA 17 ONE TRIANGLE\",\n      \"background\": \"red\",\n      \"shape\": \"triangle\",\n      \"count\": 1\n    },\n    {\n      \"slot\": \"slot_b\",\n      \"title\": \"BETA 42 TWO CIRCLES\",\n      \"background\": \"blue\",\n      \"shape\": \"circle\",\n      \"count\": 2\n    }\n  ]\n}\n```",
+      "case": "interleaved_ab",
+      "elapsed_s": 6.650367139838636,
+      "expected": [
+        {
+          "background": "red",
+          "count": 1,
+          "shape": "triangle",
+          "slot": "slot_a",
+          "title": "ALPHA 17"
+        },
+        {
+          "background": "blue",
+          "count": 2,
+          "shape": "circle",
+          "slot": "slot_b",
+          "title": "BETA 42"
+        }
+      ],
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "slot[0].title: expected 'alpha 17', got 'alpha 17 one triangle'",
+        "slot[1].title: expected 'beta 42', got 'beta 42 two circles'"
+      ],
+      "parsed": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "slot_a",
+            "title": "ALPHA 17 ONE TRIANGLE"
+          },
+          {
+            "background": "blue",
+            "count": 2,
+            "shape": "circle",
+            "slot": "slot_b",
+            "title": "BETA 42 TWO CIRCLES"
+          }
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7/interleaved_ab.response.raw.json",
+      "usage": {
+        "completion_tokens": 230,
+        "prompt_tokens": 1735,
+        "prompt_tokens_details": null,
+        "total_tokens": 1965
+      }
+    },
+    {
+      "assistant": "{\"slots\":[{\"slot\":\"slot_a\",\"title\":\"BETA 42 TWO CIRCLES\",\"background\":\"blue\",\"shape\":\"circle\",\"count\":2},{\"slot\":\"slot_b\",\"title\":\"ALPHA 17 ONE TRIANGLE\",\"background\":\"red\",\"shape\":\"triangle\",\"count\":1}]}",
+      "case": "interleaved_ba",
+      "elapsed_s": 5.771271896082908,
+      "expected": [
+        {
+          "background": "blue",
+          "count": 2,
+          "shape": "circle",
+          "slot": "slot_a",
+          "title": "BETA 42"
+        },
+        {
+          "background": "red",
+          "count": 1,
+          "shape": "triangle",
+          "slot": "slot_b",
+          "title": "ALPHA 17"
+        }
+      ],
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "slot[0].title: expected 'beta 42', got 'beta 42 two circles'",
+        "slot[1].title: expected 'alpha 17', got 'alpha 17 one triangle'"
+      ],
+      "parsed": {
+        "slots": [
+          {
+            "background": "blue",
+            "count": 2,
+            "shape": "circle",
+            "slot": "slot_a",
+            "title": "BETA 42 TWO CIRCLES"
+          },
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "slot_b",
+            "title": "ALPHA 17 ONE TRIANGLE"
+          }
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7/interleaved_ba.response.raw.json",
+      "usage": {
+        "completion_tokens": 190,
+        "prompt_tokens": 1736,
+        "prompt_tokens_details": null,
+        "total_tokens": 1926
+      }
+    }
+  ],
+  "schema": "glm52-vision-canary-v1",
+  "started_unix": 1785010202.821357,
+  "total": 5
+}

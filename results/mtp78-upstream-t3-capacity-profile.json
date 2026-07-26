@@ -1,0 +1,36 @@
+{
+  "mode": "profile",
+  "max_model_len": 999424,
+  "gpu_memory_utilization": 0.95,
+  "cuda_graph": {
+    "captured_gib": 0.62,
+    "retained_non_torch_gib": 0.33,
+    "estimated_additional_gib": 0.29
+  },
+  "available_kv_gib_rank0": 7.93,
+  "logical_kv_tokens": 1064448,
+  "block_size": 64,
+  "dcp_size": 4,
+  "derived_local_blocks": 4158,
+  "idle_gpu_memory_mib": {
+    "used": [
+      92969,
+      92969,
+      92949,
+      92969
+    ],
+    "free": [
+      4320,
+      4320,
+      4340,
+      4320
+    ]
+  },
+  "selected_fixed": {
+    "local_blocks": 3904,
+    "logical_tokens": 999424,
+    "headroom_blocks": 254,
+    "headroom_pct": 6.108706108706108,
+    "reason": "Matches max_model_len exactly while retaining profiled KV headroom."
+  }
+}

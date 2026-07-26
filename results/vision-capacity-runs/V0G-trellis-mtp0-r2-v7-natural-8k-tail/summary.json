@@ -1,0 +1,24 @@
+{
+  "assistant_content": "",
+  "assistant_reasoning": "The user wants me to output JSON. I need to output the JSON format. I described. I need to output. JSON. I need to need to output JSON. I need to need to output JSON. I need to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to to. After the. After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After After JSON. After After After After JSON. After After After After After After After After After After After After After After After After After After After After After After After After After After After After After",
+  "elapsed_s": 11.647251673974097,
+  "filler_token_count": 8000,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V0G-trellis-mtp0-r2-v7-natural-8k-tail",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 8000,
+  "parsed_content": null,
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V0G-trellis-mtp0-r2-v7-natural-8k-tail/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 256,
+    "prompt_tokens": 8818,
+    "prompt_tokens_details": null,
+    "total_tokens": 9074
+  }
+}

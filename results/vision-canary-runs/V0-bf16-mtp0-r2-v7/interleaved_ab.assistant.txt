@@ -1,0 +1,20 @@
+```json
+{
+  "slots": [
+    {
+      "slot": "slot_a",
+      "title": "ALPHA 17 ONE TRIANGLE",
+      "background": "red",
+      "shape": "triangle",
+      "count": 1
+    },
+    {
+      "slot": "slot_b",
+      "title": "BETA 42 TWO CIRCLES",
+      "background": "blue",
+      "shape": "circle",
+      "count": 2
+    }
+  ]
+}
+```

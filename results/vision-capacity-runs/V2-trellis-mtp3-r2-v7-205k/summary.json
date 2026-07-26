@@ -1,0 +1,22 @@
+{
+  "assistant_content": " and and, context context context context0\n\n01\n context context context and context and10 context0\n1 context and context context context and context context10\n10, context context,00 context and and and1",
+  "assistant_reasoning": "The context context context context context11 context context context context10",
+  "elapsed_s": 155.879167587962,
+  "filler_token_count": 205001,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V2-trellis-mtp3-r2-v7-205k",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V2-trellis-mtp3-r2-v7-205k/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 64,
+    "prompt_tokens": 205813,
+    "prompt_tokens_details": null,
+    "total_tokens": 205877
+  }
+}

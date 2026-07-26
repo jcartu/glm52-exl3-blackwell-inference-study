@@ -1,0 +1,39 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 2.6206016540527344,
+  "label": "V0-bf16-mtp0-r2-v7-interleave-four512",
+  "metrics_after": {
+    "bytes": 58456,
+    "elapsed_s": 0.004985840991139412,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 58453,
+    "elapsed_s": 0.013284045970067382,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-interleave-four512",
+  "pass": false,
+  "passed": 0,
+  "results": [
+    {
+      "case": "four_abcd_order",
+      "elapsed_s": 2.601616106927395,
+      "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 53 (char 52)",
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42",
+          "GAMMA 73",
+          "DELTA 98"
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-interleave-four512/four_abcd_order.response.raw.json"
+    }
+  ],
+  "schema": "glm52-vision-canary-v2",
+  "started_unix": 1785011159.3882208,
+  "total": 1
+}

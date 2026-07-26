@@ -1,0 +1,12 @@
+{
+  "max_tokens": 512,
+  "messages": [
+    {
+      "content": "Write a self-contained technical explanation of exactly 420 words about how a database executes a selective indexed query. Cover parsing, planning, cardinality estimates, index traversal, row visibility, joins, and result materialization. Use paragraphs, no bullets, and do not mention this instruction.",
+      "role": "user"
+    }
+  ],
+  "model": "GLM-5.2-Vision",
+  "temperature": 0,
+  "top_p": 1
+}

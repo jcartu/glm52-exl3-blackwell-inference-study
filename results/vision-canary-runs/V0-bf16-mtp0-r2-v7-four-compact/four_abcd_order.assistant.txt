@@ -1,0 +1,75 @@
+1. 2. 2. 3. 3. 4. 4.```json
+{
+  "image_1": {
+    "title": "ALPHA 17",
+    "background": "red",
+    "shape": "triangle",
+    "count": 1
+  },
+  "image_2": {
+    "title": "BETA 42",
+    "background": "blue",
+    "shape": "circle",
+    "count": 2
+  },
+  "image_3": {
+    "title": "GAMMA 73",
+    "background": "green",
+    "shape": "square",
+    "count": 1
+  "image_4": {
+    "title": "DELTA 98",
+    "background": "yellow",
+    "shape": "star",
+    "count": 4
+  }
+}
+}
+``````json
+  "image_1": {
+    "title": "ALPHA 17",
+    "background": "red",
+    "shape": "triangle",
+    "count": 1
+  },
+  "image_2": {
+    "title": "BETA 42",
+    "background": "blue",
+    "shape": "circle",
+    "count": 2
+  },
+  "image_3": {
+    "title": "GAMMA 73",
+    "background": "green",
+    "shape": "square",
+    "count": 1
+  },
+  "image_4": {
+    "title": "DELTA 98",
+    "background": "yellow",
+    "shape": "star",
+    "count": 4
+  }
+}
+``````json
+{
+  "image_1": {
+    "title": "ALPHA 17",
+    "background": "red",
+    "shape": "triangle",
+    "count": 1
+  },
+  "image_2": {
+    "title": "BETA 42",
+    "background": "blue",
+    "shape": "circle",
+    "count": 2
+  },
+  "image_3": {
+    "title": "GAMMA 73",
+    "background": "green",
+    "shape": "square",
+    "count": 1
+  },
+  "image_4": {
+    "

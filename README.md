@@ -1,11 +1,32 @@
 # GLM-5.2 Blackwell Inference Study: EXL3 and NF3 Hybrid
 
-A reproducible record of GLM-5.2 inference measurements collected on 23–25 July 2026 with four NVIDIA RTX PRO 6000 Blackwell Workstation Edition GPUs. The study covers a rank-sliced 3.0 bpw EXL3/Trellis checkpoint from the original Gilded Gnosis v20 evaluation through an issue #34 RC2 rebase and experimental EXL3-quantized MTP layer 78, plus a bounded optimization study of the MXFP8/NVFP4/NF3 hybrid checkpoint against the exact v20 serving recipe.
+A reproducible record of GLM-5.2 inference measurements collected on 23–26 July 2026 with four NVIDIA RTX PRO 6000 Blackwell Workstation Edition GPUs. The study covers a rank-sliced 3.0 bpw EXL3/Trellis checkpoint from the original Gilded Gnosis v20 evaluation through an issue #34 RC2 rebase, experimental EXL3-quantized MTP layer 78, a topology-aware v26 Pareto study, and matched GLM-5.2-Vision canaries, plus a bounded optimization study of the MXFP8/NVFP4/NF3 hybrid checkpoint against the exact v20 serving recipe.
 
 This is an engineering study, not a claim of a new model, quantization method, or general performance record. Results apply only to the pinned software, checkpoint variants, hardware topology, and benchmark settings recorded here.
 
 > [!IMPORTANT]
 > This repository contains study documentation, public-safe configurations, source patches, helper scripts, and measured artifacts. It does **not** contain or claim ownership of GLM-5.2 weights, the EXL3 or NF3-hybrid checkpoints, vLLM, Sparkinfer, ExLlamaV3/Trellis, Gilded Gnosis, or referenced container images. See [CREDITS.md](CREDITS.md) for the complete ownership and contribution ledger.
+
+## EXL3 v26 temperature-one Pareto matrix
+
+The 26 July v26 matrix used `llm-inference-bench` v0.4.28, temperature `1.0`, exact prompt-token targeting, 15-second sustained-decode cells, MTP3, and the same four-GPU host. Capacity-limited cells were skipped rather than reported as throughput.
+
+| Profile | Intended role | Max model length | KV budget | 8K prefill | 64K prefill | 128K prefill | 0K C1 decode | 0K C8 decode |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| DCP4 / batch 5,120 | balanced production | 524,288 | 705,024 | 2,995 | 1,862 | 1,777 | 97.5 | 336.0 |
+| DCP2 / batch 4,096 | concurrent throughput | 300,000 | 441,600 | 3,756 | 3,144 | 3,025 | 102.9 | **407.3** |
+| DCP1 / batch 4,096 | single-stream throughput | 180,000 | 260,480 | **3,939** | **4,039** | **3,973** | **116.0** | 372.4 |
+
+All rates are tokens/second. The full decode matrix also covers 32K and 128K input contexts in [`results/v26-tuning/`](results/v26-tuning/).
+
+| Profile | LAVD concurrency | LAVD exact / near / fail | Max-token hits | Estonia concurrency | Estonia |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| DCP4 | 5 | **5 / 5 / 0** | 0 | 5 | **10/10** |
+| DCP2 | 5 | 6 / 3 / 1 | 0 | 3 | **10/10** |
+| DCP1 single-stream control | 1 | 3 / 6 / 1 | 0 | 1 | **10/10** |
+| DCP1 concurrency boundary | 5 | 1 / 0 / 9 | 4 | — | — |
+
+DCP2 is the highest-throughput concurrent profile and DCP1 is the prefill/single-stream leader, but neither replaces the balanced service. DCP2 retained one LAVD failure, while DCP1's C5 run collapsed despite a usable C1 control. The restored production service therefore remains DCP4/batch-5,120/max-length-524,288.
 
 ## NF3 hybrid v20 result
 
@@ -23,7 +44,7 @@ The balanced control passed the structured-tool, exact 450,019-token context, 51
 
 See [`HYBRID_STUDY.md`](HYBRID_STUDY.md) for the audited before/after analysis, protocol deviations, rejection matrix, reproduction commands, and claim boundaries. Raw evidence and the machine-readable scorecard are under [`results/hybrid-v20/`](results/hybrid-v20/).
 
-## Current EXL3 result
+## RC2+EXL3 MTP78 result
 
 The selected profile combines:
 
@@ -34,7 +55,7 @@ The selected profile combines:
 - targeted DCP workspace and required-tool grammar corrections;
 - an offline EXL3 conversion of the previously BF16 MTP layer 78 using Brandon Music's published reproduction encoder as the base pipeline.
 
-The accuracy-preserving production profile now serves with `TP4/DCP4/MTP3`, 5,120 maximum batched tokens, eight maximum sequences, and a configured 999,424-token model length. A direct smoke request containing **600,019 prompt tokens** completed and returned `CONTEXT_OK`. No 900K validation is claimed: the attempted 900K harness run was clamped to 128K by its parser and is excluded from publication.
+The accuracy-preserving RC2 profile used `TP4/DCP4/MTP3`, 5,120 maximum batched tokens, eight maximum sequences, and a configured 999,424-token model length. A direct smoke request containing **600,019 prompt tokens** completed and returned `CONTEXT_OK`. No 900K validation is claimed: the attempted 900K harness run was clamped to 128K by its parser and is excluded from publication.
 
 ### Cold prefill
 
@@ -85,6 +106,12 @@ The uncorrected required-tool path emitted 24 calls—23 duplicate Paris calls f
 The layer-78 conversion replaced 768 BF16 routed-expert projections with 12,288 EXL3 tensors covering all 256 experts and four TP ranks. The capture retained 131,072 finite rows. The assembled checkpoint reduced stored payload by **15,662,567,424 bytes total**, approximately 3.65 GiB per TP rank.
 
 The conversion pipeline is derivative engineering around Brandon Music's published GLM-5.2 EXL3 reproduction bundle and ExLlamaV3/Trellis machinery. This study does not claim authorship of LDLQ, Trellis, MCG, EXL3, or the original checkpoint encoder.
+
+### Upstream MTP78 and vision controls
+
+The later provenance-hardened MTP78 graft retained 3,904 local KV blocks, passed a 600,019-token text smoke, matched target-only first-token IDs and top-20 log probabilities exactly, reclaimed 3.877–3.896 GiB per GPU, and raised matched draft-token acceptance from 58.21% with BF16 MTP78 to 59.30% with Trellis. It passed a three-run LAVD gate at 2 exact / 1 near / 0 fail and a temperature-zero Estonia gate at 3/3. Long free-form generations were not byte-identical and are not represented as such.
+
+The subsequent GLM-5.2-Vision canary found the same 5/6 semantic result in BF16/Trellis and MTP0/MTP3 modes. The shared B/A image-order failure was already present with MTP disabled. Trellis improved matched vision draft-token acceptance from 72.89% to 77.50%; the separate 200K gate failed with MTP disabled and with text-only input, isolating that capacity defect away from the MTP78 overlay. The decision artifacts and all raw requests, responses, metrics, and synthetic canary images are indexed under [`results/`](results/).
 
 ## Attribution at a glance
 

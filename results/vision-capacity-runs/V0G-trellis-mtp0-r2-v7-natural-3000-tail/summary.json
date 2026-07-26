@@ -1,0 +1,26 @@
+{
+  "assistant_content": "{\"title\":\"ALPHA 17\"}",
+  "assistant_reasoning": "The user wants me to extract the title from the image provided in the prompt.\nThe image has text \"ALPHA 17\" and \"ONE TRIANGLE\" below it.\nThe prompt asks for a JSON with a title field.\nThe title is \"ALPHA 17\".",
+  "elapsed_s": 3.0263555510900915,
+  "filler_token_count": 3000,
+  "finish_reason": "stop",
+  "http_status": 200,
+  "label": "V0G-trellis-mtp0-r2-v7-natural-3000-tail",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "minimum_prompt_tokens": 3000,
+  "parsed_content": {
+    "title": "ALPHA 17"
+  },
+  "pass": true,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V0G-trellis-mtp0-r2-v7-natural-3000-tail/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 65,
+    "prompt_tokens": 3818,
+    "prompt_tokens_details": null,
+    "total_tokens": 3883
+  }
+}

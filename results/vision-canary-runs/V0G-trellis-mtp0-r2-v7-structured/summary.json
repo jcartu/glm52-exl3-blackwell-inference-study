@@ -1,0 +1,201 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 23.470267295837402,
+  "label": "V0G-trellis-mtp0-r2-v7-structured",
+  "metrics_after": {
+    "bytes": 58459,
+    "elapsed_s": 0.008613410871475935,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 56907,
+    "elapsed_s": 0.013706367928534746,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-structured",
+  "pass": false,
+  "passed": 4,
+  "results": [
+    {
+      "assistant": "{\"slots\":[{\"slot\":\"image_1\",\"title\":\"ALPHA 17\",\"background\":\"red\",\"shape\":\"triangle\",\"count\":1}]}",
+      "case": "single_a",
+      "elapsed_s": 6.80398237798363,
+      "expected": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-structured/single_a.response.raw.json",
+      "usage": {
+        "completion_tokens": 91,
+        "prompt_tokens": 883,
+        "prompt_tokens_details": null,
+        "total_tokens": 974
+      }
+    },
+    {
+      "assistant": "{\"order\":[\"ALPHA 17\",\"BETA 42\"]}",
+      "case": "two_ab_order",
+      "elapsed_s": 3.1196048620622605,
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-structured/two_ab_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 86,
+        "prompt_tokens": 1622,
+        "prompt_tokens_details": null,
+        "total_tokens": 1708
+      }
+    },
+    {
+      "assistant": "{\"order\":[\"ALPHA 17\",\"BETA 42\"]}",
+      "case": "two_ba_order",
+      "elapsed_s": 2.8647454120218754,
+      "expected": {
+        "order": [
+          "BETA 42",
+          "ALPHA 17"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "$.order[0]: expected 'beta 42', got 'alpha 17'",
+        "$.order[1]: expected 'alpha 17', got 'beta 42'"
+      ],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-structured/two_ba_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 86,
+        "prompt_tokens": 1622,
+        "prompt_tokens_details": null,
+        "total_tokens": 1708
+      }
+    },
+    {
+      "assistant": "{\"order 1\": \"ALPHA 17\", \"2\": \"BETA 42\", \"3\": \"GAMMA 73\", \"4\": \"DELTA 98\"}",
+      "case": "four_abcd_order",
+      "elapsed_s": 3.9424642049707472,
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42",
+          "GAMMA 73",
+          "DELTA 98"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "$.order: missing"
+      ],
+      "parsed": {
+        "2": "BETA 42",
+        "3": "GAMMA 73",
+        "4": "DELTA 98",
+        "order 1": "ALPHA 17"
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-structured/four_abcd_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 104,
+        "prompt_tokens": 3205,
+        "prompt_tokens_details": null,
+        "total_tokens": 3309
+      }
+    },
+    {
+      "assistant": "{\"slot_a\":\"ALPHA 17\",\"slot_b\":\"BETA 42\"}",
+      "case": "interleaved_ab",
+      "elapsed_s": 3.0901526529341936,
+      "expected": {
+        "slot_a": "ALPHA 17",
+        "slot_b": "BETA 42"
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slot_a": "ALPHA 17",
+        "slot_b": "BETA 42"
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-structured/interleaved_ab.response.raw.json",
+      "usage": {
+        "completion_tokens": 95,
+        "prompt_tokens": 1658,
+        "prompt_tokens_details": null,
+        "total_tokens": 1753
+      }
+    },
+    {
+      "assistant": "{\"slot_a\":\"BETA 42\",\"slot_b\":\"ALPHA 17\"}",
+      "case": "interleaved_ba",
+      "elapsed_s": 3.61982245487161,
+      "expected": {
+        "slot_a": "BETA 42",
+        "slot_b": "ALPHA 17"
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slot_a": "BETA 42",
+        "slot_b": "ALPHA 17"
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-structured/interleaved_ba.response.raw.json",
+      "usage": {
+        "completion_tokens": 115,
+        "prompt_tokens": 1659,
+        "prompt_tokens_details": null,
+        "total_tokens": 1774
+      }
+    }
+  ],
+  "schema": "glm52-vision-canary-v2",
+  "started_unix": 1785012320.3427782,
+  "total": 6
+}

@@ -1,0 +1,183 @@
+{
+  "label": "t0",
+  "server": {
+    "object": "list",
+    "data": [
+      {
+        "id": "GLM-5.2",
+        "object": "model",
+        "created": 1784990701,
+        "owned_by": "vllm",
+        "root": "/model",
+        "parent": null,
+        "max_model_len": 262144,
+        "permission": [
+          {
+            "id": "modelperm-8529673c2fb12bc6",
+            "object": "model_permission",
+            "created": 1784990701,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case": "reasoning",
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "A store discounts a $240 item by 15%, then applies 8% sales tax. Give the final price and show the arithmetic briefly."
+          }
+        ],
+        "temperature": 0,
+        "seed": 1234,
+        "max_tokens": 256,
+        "stream": false,
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "elapsed_s": 6.150382159044966,
+      "usage": {
+        "prompt_tokens": 41,
+        "total_tokens": 297,
+        "completion_tokens": 256,
+        "prompt_tokens_details": null
+      },
+      "finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": "1.  **Understand the Goal:** The user wants the final price of a $240 item after a 15% discount and an 8% sales tax, along with a brief arithmetic explanation.\n\n2.  **Step 1: Calculate the discount amount.**\n    *   Original price = $240\n    *   Discount rate = 15% = 0.15\n    *   Discount amount = $240 * 0.15\n    *   *Calculation:* 240 * 0.10 = 24; 240 * 0.05 = 12; 24 + 12 = 36.\n    *   Discount amount = $36.\n\n3.  **Step 2: Calculate the discounted price.**\n    *   Discounted price = Original price - Discount amount\n    *   *Calculation:* 240 - 36 = 204.\n    *   Discounted price = $204.\n    *   *(Alternative method: 240 * 0.85 = 204)*\n\n4.  **Step 3: Calculate the sales tax.**\n    *   Tax rate = 8% = 0.08\n    *   Tax amount = Discounted price * 0.08"
+      },
+      "id": "chatcmpl-ac4f02d0c983b5fd"
+    },
+    {
+      "case": "python",
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Write a Python function longest_run(values) that returns the length of the longest consecutive run of equal values. Return only a fenced Python code block."
+          }
+        ],
+        "temperature": 0,
+        "seed": 1234,
+        "max_tokens": 256,
+        "stream": false,
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "elapsed_s": 6.06184565811418,
+      "usage": {
+        "prompt_tokens": 41,
+        "total_tokens": 296,
+        "completion_tokens": 255,
+        "prompt_tokens_details": null
+      },
+      "finish_reason": "stop",
+      "message": {
+        "role": "assistant",
+        "content": "```python\ndef longest_run(values):\n    if not values:\n        return 0\n    max_run = 1\n    current_run = 1\n    for i in range(1, len(values)):\n        if values[i] == values[i-1]:\n            current_run += 1\n        else:\n            current_run = 1\n        if current_run > max_run:\n            max_run = current_run\n    return max_run\n```",
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": "We need to write a Python function `longest_run(values)` that returns the length of the longest consecutive run of equal values. The user wants only a fenced Python code block. So we'll output a code block with the function definition.\n\nWe need to handle edge cases: empty list? Probably return 0. The function should iterate through the list, tracking current run length and max run length. If values is empty, return 0. If not, initialize max_run = 1, current_run = 1. Loop from index 1 to end, if values[i] == values[i-1], current_run += 1, else current_run = 1. Update max_run = max(max_run, current_run). Return max_run.\n\nWe'll write the code in a fenced block."
+      },
+      "id": "chatcmpl-8d3f7aa3801304d1"
+    },
+    {
+      "case": "json",
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return only valid JSON with keys prime_factors and is_square for the integer 756."
+          }
+        ],
+        "temperature": 0,
+        "seed": 1234,
+        "max_tokens": 256,
+        "stream": false,
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "elapsed_s": 6.091131089953706,
+      "usage": {
+        "prompt_tokens": 30,
+        "total_tokens": 286,
+        "completion_tokens": 256,
+        "prompt_tokens_details": null
+      },
+      "finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": "1.  **Analyze the Request:**\n    *   Input: Integer 756\n    *   Output: Valid JSON only.\n    *   Keys required: `prime_factors` (list of prime factors) and `is_square` (boolean indicating if the number is a perfect square).\n\n2.  **Process the Input (756):**\n    *   Prime factorization of 756:\n        *   756 / 2 = 378\n        *   378 / 2 = 189\n        *   189 / 3 = 63\n        *   63 / 3 = 21\n        *   21 / 3 = 7\n        *   7 / 7 = 1\n        *   Prime factors: [2, 2, 3, 3, 3, 7] (or [2, 3, 7] with multiplicities, but usually a list of all prime factors is expected, or a list of unique primes. Let's provide the full list of prime factors: [2, 2, 3, 3, 3, 7]).\n    *   Is 756 a perfect square?"
+      },
+      "id": "chatcmpl-9589075665158bb2"
+    },
+    {
+      "case": "html",
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return one self-contained HTML <button> element labeled Save with an accessible name and inline styles. Return only HTML."
+          }
+        ],
+        "temperature": 0,
+        "seed": 1234,
+        "max_tokens": 256,
+        "stream": false,
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "elapsed_s": 6.092826292850077,
+      "usage": {
+        "prompt_tokens": 35,
+        "total_tokens": 291,
+        "completion_tokens": 256,
+        "prompt_tokens_details": null
+      },
+      "finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": "1.  **Analyze the Request:**\n    *   Element: `<button>`\n    *   Label: \"Save\"\n    *   Requirement 1: Accessible name (can be the text content itself, or `aria-label`).\n    *   Requirement 2: Inline styles.\n    *   Requirement 3: Self-contained HTML.\n    *   Requirement 4: Return *only* HTML.\n\n2.  **Drafting the HTML:**\n    *   Basic button: `<button>Save</button>`\n    *   Accessible name: The text \"Save\" provides an accessible name by default. Adding `aria-label=\"Save\"` is redundant but explicitly satisfies \"accessible name\" if interpreted strictly, though standard text is best practice. I'll just use the text \"Save\" as it inherently provides the accessible name, but maybe add `type=\"button\"` for good measure.\n    *   Inline styles: `style=\"background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;\"`\n\n3.  **Refining:**\n    ```html\n    <button type=\"button\" aria-label=\""
+      },
+      "id": "chatcmpl-a0dade733984cfac"
+    }
+  ]
+}

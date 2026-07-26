@@ -1,0 +1,53 @@
+{
+  "content_manifest": [
+    {
+      "text": "Read the following four images in encounter order.",
+      "type": "text"
+    },
+    {
+      "bytes": 12211,
+      "card": "A",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/A-alpha17-red-triangle.png",
+      "sha256": "f67581c356212df9072e20112924c1be4c3082d0d065fd97888ac6f802671106",
+      "type": "image"
+    },
+    {
+      "bytes": 15468,
+      "card": "B",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/B-beta42-blue-circles.png",
+      "sha256": "960130426936ac988ad09b5893e2148f9540a121ef4f9ee22a2e85dc1ae67c6b",
+      "type": "image"
+    },
+    {
+      "bytes": 16138,
+      "card": "C",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/C-gamma73-green-squares.png",
+      "sha256": "1968620033c6c13b9939f300ada75c6c8cd43eb2908830d1ec679fc64e313a66",
+      "type": "image"
+    },
+    {
+      "bytes": 16631,
+      "card": "D",
+      "path": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-images/D-delta98-yellow-stars.png",
+      "sha256": "e6802fb0cc3cd89b285033c6be4f78a5e61d8397445d3fa48258ad5b0fdcae46",
+      "type": "image"
+    },
+    {
+      "text": "Return compact JSON only: {\"order\":[\"title 1\",\"title 2\",\"title 3\",\"title 4\"]}. Copy only each large first-line title in encounter order, not its subtitle.",
+      "type": "text"
+    }
+  ],
+  "expected": {
+    "order": [
+      "ALPHA 17",
+      "BETA 42",
+      "GAMMA 73",
+      "DELTA 98"
+    ]
+  },
+  "max_tokens": 512,
+  "model": "GLM-5.2-Vision",
+  "response_format": {
+    "type": "json_object"
+  }
+}

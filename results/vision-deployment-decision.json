@@ -1,0 +1,75 @@
+{
+  "schema": "glm52-vision-deployment-decision-v1",
+  "decision": "retain_canary_do_not_replace_production",
+  "candidate": {
+    "name": "V2_trellis_mtp3",
+    "checkpoint": "/mnt/2king/models/GLM-5.2-Vision-EXL3-TR3-3.0bpw-TRELLIS-MTP78-f6eab611-a72f70b5-r2",
+    "runtime_image": "local/glm52-exl3-rc2-quality-runtime:20260725-v7-glm5v",
+    "mtp_tokens": 3,
+    "vision_tower_and_projector_dtype": "bfloat16",
+    "role": "retained_research_canary"
+  },
+  "passed_gates": {
+    "immutable_grafts_and_asset_hashes": true,
+    "no_mtp_model_load": true,
+    "mtp_draft_load_without_second_vlm_or_vision_tower": true,
+    "single_image": true,
+    "two_images_forward_order": true,
+    "four_images_forward_order": true,
+    "two_images_interleaved_with_text_forward_order": true,
+    "two_images_interleaved_with_text_reverse_order": true,
+    "explicit_interleaved_binding_result": {
+      "forward": ["ALPHA 17", "BETA 42"],
+      "reverse": ["BETA 42", "ALPHA 17"],
+      "confusion_observed": false
+    },
+    "semantic_equivalence_across_v0_v0g_v1_v2": true,
+    "trellis_acceptance_regression": false,
+    "matched_vision_acceptance_gain_percentage_points": 4.601689901145445,
+    "matched_text_acceptance_gain_percentage_points": 1.5358515493634317
+  },
+  "failed_gates": {
+    "unanchored_adjacent_two_image_reverse_order": {
+      "expected": ["BETA 42", "ALPHA 17"],
+      "observed": ["ALPHA 17", "BETA 42"],
+      "present_in_all_mtp_and_no_mtp_modes": true
+    },
+    "strict_200k_vision_capacity": {
+      "prompt_tokens": 205818,
+      "http_status": 200,
+      "finish_reason": "length",
+      "correct_answer": false
+    },
+    "long_context_stability": {
+      "reproduces_with_mtp_disabled": true,
+      "reproduces_with_text_only_input_through_glm5v_wrapper": true,
+      "exact_runtime_defect_isolated": false
+    },
+    "high_prefill_workspace_capacity": {
+      "max_num_batched_tokens": 16384,
+      "max_model_len": 262144,
+      "gpu_memory_utilization_094_start": false,
+      "gpu_memory_utilization_095_start": false,
+      "estimated_max_model_len_at_095": 71424
+    },
+    "guided_decoding_runtime_errors_observed": true
+  },
+  "capacity_with_mtp3": {
+    "kv_tokens": 306176,
+    "configured_max_model_len": 262144,
+    "single_request_fits": true,
+    "estimated_max_concurrency": 1.17,
+    "target_model_memory_gib_per_gpu": 82.91
+  },
+  "comparison": {
+    "canary_matrix": "results/vision-canary-comparison.json",
+    "acceptance_and_capacity": "results/vision-acceptance-capacity-decision.json"
+  },
+  "reopen_requirements": [
+    "Fix and identify the GLM5V target/runtime long-context failure, then pass the 200000-plus-token image probe.",
+    "Resolve reverse ordering for adjacent unanchored images or make text anchoring a documented enforced API contract.",
+    "Eliminate xgrammar FSM engine errors under strict JSON-schema decoding.",
+    "Rerun the raw-first six-case suite and matched V1/V2 acceptance controls."
+  ],
+  "production_action": "restore_existing_text_production_unchanged"
+}

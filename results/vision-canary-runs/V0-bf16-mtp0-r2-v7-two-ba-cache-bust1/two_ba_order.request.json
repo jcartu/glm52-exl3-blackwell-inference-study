@@ -1,0 +1,34 @@
+{
+  "content_manifest": [
+    {
+      "text": "Read the following two images in encounter order.",
+      "type": "text"
+    },
+    {
+      "bytes": 15476,
+      "card": "B",
+      "path": "results/vision-canary-images-cache-bust1/B-beta42-blue-circles.png",
+      "sha256": "5d5a02521e91869a9bcc53440abd0fa5b6c2b98caa5d979bb81b4810ed62546a",
+      "type": "image"
+    },
+    {
+      "bytes": 12220,
+      "card": "A",
+      "path": "results/vision-canary-images-cache-bust1/A-alpha17-red-triangle.png",
+      "sha256": "6e7ee9d3bd62a0beb845563e44176c6e56301ab9d775bdf0da9ef18c352a3202",
+      "type": "image"
+    },
+    {
+      "text": "Return compact JSON only: {\"order\":[\"first large title\",\"second large title\"]}. Copy only each large first-line title, not its subtitle.",
+      "type": "text"
+    }
+  ],
+  "expected": {
+    "order": [
+      "BETA 42",
+      "ALPHA 17"
+    ]
+  },
+  "max_tokens": 256,
+  "model": "GLM-5.2-Vision"
+}

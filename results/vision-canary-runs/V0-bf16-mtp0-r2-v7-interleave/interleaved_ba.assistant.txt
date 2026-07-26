@@ -1,0 +1,1 @@
+{"slot_a":"BETA 42","slot_b":"ALPHA 17"}

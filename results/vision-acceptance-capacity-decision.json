@@ -1,0 +1,82 @@
+{
+  "schema": "glm52-vision-acceptance-capacity-decision-v2",
+  "matched_acceptance": {
+    "vision_strict_six_case_suite": {
+      "V1_bf16_mtp3": {
+        "drafts": 191,
+        "draft_tokens": 546,
+        "accepted_tokens": 398,
+        "accepted_per_draft_token": 0.7289377289377289,
+        "accepted_tokens_per_draft": 2.0837696335078535,
+        "run_dir": "results/vision-canary-runs/V1-bf16-mtp3-r2-v7-strict"
+      },
+      "V2_trellis_mtp3": {
+        "drafts": 191,
+        "draft_tokens": 551,
+        "accepted_tokens": 427,
+        "accepted_per_draft_token": 0.7749546279491834,
+        "accepted_tokens_per_draft": 2.235602094240838,
+        "run_dir": "results/vision-canary-runs/V2-trellis-mtp3-r2-v7-strict"
+      },
+      "trellis_minus_bf16_percentage_points": 4.601689901145445
+    },
+    "matched_text_control": {
+      "V1_bf16_mtp3": {
+        "accepted_per_draft_token": 0.5932971014492754,
+        "accepted_tokens_per_draft": 1.7798913043478262,
+        "run_dir": "results/text-acceptance-runs/V1-bf16-mtp3-r2-v7-text"
+      },
+      "V2_trellis_mtp3": {
+        "accepted_per_draft_token": 0.6086556169429097,
+        "accepted_tokens_per_draft": 1.8259668508287292,
+        "run_dir": "results/text-acceptance-runs/V2-trellis-mtp3-r2-v7-text"
+      },
+      "trellis_minus_bf16_percentage_points": 1.5358515493634317
+    },
+    "vision_conditioned_acceptance_loss_observed": false,
+    "caveat": "Vision and text controls use different prompt and completion distributions; the conclusion is directional rather than a cross-workload performance estimate."
+  },
+  "capacity": {
+    "scheduler_profiles_tested": [
+      {"max_model_len": 262144, "max_num_batched_tokens": 4096, "gpu_memory_utilization": 0.94, "started": true},
+      {"max_model_len": 262144, "max_num_batched_tokens": 8192, "gpu_memory_utilization": 0.94, "started": true},
+      {"max_model_len": 262144, "max_num_batched_tokens": 16384, "gpu_memory_utilization": 0.94, "started": false, "reason": "negative available KV-cache memory"},
+      {"max_model_len": 262144, "max_num_batched_tokens": 16384, "gpu_memory_utilization": 0.95, "started": false, "reason": "71424-token estimated capacity is below configured max model length"},
+      {"max_model_len": 65536, "max_num_batched_tokens": 16384, "gpu_memory_utilization": 0.95, "started": true}
+    ],
+    "strict_json_probes": [
+      {"mode": "V2_trellis_mtp3", "prompt_tokens": 205818, "image_position": "tail", "pass": false},
+      {"mode": "V2_trellis_mtp3", "prompt_tokens": 32818, "image_position": "tail", "pass": false},
+      {"mode": "V2_trellis_mtp3", "prompt_tokens": 8818, "image_position": "tail", "pass": false},
+      {"mode": "V0G_trellis_mtp0", "prompt_tokens": 8818, "image_position": "tail", "pass": false},
+      {"mode": "V0G_trellis_mtp0", "prompt_tokens": 8819, "image_position": "head", "pass": false},
+      {"mode": "V0G_trellis_mtp0", "prompt_tokens": 4818, "image_position": "tail", "pass": false},
+      {"mode": "V0G_trellis_mtp0", "prompt_tokens": 4118, "image_position": "tail", "pass": false},
+      {"mode": "V0G_trellis_mtp0", "prompt_tokens": 3818, "image_position": "tail", "pass": true},
+      {"mode": "V0G_trellis_mtp0", "prompt_tokens": 2818, "image_position": "tail", "pass": true}
+    ],
+    "blinded_plain_output_probes": [
+      {"mode": "V0G_trellis_mtp0", "max_num_batched_tokens": 8192, "prompt_tokens": 4814, "finish_reason": "stop", "semantic_image_match": true, "exact_output_contract": false},
+      {"mode": "V0G_trellis_mtp0", "max_num_batched_tokens": 8192, "prompt_tokens": 8814, "finish_reason": "length", "semantic_image_match": false, "exact_output_contract": false},
+      {"mode": "V0G_trellis_mtp0", "max_num_batched_tokens": 16384, "prompt_tokens": 4814, "finish_reason": "length", "semantic_image_match": false, "exact_output_contract": false},
+      {"mode": "V0G_trellis_mtp0", "max_num_batched_tokens": 16384, "prompt_tokens": 8814, "finish_reason": "length", "semantic_image_match": false, "exact_output_contract": false}
+    ],
+    "short_single_image_control_at_16384_passed": true,
+    "text_only_control_above_4096_tokens_also_failed": true,
+    "mtp_disabled_failure_reproduced": true,
+    "200k_gate_pass": false,
+    "isolation": "The failure is not caused by the Trellis MTP78 overlay, speculative decoding, adjacent-image ordering, or image placement. It reproduces with MTP disabled and with a text-only request through the GLM5V wrapper. Larger prefill profiles change the failure surface and consume enough workspace to make 262144-token startup impossible; the exact target/runtime defect is not yet isolated."
+  },
+  "conditional_recalibration": {
+    "triggered": false,
+    "trigger_conditions": {
+      "trellis_semantic_regression": false,
+      "trellis_acceptance_regression": false,
+      "vision_conditioned_acceptance_loss": false
+    },
+    "representative_visual_layer_capture": "not_run_trigger_false",
+    "mixed_text_vision_calibration": "not_run_trigger_false",
+    "mixed_mtp78_overlay_encoding": "not_run_trigger_false",
+    "reason": "All MTP modes have identical vision semantics, Trellis improves matched acceptance, and the capacity failure reproduces with MTP disabled and with text-only input. Recalibrating MTP78 cannot address this target/runtime long-context failure."
+  }
+}

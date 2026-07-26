@@ -1,0 +1,2086 @@
+{
+  "prefix_caching": false,
+  "thinking_probe": {
+    "disabled": {
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply with exactly: READY"
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 128,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "elapsed_s": 0.3104412639513612,
+      "usage": {
+        "prompt_tokens": 11,
+        "total_tokens": 13,
+        "completion_tokens": 2,
+        "prompt_tokens_details": null
+      },
+      "message": {
+        "role": "assistant",
+        "content": "READY",
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": null
+      },
+      "finish_reason": "stop"
+    },
+    "high": {
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply with exactly: READY"
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 128,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": true,
+          "reasoning_effort": "high"
+        }
+      },
+      "elapsed_s": 1.2150480670388788,
+      "usage": {
+        "prompt_tokens": 17,
+        "total_tokens": 126,
+        "completion_tokens": 109,
+        "prompt_tokens_details": null
+      },
+      "message": {
+        "role": "assistant",
+        "content": "READY",
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": "1.  **Analyze the Request:**\n    *   Input: \"Reply with exactly: READY\"\n    *   Constraint: The output must be exactly the word \"READY\" (case-sensitive, no punctuation, no extra words).\n\n2.  **Formulate the Output:**\n    *   Output: READY\n\n3.  **Verify Constraints:**\n    *   Is it exactly \"READY\"? Yes.\n    *   Are there any extra spaces or characters? No.\n\n4.  **Finalize Output:** READY"
+      },
+      "finish_reason": "stop"
+    }
+  },
+  "cases": [
+    {
+      "name": "completion_token_ids",
+      "status": "pass",
+      "detail": {
+        "usage": {
+          "prompt_tokens": 1024,
+          "total_tokens": 1040,
+          "completion_tokens": 16,
+          "prompt_tokens_details": null
+        },
+        "nonempty_text": true
+      },
+      "elapsed_s": 0.7979432959109545,
+      "payload": {
+        "model": "GLM-5.2",
+        "prompt": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "temperature": 0,
+        "max_tokens": 16,
+        "stream": false
+      },
+      "response": {
+        "id": "cmpl-90e6997bb87846dd",
+        "object": "text_completion",
+        "created": 1784994265,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "text": "����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������Comments##  ﻿\n\n##import { \n  import { ref } from 'vue",
+            "logprobs": null,
+            "finish_reason": "length",
+            "stop_reason": null,
+            "token_ids": null,
+            "prompt_logprobs": null,
+            "prompt_token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 1024,
+          "total_tokens": 1040,
+          "completion_tokens": 16,
+          "prompt_tokens_details": null
+        },
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "chat_no_tools",
+      "status": "pass",
+      "detail": {
+        "content": "NO_TOOLS_OK",
+        "reasoning": null
+      },
+      "elapsed_s": 0.25173626001924276,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Be concise."
+          },
+          {
+            "role": "user",
+            "content": "Reply exactly NO_TOOLS_OK"
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 64,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-80ca8ddf6e68c024",
+        "object": "chat.completion",
+        "created": 1784994266,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "NO_TOOLS_OK",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 16,
+          "total_tokens": 21,
+          "completion_tokens": 5,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "forced_deterministic_tool",
+      "status": "pass",
+      "detail": {
+        "parsed_calls": [
+          [
+            "add_numbers",
+            {
+              "a": 17,
+              "b": 25
+            }
+          ]
+        ],
+        "raw_message": {
+          "role": "assistant",
+          "content": "",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-b9b7108a83efcfdc",
+              "type": "function",
+              "function": {
+                "name": "add_numbers",
+                "arguments": "{\"a\": 17, \"b\": 25}"
+              }
+            }
+          ],
+          "reasoning": null
+        }
+      },
+      "elapsed_s": 1.050952065968886,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Add 17 and 25 using the provided function."
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "add_numbers",
+              "description": "Add two integers.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer"
+                  },
+                  "b": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "a",
+                  "b"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "lookup_issue",
+              "description": "Look up an issue by numeric identifier.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "issue_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "issue_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "tool_choice": {
+          "type": "function",
+          "function": {
+            "name": "add_numbers"
+          }
+        },
+        "parallel_tool_calls": false,
+        "temperature": 0,
+        "max_tokens": 256,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-8c4f2901029cdc7d",
+        "object": "chat.completion",
+        "created": 1784994266,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-b9b7108a83efcfdc",
+                  "type": "function",
+                  "function": {
+                    "name": "add_numbers",
+                    "arguments": "{\"a\": 17, \"b\": 25}"
+                  }
+                }
+              ],
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 229,
+          "total_tokens": 246,
+          "completion_tokens": 17,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "omp_full_payload",
+      "status": "pass",
+      "detail": {
+        "parsed_calls": [
+          [
+            "lookup_issue",
+            {
+              "issue_id": 314
+            }
+          ]
+        ],
+        "raw_message": {
+          "role": "assistant",
+          "content": null,
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-84fddcabfffa8268",
+              "type": "function",
+              "function": {
+                "name": "lookup_issue",
+                "arguments": "{\"issue_id\": 314}"
+              }
+            }
+          ],
+          "reasoning": "The user wants me to look up issue 314 using the lookup_issue tool."
+        }
+      },
+      "elapsed_s": 0.6649387669749558,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are OMP, a coding assistant. Use a provided tool when it is the only way to satisfy the request. Emit one precise call."
+          },
+          {
+            "role": "user",
+            "content": "Look up issue 314 using the issue tool; do not answer from memory."
+          }
+        ],
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "add_numbers",
+              "description": "Add two integers.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "a": {
+                    "type": "integer"
+                  },
+                  "b": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "a",
+                  "b"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "lookup_issue",
+              "description": "Look up an issue by numeric identifier.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "issue_id": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "issue_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "tool_choice": "auto",
+        "parallel_tool_calls": false,
+        "temperature": 0,
+        "top_p": 1,
+        "seed": 1234,
+        "max_tokens": 512,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": true,
+          "reasoning_effort": "high"
+        }
+      },
+      "response": {
+        "id": "chatcmpl-97f6bca0934be4f9",
+        "object": "chat.completion",
+        "created": 1784994267,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-84fddcabfffa8268",
+                  "type": "function",
+                  "function": {
+                    "name": "lookup_issue",
+                    "arguments": "{\"issue_id\": 314}"
+                  }
+                }
+              ],
+              "reasoning": "The user wants me to look up issue 314 using the lookup_issue tool."
+            },
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "stop_reason": 154829,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 271,
+          "total_tokens": 302,
+          "completion_tokens": 31,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "malformed_tool_recovery",
+      "status": "pass",
+      "detail": {
+        "malformed_history_http_status": 400,
+        "malformed_history_error": "Expecting value: line 1 column 13 (char 12)",
+        "server_failed_closed": true,
+        "corrected_retry": {
+          "name": "corrected_tool_retry",
+          "status": "pass",
+          "detail": {
+            "parsed_calls": [
+              [
+                "add_numbers",
+                {
+                  "a": 17,
+                  "b": 25
+                }
+              ]
+            ],
+            "raw_message": {
+              "role": "assistant",
+              "content": "",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": [
+                {
+                  "id": "chatcmpl-tool-8d6af730c04394cb",
+                  "type": "function",
+                  "function": {
+                    "name": "add_numbers",
+                    "arguments": "{\"a\": 17, \"b\": 25}"
+                  }
+                }
+              ],
+              "reasoning": null
+            }
+          },
+          "elapsed_s": 0.5866312158759683,
+          "payload": {
+            "model": "GLM-5.2",
+            "messages": [
+              {
+                "role": "system",
+                "content": "Retry failed tool calls with corrected strict JSON arguments."
+              },
+              {
+                "role": "user",
+                "content": "Add 17 and 25 using add_numbers."
+              },
+              {
+                "role": "assistant",
+                "content": "",
+                "tool_calls": [
+                  {
+                    "id": "call_bad",
+                    "type": "function",
+                    "function": {
+                      "name": "add_numbers",
+                      "arguments": "{\"a\":17,\"b\":25}"
+                    }
+                  }
+                ]
+              },
+              {
+                "role": "tool",
+                "tool_call_id": "call_bad",
+                "content": "Tool error: simulated argument validation failure. Retry with the same valid values."
+              },
+              {
+                "role": "user",
+                "content": "Retry the same call now."
+              }
+            ],
+            "tools": [
+              {
+                "type": "function",
+                "function": {
+                  "name": "add_numbers",
+                  "description": "Add two integers.",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "a": {
+                        "type": "integer"
+                      },
+                      "b": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "a",
+                      "b"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              {
+                "type": "function",
+                "function": {
+                  "name": "lookup_issue",
+                  "description": "Look up an issue by numeric identifier.",
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "issue_id": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "issue_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            ],
+            "tool_choice": {
+              "type": "function",
+              "function": {
+                "name": "add_numbers"
+              }
+            },
+            "parallel_tool_calls": false,
+            "temperature": 0,
+            "max_tokens": 256,
+            "stream": false,
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "response": {
+            "id": "chatcmpl-95efb4938934dee5",
+            "object": "chat.completion",
+            "created": 1784994304,
+            "model": "GLM-5.2",
+            "choices": [
+              {
+                "index": 0,
+                "message": {
+                  "role": "assistant",
+                  "content": "",
+                  "refusal": null,
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "chatcmpl-tool-8d6af730c04394cb",
+                      "type": "function",
+                      "function": {
+                        "name": "add_numbers",
+                        "arguments": "{\"a\": 17, \"b\": 25}"
+                      }
+                    }
+                  ],
+                  "reasoning": null
+                },
+                "logprobs": null,
+                "finish_reason": "stop",
+                "stop_reason": null,
+                "token_ids": null,
+                "routed_experts": null
+              }
+            ],
+            "service_tier": null,
+            "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+            "usage": {
+              "prompt_tokens": 283,
+              "total_tokens": 300,
+              "completion_tokens": 17,
+              "prompt_tokens_details": null
+            },
+            "prompt_logprobs": null,
+            "prompt_token_ids": null,
+            "prompt_text": null,
+            "kv_transfer_params": null,
+            "ec_transfer_params": null,
+            "metrics": null
+          }
+        }
+      },
+      "payload": {
+        "malformed_attempt": {
+          "model": "GLM-5.2",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Retry failed tool calls with corrected strict JSON arguments."
+            },
+            {
+              "role": "user",
+              "content": "Add 17 and 25 using add_numbers."
+            },
+            {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_bad",
+                  "type": "function",
+                  "function": {
+                    "name": "add_numbers",
+                    "arguments": "{\"a\":17,\"b\":"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "tool",
+              "tool_call_id": "call_bad",
+              "name": "add_numbers",
+              "content": "Tool error: arguments were malformed JSON. Retry with valid JSON."
+            },
+            {
+              "role": "user",
+              "content": "Retry the same call now."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "add_numbers",
+                "description": "Add two integers.",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "a": {
+                      "type": "integer"
+                    },
+                    "b": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "a",
+                    "b"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "lookup_issue",
+                "description": "Look up an issue by numeric identifier.",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "issue_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "issue_id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          ],
+          "tool_choice": {
+            "type": "function",
+            "function": {
+              "name": "add_numbers"
+            }
+          },
+          "parallel_tool_calls": false,
+          "temperature": 0,
+          "max_tokens": 256,
+          "stream": false,
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        },
+        "corrected_retry": {
+          "model": "GLM-5.2",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Retry failed tool calls with corrected strict JSON arguments."
+            },
+            {
+              "role": "user",
+              "content": "Add 17 and 25 using add_numbers."
+            },
+            {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "id": "call_bad",
+                  "type": "function",
+                  "function": {
+                    "name": "add_numbers",
+                    "arguments": "{\"a\":17,\"b\":25}"
+                  }
+                }
+              ]
+            },
+            {
+              "role": "tool",
+              "tool_call_id": "call_bad",
+              "content": "Tool error: simulated argument validation failure. Retry with the same valid values."
+            },
+            {
+              "role": "user",
+              "content": "Retry the same call now."
+            }
+          ],
+          "tools": [
+            {
+              "type": "function",
+              "function": {
+                "name": "add_numbers",
+                "description": "Add two integers.",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "a": {
+                      "type": "integer"
+                    },
+                    "b": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "a",
+                    "b"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "lookup_issue",
+                "description": "Look up an issue by numeric identifier.",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "issue_id": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "issue_id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          ],
+          "tool_choice": {
+            "type": "function",
+            "function": {
+              "name": "add_numbers"
+            }
+          },
+          "parallel_tool_calls": false,
+          "temperature": 0,
+          "max_tokens": 256,
+          "stream": false,
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    {
+      "name": "output_python",
+      "status": "pass",
+      "detail": {
+        "content": "```python\ndef square_even(values):\n    \"\"\"\n    Returns a list of squares of only the even integers from the input list.\n    \n    Args:\n        values (list): A list of elements, potentially of mixed types.\n        \n    Returns:\n        list: A list containing the squares of even integers found in the input.\n    \"\"\"\n    return [x ** 2 for x in values if isinstance(x, int) and not isinstance(x, bool) and x % 2 == 0]\n```",
+        "reasoning": null
+      },
+      "elapsed_s": 1.1359393110033125,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Write a Python function square_even(values) returning squares of only even integers. Return only one fenced Python code block."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 512,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-917f4602857e81fa",
+        "object": "chat.completion",
+        "created": 1784994268,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```python\ndef square_even(values):\n    \"\"\"\n    Returns a list of squares of only the even integers from the input list.\n    \n    Args:\n        values (list): A list of elements, potentially of mixed types.\n        \n    Returns:\n        list: A list containing the squares of even integers found in the input.\n    \"\"\"\n    return [x ** 2 for x in values if isinstance(x, int) and not isinstance(x, bool) and x % 2 == 0]\n```",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 29,
+          "total_tokens": 131,
+          "completion_tokens": 102,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "output_json",
+      "status": "pass",
+      "detail": {
+        "content": "{\"status\":\"ok\",\"items\":[1,2,3]}",
+        "reasoning": null
+      },
+      "elapsed_s": 0.3771383089479059,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return only valid JSON exactly equivalent to {\"status\":\"ok\",\"items\":[1,2,3]}."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 512,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-bfe8e89034f83069",
+        "object": "chat.completion",
+        "created": 1784994269,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"status\":\"ok\",\"items\":[1,2,3]}",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 27,
+          "total_tokens": 41,
+          "completion_tokens": 14,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    },
+    {
+      "name": "output_html",
+      "status": "pass",
+      "detail": {
+        "content": "<button aria-label=\"Save\">Save</button>",
+        "reasoning": null
+      },
+      "elapsed_s": 0.37823051400482655,
+      "payload": {
+        "model": "GLM-5.2",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return only a single HTML button element with visible label Save and aria-label=\"Save\"."
+          }
+        ],
+        "temperature": 0,
+        "max_tokens": 512,
+        "stream": false,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response": {
+        "id": "chatcmpl-9faa1bebb454408a",
+        "object": "chat.completion",
+        "created": 1784994270,
+        "model": "GLM-5.2",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "<button aria-label=\"Save\">Save</button>",
+              "refusal": null,
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "reasoning": null
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": 154827,
+            "token_ids": null,
+            "routed_experts": null
+          }
+        ],
+        "service_tier": null,
+        "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.rc2.exl3.quality.vllm7e3bee1.si6234185.fi801d57a.cu132.20260724-tp4-8152b5ec",
+        "usage": {
+          "prompt_tokens": 23,
+          "total_tokens": 34,
+          "completion_tokens": 11,
+          "prompt_tokens_details": null
+        },
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "prompt_text": null,
+        "kv_transfer_params": null,
+        "ec_transfer_params": null,
+        "metrics": null
+      }
+    }
+  ],
+  "passed": 8,
+  "total": 8
+}

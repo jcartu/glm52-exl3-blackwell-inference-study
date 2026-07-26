@@ -1,0 +1,201 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 16.702061891555786,
+  "label": "V1-bf16-mtp3-r2-v7-structured",
+  "metrics_after": {
+    "bytes": 60849,
+    "elapsed_s": 0.0055915359407663345,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 59297,
+    "elapsed_s": 0.012790350010618567,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V1-bf16-mtp3-r2-v7-structured",
+  "pass": false,
+  "passed": 5,
+  "results": [
+    {
+      "assistant": "{\"slots\":[{\"slot\":\"image_1\",\"title\":\"ALPHA 17\",\"background\":\"red\",\"shape\":\"triangle\",\"count\":1}]}",
+      "case": "single_a",
+      "elapsed_s": 8.15820866310969,
+      "expected": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V1-bf16-mtp3-r2-v7-structured/single_a.response.raw.json",
+      "usage": {
+        "completion_tokens": 78,
+        "prompt_tokens": 883,
+        "prompt_tokens_details": null,
+        "total_tokens": 961
+      }
+    },
+    {
+      "assistant": "{\"order\":[\"ALPHA 17\",\"BETA 42\"]}",
+      "case": "two_ab_order",
+      "elapsed_s": 1.6926674051210284,
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V1-bf16-mtp3-r2-v7-structured/two_ab_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 86,
+        "prompt_tokens": 1622,
+        "prompt_tokens_details": null,
+        "total_tokens": 1708
+      }
+    },
+    {
+      "assistant": "{\"order\":[\"ALPHA 17\",\"BETA 42\"]}",
+      "case": "two_ba_order",
+      "elapsed_s": 1.471228312002495,
+      "expected": {
+        "order": [
+          "BETA 42",
+          "ALPHA 17"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "$.order[0]: expected 'beta 42', got 'alpha 17'",
+        "$.order[1]: expected 'alpha 17', got 'beta 42'"
+      ],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V1-bf16-mtp3-r2-v7-structured/two_ba_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 82,
+        "prompt_tokens": 1622,
+        "prompt_tokens_details": null,
+        "total_tokens": 1704
+      }
+    },
+    {
+      "assistant": "{\"order\":[\"ALPHA 17\",\"BETA 42\",\"GAMMA 73\",\"DELTA 98\"]}",
+      "case": "four_abcd_order",
+      "elapsed_s": 2.0918209929950535,
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42",
+          "GAMMA 73",
+          "DELTA 98"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42",
+          "GAMMA 73",
+          "DELTA 98"
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V1-bf16-mtp3-r2-v7-structured/four_abcd_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 75,
+        "prompt_tokens": 3205,
+        "prompt_tokens_details": null,
+        "total_tokens": 3280
+      }
+    },
+    {
+      "assistant": "{\"slot_a\":\"ALPHA 17\",\"slot_b\":\"BETA 42\"}",
+      "case": "interleaved_ab",
+      "elapsed_s": 1.63065529987216,
+      "expected": {
+        "slot_a": "ALPHA 17",
+        "slot_b": "BETA 42"
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slot_a": "ALPHA 17",
+        "slot_b": "BETA 42"
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V1-bf16-mtp3-r2-v7-structured/interleaved_ab.response.raw.json",
+      "usage": {
+        "completion_tokens": 94,
+        "prompt_tokens": 1658,
+        "prompt_tokens_details": null,
+        "total_tokens": 1752
+      }
+    },
+    {
+      "assistant": "{\"slot_a\":\"BETA 42\",\"slot_b\":\"ALPHA 17\"}",
+      "case": "interleaved_ba",
+      "elapsed_s": 1.6306850370019674,
+      "expected": {
+        "slot_a": "BETA 42",
+        "slot_b": "ALPHA 17"
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slot_a": "BETA 42",
+        "slot_b": "ALPHA 17"
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V1-bf16-mtp3-r2-v7-structured/interleaved_ba.response.raw.json",
+      "usage": {
+        "completion_tokens": 96,
+        "prompt_tokens": 1659,
+        "prompt_tokens_details": null,
+        "total_tokens": 1755
+      }
+    }
+  ],
+  "schema": "glm52-vision-canary-v2",
+  "started_unix": 1785011768.9517086,
+  "total": 6
+}

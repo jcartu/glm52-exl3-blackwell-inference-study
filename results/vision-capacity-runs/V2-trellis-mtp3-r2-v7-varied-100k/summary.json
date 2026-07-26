@@ -1,0 +1,22 @@
+{
+  "assistant_content": "",
+  "assistant_reasoning": " Record the,  the,,,,, the the,,,, the, the, the, the7,7 the, ,,7 the the, the,,,, the,,, ,  the,,,,,  the7,, ,,, the,",
+  "elapsed_s": 69.46697166399099,
+  "filler_token_count": 100218,
+  "finish_reason": "length",
+  "http_status": 200,
+  "label": "V2-trellis-mtp3-r2-v7-varied-100k",
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "pass": false,
+  "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-capacity-runs/V2-trellis-mtp3-r2-v7-varied-100k/response.raw.json",
+  "schema": "glm52-vision-capacity-probe-v1",
+  "usage": {
+    "completion_tokens": 64,
+    "prompt_tokens": 101031,
+    "prompt_tokens_details": null,
+    "total_tokens": 101095
+  }
+}

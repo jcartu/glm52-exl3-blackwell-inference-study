@@ -1,0 +1,52 @@
+{
+  "before": {
+    "captured_at": 1784992405.6082723,
+    "lines": [
+      "vllm:spec_decode_num_drafts_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:spec_decode_num_drafts_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784992378561069e+09",
+      "vllm:spec_decode_num_draft_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:spec_decode_num_draft_tokens_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849923785612395e+09",
+      "vllm:spec_decode_num_accepted_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:spec_decode_num_accepted_tokens_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849923785612795e+09",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_total{engine=\"0\",model_name=\"GLM-5.2\",position=\"0\"} 0.0",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_total{engine=\"0\",model_name=\"GLM-5.2\",position=\"1\"} 0.0",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_total{engine=\"0\",model_name=\"GLM-5.2\",position=\"2\"} 0.0",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_created{engine=\"0\",model_name=\"GLM-5.2\",position=\"0\"} 1.78499237856147e+09",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_created{engine=\"0\",model_name=\"GLM-5.2\",position=\"1\"} 1.7849923785614836e+09",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_created{engine=\"0\",model_name=\"GLM-5.2\",position=\"2\"} 1.7849923785614922e+09",
+      "vllm:num_requests_running{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prompt_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:generation_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"stop\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"length\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"abort\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"error\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"repetition\",model_name=\"GLM-5.2\"} 0.0"
+    ]
+  },
+  "after": {
+    "captured_at": 1784992968.5918906,
+    "lines": [
+      "vllm:spec_decode_num_drafts_total{engine=\"0\",model_name=\"GLM-5.2\"} 5735.0",
+      "vllm:spec_decode_num_drafts_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784992378561069e+09",
+      "vllm:spec_decode_num_draft_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 17205.0",
+      "vllm:spec_decode_num_draft_tokens_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849923785612395e+09",
+      "vllm:spec_decode_num_accepted_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 10015.0",
+      "vllm:spec_decode_num_accepted_tokens_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849923785612795e+09",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_total{engine=\"0\",model_name=\"GLM-5.2\",position=\"0\"} 4496.0",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_total{engine=\"0\",model_name=\"GLM-5.2\",position=\"1\"} 3220.0",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_total{engine=\"0\",model_name=\"GLM-5.2\",position=\"2\"} 2299.0",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_created{engine=\"0\",model_name=\"GLM-5.2\",position=\"0\"} 1.78499237856147e+09",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_created{engine=\"0\",model_name=\"GLM-5.2\",position=\"1\"} 1.7849923785614836e+09",
+      "vllm:spec_decode_num_accepted_tokens_per_pos_created{engine=\"0\",model_name=\"GLM-5.2\",position=\"2\"} 1.7849923785614922e+09",
+      "vllm:num_requests_running{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:prompt_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 3.024923e+06",
+      "vllm:generation_tokens_total{engine=\"0\",model_name=\"GLM-5.2\"} 15783.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"stop\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"length\",model_name=\"GLM-5.2\"} 34.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"abort\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"error\",model_name=\"GLM-5.2\"} 0.0",
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"repetition\",model_name=\"GLM-5.2\"} 0.0"
+    ]
+  }
+}

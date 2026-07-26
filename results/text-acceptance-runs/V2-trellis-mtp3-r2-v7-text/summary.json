@@ -1,0 +1,69 @@
+{
+  "acceptance": {
+    "accepted_per_draft_token": 0.6086556169429097,
+    "accepted_tokens_per_draft": 1.8259668508287292,
+    "draft_tokens_per_draft": 3.0
+  },
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 17.18121099472046,
+  "label": "V2-trellis-mtp3-r2-v7-text",
+  "metrics_after": {
+    "spec_decode_num_accepted_tokens_per_pos_total:0": 472.0,
+    "spec_decode_num_accepted_tokens_per_pos_total:1": 361.0,
+    "spec_decode_num_accepted_tokens_per_pos_total:2": 255.0,
+    "spec_decode_num_accepted_tokens_total": 1088.0,
+    "spec_decode_num_draft_tokens_total": 1637.0,
+    "spec_decode_num_drafts_total": 553.0
+  },
+  "metrics_before": {
+    "spec_decode_num_accepted_tokens_per_pos_total:0": 170.0,
+    "spec_decode_num_accepted_tokens_per_pos_total:1": 146.0,
+    "spec_decode_num_accepted_tokens_per_pos_total:2": 111.0,
+    "spec_decode_num_accepted_tokens_total": 427.0,
+    "spec_decode_num_draft_tokens_total": 551.0,
+    "spec_decode_num_drafts_total": 191.0
+  },
+  "metrics_delta": {
+    "spec_decode_num_accepted_tokens_per_pos_total:0": 302.0,
+    "spec_decode_num_accepted_tokens_per_pos_total:1": 215.0,
+    "spec_decode_num_accepted_tokens_per_pos_total:2": 144.0,
+    "spec_decode_num_accepted_tokens_total": 661.0,
+    "spec_decode_num_draft_tokens_total": 1086.0,
+    "spec_decode_num_drafts_total": 362.0
+  },
+  "metrics_status": {
+    "after": 200,
+    "before": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "pass": true,
+  "results": [
+    {
+      "elapsed_s": 10.779332475969568,
+      "finish_reason": "length",
+      "http_status": 200,
+      "index": 1,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/text-acceptance-runs/V2-trellis-mtp3-r2-v7-text/response-1.raw.json",
+      "usage": {
+        "completion_tokens": 512,
+        "prompt_tokens": 68,
+        "prompt_tokens_details": null,
+        "total_tokens": 580
+      }
+    },
+    {
+      "elapsed_s": 6.380615629022941,
+      "finish_reason": "length",
+      "http_status": 200,
+      "index": 2,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/text-acceptance-runs/V2-trellis-mtp3-r2-v7-text/response-2.raw.json",
+      "usage": {
+        "completion_tokens": 512,
+        "prompt_tokens": 68,
+        "prompt_tokens_details": null,
+        "total_tokens": 580
+      }
+    }
+  ],
+  "schema": "glm52-text-acceptance-probe-v1"
+}

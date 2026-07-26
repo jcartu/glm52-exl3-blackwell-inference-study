@@ -1,0 +1,51 @@
+{
+  "prefix_caching": false,
+  "before_metrics": [
+    "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.78499516403015e+09",
+    "vllm:prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301614e+09",
+    "vllm:external_prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:external_prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301745e+09",
+    "vllm:external_prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:external_prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301855e+09",
+    "vllm:prompt_tokens_cached_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:prompt_tokens_cached_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995164419838e+09"
+  ],
+  "rows": [
+    {
+      "repeat": 0,
+      "elapsed_s": 30.434099569916725,
+      "usage": {
+        "prompt_tokens": 65536,
+        "total_tokens": 65544,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "finish_reason": "length"
+    },
+    {
+      "repeat": 1,
+      "elapsed_s": 30.349765985971317,
+      "usage": {
+        "prompt_tokens": 65536,
+        "total_tokens": 65544,
+        "completion_tokens": 8,
+        "prompt_tokens_details": null
+      },
+      "finish_reason": "length"
+    }
+  ],
+  "after_metrics": [
+    "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.78499516403015e+09",
+    "vllm:prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301614e+09",
+    "vllm:external_prefix_cache_queries_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:external_prefix_cache_queries_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301745e+09",
+    "vllm:external_prefix_cache_hits_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:external_prefix_cache_hits_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.7849951640301855e+09",
+    "vllm:prompt_tokens_cached_total{engine=\"0\",model_name=\"GLM-5.2\"} 0.0",
+    "vllm:prompt_tokens_cached_created{engine=\"0\",model_name=\"GLM-5.2\"} 1.784995164419838e+09"
+  ]
+}

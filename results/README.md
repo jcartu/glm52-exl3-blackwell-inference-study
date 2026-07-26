@@ -9,7 +9,7 @@ Measurements were generated with [Local Inference Lab's `llm-inference-bench`](h
 - `raw/` contains original benchmark and direct-smoke outputs, including the RC2+EXL3 profile controls.
 - `followup/` contains the 16 July 23 follow-up artifacts formerly published under promotional names; files were renamed for presentation, while harness payloads remain unchanged except the direct-observation record's neutral study label.
 - `issue34/` contains 13 benchmark outputs plus one direct-observation record from the native RC2 comparison.
-- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, `rc2-exl3-manifest.json`, `optimization-manifest.json`, and `hybrid-v20-manifest.json` record artifact provenance, sizes, and SHA-256 values.
+- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, `rc2-exl3-manifest.json`, `optimization-manifest.json`, `hybrid-v20-manifest.json`, and `campaign-20260726-manifest.json` record artifact provenance, sizes, and SHA-256 values.
 - `SHA256SUMS` covers the publication's documentation, configurations, patches, helper scripts, manifests, and evidence.
 - Failed candidates are retained when they establish a decision boundary.
 - The invalid attempted `context900k` artifact is excluded because the harness actually clamped that invocation to 128K; it is not a 900K measurement.
@@ -19,6 +19,34 @@ Verify from the repository root:
 ```bash
 sha256sum --check results/SHA256SUMS
 ```
+
+## 26 July campaign archive
+
+### EXL3 v26 temperature-one profiles
+
+| Profile | Inference matrix | LAVD | Estonia |
+| --- | --- | --- | --- |
+| DCP4 / batch 5,120 / max length 524,288 | [`8K–128K prefill and 0K–128K decode`](v26-tuning/winning-dcp4-b5120-temp1-inference.json) | [`C5: 5 exact / 5 near / 0 fail`](v26-tuning/winning-dcp4-b5120-temp1-lavd10.json) | [`C5: 10/10`](v26-tuning/winning-dcp4-b5120-temp1-estonia10.json) |
+| DCP2 / batch 4,096 / max length 300,000 | [`8K–128K prefill and 0K–128K decode`](v26-tuning/winning-dcp2-b4096-temp1-inference.json) | [`C5: 6 / 3 / 1`](v26-tuning/winning-dcp2-b4096-temp1-lavd10.json) | [`C3: 10/10`](v26-tuning/winning-dcp2-b4096-temp1-estonia10.json) |
+| DCP1 / batch 4,096 / max length 180,000 | [`8K–128K prefill and 0K–128K decode`](v26-tuning/winning-dcp1-b4096-temp1-inference.json) | [`C1: 3 / 6 / 1`](v26-tuning/winning-dcp1-b4096-temp1-lavd10-c1-control.json) · [`C5 boundary: 1 / 0 / 9`](v26-tuning/winning-dcp1-b4096-temp1-lavd10.json) | [`C1: 10/10`](v26-tuning/winning-dcp1-b4096-temp1-estonia10.json) |
+
+Every row used explicit temperature `1.0`; inference used exact prompt-token targeting and 15-second sustained-decode windows. LAVD used ten measured runs with a 40,000-token ceiling. Estonia used capacity-safe concurrency: C5 for DCP4, C3 for DCP2, and C1 for DCP1. DCP1's C5 failure is retained as a measured concurrency boundary rather than hidden.
+
+The remainder of [`v26-tuning/`](v26-tuning/) preserves the tuning sequence, rejected candidates, tool/context gates, sampled quality controls, and final service evidence that led to these three Pareto points.
+
+### Provenance-hardened MTP78 and vision evidence
+
+| Question | Artifact |
+| --- | --- |
+| What was accepted for the upstream MTP78 text canary, and what boundaries remain? | [`integration decision`](mtp78-upstream-integration-decision.json) |
+| How were source, overlay, runtime, and service inputs pinned? | [`runtime provenance`](mtp78-upstream-runtime-provenance.json) |
+| Did BF16 and Trellis match at the target-only first step? | [`target-only comparison`](mtp78-upstream-target-only-comparison.json) · [`T0 fingerprint`](mtp78-upstream-t0-first-token-fingerprint.json) · [`T1 fingerprint`](mtp78-upstream-t1-first-token-fingerprint.json) |
+| What were the matched BF16/Trellis acceptance and throughput results? | [`T2/T3 comparison`](mtp78-upstream-t2-t3-comparison.json) · [`Trellis full bench`](mtp78-upstream-t3-trellis-full-bench.json) |
+| Did the retained text profile pass long context and quality controls? | [`600,019-token smoke`](mtp78-upstream-t3-fixed3904-600019-smoke.json) · [`LAVD`](mtp78-upstream-t3-lavd3.json) · [`Estonia`](mtp78-upstream-t3-estonia3-temp0.json) |
+| Did MTP78 change GLM-5.2-Vision semantics or acceptance? | [`matched canary comparison`](vision-canary-comparison.json) |
+| Why did the 200K vision gate fail, and was recalibration triggered? | [`capacity decision`](vision-acceptance-capacity-decision.json) |
+
+The raw archive also contains every generated synthetic canary image, request, response body, tokenizer response, Prometheus snapshot, matched text control, and capacity probe. Responses were persisted before decoding or grading. The shared two-image B/A ordering failure exists in all MTP modes; the long-context failure reproduces with MTP disabled and text-only input, so neither is attributed to the Trellis MTP78 overlay.
 
 ## RC2+EXL3 primary artifacts
 

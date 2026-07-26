@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-07-26T08:49:34.277Z",
+  "profile": "DCP4-b5120-MTP3-spec1-shared-enabled-i1-chunk128",
+  "model": "GLM-5.2-EXL3-TR3-3.0bpw",
+  "configured_max_model_len": 524288,
+  "target_prompt_tokens": 500000,
+  "tokenize_prompt_tokens": 500000,
+  "request_prompt_tokens": 499994,
+  "completion_tokens": 3,
+  "total_tokens": 499997,
+  "filler_chars": 2328828,
+  "prompt_sha256": "196430978b628f6224525eb4f698a7be666a13a3e6860908c725f4f5d32d72ea",
+  "http_status": 200,
+  "elapsed_seconds": 9.847,
+  "finish_reason": "stop",
+  "content": "CONTEXT_OK",
+  "reasoning_content": null,
+  "exact_match": true,
+  "error": null
+}

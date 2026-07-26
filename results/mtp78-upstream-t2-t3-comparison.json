@@ -1,0 +1,176 @@
+{
+  "t2_bf16": {
+    "memory_mib_by_gpu": [
+      90710,
+      90712,
+      90712,
+      90690
+    ],
+    "acceptance": {
+      "draft_steps": 5735.0,
+      "proposed_tokens": 17205.0,
+      "accepted_tokens": 10015.0,
+      "rejected_tokens": 7190.0,
+      "draft_acceptance_rate": 0.5820982272595175,
+      "mean_accepted_draft_tokens": 1.7462946817785527,
+      "mean_acceptance_length_including_target": 2.7462946817785525,
+      "accepted_per_position": [
+        4496.0,
+        3220.0,
+        2299.0
+      ],
+      "accepted_length_histogram_0_to_3": [
+        1239.0,
+        1276.0,
+        921.0,
+        2299.0
+      ],
+      "accepted_length_histogram_fraction": [
+        0.21604184829991283,
+        0.22249346120313862,
+        0.16059285091543157,
+        0.400871839581517
+      ]
+    }
+  },
+  "t3_trellis": {
+    "memory_mib_by_gpu": [
+      86740,
+      86740,
+      86732,
+      86700
+    ],
+    "acceptance": {
+      "draft_steps": 5823.0,
+      "proposed_tokens": 17469.0,
+      "accepted_tokens": 10359.0,
+      "rejected_tokens": 7110.0,
+      "draft_acceptance_rate": 0.5929933024214322,
+      "mean_accepted_draft_tokens": 1.7789799072642967,
+      "mean_acceptance_length_including_target": 2.7789799072642967,
+      "accepted_per_position": [
+        4568.0,
+        3349.0,
+        2442.0
+      ],
+      "accepted_length_histogram_0_to_3": [
+        1255.0,
+        1219.0,
+        907.0,
+        2442.0
+      ],
+      "accepted_length_histogram_fraction": [
+        0.21552464365447363,
+        0.20934226343809034,
+        0.15576163489610168,
+        0.41937145801133435
+      ]
+    }
+  },
+  "reclaimed_memory_mib_by_gpu": [
+    3970,
+    3972,
+    3980,
+    3990
+  ],
+  "reclaimed_memory_gib_by_gpu": [
+    3.876953125,
+    3.87890625,
+    3.88671875,
+    3.896484375
+  ],
+  "performance": [
+    {
+      "context_tokens": 8192,
+      "concurrency": 1,
+      "t2_tps": 85.32184527708131,
+      "t3_tps": 89.7773251436641,
+      "t3_delta_pct": 5.221968479600614,
+      "t2_skipped": false,
+      "t3_skipped": false,
+      "t2_ttft_p50_s": 0.5153838109690696,
+      "t3_ttft_p50_s": 0.4986917244968936
+    },
+    {
+      "context_tokens": 65536,
+      "concurrency": 1,
+      "t2_tps": 86.59423650180163,
+      "t3_tps": 82.93464457817377,
+      "t3_delta_pct": -4.226137987314804,
+      "t2_skipped": false,
+      "t3_skipped": false,
+      "t2_ttft_p50_s": 0.6484611264895648,
+      "t3_ttft_p50_s": 0.6406008965568617
+    },
+    {
+      "context_tokens": 131072,
+      "concurrency": 1,
+      "t2_tps": 81.89926559089913,
+      "t3_tps": 84.2996517090244,
+      "t3_delta_pct": 2.9309006629138823,
+      "t2_skipped": false,
+      "t3_skipped": false,
+      "t2_ttft_p50_s": 0.7888771910220385,
+      "t3_ttft_p50_s": 0.8449113350361586
+    },
+    {
+      "context_tokens": 251904,
+      "concurrency": 1,
+      "t2_tps": 76.59386477486576,
+      "t3_tps": 80.8174501825235,
+      "t3_delta_pct": 5.514260731028808,
+      "t2_skipped": false,
+      "t3_skipped": false,
+      "t2_ttft_p50_s": 1.2132258920464665,
+      "t3_ttft_p50_s": 1.1999575369991362
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 5,
+      "t2_tps": 210.12866676213577,
+      "t3_tps": 217.96650744235112,
+      "t3_delta_pct": 3.7300197069673136,
+      "t2_skipped": false,
+      "t3_skipped": false,
+      "t2_ttft_p50_s": 0.8444881354225799,
+      "t3_ttft_p50_s": 0.7189908770378679
+    },
+    {
+      "context_tokens": 8192,
+      "concurrency": 8,
+      "t2_tps": 230.9469620074169,
+      "t3_tps": 242.1984980182216,
+      "t3_delta_pct": 4.871913409470774,
+      "t2_skipped": false,
+      "t3_skipped": false,
+      "t2_ttft_p50_s": 1.3626310605322942,
+      "t3_ttft_p50_s": 1.1581308165332302
+    }
+  ],
+  "kv": {
+    "fixed_blocks_local": 1024,
+    "block_size": 64,
+    "dcp": 4,
+    "logical_tokens": 262144,
+    "t2_profiled_blocks_by_rank": [
+      2009,
+      2103,
+      2103,
+      2103
+    ],
+    "t3_profiled_blocks_by_rank": [
+      3979,
+      4015,
+      4015,
+      4015
+    ],
+    "t2_available_kv_gib_rank0": 3.83,
+    "t3_available_kv_gib_rank0": 7.59
+  },
+  "errors": {
+    "t2_request_error_count": 0,
+    "t3_request_error_count": 0,
+    "t2_cuda_or_traceback_in_filtered_logs": 0,
+    "t3_cuda_or_traceback_in_filtered_logs": 0
+  }
+}

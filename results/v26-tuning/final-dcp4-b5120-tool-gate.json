@@ -1,0 +1,187 @@
+{
+  "timestamp": "2026-07-26T08:38:24.293Z",
+  "first_request": {
+    "model": "GLM-5.2-EXL3-TR3-3.0bpw",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the weather in Paris? Use the get_weather tool."
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a city",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    ],
+    "tool_choice": "auto",
+    "parallel_tool_calls": false,
+    "max_tokens": 512
+  },
+  "first_response": {
+    "id": "chatcmpl-9b79ede49a851b8a",
+    "object": "chat.completion",
+    "created": 1785055102,
+    "model": "GLM-5.2-EXL3-TR3-3.0bpw",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-8ea2bbea8c97bbcf",
+              "type": "function",
+              "function": {
+                "name": "get_weather",
+                "arguments": "{\"city\": \"Paris\"}"
+              }
+            }
+          ],
+          "reasoning": "The user wants to know the weather in Paris. I'll call the get_weather function with \"Paris\" as the city parameter."
+        },
+        "logprobs": null,
+        "finish_reason": "tool_calls",
+        "stop_reason": 154829,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.vllm5517197.sibe0edca.fi801d57a.cu132.20260725-tp4-ac3a75cf",
+    "usage": {
+      "prompt_tokens": 174,
+      "total_tokens": 212,
+      "completion_tokens": 38,
+      "prompt_tokens_details": null
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "second_request": {
+    "model": "GLM-5.2-EXL3-TR3-3.0bpw",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the weather in Paris? Use the get_weather tool."
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "tool_calls": [
+          {
+            "id": "chatcmpl-tool-8ea2bbea8c97bbcf",
+            "type": "function",
+            "function": {
+              "name": "get_weather",
+              "arguments": "{\"city\": \"Paris\"}"
+            }
+          }
+        ],
+        "reasoning": "The user wants to know the weather in Paris. I'll call the get_weather function with \"Paris\" as the city parameter."
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-8ea2bbea8c97bbcf",
+        "content": "{\"temperature_c\":18,\"condition\":\"sunny\"}"
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a city",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    ],
+    "tool_choice": "auto",
+    "parallel_tool_calls": false,
+    "max_tokens": 512
+  },
+  "second_response": {
+    "id": "chatcmpl-b4049155e90b0e01",
+    "object": "chat.completion",
+    "created": 1785055103,
+    "model": "GLM-5.2-EXL3-TR3-3.0bpw",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "The current weather in **Paris** is:\n\n- **Temperature:** 18°C\n- **Condition:** Sunny ☀️\n\nIt's a beautiful day in Paris!",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": "The function returned the weather for Paris: 18°C and sunny. Let me present this to the user."
+        },
+        "logprobs": null,
+        "finish_reason": "stop",
+        "stop_reason": 154827,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.11.2.dev280+gilded.gnosis.v20.vllm5517197.sibe0edca.fi801d57a.cu132.20260725-tp4-ac3a75cf",
+    "usage": {
+      "prompt_tokens": 227,
+      "total_tokens": 285,
+      "completion_tokens": 58,
+      "prompt_tokens_details": null
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "gate": {
+    "one_valid_auto_tool_call": true,
+    "tool_finish_reason": true,
+    "continuation_without_duplicate_call": true
+  },
+  "known_required_choice_behavior": "tool call is valid but required choice reaches length cap; see required-choice probe"
+}

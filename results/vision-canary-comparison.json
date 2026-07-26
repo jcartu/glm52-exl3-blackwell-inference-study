@@ -1,0 +1,90 @@
+{
+  "schema": "glm52-vision-canary-comparison-v2",
+  "model": "GLM-5.2-Vision",
+  "cases": [
+    "single_a",
+    "two_ab_order",
+    "two_ba_order",
+    "four_abcd_order",
+    "interleaved_ab",
+    "interleaved_ba"
+  ],
+  "modes": {
+    "V0": {
+      "draft": "bf16",
+      "mtp_tokens": 0,
+      "passed": 5,
+      "total": 6,
+      "failed": ["two_ba_order"],
+      "run_dir": "results/vision-canary-runs/V0-bf16-mtp0-r2-v7-structured"
+    },
+    "V0G": {
+      "draft": "trellis",
+      "mtp_tokens": 0,
+      "passed": 5,
+      "total": 6,
+      "failed": ["two_ba_order"],
+      "run_dir": "results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-strict"
+    },
+    "V1": {
+      "draft": "bf16",
+      "mtp_tokens": 3,
+      "passed": 5,
+      "total": 6,
+      "failed": ["two_ba_order"],
+      "acceptance": {
+        "drafts": 191,
+        "draft_tokens": 546,
+        "accepted_tokens": 398,
+        "accepted_per_draft_token": 0.7289377289377289,
+        "accepted_tokens_per_draft": 2.0837696335078535
+      },
+      "run_dir": "results/vision-canary-runs/V1-bf16-mtp3-r2-v7-strict"
+    },
+    "V2": {
+      "draft": "trellis",
+      "mtp_tokens": 3,
+      "passed": 5,
+      "total": 6,
+      "failed": ["two_ba_order"],
+      "acceptance": {
+        "drafts": 191,
+        "draft_tokens": 551,
+        "accepted_tokens": 427,
+        "accepted_per_draft_token": 0.7749546279491834,
+        "accepted_tokens_per_draft": 2.235602094240838
+      },
+      "run_dir": "results/vision-canary-runs/V2-trellis-mtp3-r2-v7-strict"
+    }
+  },
+  "semantic_outcome_identical_across_modes": {
+    "single_a": true,
+    "two_ab_order": true,
+    "two_ba_order": true,
+    "four_abcd_order": true,
+    "interleaved_ab": true,
+    "interleaved_ba": true
+  },
+  "interleaved_isolation": {
+    "ab_expected_and_observed": ["ALPHA 17", "BETA 42"],
+    "ba_expected_and_observed": ["BETA 42", "ALPHA 17"],
+    "all_modes_pass": true
+  },
+  "shared_boundary": {
+    "case": "two_ba_order",
+    "expected": ["BETA 42", "ALPHA 17"],
+    "observed_all_modes": ["ALPHA 17", "BETA 42"],
+    "present_without_mtp": true
+  },
+  "raw_evidence": {
+    "responses_persisted_before_json_decode_or_grading": true,
+    "response_count": 24,
+    "raw_path_pattern": "<run_dir>/<case>.response.raw.json"
+  },
+  "contamination_assessment": {
+    "bf16_mtp_contaminates_vision_semantics": false,
+    "trellis_mtp_contaminates_vision_semantics": false,
+    "trellis_regresses_bf16_mtp_acceptance_on_this_suite": false,
+    "basis": "Every graded semantic outcome is identical across V0, V0G, V1, and V2; the only failure is already present with MTP disabled."
+  }
+}

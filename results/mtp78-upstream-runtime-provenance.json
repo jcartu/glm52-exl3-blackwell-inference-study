@@ -1,0 +1,30 @@
+{
+  "schema": "glm52-mtp78-runtime-v1",
+  "base_image": "verdictai/glm52-exl3-sparkinfer:v20-gg6722c1d-si1a88b38-cu132-sm120a@sha256:5294b753a81cbed5c7cecd4ef5acdfd1cc13c96bb9233636a42ab8841a439b01",
+  "derivative_image": "local/glm52-exl3-rc2-quality-runtime@sha256:107bfb62c13b858eb003c9c129385883e388ac9dfcba70595b5234c7bb515da0",
+  "vllm_base_commit": "3e731bc043d23ec21277fb76d3e15fe6da91b23b",
+  "vllm_derivative_commit": "7e3bee1ed4bc87efbdc36060647a3475cfaa1f1e",
+  "patch": {
+    "path": "/home/josh/breakthrough-blackwell-docker/patches/rc2-exl3-quality-vllm.patch",
+    "sha256": "cbec507a8bdc53e7aa3ce4e272e66261b56c25f0a8edc43b7cdeb51f2ab51611"
+  },
+  "deepseek_mtp_loader": {
+    "base_sha256": "3a8a0b30e5dc5eb8c1f0ddb2ce317c375dc094de5b5ba8ba78f71d5481deae6d",
+    "patched_sha256": "79b92b5d6d9815423f627a07430bc89f8683124f3218399b807c5df213a50c71",
+    "installed_matches_worktree": true
+  },
+  "normalization_probe": {
+    "projection_rank_suffix_cases": 48,
+    "idempotence_checked": true,
+    "nonlocal_rank_filtered_before_mtp_layer_mapping": true,
+    "result": "pass"
+  },
+  "service_config": {
+    "path": "/home/josh/vllm-glm52/docker-compose.exl3-v20.yml",
+    "fixed_kv_mode": true,
+    "profile_kv_mode": true,
+    "target_only_mode": true,
+    "prefix_cache_modes": [0, 1],
+    "compose_validation": "pass"
+  }
+}

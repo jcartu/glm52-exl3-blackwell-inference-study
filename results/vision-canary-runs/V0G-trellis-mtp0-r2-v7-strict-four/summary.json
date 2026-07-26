@@ -1,0 +1,56 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 4.512718200683594,
+  "label": "V0G-trellis-mtp0-r2-v7-strict-four",
+  "metrics_after": {
+    "bytes": 58472,
+    "elapsed_s": 0.0049736700020730495,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 58471,
+    "elapsed_s": 0.012455035001039505,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-strict-four",
+  "pass": true,
+  "passed": 1,
+  "results": [
+    {
+      "assistant": "{\"order\": [\"ALPHA 17\", \"BETA 42\", \"GAMMA 73\", \"DELTA 98\"]}",
+      "case": "four_abcd_order",
+      "elapsed_s": 4.494187285192311,
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42",
+          "GAMMA 73",
+          "DELTA 98"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42",
+          "GAMMA 73",
+          "DELTA 98"
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0G-trellis-mtp0-r2-v7-strict-four/four_abcd_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 131,
+        "prompt_tokens": 3205,
+        "prompt_tokens_details": null,
+        "total_tokens": 3336
+      }
+    }
+  ],
+  "schema": "glm52-vision-canary-v2",
+  "started_unix": 1785012393.0494163,
+  "total": 1
+}

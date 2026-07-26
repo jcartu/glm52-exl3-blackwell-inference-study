@@ -1,0 +1,156 @@
+{
+  "base_url": "http://127.0.0.1:5001",
+  "elapsed_s": 16.859712839126587,
+  "label": "V0-bf16-mtp0-r2-v7-focused",
+  "metrics_after": {
+    "bytes": 58713,
+    "elapsed_s": 0.0067419440019875765,
+    "status": 200
+  },
+  "metrics_before": {
+    "bytes": 58703,
+    "elapsed_s": 0.012307434109970927,
+    "status": 200
+  },
+  "model": "GLM-5.2-Vision",
+  "output_dir": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-focused",
+  "pass": false,
+  "passed": 3,
+  "results": [
+    {
+      "assistant": "{\"slots\":[{\"slot\":\"image_1\",\"title\":\"ALPHA 17\",\"background\":\"red\",\"shape\":\"triangle\",\"count\":1}]}",
+      "case": "single_a",
+      "elapsed_s": 2.6152438120916486,
+      "expected": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slots": [
+          {
+            "background": "red",
+            "count": 1,
+            "shape": "triangle",
+            "slot": "image_1",
+            "title": "ALPHA 17"
+          }
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-focused/single_a.response.raw.json",
+      "usage": {
+        "completion_tokens": 78,
+        "prompt_tokens": 883,
+        "prompt_tokens_details": null,
+        "total_tokens": 961
+      }
+    },
+    {
+      "assistant": "```json\n{\"order\":[\"ALPHA 17\",\"BETA 42\"]}\n```",
+      "case": "two_ab_order",
+      "elapsed_s": 2.8598360980395228,
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42"
+        ]
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-focused/two_ab_order.response.raw.json",
+      "usage": {
+        "completion_tokens": 86,
+        "prompt_tokens": 1622,
+        "prompt_tokens_details": null,
+        "total_tokens": 1708
+      }
+    },
+    {
+      "case": "four_abcd_order",
+      "elapsed_s": 4.437617585994303,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "expected": {
+        "order": [
+          "ALPHA 17",
+          "BETA 42",
+          "GAMMA 73",
+          "DELTA 98"
+        ]
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-focused/four_abcd_order.response.raw.json"
+    },
+    {
+      "assistant": "{\"slot_a\":\"ALPHA 17\",\"slot_b\":\"BETA 42\"}",
+      "case": "interleaved_ab",
+      "elapsed_s": 3.138100204989314,
+      "expected": {
+        "slot_a": "ALPHA 17",
+        "slot_b": "BETA 42"
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [],
+      "parsed": {
+        "slot_a": "ALPHA 17",
+        "slot_b": "BETA 42"
+      },
+      "pass": true,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-focused/interleaved_ab.response.raw.json",
+      "usage": {
+        "completion_tokens": 96,
+        "prompt_tokens": 1658,
+        "prompt_tokens_details": null,
+        "total_tokens": 1754
+      }
+    },
+    {
+      "assistant": "```json\n{\"slot_a\":\"ALPHA 17\",\"slot_b\":\"BETA 42\"}\n```",
+      "case": "interleaved_ba",
+      "elapsed_s": 3.7852686061523855,
+      "expected": {
+        "slot_a": "BETA 42",
+        "slot_b": "ALPHA 17"
+      },
+      "finish_reason": "stop",
+      "http_status": 200,
+      "mismatches": [
+        "$.slot_a: expected 'beta 42', got 'alpha 17'",
+        "$.slot_b: expected 'alpha 17', got 'beta 42'"
+      ],
+      "parsed": {
+        "slot_a": "ALPHA 17",
+        "slot_b": "BETA 42"
+      },
+      "pass": false,
+      "raw_response": "/home/josh/glm52-exl3-blackwell-inference-study/results/vision-canary-runs/V0-bf16-mtp0-r2-v7-focused/interleaved_ba.response.raw.json",
+      "usage": {
+        "completion_tokens": 121,
+        "prompt_tokens": 1659,
+        "prompt_tokens_details": null,
+        "total_tokens": 1780
+      }
+    }
+  ],
+  "schema": "glm52-vision-canary-v2",
+  "started_unix": 1785010459.6050968,
+  "total": 5
+}
