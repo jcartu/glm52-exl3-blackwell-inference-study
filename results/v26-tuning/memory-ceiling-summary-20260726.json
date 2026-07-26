@@ -581,14 +581,21 @@
     {
       "dcp": 4,
       "gpu_memory_utilization": 0.983,
-      "stress": "max_context_stress",
+      "stress": "capacity_skipped_probe",
       "evidence": "results/v26-tuning/memory-ceiling-dcp4-g9830-stress.json",
       "bytes": 9391,
       "sha256": "1f3b16e7ccbeaebb485f420d2c3533478179a0cfcdded5c1a93abb4f108d1857",
       "kv_budget_tokens": 958720,
-      "context_tokens_per_request": 0,
+      "context_tokens_per_request": 481280,
       "max_output_tokens_per_request": 4096,
-      "outcome": "pass"
+      "outcome": "capacity_skipped",
+      "concurrency": 2,
+      "completed": 0,
+      "errors": 0,
+      "aggregate_output_tokens_per_second": 0,
+      "measured_output_tokens_per_request": 0,
+      "requested_total_tokens": 970752,
+      "capacity_deficit_tokens": 12032
     },
     {
       "dcp": 4,
