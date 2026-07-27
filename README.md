@@ -1,11 +1,45 @@
 # GLM-5.2 Blackwell Inference Study: EXL3 and NF3 Hybrid
 
-A reproducible record of GLM-5.2 inference measurements collected on 23–26 July 2026 with four NVIDIA RTX PRO 6000 Blackwell Workstation Edition GPUs. The study covers a rank-sliced 3.0 bpw EXL3/Trellis checkpoint from the original Gilded Gnosis v20 evaluation through an issue #34 RC2 rebase, experimental EXL3-quantized MTP layer 78, a topology-aware v26 Pareto study, and matched GLM-5.2-Vision canaries, plus a bounded optimization study of the MXFP8/NVFP4/NF3 hybrid checkpoint against the exact v20 serving recipe.
+A reproducible record of GLM-5.2 inference measurements collected on 23–27 July 2026 with four NVIDIA RTX PRO 6000 Blackwell Workstation Edition GPUs. The study covers a rank-sliced 3.0 bpw EXL3/Trellis checkpoint from the original Gilded Gnosis v20 evaluation through an issue #34 RC2 rebase, experimental EXL3-quantized MTP layer 78, a topology-aware v26 Pareto study, matched GLM-5.2-Vision canaries, a bounded MXFP8/NVFP4/NF3 hybrid study, and the final issue #33-era EXL3 runtime and flag audit.
 
 This is an engineering study, not a claim of a new model, quantization method, or general performance record. Results apply only to the pinned software, checkpoint variants, hardware topology, and benchmark settings recorded here.
 
 > [!IMPORTANT]
 > This repository contains study documentation, public-safe configurations, source patches, helper scripts, and measured artifacts. It does **not** contain or claim ownership of GLM-5.2 weights, the EXL3 or NF3-hybrid checkpoints, vLLM, Sparkinfer, ExLlamaV3/Trellis, Gilded Gnosis, or referenced container images. See [CREDITS.md](CREDITS.md) for the complete ownership and contribution ledger.
+
+## Latest result: issue #33-era EXL3 production study
+
+The 26–27 July follow-up rebuilt the 3.0 bpw EXL3 service on the exact issue #33 candidate source cut, tested DCP1/DCP2/DCP4, established real memory-failure boundaries, audited every exposed EXL3/DCP performance control, and reran matched temperature-one inference, LAVD, and Estonia gates.
+
+For readers who do not work with inference runtimes every day, the complete plain-English report is:
+
+**[GLM-5.2 EXL3 on Four RTX PRO 6000 GPUs: Issue #33-Era Study](ISSUE33_STUDY.md)**
+
+The selected normal-production profile is now **TP4/DCP2/MTP3**, not the earlier DCP4 service:
+
+| Metric | Matched old stock | Selected issue33-era profile | Change |
+| --- | ---: | ---: | ---: |
+| Verified/configured request envelope | 300,000 configured | **512,000 completed total** | +212,000 configured/verified tokens |
+| Reported KV capacity | 440,448 | **513,536** | **+16.6%** |
+| 8K cold prefill | **3,746 tok/s** | 3,644 tok/s | -2.7% |
+| 64K cold prefill | 3,155 tok/s | **3,380 tok/s** | **+7.1%** |
+| 128K cold prefill | 3,023 tok/s | **3,140 tok/s** | **+3.9%** |
+| Common-cell decode geometric mean | baseline | effectively matched | **-0.15%** |
+
+The selected service completed an exact 507,904-token prompt plus 4,096 generated tokens. DCP4 remains the explicit maximum-context option and completed a separate 1,048,576-token total request envelope.
+
+Quality at explicit temperature `1.0` showed no statistically detectable difference in the exact matched DCP2 comparison:
+
+- selected DCP2 LAVD: 19/20 acceptable versus matched stock 20/20, Fisher `p = 1.0`;
+- selected DCP2 Estonia: 29/30 versus matched stock 30/30, Fisher `p = 1.0`;
+- DCP4 results are reported descriptively because the archive has no matched old-stock DCP4 quality control.
+
+The largest performance discovery was raising transient full-CKV gather capacity from 16,384 to 140,000 tokens. It improved 64K/128K prefill by 15.8%/12.6% under DCP2 and 49.1%/50.0% under DCP4.
+
+> [!NOTE]
+> This campaign tested the issue #33 `0c79e41`/`e603f74` source cut with the pinned EXL3 PR #139/#49 heads. Issue #33 later published a different `sic3828fd`/`r4` image. The numbers in this repository do not describe that later image.
+
+The public-safe measured serving config is [`configs/docker-compose.exl3-v20.yml`](configs/docker-compose.exl3-v20.yml), the derivative build recipe is [`configs/Dockerfile.issue33-exl3`](configs/Dockerfile.issue33-exl3), and all 86 unedited temperature-one benchmark artifacts are indexed under [`results/issue33-upgrade/`](results/issue33-upgrade/).
 
 ## EXL3 v26 temperature-one Pareto matrix
 
@@ -26,7 +60,7 @@ All rates are tokens/second. The full decode matrix also covers 32K and 128K inp
 | DCP1 single-stream control | 1 | 3 / 6 / 1 | 0 | 1 | **10/10** |
 | DCP1 concurrency boundary | 5 | 1 / 0 / 9 | 4 | — | — |
 
-DCP2 is the highest-throughput concurrent profile and DCP1 is the prefill/single-stream leader, but neither replaces the balanced service. DCP2 retained one LAVD failure, while DCP1's C5 run collapsed despite a usable C1 control. The restored production service therefore remains DCP4/batch-5,120/max-length-524,288.
+At this 26 July v26 checkpoint, the restored service remained DCP4/batch-5,120/max-length-524,288 because DCP2 retained one LAVD failure and DCP1's C5 run collapsed. The subsequent issue #33-era campaign above used larger matched samples and additional runtime controls, and superseded that operational selection with DCP2.
 
 ### Runtime memory-utilization ceiling
 
@@ -38,7 +72,7 @@ The same three geometries were swept above the original `--gpu-memory-utilizatio
 | DCP2 / batch 4,096 | **0.96750** | 0.96775 | 482,944 | +9.4% |
 | DCP1 / batch 4,096 | **0.98250** | 0.98275 | 322,496 | +23.8% |
 
-Startup success was not sufficient: DCP4 started at `0.9848` with 978,432 KV tokens but died on its first long-context prefill. The exact passing and failing workloads, OOM allocations, per-trial hashes, and 28 raw harness artifacts are indexed by [`memory-ceiling-summary-20260726.json`](results/v26-tuning/memory-ceiling-summary-20260726.json). These are measured workload boundaries, not production recommendations; the restored balanced service remains at `0.96`.
+Startup success was not sufficient: DCP4 started at `0.9848` with 978,432 KV tokens but died on its first long-context prefill. The exact passing and failing workloads, OOM allocations, per-trial hashes, and 28 raw harness artifacts are indexed by [`memory-ceiling-summary-20260726.json`](results/v26-tuning/memory-ceiling-summary-20260726.json). These were measured workload boundaries rather than recommendations. The later issue #33-era campaign repeated topology-specific stress tests before selecting GMU 0.9675 for DCP2 production.
 
 ## NF3 hybrid v20 result
 
@@ -172,17 +206,20 @@ The Compose file intentionally requires explicit local image and model paths. It
 
 ```text
 README.md                         current findings and claim boundaries
+ISSUE33_STUDY.md                  current issue #33-era plain-English report
 HYBRID_STUDY.md                  NF3 hybrid v20 optimization and Pareto analysis
 FOLLOWUP_STUDY.md                chronological follow-up analysis
 METHODOLOGY.md                   original and RC2 benchmark methodology
 CREDITS.md                       ownership, contribution, and license ledger
 configs/                         public-safe measured serving configurations
+configs/Dockerfile.issue33-exl3  pinned derivative image build recipe
 patches/                         source patches applied to pinned RC2 trees
 tools/mtp78/                     capture and checkpoint-assembly glue
 results/raw/                     original and RC2+EXL3 raw measurements
 results/followup/                renamed July 23 follow-up evidence
 results/issue34/                 issue #34 RC2 comparison evidence
 results/hybrid-v20/              NF3 hybrid gates, scorecard, and raw evidence
+results/issue33-upgrade/          86 raw temperature-one issue #33-era artifacts
 results/*-manifest.json          artifact provenance, sizes, and hashes
 results/SHA256SUMS               complete publication integrity index
 ```

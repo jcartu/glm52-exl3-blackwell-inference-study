@@ -6,7 +6,7 @@ services:
     image: "${EXL3_IMAGE:-local/glm52-exl3-rc2-quality-runtime:20260725-v7-glm5v}"
     container_name: glm52-exl3-vision-v20-5001
     volumes:
-      - ${EXL3_MODEL_PATH:-/mnt/2king/models/GLM-5.2-Vision-EXL3-TR3-3.0bpw-BF16MTP78-f6eab611-r2}:/model:ro
+      - ${EXL3_MODEL_PATH:?Set EXL3_MODEL_PATH to the absolute checkpoint directory}:/model:ro
       - glm52-exl3-vision-cache:/cache
     environment:
       EXL3_SERVED_MODEL_NAME: GLM-5.2-Vision

@@ -1,0 +1,387 @@
+{
+  "metadata": {
+    "version": "0.4.28",
+    "mode": "completion_stats",
+    "interrupted": false,
+    "server": "http://localhost:5001",
+    "engine": "openai_proxy",
+    "server_version": "",
+    "kv_budget": 0,
+    "kv_source": "",
+    "max_running_requests": 0,
+    "model": "GLM-5.2-EXL3-TR3-3.0bpw",
+    "models": [
+      "GLM-5.2-EXL3-TR3-3.0bpw"
+    ],
+    "test_profile": "estonia",
+    "test_profile_description": "Long-context GLM dense-MLA vs NSA diagnostic task. The expected final answer is Estonia; completion-token statistics show how many decode tokens the engine needs to reach that answer.",
+    "prompt_source": "profile:estonia",
+    "prompt_chars": 707372,
+    "timestamp": "2026-07-26T23:10:10.119200",
+    "max_tokens": 40000,
+    "token_limit_field": "max_tokens",
+    "max_tokens_omitted": false,
+    "fixed_concurrency": 1,
+    "requested_runs": 1,
+    "concurrency_levels_requested": [
+      1
+    ],
+    "min_results": 1,
+    "probe_waves": 1,
+    "auto_stop": true,
+    "min_improvement": 0.03,
+    "patience": 1,
+    "correct_regex": "\\bestonia\\b",
+    "score_source": "final_answer",
+    "profile_scorer": "regex",
+    "expected_answer": "",
+    "approx_tolerance": "",
+    "dataset_rows": "",
+    "dataset_sha256": "",
+    "dataset": "",
+    "dataset_path": "",
+    "dataset_source": "",
+    "dataset_items_total": 0,
+    "dataset_items_selected": 0,
+    "prompt_sha256": "",
+    "prefill_scout": false,
+    "temperature": 1.0,
+    "top_p": null,
+    "request_overrides": {},
+    "system_prompt": false,
+    "nvidia_p2p_override_effective": true,
+    "p2pmark_status": "not_run",
+    "amd_fabric_status": "not_run"
+  },
+  "nvidia_p2p_override": {
+    "effective": true,
+    "configured": true,
+    "params_path": "/proc/driver/nvidia/params",
+    "params_available": true,
+    "modprobe_path": "/etc/modprobe.d/nvidia-p2p-override.conf",
+    "modprobe_available": true,
+    "runtime": {
+      "ForceP2P": "0x11",
+      "RMForceP2PType": "1",
+      "RMPcieP2PType": "2",
+      "GrdmaPciTopoCheckOverride": "1",
+      "EnableResizableBar": "1",
+      "DmaRemapPeerMmio": "1"
+    },
+    "expected": {
+      "ForceP2P": "0x11",
+      "RMForceP2PType": "1",
+      "RMPcieP2PType": "2",
+      "GrdmaPciTopoCheckOverride": "1",
+      "EnableResizableBar": "1"
+    },
+    "missing": [],
+    "mismatched": {},
+    "registry_dwords": "ForceP2P=0x11;RMForceP2PType=1;RMPcieP2PType=2;GrdmaPciTopoCheckOverride=1;EnableResizableBar=1",
+    "suggested_modprobe_line": "options nvidia NVreg_RegistryDwords=\"ForceP2P=0x11;RMForceP2PType=1;RMPcieP2PType=2;GrdmaPciTopoCheckOverride=1;EnableResizableBar=1\"",
+    "suggested_reload": "stop GPU workloads, then reload NVIDIA modules or reboot; the modprobe file alone is not enough until the nvidia module is reloaded"
+  },
+  "p2pmark": {
+    "status": "not_run"
+  },
+  "amd_fabric": {
+    "status": "not_run"
+  },
+  "prefill_scout": null,
+  "selected_concurrency": 1,
+  "selected_summary": {
+    "attempted": 1,
+    "completed": 1,
+    "errors": 0,
+    "correct": 1,
+    "wrong": 0,
+    "score_counts": {
+      "pass": 1
+    },
+    "exact": 0,
+    "near": 0,
+    "fail": 0,
+    "correct_rate": 1.0,
+    "score_available": true,
+    "hit_max_tokens": 0,
+    "estimated_token_runs": 0,
+    "completion_tokens": {
+      "avg": 7790.0,
+      "min": 7790.0,
+      "max": 7790.0,
+      "p50": 7790.0,
+      "p90": 7790.0,
+      "p99": 7790.0,
+      "std": 0.0
+    },
+    "ttft": {
+      "avg": 87.6387063821312,
+      "min": 87.6387063821312,
+      "max": 87.6387063821312,
+      "p50": 87.6387063821312,
+      "p90": 87.6387063821312,
+      "p99": 87.6387063821312,
+      "std": 0.0
+    },
+    "elapsed": {
+      "avg": 162.02497780602425,
+      "min": 162.02497780602425,
+      "max": 162.02497780602425,
+      "p50": 162.02497780602425,
+      "p90": 162.02497780602425,
+      "p99": 162.02497780602425,
+      "std": 0.0
+    },
+    "gen_elapsed": {
+      "avg": 74.38575853197835,
+      "min": 74.38575853197835,
+      "max": 74.38575853197835,
+      "p50": 74.38575853197835,
+      "p90": 74.38575853197835,
+      "p99": 74.38575853197835,
+      "std": 0.0
+    },
+    "gen_tok_s": {
+      "avg": 104.72434715646662,
+      "min": 104.72434715646662,
+      "max": 104.72434715646662,
+      "p50": 104.72434715646662,
+      "p90": 104.72434715646662,
+      "p99": 104.72434715646662,
+      "std": 0.0
+    },
+    "e2e_tok_s": {
+      "avg": 48.079006740097576,
+      "min": 48.079006740097576,
+      "max": 48.079006740097576,
+      "p50": 48.079006740097576,
+      "p90": 48.079006740097576,
+      "p99": 48.079006740097576,
+      "std": 0.0
+    },
+    "aggregate_gen_tok_s": 104.72434715646662,
+    "aggregate_e2e_tok_s": 48.079006740097576
+  },
+  "all_summary": {
+    "attempted": 1,
+    "completed": 1,
+    "errors": 0,
+    "correct": 1,
+    "wrong": 0,
+    "score_counts": {
+      "pass": 1
+    },
+    "exact": 0,
+    "near": 0,
+    "fail": 0,
+    "correct_rate": 1.0,
+    "score_available": true,
+    "hit_max_tokens": 0,
+    "estimated_token_runs": 0,
+    "completion_tokens": {
+      "avg": 7790.0,
+      "min": 7790.0,
+      "max": 7790.0,
+      "p50": 7790.0,
+      "p90": 7790.0,
+      "p99": 7790.0,
+      "std": 0.0
+    },
+    "ttft": {
+      "avg": 87.6387063821312,
+      "min": 87.6387063821312,
+      "max": 87.6387063821312,
+      "p50": 87.6387063821312,
+      "p90": 87.6387063821312,
+      "p99": 87.6387063821312,
+      "std": 0.0
+    },
+    "elapsed": {
+      "avg": 162.02497780602425,
+      "min": 162.02497780602425,
+      "max": 162.02497780602425,
+      "p50": 162.02497780602425,
+      "p90": 162.02497780602425,
+      "p99": 162.02497780602425,
+      "std": 0.0
+    },
+    "gen_elapsed": {
+      "avg": 74.38575853197835,
+      "min": 74.38575853197835,
+      "max": 74.38575853197835,
+      "p50": 74.38575853197835,
+      "p90": 74.38575853197835,
+      "p99": 74.38575853197835,
+      "std": 0.0
+    },
+    "gen_tok_s": {
+      "avg": 104.72434715646662,
+      "min": 104.72434715646662,
+      "max": 104.72434715646662,
+      "p50": 104.72434715646662,
+      "p90": 104.72434715646662,
+      "p99": 104.72434715646662,
+      "std": 0.0
+    },
+    "e2e_tok_s": {
+      "avg": 48.079006740097576,
+      "min": 48.079006740097576,
+      "max": 48.079006740097576,
+      "p50": 48.079006740097576,
+      "p90": 48.079006740097576,
+      "p99": 48.079006740097576,
+      "std": 0.0
+    },
+    "aggregate_gen_tok_s": 104.72434715646662,
+    "aggregate_e2e_tok_s": 48.079006740097576
+  },
+  "level_summaries": [
+    {
+      "concurrency": 1,
+      "phase": "profile",
+      "summary": {
+        "attempted": 1,
+        "completed": 1,
+        "errors": 0,
+        "correct": 1,
+        "wrong": 0,
+        "score_counts": {
+          "pass": 1
+        },
+        "exact": 0,
+        "near": 0,
+        "fail": 0,
+        "correct_rate": 1.0,
+        "score_available": true,
+        "hit_max_tokens": 0,
+        "estimated_token_runs": 0,
+        "completion_tokens": {
+          "avg": 7790.0,
+          "min": 7790.0,
+          "max": 7790.0,
+          "p50": 7790.0,
+          "p90": 7790.0,
+          "p99": 7790.0,
+          "std": 0.0
+        },
+        "ttft": {
+          "avg": 87.6387063821312,
+          "min": 87.6387063821312,
+          "max": 87.6387063821312,
+          "p50": 87.6387063821312,
+          "p90": 87.6387063821312,
+          "p99": 87.6387063821312,
+          "std": 0.0
+        },
+        "elapsed": {
+          "avg": 162.02497780602425,
+          "min": 162.02497780602425,
+          "max": 162.02497780602425,
+          "p50": 162.02497780602425,
+          "p90": 162.02497780602425,
+          "p99": 162.02497780602425,
+          "std": 0.0
+        },
+        "gen_elapsed": {
+          "avg": 74.38575853197835,
+          "min": 74.38575853197835,
+          "max": 74.38575853197835,
+          "p50": 74.38575853197835,
+          "p90": 74.38575853197835,
+          "p99": 74.38575853197835,
+          "std": 0.0
+        },
+        "gen_tok_s": {
+          "avg": 104.72434715646662,
+          "min": 104.72434715646662,
+          "max": 104.72434715646662,
+          "p50": 104.72434715646662,
+          "p90": 104.72434715646662,
+          "p99": 104.72434715646662,
+          "std": 0.0
+        },
+        "e2e_tok_s": {
+          "avg": 48.079006740097576,
+          "min": 48.079006740097576,
+          "max": 48.079006740097576,
+          "p50": 48.079006740097576,
+          "p90": 48.079006740097576,
+          "p99": 48.079006740097576,
+          "std": 0.0
+        },
+        "aggregate_gen_tok_s": 104.72434715646662,
+        "aggregate_e2e_tok_s": 48.079006740097576
+      },
+      "selected": true,
+      "improved": true
+    }
+  ],
+  "accuracy": null,
+  "category_summaries": [],
+  "wrong_runs": [],
+  "hardware_run_summary": {
+    "samples": 60,
+    "duration_seconds": 159.533,
+    "gpu_count": 4,
+    "cpu_util_avg_pct": 18.3,
+    "cpu_temp_max_c": 53.0,
+    "gpu_util_avg_pct": 93.28,
+    "gpu_util_max_pct": 100.0,
+    "mem_util_avg_pct": 34.92,
+    "mem_util_max_pct": 58.0,
+    "temp_avg_c": 55.81,
+    "temp_max_c": 66.0,
+    "power_total_avg_w": 1239.53,
+    "power_total_max_w": 1491.02,
+    "power_limit_total_w": 2400.0,
+    "vram_used_avg_mb": 382267.6,
+    "vram_used_max_mb": 382844.0,
+    "vram_total_mb": 391548.0,
+    "vram_used_avg_pct": 97.63,
+    "vram_used_max_pct": 97.78,
+    "pcie_rx_avg_mb_s": 53383.97,
+    "pcie_rx_max_mb_s": 134079.0,
+    "pcie_tx_avg_mb_s": 42116.13,
+    "pcie_tx_max_mb_s": 106317.0
+  },
+  "runs": [
+    {
+      "run_index": 1,
+      "phase": "profile",
+      "concurrency": 1,
+      "ok": true,
+      "correct": true,
+      "completion_tokens": 7790,
+      "prompt_tokens": 133186,
+      "elapsed": 162.02497780602425,
+      "gen_elapsed": 74.38575853197835,
+      "ttft": 87.6387063821312,
+      "time_to_second_token": 0.0003647729754447937,
+      "gen_tok_s": 104.72434715646662,
+      "e2e_tok_s": 48.079006740097576,
+      "finish_reason": "stop",
+      "final_answer": "*(“The vendor registration correction states that vendor account V-441 corresponds to Mirel Instrument, headquartered in Estonia, not Latvia...”)*",
+      "score_label": "pass",
+      "score_detail": "",
+      "parsed_answer": "",
+      "output_excerpt": "*(“The vendor registration correction states that vendor account V-441 corresponds to Mirel Instrument, headquartered in Estonia, not Latvia...”)*",
+      "output_text": "",
+      "reasoning_text": "",
+      "content_text": "",
+      "error": "",
+      "hit_max_tokens": false,
+      "estimated_tokens": false,
+      "cancelled": false,
+      "item_id": "",
+      "category": "",
+      "expected_answer": ""
+    }
+  ],
+  "methodology": {
+    "name": "Completion-token statistics",
+    "prefill": "A single max_tokens=1 scout request is sent first to populate the server prefix cache. Measured requests use the exact same prompt, so engines with prefix caching can reuse prefill while decode is sampled in parallel.",
+    "adaptive_concurrency": "If --profile-concurrency is set, the benchmark sends exactly the configured number of measured profile requests with that many concurrent workers. Otherwise it probes increasing concurrency levels and keeps the fastest aggregate generation-token throughput, then collects additional runs at the selected concurrency until min_results is reached.",
+    "token_need": "completion_tokens is taken from OpenAI stream usage. If usage is missing, streamed content chunks are used as an estimated fallback and the run is marked estimated_tokens=true.",
+    "correctness": "By default correctness is scored by applying the regex to the final non-empty answer line, matching the GLM dense-MLA vs NSA comparison."
+  }
+}

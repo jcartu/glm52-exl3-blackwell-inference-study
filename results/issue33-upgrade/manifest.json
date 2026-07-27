@@ -1,0 +1,447 @@
+{
+  "study": "GLM-5.2 EXL3 issue #33-era RTX PRO 6000 Blackwell upgrade campaign",
+  "date": "2026-07-27",
+  "artifact_count": 88,
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 5716,
+      "sha256": "4c75f6c69d37ccbce29b078442dfa7005ca5bac64349f7bd98a6b48c75bcdae9"
+    },
+    {
+      "path": "audit-dcp1-w4a16-direct0-decode-temp1.json",
+      "bytes": 55927,
+      "sha256": "77bb15cc8a36e4e7e84b4aa0e89acfd25954ae6d029bb0440ed5039568071770"
+    },
+    {
+      "path": "audit-dcp2-ckv140k-prefill-temp1.json",
+      "bytes": 12516,
+      "sha256": "5b6eb5cb0dcc59f0270eb19c5e140f25b9d1633872b8b2dad201fa574b745cc8"
+    },
+    {
+      "path": "audit-dcp2-indexer-shard0-qsplit0-inference-temp1.json",
+      "bytes": 68052,
+      "sha256": "38f123983dfcdb95295a1b4072118be9d7db212edfd1f7239b9377c08ee0ac96"
+    },
+    {
+      "path": "audit-dcp2-indexer-shard1-qsplit0-inference-temp1.json",
+      "bytes": 68044,
+      "sha256": "5554c42a43ac58e494852be1fba9c9548fb5a0925602b9c35961723afa30f40f"
+    },
+    {
+      "path": "audit-dcp2-interleave16-qsplit0-inference-temp1.json",
+      "bytes": 68075,
+      "sha256": "50bf2b38134e524a462f4b69a2083f2bfde4f47c321d873b2ffead247faecaa2"
+    },
+    {
+      "path": "audit-dcp2-interleave16-qsplit1-inference-temp1.json",
+      "bytes": 68055,
+      "sha256": "45db6c529d37f3b7bd4fc883da683ec6155d08a958357c8e1a9ad1bc0725563c"
+    },
+    {
+      "path": "audit-dcp4-ckv140k-prefill-temp1.json",
+      "bytes": 12527,
+      "sha256": "89fb7dc833e8d3035e119795c5f2bba0b28ecf7ed8a2d7b5e4262e03adc6f557"
+    },
+    {
+      "path": "dcp1-g9825-auto-lossless-estonia10-c1-temp1.json",
+      "bytes": 22114,
+      "sha256": "424af2483fc3cb2261654e9648d170bb19569e68b044168b03ef821b11c5d557"
+    },
+    {
+      "path": "dcp1-g9825-auto-lossless-inference-temp1.json",
+      "bytes": 60517,
+      "sha256": "2c6aa124faf301275b28e1c4d37f79ba324bc0e9bb1c6faa66680be62807f4d7"
+    },
+    {
+      "path": "dcp1-g9825-auto-lossless-lavd10-c1-temp1.json",
+      "bytes": 21062,
+      "sha256": "eadfa487f611010662685dc7350d22aec0170b49354d4aa8a86a91e1f05697f7"
+    },
+    {
+      "path": "dcp1-g9825-memory-stress-c2-146k-temp1.json",
+      "bytes": 18121,
+      "sha256": "dd9ba975a87a054d4ead3821282960d25bf599006e42c07c1f014511e8acd67c"
+    },
+    {
+      "path": "dcp2-g9675-auto-lossless-estonia10-c3-temp1.json",
+      "bytes": 22512,
+      "sha256": "08e993aad3395704a92f0c8673492a186cebe977b2b7fe38e387b1f2be015ace"
+    },
+    {
+      "path": "dcp2-g9675-auto-lossless-inference-temp1.json",
+      "bytes": 68037,
+      "sha256": "9aff31b2eebfc354a83d5c6064d48a17f6c41bdb8e890ca22bab4489b311453c"
+    },
+    {
+      "path": "dcp2-g9675-auto-lossless-lavd10-c5-temp1.json",
+      "bytes": 19989,
+      "sha256": "41628df76e782819e1a99fdcfc4ffdddaa58fe9e105ddcaa8028571aaaa5d72c"
+    },
+    {
+      "path": "dcp2-g9675-memory-stress-c2-220k-temp1.json",
+      "bytes": 18161,
+      "sha256": "05ac853f405d3e2e4305eddf370333648967dc7ba13532d80c283dc391454f65"
+    },
+    {
+      "path": "dcp2-g9675-owner0-chunk1-pf64-sh16-b3072-native520k-full4096-temp1.json",
+      "bytes": 14022,
+      "sha256": "3cbbb4a04c17392b8efb8a4b5513d154d6bb25c6774b4626821ca3ff48e4aebf"
+    },
+    {
+      "path": "dcp2-g9675-owner0-chunk1-pf64-sh16-b4096-native440k-full4096-temp1.json",
+      "bytes": 14051,
+      "sha256": "cc4f1b909482d936830c04f38ff2bcb42ecdab6042b1c47dea51f056fc1e220a"
+    },
+    {
+      "path": "dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-native500k-full4096-temp1.json",
+      "bytes": 14028,
+      "sha256": "4359b30f4446a7b9df5220812efab78741534d07aeb6be568f8227de23f86c2a"
+    },
+    {
+      "path": "dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-native512k-full4096-temp1.json",
+      "bytes": 14016,
+      "sha256": "81f7bcf7e4bbba91d7d4acfde4e4bc57de7a1932c01253f4e12d2fcb5810c113"
+    },
+    {
+      "path": "dcp2-g9675-owner1-chunk1-b4096-native420k-full4096-temp1.json",
+      "bytes": 14035,
+      "sha256": "999fdadc0fdb179546fefec5d60f15b183eaf9eb5609c8cf9065956ae511bae8"
+    },
+    {
+      "path": "dcp4-g96875-auto-lossless-estonia10-c5-temp1.json",
+      "bytes": 24430,
+      "sha256": "c4b881a2e53f5b6110cc2338c95f6314640e445c4c5be31133f45105e69d8141"
+    },
+    {
+      "path": "dcp4-g96875-auto-lossless-inference-temp1.json",
+      "bytes": 73669,
+      "sha256": "53e535ef645718dff216f1cece26536b7283775fb58316187c6876739e655791"
+    },
+    {
+      "path": "dcp4-g96875-auto-lossless-lavd10-c5-temp1.json",
+      "bytes": 20108,
+      "sha256": "3077d93fc5ea9c545c6c2999422e236976f2874569fe9508dddb1fd3c8d4abc8"
+    },
+    {
+      "path": "dcp4-g96875-memory-stress-c2-360k-temp1.json",
+      "bytes": 17602,
+      "sha256": "7cefa2b113a19fa0c28ddd0b8eeae2aa248de5ae7321579d162c226a39f3b4ed"
+    },
+    {
+      "path": "dcp4-g96875-memory-stress-c2-368k-temp1.json",
+      "bytes": 17108,
+      "sha256": "f36b3866d74c2d2f668cdf6356686a81dc80c9a559d25fac95744051541f9fec"
+    },
+    {
+      "path": "dcp4-g969-maxctx-655k-plus4096-temp1.json",
+      "bytes": 13795,
+      "sha256": "b47ac46f8487dca72ce43234596a3b33876e32519c20d06252599ef402c9237a"
+    },
+    {
+      "path": "dcp4-g9756-maxctx-695k-plus4096-temp1.json",
+      "bytes": 13802,
+      "sha256": "cd09522642713aa524dbfd31a63c7d8774ff74252c7e935ca9651ab642802be9"
+    },
+    {
+      "path": "dcp4-g977-maxctx-707k-plus4096-temp1.json",
+      "bytes": 13796,
+      "sha256": "fe30c317f5a04117d7ef3611f69b341da1fa9ba9302194558671ddb609beec13"
+    },
+    {
+      "path": "dcp4-g977-owner0-chunk1-b3072-native1m-exact-temp1.json",
+      "bytes": 13823,
+      "sha256": "4defff68045ea7fd83fb1906b730620879cb45c35cb05e64fe96a3c85a92598e"
+    },
+    {
+      "path": "dcp4-g977-owner0-chunk1-b3072-native1m-full4096-temp1.json",
+      "bytes": 13861,
+      "sha256": "79f4cab8957762dcfeb99783228b678f497c6f813f24e3258364a0d35cd4ee43"
+    },
+    {
+      "path": "dcp4-g978-maxctx-712k-plus4096-temp1.json",
+      "bytes": 13797,
+      "sha256": "7933e1972e2416694bb641808c3cd2546f25fb995ddece20a05dac87993394b8"
+    },
+    {
+      "path": "dcp4-g978-owner0-chunk1-b3072-native1m-exact-temp1.json",
+      "bytes": 12754,
+      "sha256": "f6194614ddfaf7315625d607ed16ac02837217da3fa1e1a85ddbf6e2526b0d5f"
+    },
+    {
+      "path": "dcp4-g979-maxctx-718k-plus4096-temp1.json",
+      "bytes": 12737,
+      "sha256": "c8369e37c57a1644fecdba318c6cccbaaabb315fa257aeccbbce4f07a8df0bea"
+    },
+    {
+      "path": "dcp4-g980-maxctx-727k-plus4096-temp1.json",
+      "bytes": 12739,
+      "sha256": "244c2597068a8497800f8d876b935a0933f64c18a63ef5baea0ed648ce412ada"
+    },
+    {
+      "path": "final-dcp2-g9675-owner0-chunk1-pf64-sh16-b3072-estonia30-c5-temp1.json",
+      "bytes": 45468,
+      "sha256": "6eb333dc7f04b8760bdc1f4f5d9bf9ecf54afe03775dede97e3615c50b2e0fa2"
+    },
+    {
+      "path": "final-dcp2-g9675-owner0-chunk1-pf64-sh16-b3072-inference-temp1.json",
+      "bytes": 68033,
+      "sha256": "ec2b913965880510294456f6182a6dc079d172cbb1efc94c7309e6fd422b187f"
+    },
+    {
+      "path": "final-dcp2-g9675-owner0-chunk1-pf64-sh16-b3072-lavd20-c5-temp1.json",
+      "bytes": 28956,
+      "sha256": "0785b884a9dd5ab06997e3cb5cb5b8ae28731554758456e24aba80309cba4104"
+    },
+    {
+      "path": "final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-estonia30-c5-temp1.json",
+      "bytes": 46512,
+      "sha256": "47514bb48b4771e314ad0517c59e893b57e7e6c20d7778aa9e4933c0611596b0"
+    },
+    {
+      "path": "final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-inference-temp1.json",
+      "bytes": 67998,
+      "sha256": "02c5fcd672b26a72e0e15f875cdb89926ca5357b8b9a9bdd5b1e51583334e41e"
+    },
+    {
+      "path": "final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-lavd20-c5-temp1.json",
+      "bytes": 29873,
+      "sha256": "69cf8ade7450d8cc32ae3f1c13f6d87a41d833ae9444a2394116684751a54612"
+    },
+    {
+      "path": "final-dcp4-g977-owner0-chunk1-b3072-native1m-estonia10-c5-temp1.json",
+      "bytes": 23969,
+      "sha256": "828ce6d4d5d326a472d6d4e8a18171288912e771722c7c9f0a5adcd45b0d3837"
+    },
+    {
+      "path": "final-dcp4-g978-lossless24m-estonia10-c5-temp1-repeat.json",
+      "bytes": 24605,
+      "sha256": "d2c2250d0eee30aa9a5f9872e1f886334584a40803244ecb8b92312d172a91f4"
+    },
+    {
+      "path": "final-dcp4-g978-lossless24m-estonia10-c5-temp1.json",
+      "bytes": 22820,
+      "sha256": "a57f3b1df26e3efbb48fccfe743760e1a943f27881d5b5899f32e2e3417fdcec"
+    },
+    {
+      "path": "final-dcp4-g978-lossless24m-lavd10-c5-temp1.json",
+      "bytes": 20115,
+      "sha256": "73359ba52b936db7ab2f79c5d9cf74a983dc97e9a4fdbefafc8401533150cd3a"
+    },
+    {
+      "path": "final-dcp4-g978-lossless24m-max735k-inference-temp1.json",
+      "bytes": 73674,
+      "sha256": "9bfb6b5ba5f8ed6813c064beb09d8e5b46b12887deb475a0d14d7a51e9c6ff3d"
+    },
+    {
+      "path": "final-dcp4-g978-owner0-chunk1-pf48-sh16-ckv140k-estonia30-c5-temp1.json",
+      "bytes": 47731,
+      "sha256": "c45ba02458d3c1634232c03f8018d0b57f3a3dc5af8f6c7ec93658c9f5414144"
+    },
+    {
+      "path": "final-dcp4-g978-owner0-chunk1-pf48-sh16-ckv140k-inference-temp1.json",
+      "bytes": 73663,
+      "sha256": "22562d42e06052189c9d6becd9547f3b69d3198393445a507b91b653465e6eb7"
+    },
+    {
+      "path": "final-dcp4-g978-owner0-chunk1-pf48-sh16-ckv140k-lavd20-c5-temp1.json",
+      "bytes": 29975,
+      "sha256": "175f7f59c64e92314ac36d3ceed6730f37b450dd69701544220f4265b7f3087e"
+    },
+    {
+      "path": "final-dcp4-g978-owner0-chunk1-pf48-sh16-estonia30-c5-temp1.json",
+      "bytes": 49005,
+      "sha256": "f271b7bdb5fdbb2fb04a0b2298fcdbd90c6bb5ca844ce0d831666e0a672a9e4d"
+    },
+    {
+      "path": "final-dcp4-g978-owner0-chunk1-pf48-sh16-inference-temp1.json",
+      "bytes": 73710,
+      "sha256": "da2680eebd8a20671ba7114be1549abab7fd185423cf12d6e2fd9167dedb4361"
+    },
+    {
+      "path": "final-dcp4-g978-owner0-chunk1-pf48-sh16-lavd20-c5-temp1.json",
+      "bytes": 29897,
+      "sha256": "af46ab881493e27951c6c04b37b391141569188950d84ea2b463cb421283a508"
+    },
+    {
+      "path": "production-final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-max512k-inference-temp1.json",
+      "bytes": 68078,
+      "sha256": "c6ce96b7a7332065ccf64f005935d39fb7dd36eaca78a0909c16e6332107385b"
+    },
+    {
+      "path": "smoke-dcp4-g960-estonia1-temp1.json",
+      "bytes": 11685,
+      "sha256": "1eab5abc7a132be44751c393643677ceea057c407968c956944aef82b52ff031"
+    },
+    {
+      "path": "stock-final-dcp2-g960-b4096-estonia30-c5-temp1.json",
+      "bytes": 43850,
+      "sha256": "79ebe95f617da2610f0217a619b64126fc95150041b81557a268e1777e80b9d9"
+    },
+    {
+      "path": "stock-final-dcp2-g960-b4096-inference-temp1.json",
+      "bytes": 68052,
+      "sha256": "840cee856c24c61225e8070943176f916be4d997d34851c56bd5bb4deb3a7e81"
+    },
+    {
+      "path": "stock-final-dcp2-g960-b4096-lavd20-c5-temp1.json",
+      "bytes": 28939,
+      "sha256": "4634eea83954dd2a40306f98d6bd98ab13090d6880f0825da0919d818538fb56"
+    },
+    {
+      "path": "study-summary.json",
+      "bytes": 7085,
+      "sha256": "e797dda4b943ee7542e6c00b2dd8c9a1bd99f2d638d82b4ad7b360f58106f5d8"
+    },
+    {
+      "path": "tune-dcp1-g9825-chunk1-pf64-sh16-inference-temp1.json",
+      "bytes": 60565,
+      "sha256": "d96ff7d080d974c8669ec137ec576866e28bd543bc4513b570e22c7db8c88cd6"
+    },
+    {
+      "path": "tune-dcp1-g9825-chunk1-pf64-sh256-decode-temp1.json",
+      "bytes": 59180,
+      "sha256": "7de333e58fb22162c143b4397100a587c1281ea31f269e5329460ba4d4996e24"
+    },
+    {
+      "path": "tune-dcp1-g9825-chunk1-pf64-sh256-st65024-decode-temp1.json",
+      "bytes": 55872,
+      "sha256": "d4a990994ccf796efba873ef3f010900ea49a8468d7ba99b177bdd5b17628078"
+    },
+    {
+      "path": "tune-dcp1-g9825-chunk1-pf64-sh256-st65024-prefill-temp1.json",
+      "bytes": 12523,
+      "sha256": "299c4157e118711c83ff5beb19d9b3d665adc19a64e71aa4ccd330e4aeabe4ba"
+    },
+    {
+      "path": "tune-dcp2-g9675-owner0-chunk1-pf48-sh16-inference-temp1.json",
+      "bytes": 68031,
+      "sha256": "78a5bc3c2501aec154b8e8ad06ae1e3e6aff51ade5df270ad17cf9f8d7930901"
+    },
+    {
+      "path": "tune-dcp2-g9675-owner1-chunk1-pf32-sh256-prefill-temp1.json",
+      "bytes": 12528,
+      "sha256": "75dbd1ce9023b736b0e917c7c25ab9213f92f781a2c6f4e61edf4409a400bdb2"
+    },
+    {
+      "path": "tune-dcp2-g9675-owner1-chunk1-pf48-sh16-inference-temp1.json",
+      "bytes": 68088,
+      "sha256": "ed54a6cd30f298a446d756a512a50eef8eee4d256fe1576588a0b04793d4f477"
+    },
+    {
+      "path": "tune-dcp2-g9675-owner1-chunk1-pf48-sh256-decode-temp1.json",
+      "bytes": 66694,
+      "sha256": "f753c50770e73881558ff01794d5fe2c41a50b40c8bac643f8a77551d81b43bc"
+    },
+    {
+      "path": "tune-dcp2-g9675-owner1-chunk1-pf64-sh256-prefill-temp1-repeat.json",
+      "bytes": 12528,
+      "sha256": "a501ffb520cd322c04f301c3f4a782cc38e5f053a0a767d9550f2bcd19152231"
+    },
+    {
+      "path": "tune-dcp2-g9675-owner1-chunk1-pf64-sh256-prefill-temp1.json",
+      "bytes": 12527,
+      "sha256": "5a6b67b0252e27df855944a51db64a9790b33b563ca962ce91b915589f4dfdca"
+    },
+    {
+      "path": "tune-dcp4-g96875-ag-qsplit0-prefetch0-inference-temp1.json",
+      "bytes": 73653,
+      "sha256": "6410bccc974a3eaed39568e8429bd679b8c1e3255b4310ead52f91ca64b3bec6"
+    },
+    {
+      "path": "tune-dcp4-g96875-ag100m-qsplit0-prefetch0-inference-temp1.json",
+      "bytes": 73658,
+      "sha256": "fde7100cfc54eebb7b0b59ddb01a5307564ad35aee8705f4e6f9dde884a2de6b"
+    },
+    {
+      "path": "tune-dcp4-g96875-ag24m-qsplit0-prefetch0-inference-temp1.json",
+      "bytes": 73661,
+      "sha256": "3b08f36723b5ef4136a0435700ba70e38fe77bb96b91001adfeffe6da5e62807"
+    },
+    {
+      "path": "tune-dcp4-g96875-ag48m-qsplit0-prefetch0-inference-temp1.json",
+      "bytes": 73716,
+      "sha256": "79d76eebba1d47d7a6f9d120631f4eeac3a05999b79e1ce3c57867f0fe20cfce"
+    },
+    {
+      "path": "tune-dcp4-g96875-explicit-stock-ag-qsplit-prefetch-inference-temp1.json",
+      "bytes": 73688,
+      "sha256": "656b50173fa9f6c826ada91c87662b5fbe1bdc20434642a1e78579d1a45a99a3"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-chunk1-b3072-inference-temp1.json",
+      "bytes": 73685,
+      "sha256": "62268e373ce001608872d9b1e506ddb2f2714cb1747852142a0c979005cf3ee6"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-chunk1-inference-temp1.json",
+      "bytes": 73619,
+      "sha256": "2ff4dc18ee6edc8590171cc98b72a256eeb06ca766e6039a49c90d7d7b0d02b5"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-chunk1-kvrope-estonia10-c5-temp1.json",
+      "bytes": 24380,
+      "sha256": "b677cb03bbcfa592480d7db03d6f4449d891c70f252aa4ce164ee14f5f04ec6c"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-chunk1-kvrope-inference-temp1.json",
+      "bytes": 73698,
+      "sha256": "a59442e078f53164c110ada51383896cc8334200b8f4057d3c82f9a2b571f8bd"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-chunk1-pf32-inference-temp1.json",
+      "bytes": 73697,
+      "sha256": "50d9ea3a493da2fecfdf3d80f3020d255dd8bd58cdad6ebe7dae2b5e3e675aab"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-chunk1-pf48-inference-temp1.json",
+      "bytes": 73673,
+      "sha256": "18883c857e144da3abdcf1dfa20386c577a37e9fc8e6acaf8cba02db9f5306a8"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-chunk1-pf8-inference-temp1.json",
+      "bytes": 73668,
+      "sha256": "c0de914832785fceab92f63c10df01384989ae450cf23a018525e7863a595c74"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-estonia10-c5-temp1.json",
+      "bytes": 22849,
+      "sha256": "e9bfb6eb7062d3ca55d5b60860b78243a9b1bba71e92f4d6fd1af6f49f0fdfd6"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-lossless24m-inference-temp1.json",
+      "bytes": 73642,
+      "sha256": "bf3d1b6794ec21fac81b5b5f2e3bab3e8d8ca2726db98a6ebbba1bda7fc95638"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-pf48-no-multistream-decode-temp1.json",
+      "bytes": 58002,
+      "sha256": "d4c6e080e86b3b0adc86c0f3ef44a84170347a3741e81beec8e95851004b8715"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-pf48-no-sharedstream-decode-temp1.json",
+      "bytes": 57986,
+      "sha256": "d257dbdf869d15194d5dee294f271f83e3f371975df69cd459780aa1ba055620"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-pf48-shared16-decode-temp1.json",
+      "bytes": 58006,
+      "sha256": "9c3fc163fecbbdf17fc9df770c501962bf62ddf1cc5f340b9983ee18f6a255ec"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-pf48-shared8-decode-temp1.json",
+      "bytes": 58000,
+      "sha256": "d956f90acf83b8bf2b63e9d24495ab0835cc3cfe9ab68b64655972a999e19788"
+    },
+    {
+      "path": "tune-dcp4-g978-owner0-pf48-stream-control-decode-temp1.json",
+      "bytes": 58002,
+      "sha256": "227599f20e93683cee2b81172008c0503a2d540675f821c0f2514c7cd80139d7"
+    },
+    {
+      "path": "tune-dcp4-natural0123-g978-lossless24m-inference-temp1.json",
+      "bytes": 73643,
+      "sha256": "248f0d294449c642916d663dfd533f83715e0a1c80cd1b167009254a64bd519b"
+    }
+  ]
+}

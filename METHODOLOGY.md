@@ -1,6 +1,6 @@
 # Methodology and Experiment Log
 
-This document records the complete 23 July 2026 GLM-5.2 EXL3/Trellis tuning process, including controls, candidate configurations, regressions, capacity limits, and final gates.
+This document records the complete 23–27 July 2026 GLM-5.2 EXL3/Trellis tuning process, including controls, candidate configurations, regressions, capacity limits, quality gates, issue #34 RC2 follow-ons, and the final issue #33-era source/configuration audit.
 
 > Ownership notice: the campaign measured and configured upstream work; it did not create or take ownership of GLM-5.2, the EXL3 checkpoint, vLLM, Sparkinfer, ExLlamaV3/Trellis, Gilded Gnosis, or the referenced container images. See [CREDITS.md](CREDITS.md) for component-level attribution.
 
@@ -465,3 +465,113 @@ python llm_decode_bench.py \
 ```
 
 Exact arguments, startup diagnostics, hardware samples, and event logs are embedded in the raw JSON. The 14-file archive and checksums are indexed by [`results/issue34-manifest.json`](results/issue34-manifest.json).
+
+## 11. Issue #33-era EXL3 upgrade methodology
+
+The 26–27 July campaign is explained for a general technical audience in [`ISSUE33_STUDY.md`](ISSUE33_STUDY.md). This section preserves the experiment contract and execution order in the main methodology ledger.
+
+### Exact source boundary
+
+The study did not float to the latest image tag. It used:
+
+```text
+base image:
+  voipmonitor/vllm:gilded-gnosis-v20-vllm0c79e41-sie603f74-fi801d57a-cu132-20260726
+base digest:
+  sha256:10261c7d65101c8aba2ce1fb59eabe73aff9d35eca5043b330cc0ce76d3c98d0
+vLLM integration:
+  0c79e41db41f250ccdfc4be92d171960a5787f73
+Sparkinfer integration:
+  e603f74bb67d0fce547336f1fb73c3c23e8f1887
+vLLM PR #139 head:
+  26c4bfdd3ff2be0433e6fe07e0c3be535f5bb318
+Sparkinfer PR #49 head:
+  d4438d490691f79022fdfc8149e1c5f161d15445
+FlashInfer:
+  801d57a08958c13d375ddbb6be3be4808f48a708
+```
+
+The EXL3 source/artifact overlay is reproducible from [`configs/Dockerfile.issue33-exl3`](configs/Dockerfile.issue33-exl3). The tested local image ID was `sha256:d55205e3ae3d81f00a2770dee91c2bf1662a5efe29c6c897be5ac3010ca75895`.
+
+Issue #33 later replaced this source cut with a `sic3828fd`/`r4` image. That later image was outside the campaign boundary.
+
+### Fixed benchmark contract
+
+All 86 raw benchmark JSON files:
+
+- report harness v0.4.28;
+- use explicit temperature 1.0;
+- target prompt lengths through the tokenizer rather than estimating from characters;
+- preserve startup diagnostics and sampled hardware state;
+- were run serially on one four-GPU host.
+
+Primary cold-prefill targets were 8K, 64K, and 128K. Primary decode used contexts 0, 32K, and 128K at C1/C2/C4/C8 for 20 seconds per runnable cell after warmup. Capacity-limited cells remained empty.
+
+Final LAVD used 20 runs at C5, 40,000 output tokens, explicit completion temperature 1.0, and no prefill scout. Final Estonia used the same controls with 30 runs.
+
+### Candidate progression
+
+1. Smoke the upgraded DCP4 service at GMU 0.96.
+2. Establish DCP1/DCP2/DCP4 inference, LAVD, Estonia, and concurrent-memory baselines.
+3. Find topology-specific GMU boundaries by startup, near-ceiling generation, concurrent saturation, and the first confirmed OOM.
+4. Tune DCP4 communication, owner/workspace, batch budget, chunking, KV representation, prefill block, stream thresholds, and context capacity.
+5. Tune DCP2 owner policy, prefill block, stream threshold, chunking, and context capacity.
+6. Tune DCP1 chunking, stream threshold, supertile, and W4A16 small-M route.
+7. Audit the remaining source-exposed controls and distinguish shape-aware production dispatchers from diagnostic kill switches.
+8. Repeat matched old-stock inference, LAVD, and Estonia.
+9. Revalidate the final DCP2/DCP4 quality profiles.
+10. Restore the selected DCP2 service from the public-safe Compose defaults and run an actual OpenAI-compatible chat response plus the complete inference matrix.
+
+### Memory acceptance rule
+
+Startup alone was never accepted as a safe memory result. A safe boundary required a completed near-ceiling prompt with 4,096 generated tokens and, where applicable, a two-request saturation workload. The next GMU step had to fail the same contract with a confirmed CUDA OOM.
+
+This rule rejected settings that appeared healthy during graph capture but left too little physical headroom for an eager or Inductor allocation.
+
+### Matched stock control
+
+The final stock control used the old EXL3 image at vLLM `5517197`, Sparkinfer `be0edca`, DCP2, MTP3, GMU 0.96, 4,096 batched tokens, and 300,000 maximum model length. It ran after the tuning sweep on the same host with the same harness, model, GPU order, prompt targets, concurrency matrix, and temperature.
+
+The selected production matrix repeated after service restoration at GMU 0.9675, DCP2, 3,072 batched tokens, and 512,000 maximum model length. Its common-cell decode geometric mean was 0.15% below stock, while KV capacity was 16.6% higher and 64K/128K prefill was 7.1%/3.9% faster.
+
+### Quality comparison
+
+For a profile, exact and near LAVD answers both counted as acceptable. Estonia was binary. Two-sided Fisher exact tests compared acceptable/pass and failure counts for the exact selected DCP2 profile and the matched old-stock DCP2 control:
+
+| Test | Selected DCP2 | Matched stock DCP2 | Fisher p |
+| --- | ---: | ---: | ---: |
+| LAVD | 19/20 | 20/20 | 1.0000 |
+| Estonia | 29/30 | 30/30 | 1.0000 |
+
+The immediately preceding final DCP2 variant produced 20/20 LAVD and 29/30 Estonia, but it is reported separately rather than pooled into the primary matched comparison.
+
+The two final DCP4 owner-zero variants produced 38/40 acceptable LAVD answers and 56/60 Estonia passes in aggregate; the exact 1,048,576-token profile separately produced 9/10 Estonia passes. These are descriptive compatibility results. No old-stock DCP4 quality control exists in the archive, so no DCP4 stock comparison or Fisher p-value is claimed.
+
+The DCP2 result is “no statistically detectable difference,” not proof of equality. Raw wrong answers remain in their harness artifacts.
+
+### Final selected policy
+
+```text
+TP4 / DCP2 / MTP3 greedy
+GPU memory utilization: 0.9675
+maximum model length: 512000
+maximum batched tokens: 3072
+maximum sequences: 8
+query split: on at context >= 8192
+CKV gather: on, min 512, max 140000
+owner merge: off
+indexer shards / interleave: 0 / 1
+CKV prefetch depth: 0
+lossless PCIe DMA minimum: 25165824 bytes
+prefill chunk / block M: 1 / 64
+Trellis M range / block M: 1..32 / 8
+shared-expert / multi-stream thresholds: 16 / 1024
+indexer supertile: 32768
+KV FP8 RoPE: off
+```
+
+The complete launch policy and validation checks are in [`configs/docker-compose.exl3-v20.yml`](configs/docker-compose.exl3-v20.yml).
+
+### Evidence and integrity
+
+[`results/issue33-upgrade/README.md`](results/issue33-upgrade/README.md) maps the 86 raw artifacts to each decision. [`results/issue33-upgrade/study-summary.json`](results/issue33-upgrade/study-summary.json) is a derived machine-readable conclusion. [`results/issue33-upgrade/manifest.json`](results/issue33-upgrade/manifest.json) records per-file sizes and hashes.

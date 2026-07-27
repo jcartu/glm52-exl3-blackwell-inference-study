@@ -14,6 +14,7 @@ Nothing in this repository transfers ownership of, relicenses, or claims authors
 | vLLM EXL3 integration | Brandon Music and contributors preserved in commit history | Native rank-sliced EXL3 loading/execution, routed-MoE support, Trellis dispatch, DCP speculative lifetime fixes, structured-output fixes, and validation | [vLLM PR #139](https://github.com/local-inference-lab/vllm/pull/139) |
 | Sparkinfer EXL3 Trellis path | Brandon Music and Sparkinfer contributors | Planned EXL3 Trellis API and fused Blackwell routed-MoE path | [Sparkinfer PR #49](https://github.com/local-inference-lab/sparkinfer/pull/49) |
 | Dual-plan Trellis prefill | David Young (`@davidsyoung`) | Second Trellis plan for prefill, block-size control, accounted workspace, tests, and A/B validation; incorporated into PR #139 with authorship preserved | [vLLM PR #163](https://github.com/local-inference-lab/vllm/pull/163) |
+| Issue #33 candidate image and runtime integration | Martin Vit (`@voipmonitor`) and contributors preserved in source history | Published the pinned `0c79e41`/`e603f74` candidate base used for the issue #33-era campaign; subsequent `r4` work is outside this study | [issue #33](https://github.com/local-inference-lab/rtx6kpro/issues/33) |
 | Issue #34 RC2 publication and runtime work | Martin Vit (`@voipmonitor`) | Issue #34 test release, image/source pins, DCP/MLA fixes, RC2 integration and related vLLM/Sparkinfer changes | [issue #34](https://github.com/local-inference-lab/rtx6kpro/issues/34) · [vLLM #164](https://github.com/local-inference-lab/vllm/pull/164) · [#167](https://github.com/local-inference-lab/vllm/pull/167) · [#172](https://github.com/local-inference-lab/vllm/pull/172) · [#173](https://github.com/local-inference-lab/vllm/pull/173) · [#174](https://github.com/local-inference-lab/vllm/pull/174) · [Sparkinfer #74](https://github.com/local-inference-lab/sparkinfer/pull/74) · [#75](https://github.com/local-inference-lab/sparkinfer/pull/75) · [#76](https://github.com/local-inference-lab/sparkinfer/pull/76) |
 | Additional RC2 vLLM work | [`@yatesdr`](https://github.com/yatesdr) | Contributions incorporated by the issue #34 RC2 source line | [vLLM PR #166](https://github.com/local-inference-lab/vllm/pull/166) · [PR #169](https://github.com/local-inference-lab/vllm/pull/169) |
 | Forced-tool and reasoning grammar foundation | Florian Bernd (`@flobernd`) | Earlier forced-tool/reasoning grammar diagnosis and implementation on which this study's narrower repeated-call correction builds | [vLLM PR #34](https://github.com/local-inference-lab/vllm/pull/34) |
@@ -31,6 +32,24 @@ Nothing in this repository transfers ownership of, relicenses, or claims authors
 | Automated review assistance | CodeRabbit | Automated summaries and review/check feedback visible on upstream pull requests | [CodeRabbit](https://www.coderabbit.ai/) |
 
 ## Immutable runtime pins
+
+### Issue #33-era EXL3 study image
+
+```text
+base: voipmonitor/vllm:gilded-gnosis-v20-vllm0c79e41-sie603f74-fi801d57a-cu132-20260726@sha256:10261c7d65101c8aba2ce1fb59eabe73aff9d35eca5043b330cc0ce76d3c98d0
+local derivative: local/glm52-exl3-issue33:0c79e41-e603f74-pr139-pr49
+local image ID: sha256:d55205e3ae3d81f00a2770dee91c2bf1662a5efe29c6c897be5ac3010ca75895
+```
+
+Recorded source identifiers:
+
+- vLLM integration `0c79e41db41f250ccdfc4be92d171960a5787f73`;
+- Sparkinfer integration `e603f74bb67d0fce547336f1fb73c3c23e8f1887`;
+- FlashInfer `801d57a08958c13d375ddbb6be3be4808f48a708`;
+- vLLM EXL3 PR #139 head `26c4bfdd3ff2be0433e6fe07e0c3be535f5bb318`;
+- Sparkinfer EXL3 PR #49 head `d4438d490691f79022fdfc8149e1c5f161d15445`.
+
+The derivative image layered the attributed PR sources and locally built EXL3 artifacts onto the pinned candidate base. It was built and measured locally; it is not represented as an image published by Martin Vit, Local Inference Lab, Brandon Music, or another upstream contributor. Issue #33 later published a different `sic3828fd`/`r4` image, which this campaign did not test.
 
 ### Issue #34 RC2 image
 

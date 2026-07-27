@@ -9,7 +9,7 @@ Measurements were generated with [Local Inference Lab's `llm-inference-bench`](h
 - `raw/` contains original benchmark and direct-smoke outputs, including the RC2+EXL3 profile controls.
 - `followup/` contains the 16 July 23 follow-up artifacts formerly published under promotional names; files were renamed for presentation, while harness payloads remain unchanged except the direct-observation record's neutral study label.
 - `issue34/` contains 13 benchmark outputs plus one direct-observation record from the native RC2 comparison.
-- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, `rc2-exl3-manifest.json`, `optimization-manifest.json`, `hybrid-v20-manifest.json`, and `campaign-20260726-manifest.json` record artifact provenance, sizes, and SHA-256 values.
+- `manifest.json`, `followup-manifest.json`, `issue34-manifest.json`, `rc2-exl3-manifest.json`, `optimization-manifest.json`, `hybrid-v20-manifest.json`, `campaign-20260726-manifest.json`, and `issue33-upgrade/manifest.json` record artifact provenance, sizes, and SHA-256 values.
 - `SHA256SUMS` covers the publication's documentation, configurations, patches, helper scripts, manifests, and evidence.
 - Failed candidates are retained when they establish a decision boundary.
 - The invalid attempted `context900k` artifact is excluded because the harness actually clamped that invocation to 128K; it is not a 900K measurement.
@@ -19,6 +19,23 @@ Verify from the repository root:
 ```bash
 sha256sum --check results/SHA256SUMS
 ```
+
+## 26–27 July issue #33-era EXL3 archive
+
+The final campaign adds 86 unedited temperature-one benchmark files under [`issue33-upgrade/`](issue33-upgrade/). It covers DCP1/DCP2/DCP4 baselines, topology-specific memory ceilings, exact request envelopes through 1,048,576 total tokens, communication and kernel controls, matched stock, final quality samples, and the restored production matrix.
+
+Start with [`issue33-upgrade/README.md`](issue33-upgrade/README.md) or the plain-English report in [`../ISSUE33_STUDY.md`](../ISSUE33_STUDY.md).
+
+| Question | Artifact |
+| --- | --- |
+| Final restored production matrix | [`production-final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-max512k-inference-temp1.json`](issue33-upgrade/production-final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-max512k-inference-temp1.json) |
+| Matched old-stock matrix | [`stock-final-dcp2-g960-b4096-inference-temp1.json`](issue33-upgrade/stock-final-dcp2-g960-b4096-inference-temp1.json) |
+| Exact DCP2 512K envelope | [`dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-native512k-full4096-temp1.json`](issue33-upgrade/dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-native512k-full4096-temp1.json) |
+| Exact DCP4 1M envelope | [`dcp4-g977-owner0-chunk1-b3072-native1m-full4096-temp1.json`](issue33-upgrade/dcp4-g977-owner0-chunk1-b3072-native1m-full4096-temp1.json) |
+| Final DCP2 quality | [`LAVD`](issue33-upgrade/final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-lavd20-c5-temp1.json) · [`Estonia`](issue33-upgrade/final-dcp2-g9675-owner0-chunk1-pf64-sh16-ckv140k-b3072-estonia30-c5-temp1.json) |
+| Final DCP4 quality | [`LAVD`](issue33-upgrade/final-dcp4-g978-owner0-chunk1-pf48-sh16-ckv140k-lavd20-c5-temp1.json) · [`Estonia`](issue33-upgrade/final-dcp4-g978-owner0-chunk1-pf48-sh16-ckv140k-estonia30-c5-temp1.json) |
+| Machine-readable conclusion | [`study-summary.json`](issue33-upgrade/study-summary.json) |
+| Per-file hashes and sizes | [`manifest.json`](issue33-upgrade/manifest.json) |
 
 ## 26 July campaign archive
 

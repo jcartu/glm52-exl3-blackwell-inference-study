@@ -1,6 +1,6 @@
 services:
   glm52-exl3-v20:
-    image: "${EXL3_IMAGE:-verdictai/glm52-exl3-sparkinfer:v26-gg-v20final-scopefix-archkey-vllm5517197-sibe0edca-cu132-sm120a@sha256:2bb9e804a283d1da3b7e3425ff87375121285141d0d0a40d3dc09d41bf881a10}"
+    image: "${EXL3_IMAGE:-local/glm52-exl3-issue33:0c79e41-e603f74-pr139-pr49}"
     container_name: glm52-exl3-v26-5001
     runtime: nvidia
     network_mode: host
@@ -12,7 +12,7 @@ services:
       nofile: 1048576
       stack: 67108864
     volumes:
-      - ${EXL3_MODEL_PATH:-/mnt/2king/models/GLM-5.2-EXL3-TR3-3.0bpw}:/model:ro
+      - ${EXL3_MODEL_PATH:?Set EXL3_MODEL_PATH to the absolute checkpoint directory}:/model:ro
       - glm52-exl3-experiment-cache:/cache
     environment:
       CUDA_VISIBLE_DEVICES: "${CUDA_VISIBLE_DEVICES:-3,1,2,0}"
@@ -37,8 +37,10 @@ services:
       VLLM_PCIE_ALLREDUCE_BACKEND: b12x
       VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE: "${VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE:-64KB}"
       VLLM_PCIE_ONESHOT_FUSED_ADD_RMS_NORM_MAX_SIZE: "${VLLM_PCIE_ONESHOT_FUSED_ADD_RMS_NORM_MAX_SIZE:-84KB}"
-      VLLM_PCIE_DMA_FP8: "${EXL3_PCIE_DMA_FP8:-ag}"
-      B12X_PCIE_DMA_FP8: "${EXL3_PCIE_DMA_FP8:-ag}"
+      VLLM_PCIE_DMA_FP8: "${EXL3_PCIE_DMA_FP8:-0}"
+      VLLM_PCIE_ONESHOT_ALLOW_CROSS_NUMA: "${EXL3_PCIE_ONESHOT_ALLOW_CROSS_NUMA:-1}"
+      VLLM_PCIE_ONESHOT_SINGLE_CHANNEL: "${EXL3_PCIE_ONESHOT_SINGLE_CHANNEL:-0}"
+      B12X_PCIE_DMA_FP8: "${EXL3_PCIE_DMA_FP8:-0}"
       VLLM_CPP_AR_IGNORE_CUTOFF_MAX_ROWS: "0"
       VLLM_RTX6K_FUSED_ALLREDUCE_ADD: "0"
       VLLM_RTX6K_FUSED_ALLREDUCE_ADD_END_BARRIER: "0"
@@ -56,35 +58,58 @@ services:
       VLLM_DISABLE_SHARED_EXPERTS_STREAM: "${EXL3_DISABLE_SHARED_EXPERTS_STREAM:-0}"
       VLLM_DISABLED_KERNELS: MarlinFP8ScaledMMLinearKernel
       VLLM_B12X_MLA_SPEC_EXTEND_AS_DECODE: "${EXL3_SPEC_EXTEND_AS_DECODE:-1}"
+      KV_FP8_ROPE: "${EXL3_KV_FP8_ROPE:-0}"
+      SPARKINFER_W4A16_SMALL_M_DIRECT: "${EXL3_W4A16_SMALL_M_DIRECT:-1}"
+      SPARKINFER_MLA_PREFILL_STRATEGY: "${EXL3_MLA_PREFILL_STRATEGY:-auto}"
+      SPARKINFER_MLA_SM120_NUM_SPLITS: "${EXL3_MLA_NUM_SPLITS:-0}"
+      SPARKINFER_MLA_SM120_PREFILL_MG: "${EXL3_MLA_PREFILL_MG:-1}"
+      SPARKINFER_PAGED_INDEX_SUPERTILE_K: "${EXL3_INDEXER_SUPERTILE_K:-32768}"
+      B12X_PAGED_INDEX_SUPERTILE_K: "${EXL3_INDEXER_SUPERTILE_K:-32768}"
+      SPARKINFER_INDEXER_DIRECT_K: "${EXL3_INDEXER_DIRECT_K:-1}"
+      SPARKINFER_INDEXER_STREAM_SCORER: "${EXL3_INDEXER_STREAM_SCORER:-1}"
+      SPARKINFER_FUSED_INDEXER: "${EXL3_FUSED_INDEXER:-1}"
+      VLLM_SHARED_EXPERTS_STREAM_TOKEN_THRESHOLD: "${EXL3_SHARED_EXPERTS_STREAM_TOKEN_THRESHOLD:-16}"
+      VLLM_MULTI_STREAM_GEMM_TOKEN_THRESHOLD: "${EXL3_MULTI_STREAM_GEMM_TOKEN_THRESHOLD:-1024}"
       VLLM_B12X_MLA_SPEC_DECODE_MAX_Q: "8"
       VLLM_USE_B12X_DCP_A2A: "${EXL3_USE_B12X_DCP_A2A:-1}"
       VLLM_DCP_A2A_MAX_TOKENS: "${EXL3_DCP_A2A_MAX_TOKENS:-16}"
       VLLM_DCP_A2A_LARGE_BACKEND: "${EXL3_DCP_A2A_LARGE_BACKEND:-ag_rs}"
       VLLM_DCP_GLOBAL_TOPK: "1"
       VLLM_DCP_SHARD_DRAFT: "1"
-      VLLM_B12X_MLA_CKV_GATHER_MIN_TOKENS: "512"
-      VLLM_B12X_MLA_CKV_GATHER_MAX_TOKENS: "16384"
+      VLLM_B12X_MLA_CKV_GATHER_MIN_TOKENS: "${EXL3_DCP_CKV_GATHER_MIN_TOKENS:-512}"
+      VLLM_B12X_MLA_CKV_GATHER_MAX_TOKENS: "${EXL3_DCP_CKV_GATHER_MAX_TOKENS:-140000}"
       EXL3_MTP_TOKENS: "${EXL3_MTP_TOKENS:-3}"
       EXL3_MTP_DRAFT_SAMPLE_METHOD: "${EXL3_MTP_DRAFT_SAMPLE_METHOD:-greedy}"
       EXL3_DCP_PREFILL_WORKSPACE: "${EXL3_DCP_PREFILL_WORKSPACE:-auto}"
-      EXL3_DCP_SIZE: "${EXL3_DCP_SIZE:-4}"
+      EXL3_DCP_SIZE: "${EXL3_DCP_SIZE:-2}"
       EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE: "${EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE:-1}"
-      EXL3_GPU_MEMORY_UTILIZATION: "${EXL3_GPU_MEMORY_UTILIZATION:-0.96}"
-      EXL3_MAX_MODEL_LEN: "${EXL3_MAX_MODEL_LEN:-524288}"
+      EXL3_GPU_MEMORY_UTILIZATION: "${EXL3_GPU_MEMORY_UTILIZATION:-0.9675}"
+      EXL3_MAX_MODEL_LEN: "${EXL3_MAX_MODEL_LEN:-512000}"
       EXL3_MAX_NUM_SEQS: "${EXL3_MAX_NUM_SEQS:-8}"
-      EXL3_MAX_BATCHED_TOKENS: "${EXL3_MAX_BATCHED_TOKENS:-5120}"
+      EXL3_MAX_BATCHED_TOKENS: "${EXL3_MAX_BATCHED_TOKENS:-3072}"
+      EXL3_DCP_QUERY_SPLIT: "${EXL3_DCP_QUERY_SPLIT:-1}"
+      EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS: "${EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS:-8192}"
+      EXL3_DCP_CKV_GATHER: "${EXL3_DCP_CKV_GATHER:-auto}"
+      EXL3_DCP_TOPK_OWNER_MERGE: "${EXL3_DCP_TOPK_OWNER_MERGE:-auto}"
+      EXL3_DCP_INDEXER_SHARDS: "${EXL3_DCP_INDEXER_SHARDS:-0}"
+      EXL3_DCP_CKV_PREFETCH_DEPTH: "${EXL3_DCP_CKV_PREFETCH_DEPTH:-auto}"
+      EXL3_DCP_CKV_PREFETCH_WORKSPACE_MIB: "${EXL3_DCP_CKV_PREFETCH_WORKSPACE_MIB:-1024}"
+      EXL3_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS: "${EXL3_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS:-1024}"
+      EXL3_PCIE_DMA_MIN_BYTES: "${EXL3_PCIE_DMA_MIN_BYTES:-25165824}"
       EXL3_GPU_BLOCKS: "${EXL3_GPU_BLOCKS:-}"
-      VLLM_EXL3_TRELLIS_MIN_M: "1"
-      VLLM_EXL3_TRELLIS_MAX_M: "32"
-      VLLM_EXL3_TRELLIS_BLOCK_M: "8"
-      VLLM_EXL3_PREFILL_CHUNK: "${EXL3_PREFILL_CHUNK:-128}"
-      VLLM_CACHE_DIR: /cache/jit/vllm
-      TRITON_CACHE_DIR: /cache/jit/triton
-      TORCH_EXTENSIONS_DIR: /cache/jit/torch_extensions
-      TORCHINDUCTOR_CACHE_DIR: /cache/jit/torchinductor
-      FLASHINFER_WORKSPACE_BASE: /cache/jit/flashinfer
-      XDG_CACHE_HOME: /cache/jit
-      TVM_FFI_CACHE_DIR: /cache/jit/tvm-ffi
+      VLLM_EXL3_TRELLIS_MIN_M: "${EXL3_TRELLIS_MIN_M:-1}"
+      VLLM_EXL3_PREFILL_TRELLIS: "${EXL3_PREFILL_TRELLIS:-1}"
+      VLLM_EXL3_PREFILL_BLOCK_M: "${EXL3_PREFILL_BLOCK_M:-64}"
+      VLLM_EXL3_TRELLIS_MAX_M: "${EXL3_TRELLIS_MAX_M:-32}"
+      VLLM_EXL3_TRELLIS_BLOCK_M: "${EXL3_TRELLIS_BLOCK_M:-8}"
+      VLLM_EXL3_PREFILL_CHUNK: "${EXL3_PREFILL_CHUNK:-1}"
+      VLLM_CACHE_DIR: "/cache/jit${EXL3_CACHE_SUFFIX:-}/vllm"
+      TRITON_CACHE_DIR: "/cache/jit${EXL3_CACHE_SUFFIX:-}/triton"
+      TORCH_EXTENSIONS_DIR: "/cache/jit${EXL3_CACHE_SUFFIX:-}/torch_extensions"
+      TORCHINDUCTOR_CACHE_DIR: "/cache/jit${EXL3_CACHE_SUFFIX:-}/torchinductor"
+      FLASHINFER_WORKSPACE_BASE: "/cache/jit${EXL3_CACHE_SUFFIX:-}/flashinfer"
+      XDG_CACHE_HOME: "/cache/jit${EXL3_CACHE_SUFFIX:-}"
+      TVM_FFI_CACHE_DIR: "/cache/jit${EXL3_CACHE_SUFFIX:-}/tvm-ffi"
       VLLM_MEMORY_PROFILE_INCLUDE_ATTN: "1"
       VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS: "1"
     entrypoint:
@@ -142,15 +167,15 @@ services:
             ;;
           2)
             ckv_gather=1
-            owner_merge=1
-            prefetch_depth=1
+            owner_merge=0
+            prefetch_depth=0
             workspace=0
             dcp_args=(--dcp-comm-backend a2a --dcp-kv-cache-interleave-size "$${EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE}")
             ;;
           4)
             ckv_gather=1
-            owner_merge=1
-            prefetch_depth=1
+            owner_merge=0
+            prefetch_depth=0
             workspace=1
             dcp_args=(--dcp-comm-backend a2a --dcp-kv-cache-interleave-size "$${EXL3_DCP_KV_CACHE_INTERLEAVE_SIZE}")
             ;;
@@ -171,6 +196,53 @@ services:
           echo "The DCP prefill workspace is supported only for TP4/DCP4" >&2
           exit 2
         fi
+        case "$${EXL3_DCP_QUERY_SPLIT}" in
+          0|1) ;;
+          *)
+            echo "EXL3_DCP_QUERY_SPLIT must be 0 or 1" >&2
+            exit 2
+            ;;
+        esac
+        if [[ -n "$${EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS}" && ! "$${EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS}" =~ ^[0-9]+$$ ]]; then
+          echo "EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS must be empty or a non-negative integer" >&2
+          exit 2
+        fi
+        case "$${EXL3_DCP_CKV_GATHER}" in
+          auto) ;;
+          0|1) ckv_gather="$${EXL3_DCP_CKV_GATHER}" ;;
+          *)
+            echo "EXL3_DCP_CKV_GATHER must be auto, 0, or 1" >&2
+            exit 2
+            ;;
+        esac
+        case "$${EXL3_DCP_TOPK_OWNER_MERGE}" in
+          auto) ;;
+          0|1) owner_merge="$${EXL3_DCP_TOPK_OWNER_MERGE}" ;;
+          *)
+            echo "EXL3_DCP_TOPK_OWNER_MERGE must be auto, 0, or 1" >&2
+            exit 2
+            ;;
+        esac
+        case "$${EXL3_DCP_CKV_PREFETCH_DEPTH}" in
+          auto) ;;
+          ''|*[!0-9]*)
+            echo "EXL3_DCP_CKV_PREFETCH_DEPTH must be auto or a non-negative integer" >&2
+            exit 2
+            ;;
+          *) prefetch_depth="$${EXL3_DCP_CKV_PREFETCH_DEPTH}" ;;
+        esac
+        case "$${EXL3_DCP_INDEXER_SHARDS}" in
+          ''|*[!0-9]*)
+            echo "EXL3_DCP_INDEXER_SHARDS must be a non-negative integer" >&2
+            exit 2
+            ;;
+        esac
+        case "$${EXL3_DCP_CKV_PREFETCH_WORKSPACE_MIB}" in
+          ''|*[!0-9]*)
+            echo "EXL3_DCP_CKV_PREFETCH_WORKSPACE_MIB must be a non-negative integer" >&2
+            exit 2
+            ;;
+        esac
         case "$${EXL3_MAX_NUM_SEQS}" in
           [1-8]) ;;
           *)
@@ -187,16 +259,26 @@ services:
               ;;
           esac
         fi
-        export VLLM_DCP_QUERY_SPLIT=1
+        export VLLM_DCP_QUERY_SPLIT="$${EXL3_DCP_QUERY_SPLIT}"
+        if [[ -n "$${EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS}" ]]; then
+          export VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS="$${EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS}"
+        else
+          unset VLLM_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS
+        fi
+        if [[ -n "$${EXL3_PCIE_DMA_MIN_BYTES}" ]]; then
+          export VLLM_PCIE_DMA_MIN_BYTES="$${EXL3_PCIE_DMA_MIN_BYTES}"
+        else
+          unset VLLM_PCIE_DMA_MIN_BYTES
+        fi
         export VLLM_B12X_MLA_CKV_GATHER="$${ckv_gather}"
         export VLLM_DCP_TOPK_OWNER_MERGE="$${owner_merge}"
-        export VLLM_DCP_INDEXER_SHARDS=0
+        export VLLM_DCP_INDEXER_SHARDS="$${EXL3_DCP_INDEXER_SHARDS}"
         export VLLM_B12X_MLA_CKV_PREFETCH_DEPTH="$${prefetch_depth}"
-        export VLLM_B12X_MLA_CKV_PREFETCH_WORKSPACE_MIB=1024
+        export VLLM_B12X_MLA_CKV_PREFETCH_WORKSPACE_MIB="$${EXL3_DCP_CKV_PREFETCH_WORKSPACE_MIB}"
         export VLLM_DCP_PROJECT_BEFORE_MERGE="$${workspace}"
-        export VLLM_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS=1024
+        export VLLM_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS="$${EXL3_DCP_PROJECT_BEFORE_MERGE_MIN_PREFILL_TOKENS}"
         export VLLM_B12X_MLA_DCP_GATHER_IN_WORKSPACE="$${workspace}"
-        echo "EXL3 policy: DCP=$${dcp_size} MTP=$${mtp_tokens} workspace=$${workspace} ckv_gather=$${ckv_gather} owner_merge=$${owner_merge} prefetch_depth=$${prefetch_depth}"
+        echo "EXL3 policy: DCP=$${dcp_size} MTP=$${mtp_tokens} workspace=$${workspace} query_split=$${EXL3_DCP_QUERY_SPLIT} query_split_min=$${EXL3_DCP_QUERY_SPLIT_MIN_CONTEXT_TOKENS:-none} ckv_gather=$${ckv_gather} owner_merge=$${owner_merge} indexer_shards=$${EXL3_DCP_INDEXER_SHARDS} prefetch_depth=$${prefetch_depth} pcie_dma_min=$${EXL3_PCIE_DMA_MIN_BYTES:-unset} compressed_dma=$${VLLM_PCIE_DMA_FP8}"
         index_pattern='FFFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSSFSSS'
         if [[ "$${#index_pattern}" -ne 78 ]]; then
           echo "GLM-5.2 index_topk_pattern must cover all 78 layers" >&2

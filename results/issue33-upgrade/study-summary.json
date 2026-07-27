@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "study": "GLM-5.2 EXL3 issue #33-era upgrade on four RTX PRO 6000 Blackwell GPUs",
+  "campaign_dates": [
+    "2026-07-26",
+    "2026-07-27"
+  ],
+  "scope_warning": "The tested source cut predates the later issue #33 sic3828fd/r4 image. Results must not be attributed to that later image.",
+  "hardware": {
+    "gpu_count": 4,
+    "gpu_model": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "vram_mib_aggregate": 391548,
+    "power_limit_w_per_gpu": 600,
+    "measured_gpu_order": "3,1,2,0"
+  },
+  "checkpoint": "brandonmusic/GLM-5.2-EXL3-TR3-3.0bpw",
+  "runtime": {
+    "base_image": "voipmonitor/vllm:gilded-gnosis-v20-vllm0c79e41-sie603f74-fi801d57a-cu132-20260726",
+    "base_image_digest": "sha256:10261c7d65101c8aba2ce1fb59eabe73aff9d35eca5043b330cc0ce76d3c98d0",
+    "vllm_base_commit": "0c79e41db41f250ccdfc4be92d171960a5787f73",
+    "sparkinfer_base_commit": "e603f74bb67d0fce547336f1fb73c3c23e8f1887",
+    "flashinfer_commit": "801d57a08958c13d375ddbb6be3be4808f48a708",
+    "vllm_exl3_pr139_head": "26c4bfdd3ff2be0433e6fe07e0c3be535f5bb318",
+    "sparkinfer_exl3_pr49_head": "d4438d490691f79022fdfc8149e1c5f161d15445",
+    "local_image_tag": "local/glm52-exl3-issue33:0c79e41-e603f74-pr139-pr49",
+    "local_image_id": "sha256:d55205e3ae3d81f00a2770dee91c2bf1662a5efe29c6c897be5ac3010ca75895"
+  },
+  "benchmark_contract": {
+    "harness": "llm-inference-bench",
+    "reported_version": "0.4.28",
+    "raw_benchmark_artifacts": 86,
+    "raw_bytes": 3647952,
+    "temperature": 1.0,
+    "all_raw_json_parsed": true,
+    "all_raw_artifacts_explicit_temperature_one": true,
+    "decode_concurrency": [1, 2, 4, 8],
+    "decode_context_tokens": [0, 32768, 131072],
+    "decode_duration_seconds": 20,
+    "prefill_context_tokens": [8192, 65536, 131072],
+    "token_targeting": "exact",
+    "quality_concurrency": 5,
+    "quality_max_tokens": 40000,
+    "final_lavd_runs": 20,
+    "final_estonia_runs": 30
+  },
+  "selected_production": {
+    "tensor_parallel_size": 4,
+    "decode_context_parallel_size": 2,
+    "mtp_tokens": 3,
+    "mtp_draft_sample_method": "greedy",
+    "gpu_memory_utilization": 0.9675,
+    "max_model_len": 512000,
+    "max_num_batched_tokens": 3072,
+    "max_num_seqs": 8,
+    "kv_cache_dtype": "nvfp4_ds_mla",
+    "query_split": true,
+    "query_split_min_context_tokens": 8192,
+    "ckv_gather": true,
+    "ckv_gather_min_tokens": 512,
+    "ckv_gather_max_tokens": 140000,
+    "topk_owner_merge": false,
+    "indexer_shards": 0,
+    "kv_interleave": 1,
+    "ckv_prefetch_depth": 0,
+    "pcie_dma_fp8": false,
+    "pcie_dma_min_bytes": 25165824,
+    "prefill_chunk": 1,
+    "prefill_block_m": 64,
+    "shared_expert_stream_threshold": 16,
+    "multi_stream_gemm_threshold": 1024,
+    "indexer_supertile_k": 32768,
+    "kv_fp8_rope": false,
+    "kv_budget_tokens": 513536,
+    "verified_request_envelope_tokens": 512000,
+    "verified_prompt_tokens": 507904,
+    "verified_generated_tokens": 4096
+  },
+  "production_inference": {
+    "prefill_tokens_per_second": {
+      "8192": 3644.0,
+      "65536": 3380.0,
+      "131072": 3140.0
+    },
+    "decode_aggregate_tokens_per_second": {
+      "0": {
+        "1": 103.8,
+        "2": 174.6,
+        "4": 269.4,
+        "8": 392.5
+      },
+      "32768": {
+        "1": 104.6,
+        "2": 164.9,
+        "4": 251.0,
+        "8": 368.9
+      },
+      "131072": {
+        "1": 100.4,
+        "2": 165.3
+      }
+    }
+  },
+  "matched_stock": {
+    "vllm_commit_prefix": "5517197",
+    "sparkinfer_commit_prefix": "be0edca",
+    "gpu_memory_utilization": 0.96,
+    "decode_context_parallel_size": 2,
+    "max_model_len": 300000,
+    "max_num_batched_tokens": 4096,
+    "kv_budget_tokens": 440448,
+    "prefill_tokens_per_second": {
+      "8192": 3746.0,
+      "65536": 3155.0,
+      "131072": 3023.0
+    },
+    "decode_geometric_mean_change_selected_vs_stock_pct": -0.15,
+    "kv_budget_change_selected_vs_stock_pct": 16.6,
+    "prefill_change_selected_vs_stock_pct": {
+      "8192": -2.7,
+      "65536": 7.1,
+      "131072": 3.9
+    }
+  },
+  "quality": {
+    "dcp2_exact_matched_comparison": {
+      "lavd_selected_acceptable": [19, 20],
+      "lavd_stock_acceptable": [20, 20],
+      "lavd_fisher_two_sided_p": 1.0,
+      "estonia_selected_pass": [29, 30],
+      "estonia_stock_pass": [30, 30],
+      "estonia_fisher_two_sided_p": 1.0
+    },
+    "dcp2_additional_final_variant": {
+      "lavd_acceptable": [20, 20],
+      "estonia_pass": [29, 30],
+      "pooled_into_primary_comparison": false
+    },
+    "dcp4_descriptive": {
+      "two_final_variants_lavd_acceptable": [38, 40],
+      "two_final_variants_estonia_pass": [56, 60],
+      "exact_1048576_envelope_estonia_pass": [9, 10],
+      "matched_old_stock_control_available": false,
+      "fisher_comparison_claimed": false
+    },
+    "interpretation": "No statistically detectable difference in the exact DCP2 matched comparison; strict distributional equivalence is not proven. DCP4 quality evidence is descriptive because no matched old-stock DCP4 control was collected."
+  },
+  "topology_conclusions": {
+    "dcp1": "Fastest single-stream and prefill profile; highest stress-safe GMU 0.9825; lower context capacity.",
+    "dcp2": "Selected balanced production profile; stock-like overall decode, faster long prefill, 512K verified envelope.",
+    "dcp4": "Maximum-context option; 735K balanced profile and a separate exact 1,048,576-token total envelope; slower ordinary-load throughput."
+  },
+  "largest_measured_gain": {
+    "control": "VLLM_B12X_MLA_CKV_GATHER_MAX_TOKENS",
+    "before": 16384,
+    "after": 140000,
+    "dcp2_prefill_change_pct": {
+      "65536": 15.8,
+      "131072": 12.6
+    },
+    "dcp4_prefill_change_pct": {
+      "65536": 49.1,
+      "131072": 50.0
+    }
+  },
+  "rejected_or_bounded": {
+    "kv_fp8_rope": "About 15.85% more capacity, but the first Estonia gate scored 8/10; rejected for production.",
+    "ckv_prefetch": "Repeated throughput loss and extra workspace on this topology.",
+    "owner_merge": "Mixed or slower; owner-zero paths selected.",
+    "compressed_pcie_dma": "Prefill/decode tradeoff; lossless above 24 MiB selected.",
+    "single_channel_oneshot": "Unsafe with concurrent target and draft graph transport.",
+    "trellis_block_16": "Required compiled specialization absent.",
+    "indexer_supertile_65024": "Memory changed, service performance mixed or neutral.",
+    "kv_interleave_16": "Mixed matrix; interleave 1 retained.",
+    "replicated_indexer": "Cost 38,784 KV tokens for mixed throughput."
+  },
+  "known_issue": {
+    "configuration": "DCP2, VLLM_DCP_INDEXER_SHARDS=1, VLLM_DCP_QUERY_SPLIT=1",
+    "stage": "CUDA graph memory profiling before API readiness",
+    "error": "No indexer query-split group matches the requested KV shard count: requested=1, partial=None, configured=2",
+    "workaround_tested": "Query split off allowed startup, but capacity and throughput tradeoffs caused rejection.",
+    "fixed_by_this_study": false
+  },
+  "decision": "Deploy DCP2 as the normal production profile and retain DCP4 as an explicit maximum-context alternative."
+}
