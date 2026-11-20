@@ -170,6 +170,7 @@ The subsequent GLM-5.2-Vision canary found the same 5/6 semantic result in BF16/
 - **Benchmark harness:** [Local Inference Lab `llm-inference-bench`](https://github.com/local-inference-lab/llm-inference-bench), commit `86cf05c2f42f4d21b909b6e684424ca1aab89fd5`, reported version `0.4.29`.
 - **Hardware, study direction, operation, measurements, and publication:** [Josh Cartu (`@jcartu`)](https://github.com/jcartu).
 - **Implementation assistance:** OpenAI Codex; upstream PRs also disclose Anthropic Claude Code assistance and CodeRabbit review where applicable.
+- **Complete original-work ledger:** [CONTRIBUTIONS.md](CONTRIBUTIONS.md) separates source implementation, integration, independent discoveries, methodology, upstream ownership, and explicit non-claims across the July GLM-5.2 program.
 
 ## Runtime pins
 
@@ -206,6 +207,7 @@ The Compose file intentionally requires explicit local image and model paths. It
 
 ```text
 README.md                         current findings and claim boundaries
+CONTRIBUTIONS.md                 exhaustive cross-project original-work ledger
 ISSUE33_STUDY.md                  current issue #33-era plain-English report
 HYBRID_STUDY.md                  NF3 hybrid v20 optimization and Pareto analysis
 FOLLOWUP_STUDY.md                chronological follow-up analysis

@@ -104,6 +104,8 @@ reported result version: 0.4.29
 
 ## Original work represented by this repository
 
+The exhaustive cross-project record is [`CONTRIBUTIONS.md`](CONTRIBUTIONS.md). It distinguishes original source implementation, integration, independent experimental discovery, campaign methodology, and upstream work; the concise list below remains specific to artifacts stored in this repository.
+
 - Design and operation of the recorded four-GPU configuration studies.
 - Public-safe Compose overlays and publication packaging.
 - Full-context and lower-capacity Pareto sweeps of the independently acquired MXFP8/NVFP4/NF3 hybrid checkpoint against the exact v20 recipe.
